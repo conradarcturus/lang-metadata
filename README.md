@@ -1,0 +1,64 @@
+# Language Metadata
+
+This repository will contain a dataset of metadata about the world's languages and language-like objects as well as a website framework to visualize the information.
+
+## Data
+
+The data comes from multiple sources, primarily [CLDR](https://github.com/unicode-org/cldr/), [Ethnologue](https://www.ethnologue.com/), and [Glottolog](https://glottolog.org/).
+
+## Functionality
+
+Here's a list of planned functionality. Completed functions are checked off.
+
+- [ ] Language-adjacent objects
+  - [ ] Languages
+  - [ ] Territories
+  - [ ] Locales (languages + territories + potentially other specificity)
+  - [ ] Writing Systems
+  - [ ] Language Variants / IANA tags
+- [ ] Views
+  - [ ] Cards
+  - [ ] Details
+  - [ ] Hierarchy
+  - [ ] Table
+- [ ] Interactivity
+  - [ ] Filter
+    - [ ] By Code
+    - [ ] By Name
+  - [ ] Sort
+    - [ ] By Population
+    - [ ] By Name
+  - [ ] Export
+- [ ] Manage data sources
+  - [ ] Load different subsets of data
+  - [ ] Definitions of what a language is
+    - [ ] ISO Languages, Macrolanguages, and Language Families
+    - [ ] Glottolog Languoids
+    - [ ] Inclusive
+- [ ] (Future)
+  - [ ] Database-powered backend
+  - [ ] Feedback mechanisms
+  - [ ] Validation & warnings 
+
+# How to use
+
+The website runs on React + Typescript.
+
+## Instructions
+
+Start the server using `npm run dev`
+
+## Initialize
+
+This project was created using Node and Vite. ChatGPT helped a lot when starting out the project. Let me know if I over-initialized anything.
+
+1. Install npm
+2. Initalize the project using vite `npm create vite@latest`
+  1. Choose `lang-metadata` as project name. Then React + TypeScript
+3. Change into the `lang-metadata` directory and run `npm install`
+4. Setup the linter
+  1. Initialize `npx eslint --init`
+  2. Choose options: what: javascript, use: problems, modules: esm, framework: react, typescript: yes, runs on: browser
+  3. `npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier`
+  4. More magic to get it to run... I had to install ESLint on my IDE (VSCode)
+5. Start `npm run dev`
