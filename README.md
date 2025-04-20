@@ -2,6 +2,9 @@
 
 This repository will contain a dataset of metadata about the world's languages and language-like objects as well as a website framework to visualize the information.
 
+
+![Preview of the website](/public/preview.png)
+
 ## Data
 
 The data comes from multiple sources, primarily [CLDR](https://github.com/unicode-org/cldr/), [Ethnologue](https://www.ethnologue.com/), and [Glottolog](https://glottolog.org/).
@@ -11,7 +14,7 @@ The data comes from multiple sources, primarily [CLDR](https://github.com/unicod
 Here's a list of planned functionality. Completed functions are checked off.
 
 - [ ] Language-adjacent objects
-  - [ ] Languages
+  - [x] Languages
   - [ ] Territories
   - [ ] Locales (languages + territories + potentially other specificity)
   - [ ] Writing Systems
