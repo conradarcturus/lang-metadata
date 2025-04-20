@@ -16,11 +16,11 @@ export enum ViewType {
 export type PageParams = {
   //   dimension?: Dimension;
   viewType: ViewType;
-  //   filterQuery?: string;
+  code: string;
 };
 
 export type PageParamsOptional = {
   //   dimension?: Dimension;
   viewType?: ViewType;
-  //   filterQuery?: string;
+  code?: string;
 };

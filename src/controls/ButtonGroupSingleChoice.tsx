@@ -15,7 +15,7 @@ function ButtonGroupSingleChoice<T extends React.Key>({
   renderLabel = (val) => val as string,
 }: ButtonGroupSingleChoiceProps<T>) {
   return (
-    <div className="ButtonGroupSingleChoice" style={{ display: 'inline-block' }}>
+    <div className="selector">
       {options.map((option) => (
         <button
           key={option}

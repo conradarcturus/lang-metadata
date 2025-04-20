@@ -1,17 +1,25 @@
 import React from 'react';
 import { LanguageData } from '../../dataloading/DataTypes';
+import { usePageParams } from '../../controls/PageParamsContext';
+import { ViewType } from '../../controls/PageParamTypes';
+import { separateTitleAndSubtitle } from '../../utils/stringUtils';
 
 interface Props {
   lang: LanguageData;
 }
 
 const LanguageCard: React.FC<Props> = ({ lang }) => {
+  const { updatePageParams } = usePageParams();
   const { vitalityEth2013, medium, populationCited, nameDisplay, nameEndonym } = lang;
+  const [title, subtitle] = separateTitleAndSubtitle(nameDisplay);
 
   return (
-    <div className="LanguageCard">
+    <div>
       <h3>
-        <strong>{nameDisplay}</strong> {nameDisplay != nameEndonym && nameEndonym}
+        <a onClick={() => updatePageParams({ code: lang.code, viewType: ViewType.Details })}>
+          <strong>{title}</strong> {title != nameEndonym && nameEndonym}
+        </a>
+        {subtitle != null && <div className="subtitle">{subtitle} </div>}
       </h3>
       <div>
         <h4>Speakers</h4>

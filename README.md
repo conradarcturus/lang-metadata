@@ -21,13 +21,14 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Language Variants / IANA tags
 - [ ] Views
   - [x] Cards
-  - [ ] Details
+  - [x] Details
   - [ ] Hierarchy
   - [ ] Table
 - [ ] Interactivity
   - [ ] Filter
     - [ ] By Code
     - [ ] By Name
+    - [ ] Using typeahead
   - [ ] Sort
     - [ ] By Population
     - [ ] By Name

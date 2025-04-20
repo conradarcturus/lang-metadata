@@ -1,19 +1,22 @@
 import React from 'react';
-import ButtonGroupSingleChoice from '../components/ButtonGroupSingleChoice';
+import ButtonGroupSingleChoice from './ButtonGroupSingleChoice';
 import { ViewType } from './PageParamTypes';
 import { usePageParams } from './PageParamsContext';
 
 const ControlsBar: React.FC = () => {
-  const { viewType, updatePageParams } = usePageParams();
+  const { viewType, updatePageParams, code } = usePageParams();
 
   return (
-    <div style={{ marginBottom: '1rem' }}>
+    <div className="controlsBar">
       <ButtonGroupSingleChoice<ViewType>
         options={[ViewType.CardList, ViewType.Details]}
-        onChange={(viewType: ViewType) => updatePageParams({ viewType })}
+        onChange={(viewType: ViewType) => updatePageParams({ viewType, code: '' })}
         selected={viewType}
-        // renderLabel={getDataTypeLabel}
       />
+      <div className="selector">
+        <label>Code</label>
+        <input value={code} onChange={(ev) => updatePageParams({ code: ev.target.value })} />
+      </div>
     </div>
   );
 };

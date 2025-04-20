@@ -14,22 +14,20 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const getParam = (key: string, fallback: string = '') => pageParams.get(key) ?? fallback;
 
   const updatePageParams = (newParams: PageParamsOptional) => {
-    // const next = new URLSearchParams(pageParams);
-    // Object.entries(newParams).forEach(([key, value]) => {
-    //   if (value === undefined) {
-    //     next.delete(key);
-    //   } else {
-    //     next.set(key, value.toString());
-    //   }
-    // });
-    // setPageParams(next);
-    // const next = new URLSearchParams(pageParams);
-    setPageParams({ ...pageParams, ...newParams });
+    const next = new URLSearchParams(pageParams);
+    Object.entries(newParams).forEach(([key, value]) => {
+      if (value === undefined) {
+        next.delete(key);
+      } else {
+        next.set(key, value.toString());
+      }
+    });
+    setPageParams(next);
   };
 
   const providerValue: PageParamsContextState = useMemo(
     () => ({
-      // filterQuery: getParam("filterQuery"),
+      code: getParam('code', ''),
       viewType: getParam('viewType', ViewType.CardList) as ViewType,
       updatePageParams,
     }),
