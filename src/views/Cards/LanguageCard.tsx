@@ -1,8 +1,8 @@
 import React from 'react';
 import { LanguageData } from '../../dataloading/DataTypes';
-import { usePageParams } from '../../controls/PageParamsContext';
 import { ViewType } from '../../controls/PageParamTypes';
 import { separateTitleAndSubtitle } from '../../utils/stringUtils';
+import { usePageParams } from '../../controls/PageParamsContext';
 
 interface Props {
   lang: LanguageData;

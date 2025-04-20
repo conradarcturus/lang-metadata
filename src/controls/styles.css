@@ -1,12 +1,10 @@
-.controlsBar {
-    margin-bottom: 1rem;
-}
 
 .selector {
     margin-left: 0.125em;
     margin-right: 1em;
     display: inline-flex;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .selector button, .selector input, .selector label {
@@ -16,22 +14,22 @@
     line-height: 1.5;
     padding: .5rem 1rem;
     font-size: 1.2em;
-    cursor: pointer;
 }
 
 .selector button {
     color: #0077d4;
     background: white;
+    cursor: pointer;
 }
 
 .selector input {
     color: #0077d4;
     background: white;
     padding: 0.50rem 1rem;
-    width: 8em;
 }
 
 .selector button:hover {
+    color: #0077d4;
     background: #e0f1ff;
 }
 
@@ -48,4 +46,10 @@
 .selector .selected, .selector label {
     background: #0077d4;
     color: white;
+}
+
+.clear {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: none !important;
 }

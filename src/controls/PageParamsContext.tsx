@@ -16,7 +16,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const updatePageParams = (newParams: PageParamsOptional) => {
     const next = new URLSearchParams(pageParams);
     Object.entries(newParams).forEach(([key, value]) => {
-      if (value === undefined) {
+      if (value === undefined || value == '') {
         next.delete(key);
       } else {
         next.set(key, value.toString());
@@ -28,6 +28,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const providerValue: PageParamsContextState = useMemo(
     () => ({
       code: getParam('code', ''),
+      nameFilter: getParam('nameFilter', ''),
       viewType: getParam('viewType', ViewType.CardList) as ViewType,
       updatePageParams,
     }),

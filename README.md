@@ -26,8 +26,8 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Table
 - [ ] Interactivity
   - [ ] Filter
-    - [ ] By Code
-    - [ ] By Name
+    - [x] By Code
+    - [x] By Name
     - [ ] Using typeahead
   - [ ] Sort
     - [ ] By Population
@@ -39,7 +39,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] ISO Languages, Macrolanguages, and Language Families
     - [ ] Glottolog Languoids
     - [ ] Inclusive
-- [ ] (Future)
+- [ ] Future ideas
   - [ ] Database-powered backend
   - [ ] Feedback mechanisms
   - [ ] Validation & warnings 

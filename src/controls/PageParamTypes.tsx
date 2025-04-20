@@ -17,10 +17,12 @@ export type PageParams = {
   //   dimension?: Dimension;
   viewType: ViewType;
   code: string;
+  nameFilter: string;
 };
 
 export type PageParamsOptional = {
   //   dimension?: Dimension;
   viewType?: ViewType;
   code?: string;
+  nameFilter?: string;
 };
