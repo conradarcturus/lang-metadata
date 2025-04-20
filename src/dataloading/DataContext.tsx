@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { LanguageCode, LanguageData } from './DataTypes';
 import { loadLanguages } from './DataLoader';
+import { connectLanguagesToParent } from './DataAssociations';
 
 type DataContextType = {
   languagesByCode: Record<LanguageCode, LanguageData>;
@@ -18,8 +19,10 @@ export const DataProvider: React.FC<{
   async function loadData() {
     const [langs] = await Promise.all([loadLanguages()]);
     if (langs == null) {
-      return; // Show an error
+      return; // Should show an error
     }
+
+    connectLanguagesToParent(langs);
 
     setLanguagesByCode(langs);
   }

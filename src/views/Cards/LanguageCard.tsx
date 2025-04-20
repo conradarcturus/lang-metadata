@@ -3,6 +3,7 @@ import { LanguageData } from '../../dataloading/DataTypes';
 import { ViewType } from '../../controls/PageParamTypes';
 import { separateTitleAndSubtitle } from '../../utils/stringUtils';
 import { usePageParams } from '../../controls/PageParamsContext';
+import CommaSeparated from '../../components/CommaSeparated';
 
 interface Props {
   lang: LanguageData;
@@ -10,7 +11,15 @@ interface Props {
 
 const LanguageCard: React.FC<Props> = ({ lang }) => {
   const { updatePageParams } = usePageParams();
-  const { vitalityEth2013, medium, populationCited, nameDisplay, nameEndonym } = lang;
+  const {
+    vitalityEth2013,
+    medium,
+    populationCited,
+    nameDisplay,
+    nameEndonym,
+    parentLanguage,
+    childLanguages,
+  } = lang;
   const [title, subtitle] = separateTitleAndSubtitle(nameDisplay);
 
   return (
@@ -33,6 +42,36 @@ const LanguageCard: React.FC<Props> = ({ lang }) => {
         <h4>Vitality</h4>
         {vitalityEth2013}
       </div>
+
+      {parentLanguage != null && (
+        <div>
+          <h4>Group:</h4>
+          <a
+            onClick={() =>
+              updatePageParams({ code: parentLanguage.code, viewType: ViewType.Details })
+            }
+          >
+            {parentLanguage.nameDisplay}
+          </a>
+        </div>
+      )}
+      {Object.keys(childLanguages).length > 0 && (
+        <div>
+          <h4>Includes:</h4>
+          <CommaSeparated>
+            {Object.values(childLanguages).map((childLanguage) => (
+              <a
+                key={childLanguage.code}
+                onClick={() =>
+                  updatePageParams({ code: childLanguage.code, viewType: ViewType.Details })
+                }
+              >
+                {childLanguage.nameDisplay}
+              </a>
+            ))}
+          </CommaSeparated>
+        </div>
+      )}
     </div>
   );
 };

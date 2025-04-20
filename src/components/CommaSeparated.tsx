@@ -1,0 +1,32 @@
+import React, { useState } from 'react';
+import './styles.css';
+
+type CommaSeparatedProps = {
+  children: React.ReactNode;
+  limit?: number; // Optionally will clamp the list
+};
+
+const CommaSeparated: React.FC<CommaSeparatedProps> = ({ children }) => {
+  const limit = 4;
+  const childArray = React.Children.toArray(children);
+  const [expanded, setExpanded] = useState(false);
+  const countOverLimit = childArray.length - limit;
+
+  return (
+    <span>
+      {childArray.slice(0, !expanded && limit ? limit : undefined).map((child, index) => (
+        <React.Fragment key={index}>
+          {child}
+          {index < childArray.length - 1 && ', '}
+        </React.Fragment>
+      ))}{' '}
+      {limit != null && childArray.length > limit && (
+        <button className="seeMore" onClick={() => setExpanded((prev) => !prev)}>
+          {expanded ? 'see less' : '+' + countOverLimit + ' more'}
+        </button>
+      )}
+    </span>
+  );
+};
+
+export default CommaSeparated;

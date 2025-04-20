@@ -22,6 +22,10 @@ function parseLanguageLine(line: string): LanguageData {
     parentGlottocode: parts[12],
     viabilityConfidence: parts[13],
     viabilityExplanation: parts[14],
+
+    // References to other objects, filled in with DataAssociations methods
+    parentLanguage: undefined,
+    childLanguages: [],
   };
 }
 

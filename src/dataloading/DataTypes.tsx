@@ -13,6 +13,7 @@ export type LanguageCode = string;
 export type Glottocode = string;
 
 export type LanguageData = {
+  // Provided by the TSV files
   code: LanguageCode;
   glottocode: Glottocode;
   nameDisplay: string;
@@ -28,4 +29,10 @@ export type LanguageData = {
   parentGlottocode: Glottocode;
   viabilityConfidence: string;
   viabilityExplanation: string;
+
+  // References to other objects, filled in after loading the TSV
+  parentLanguage?: LanguageData;
+  // parentLanguoid?: LanguageData; // Reserved after incorporating Glottolog data
+  childLanguages: LanguageData[];
+  // childLanguoids: LanguageData[];
 };

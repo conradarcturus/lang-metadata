@@ -15,6 +15,10 @@ Here's a list of planned functionality. Completed functions are checked off.
 
 - [ ] Language-adjacent objects
   - [x] Languages
+    - [x] Core attributes
+    - [x] ISO parent/child connections
+    - [ ] Glottolog
+    - [ ] Digital Support details
   - [ ] Territories
   - [ ] Locales (languages + territories + potentially other specificity)
   - [ ] Writing Systems
@@ -24,6 +28,7 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [x] Details
   - [ ] Hierarchy
   - [ ] Table
+  - [ ] Map
 - [ ] Interactivity
   - [ ] Filter
     - [x] By Code
@@ -32,10 +37,11 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Sort
     - [ ] By Population
     - [ ] By Name
+  - [ ] Selection
   - [ ] Export
 - [ ] Manage data sources
   - [ ] Load different subsets of data
-  - [ ] Definitions of what a language is
+  - [ ] Show results based on different definitions of what a language is
     - [ ] ISO Languages, Macrolanguages, and Language Families
     - [ ] Glottolog Languoids
     - [ ] Inclusive

@@ -3,19 +3,29 @@ import { LanguageData } from '../dataloading/DataTypes';
 import { ViewType } from '../controls/PageParamTypes';
 import { usePageParams } from '../controls/PageParamsContext';
 import { separateTitleAndSubtitle } from '../utils/stringUtils';
+import CommaSeparated from '../components/CommaSeparated';
+import './styles.css';
 
 interface Props {
   lang: LanguageData | null;
 }
 
 const LanguageDetails: React.FC<Props> = ({ lang }) => {
-  if (lang == null) {
-    const { updatePageParams } = usePageParams();
+  const { updatePageParams } = usePageParams();
 
+  if (lang == null) {
     return (
-      <div className="Details">
+      <div className="Details" style={{ textAlign: 'center' }}>
         No language selected. Enter a language code in the search bar. See common languages:
-        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 10,
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            marginTop: 8,
+          }}
+        >
           {Object.entries({
             eng: 'English',
             spa: 'Spanish',
@@ -48,6 +58,8 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
     viabilityExplanation,
     vitalityEth2013,
     vitalityEth2025,
+    parentLanguage,
+    childLanguages,
   } = lang;
   const [title, subtitle] = separateTitleAndSubtitle(nameDisplay);
 
@@ -94,6 +106,41 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           <label>Viability:</label>
           {viabilityConfidence} ... {viabilityExplanation}
         </div>
+      </div>
+      <div>
+        <h3>Connections</h3>
+        {parentLanguage != null && (
+          <div>
+            <label>Group:</label>
+            <a
+              onClick={() =>
+                updatePageParams({ code: parentLanguage.code, viewType: ViewType.Details })
+              }
+            >
+              {parentLanguage.nameDisplay}
+            </a>
+          </div>
+        )}
+        {childLanguages.length > 0 && (
+          <div>
+            <label>Includes:</label>
+            <CommaSeparated>
+              {childLanguages.map((childLanguage) => (
+                <a
+                  key={childLanguage.code}
+                  onClick={() =>
+                    updatePageParams({ code: childLanguage.code, viewType: ViewType.Details })
+                  }
+                >
+                  {childLanguage.nameDisplay}
+                </a>
+              ))}
+            </CommaSeparated>
+          </div>
+        )}
+        {parentLanguage == null && childLanguages.length === 0 && (
+          <div>There is currently no data available to show connections with other languages.</div>
+        )}
       </div>
     </div>
   );
