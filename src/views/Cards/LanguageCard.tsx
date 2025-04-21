@@ -30,7 +30,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
         <a onClick={() => updatePageParams({ code: lang.code, viewType: ViewType.Details })}>
           <strong>{title}</strong> {title != nameEndonym && nameEndonym}
         </a>
-        {subtitle != null && <div className="subtitle">{subtitle} </div>}
+        {subtitle != null && <div className="subtitle">{subtitle}</div>}
       </h3>
       <div>
         <h4>Speakers</h4>

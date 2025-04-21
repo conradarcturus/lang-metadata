@@ -32,8 +32,14 @@ export function parseTerritoryLine(line: string): TerritoryData {
     nameDisplay: parts[1],
     territoryType: parts[2] as TerritoryType,
     population: Number.parseInt(parts[3].replace(/,/g, '')),
-    containedUNRegion: parts[4],
-    sovereign: parts[5],
+    containedUNRegionCode: parts[4],
+    sovereignCode: parts[5],
     literacy: Number.parseFloat(parts[6].replace(/,/g, '')),
+
+    // Reference to other objects, filled in with DataAssociations methods
+    parentUNRegion: undefined,
+    regionContainsTerritories: [],
+    sovereign: undefined,
+    dependentTerritories: [],
   };
 }

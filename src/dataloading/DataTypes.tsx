@@ -56,7 +56,13 @@ export type TerritoryData = {
   nameDisplay: string;
   territoryType: TerritoryType;
   population: number;
-  containedUNRegion: UNM49Code;
-  sovereign: ISO3166Code;
+  containedUNRegionCode: UNM49Code;
+  sovereignCode: ISO3166Code;
   literacy: number;
+
+  // References to other objects, filled in after loading the TSV
+  parentUNRegion?: TerritoryData;
+  regionContainsTerritories: TerritoryData[];
+  sovereign?: TerritoryData;
+  dependentTerritories: TerritoryData[];
 };
