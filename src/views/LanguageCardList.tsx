@@ -22,7 +22,7 @@ const LanguageCardList: React.FC = () => {
         .sort((a, b) => b.populationCited - a.populationCited)
         .map((lang) => (
           <ViewCard key={lang.code}>
-            <LanguageCard lang={lang} />
+            <LanguageCard lang={lang} includeRelations={true} />
           </ViewCard>
         ))}
     </div>

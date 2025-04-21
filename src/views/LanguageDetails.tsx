@@ -5,6 +5,8 @@ import { usePageParams } from '../controls/PageParamsContext';
 import { separateTitleAndSubtitle } from '../utils/stringUtils';
 import CommaSeparated from '../components/CommaSeparated';
 import './styles.css';
+import Hoverable from '../components/Hoverable';
+import LanguageCard from './Cards/LanguageCard';
 
 interface Props {
   lang: LanguageData | null;
@@ -112,13 +114,14 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         {parentLanguage != null && (
           <div>
             <label>Group:</label>
-            <a
+            <Hoverable
+              hoverContent={<LanguageCard lang={parentLanguage} />}
               onClick={() =>
                 updatePageParams({ code: parentLanguage.code, viewType: ViewType.Details })
               }
             >
               {parentLanguage.nameDisplay}
-            </a>
+            </Hoverable>
           </div>
         )}
         {childLanguages.length > 0 && (
@@ -126,14 +129,15 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             <label>Includes:</label>
             <CommaSeparated>
               {childLanguages.map((childLanguage) => (
-                <a
+                <Hoverable
+                  hoverContent={<LanguageCard lang={childLanguage} />}
                   key={childLanguage.code}
                   onClick={() =>
                     updatePageParams({ code: childLanguage.code, viewType: ViewType.Details })
                   }
                 >
                   {childLanguage.nameDisplay}
-                </a>
+                </Hoverable>
               ))}
             </CommaSeparated>
           </div>
