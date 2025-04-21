@@ -1,48 +1,29 @@
 import React from 'react';
 import { LanguageData } from '../dataloading/DataTypes';
-import { ViewType } from '../controls/PageParamTypes';
-import { usePageParams } from '../controls/PageParamsContext';
 import { separateTitleAndSubtitle } from '../utils/stringUtils';
 import CommaSeparated from '../components/CommaSeparated';
 import './styles.css';
-import Hoverable from '../components/Hoverable';
-import LanguageCard from './Cards/LanguageCard';
+import HoverableLanguageName from './Cards/HoverableLanguageName';
+import { useDataContext } from '../dataloading/DataContext';
 
 interface Props {
   lang: LanguageData | null;
 }
 
 const LanguageDetails: React.FC<Props> = ({ lang }) => {
-  const { updatePageParams } = usePageParams();
-
   if (lang == null) {
+    const { languagesByCode } = useDataContext();
+
     return (
       <div className="Details" style={{ textAlign: 'center' }}>
         No language selected. Enter a language code in the search bar. See common languages:
-        <div
-          style={{
-            display: 'flex',
-            gap: 10,
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            marginTop: 8,
-          }}
-        >
-          {Object.entries({
-            eng: 'English',
-            spa: 'Spanish',
-            fra: 'French',
-            deu: 'German',
-            zho: 'Chinese',
-            ara: 'Arabic',
-          }).map(([code, name]) => (
-            <button
-              key={code}
-              onClick={() => updatePageParams({ code, viewType: ViewType.Details })}
-            >
-              {name}
-            </button>
-          ))}
+        <div className="separatedButtonList">
+          {['eng', 'spa', 'fra', 'deu', 'zho', 'ara'].map(
+            (code) =>
+              languagesByCode[code] != null && (
+                <HoverableLanguageName key={code} lang={languagesByCode[code]} format="button" />
+              ),
+          )}
         </div>
       </div>
     );
@@ -114,14 +95,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         {parentLanguage != null && (
           <div>
             <label>Group:</label>
-            <Hoverable
-              hoverContent={<LanguageCard lang={parentLanguage} />}
-              onClick={() =>
-                updatePageParams({ code: parentLanguage.code, viewType: ViewType.Details })
-              }
-            >
-              {parentLanguage.nameDisplay}
-            </Hoverable>
+            <HoverableLanguageName lang={parentLanguage} />
           </div>
         )}
         {childLanguages.length > 0 && (
@@ -129,15 +103,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             <label>Includes:</label>
             <CommaSeparated>
               {childLanguages.map((childLanguage) => (
-                <Hoverable
-                  hoverContent={<LanguageCard lang={childLanguage} />}
-                  key={childLanguage.code}
-                  onClick={() =>
-                    updatePageParams({ code: childLanguage.code, viewType: ViewType.Details })
-                  }
-                >
-                  {childLanguage.nameDisplay}
-                </Hoverable>
+                <HoverableLanguageName key={childLanguage.code} lang={childLanguage} />
               ))}
             </CommaSeparated>
           </div>

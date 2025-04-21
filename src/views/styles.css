@@ -51,6 +51,15 @@ a:hover {
     text-decoration: underline;
 }
 
+.separatedButtonList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 1em;
+}
+
 @media (min-width: 0px) {
     .CardList {
         grid-template-columns: repeat(1, 1fr);

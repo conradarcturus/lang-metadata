@@ -4,7 +4,7 @@ import { ViewType } from '../../controls/PageParamTypes';
 import { separateTitleAndSubtitle } from '../../utils/stringUtils';
 import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../components/CommaSeparated';
-import Hoverable from '../../components/Hoverable';
+import HoverableLanguageName from './HoverableLanguageName';
 
 interface Props {
   lang: LanguageData;
@@ -48,14 +48,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
       {includeRelations && parentLanguage != null && (
         <div>
           <h4>Group:</h4>
-          <Hoverable
-            hoverContent={<LanguageCard lang={parentLanguage} />}
-            onClick={() =>
-              updatePageParams({ code: parentLanguage.code, viewType: ViewType.Details })
-            }
-          >
-            {parentLanguage.nameDisplay}
-          </Hoverable>
+          <HoverableLanguageName lang={parentLanguage} />
         </div>
       )}
       {includeRelations && Object.keys(childLanguages).length > 0 && (
@@ -63,15 +56,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           <h4>Includes:</h4>
           <CommaSeparated>
             {Object.values(childLanguages).map((childLanguage) => (
-              <Hoverable
-                hoverContent={<LanguageCard lang={childLanguage} />}
-                key={childLanguage.code}
-                onClick={() =>
-                  updatePageParams({ code: childLanguage.code, viewType: ViewType.Details })
-                }
-              >
-                {childLanguage.nameDisplay}
-              </Hoverable>
+              <HoverableLanguageName key={childLanguage.code} lang={childLanguage} />
             ))}
           </CommaSeparated>
         </div>

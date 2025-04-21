@@ -1,51 +1,31 @@
 import React from 'react';
 import { TerritoryData } from '../dataloading/DataTypes';
-import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, ViewType } from '../controls/PageParamTypes';
 import CommaSeparated from '../components/CommaSeparated';
 import HoverableTerritoryName from './Cards/HoverableTerritoryName';
+import { useDataContext } from '../dataloading/DataContext';
 
 type Props = {
   territory: TerritoryData;
 };
 
 const TerritoryDetails: React.FC<Props> = ({ territory }) => {
-  const { updatePageParams } = usePageParams();
-
   if (territory == null) {
+    const { territoriesByCode } = useDataContext();
+
     return (
       <div className="Details" style={{ textAlign: 'center' }}>
-        No territory selected. Enter a territory code in the search bar. See common languages:
-        <div
-          style={{
-            display: 'flex',
-            gap: 10,
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            marginTop: 8,
-          }}
-        >
-          {Object.entries({
-            US: 'United States',
-            MX: 'Mexico',
-            FR: 'France',
-            DE: 'Germany',
-            CN: 'China',
-            EG: 'Egypt',
-          }).map(([code, name]) => (
-            <button
-              key={code}
-              onClick={() =>
-                updatePageParams({
-                  code,
-                  viewType: ViewType.Details,
-                  dimension: Dimension.Territory,
-                })
-              }
-            >
-              {name}
-            </button>
-          ))}
+        No language selected. Enter a language code in the search bar. See common languages:
+        <div className="separatedButtonList">
+          {['US', 'MX', 'FR', 'DE', 'CN', 'EG'].map(
+            (code) =>
+              territoriesByCode[code] != null && (
+                <HoverableTerritoryName
+                  key={code}
+                  territory={territoriesByCode[code]}
+                  format="button"
+                />
+              ),
+          )}
         </div>
       </div>
     );

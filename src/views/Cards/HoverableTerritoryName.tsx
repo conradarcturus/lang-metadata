@@ -7,9 +7,10 @@ import { usePageParams } from '../../controls/PageParamsContext';
 
 type Props = {
   territory: TerritoryData;
+  format?: 'text' | 'button';
 };
 
-const HoverableTerritoryName: React.FC<Props> = ({ territory }) => {
+const HoverableTerritoryName: React.FC<Props> = ({ territory, format = 'text' }) => {
   const { updatePageParams } = usePageParams();
 
   return (
@@ -23,7 +24,7 @@ const HoverableTerritoryName: React.FC<Props> = ({ territory }) => {
         })
       }
     >
-      {territory.nameDisplay}
+      {format === 'text' ? territory.nameDisplay : <button>{territory.nameDisplay}</button>}
     </Hoverable>
   );
 };
