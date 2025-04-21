@@ -1,0 +1,288 @@
+TerritoryCode	Territory Name	Territory Type	Population	Contained UN Region	Sovereign	Literacy
+001	World	World	8,135,342,470	001		79.4%
+142	Asia	Continent	4,709,491,123	001		80.4%
+034	Southern Asia	Sub-continent	2,005,031,276	142		62.0%
+030	Eastern Asia	Sub-continent	1,643,989,729	142		95.5%
+002	Africa	Continent	1,434,646,339	001		63.6%
+IN	India	Country	1,413,324,000	034		63.0%
+CN	China	Country	1,408,280,000	030		95.0%
+202	Sub-Saharan Africa	Region	1,174,195,606	002		61.3%
+019	Americas	Continent	1,039,566,838	001		94.4%
+150	Europe	Continent	744,500,000	001		98.6%
+035	South-eastern Asia	Sub-continent	682,099,076	142		92.7%
+419	Latin America	Region	666,650,000	019		90.4%
+014	Eastern Africa	Sub-continent	458,001,018	202		61.0%
+011	Western Africa	Sub-continent	435,565,060	202		54.3%
+005	South America	Sub-continent	434,131,558	419		92.4%
+021	Northern America	Sub-continent	381,766,084	003		99.0%
+003	North America	Region	381,766,084	019		99.0%
+US	United States	Country	340,110,988	021		99.0%
+145	Western Asia	Sub-continent	296,030,416	142		87.0%
+ID	Indonesia	Country	282,477,584	035		93.0%
+151	Eastern Europe	Sub-continent	279,720,421	150		99.6%
+015	Northern Africa	Sub-continent	260,450,733	002		73.9%
+PK	Pakistan	Country	241,499,431	034		55.0%
+NG	Nigeria	Country	223,800,000	011		61.0%
+BR	Brazil	Country	212,583,750	005		90.0%
+017	Middle Africa	Sub-continent	208,639,336	202		65.8%
+155	Western Europe	Sub-continent	201,000,078	150		99.0%
+013	Central America	Sub-continent	180,649,029	419		90.8%
+BD	Bangladesh	Country	169,828,911	034		58.0%
+039	Southern Europe	Sub-continent	152,104,722	150		98.1%
+RU	Russia	Country	146,028,325	151		100.0%
+MX	Mexico	Country	130,294,079	013		94.0%
+JP	Japan	Country	123,440,000	030		99.0%
+PH	Philippines	Country	114,123,600	035		95.0%
+ET	Ethiopia	Country	109,499,000	014		39.0%
+CD	Congo - Kinshasa	Country	109,276,000	017		67.0%
+154	Northern Europe	Sub-continent	108,266,245	150		99.2%
+EG	Egypt	Country	105,914,499	015		74.0%
+VN	Vietnam	Country	101,343,800	035		93.0%
+IR	Iran	Country	85,961,000	034		85.0%
+TR	Turkey	Country	85,664,944	145		94.0%
+DE	Germany	Country	83,555,478	155		99.0%
+143	Central Asia	Sub-continent	82,340,626	142		99.5%
+018	Southern Africa	Sub-continent	71,990,192	202		92.4%
+FR	France	Country	68,603,000	155		99.0%
+GB	United Kingdom	Country	68,265,209	154		99.0%
+TH	Thailand	Country	65,932,105	035		94.0%
+ZA	South Africa	Country	63,015,904	018		93.0%
+TZ	Tanzania	Country	61,741,120	014		68.0%
+IT	Italy	Country	58,966,101	039		99.0%
+CO	Colombia	Country	52,695,952	005		94.0%
+KE	Kenya	Country	52,428,290	014		87.0%
+MM	Myanmar (Burma)	Country	51,316,756	035		93.0%
+KR	South Korea	Country	51,207,874	030		98.0%
+SD	Sudan	Country	50,448,963	015		72.0%
+ES	Spain	Country	49,077,984	039		98.0%
+009	Oceania	Continent	47,898,033	001		89.4%
+DZ	Algeria	Country	47,400,000	015		73.0%
+AR	Argentina	Country	47,067,641	005		98.0%
+UG	Uganda	Country	45,905,417	014		73.0%
+IQ	Iraq	Country	44,414,800	145		79.0%
+029	Caribbean	Sub-continent	43,020,167	419		87.1%
+AF	Afghanistan	Country	42,045,000	034		28.0%
+CA	Canada	Country	41,528,680	021		99.0%
+UZ	Uzbekistan	Country	37,543,167	143		99.0%
+PL	Poland	Country	37,470,000	151		100.0%
+MA	Morocco	Country	36,828,330	015		67.0%
+AO	Angola	Country	35,121,734	017		70.0%
+MY	Malaysia	Country	34,157,500	035		93.0%
+PE	Peru	Country	34,038,457	005		90.0%
+MZ	Mozambique	Country	33,244,414	014		56.0%
+GH	Ghana	Country	33,007,618	011		72.0%
+UA	Ukraine	Country	32,962,000	151		100.0%
+053	Australia and New Zealand	Sub-continent	32,670,569	009		99.0%
+YE	Yemen	Country	32,305,264	145		65.0%
+SA	Saudi Arabia	Country	32,175,224	145		87.0%
+MG	Madagascar	Country	30,811,969	014		65.0%
+CI	Côte d’Ivoire	Country	29,389,150	011		57.0%
+NP	Nepal	Country	29,164,578	034		57.0%
+CM	Cameroon	Country	28,758,503	017		71.0%
+VE	Venezuela	Country	28,405,543	005		96.0%
+AU	Australia	Country	27,309,396	053		99.0%
+NE	Niger	Country	26,312,034	011		29.0%
+KP	North Korea	Country	25,950,000	030		100.0%
+SY	Syria	Country	24,672,760	145		84.0%
+BF	Burkina Faso	Country	23,409,015	011		29.0%
+TW	Taiwan	Country	23,384,614	030		96.0%
+ML	Mali	Country	22,395,489	011		33.0%
+LK	Sri Lanka	Country	21,916,000	034		91.0%
+KZ	Kazakhstan	Country	20,300,618	143		100.0%
+MW	Malawi	Country	20,270,568	014		75.0%
+CL	Chile	Country	20,086,377	005		99.0%
+ZM	Zambia	Country	19,610,769	014		61.0%
+RO	Romania	Country	19,064,409	151		98.0%
+SO	Somalia	Country	19,009,151	014		38.0%
+TD	Chad	Country	18,675,547	017		35.0%
+SN	Senegal	Country	18,126,390	011		50.0%
+NL	Netherlands	Country	18,051,856	155		99.0%
+GT	Guatemala	Country	17,843,132	013		76.0%
+KH	Cambodia	Country	17,336,307	035		74.0%
+EC	Ecuador	Country	16,938,986	005		92.0%
+ZW	Zimbabwe	Country	16,751,469	014		84.0%
+SS	South Sudan	Country	15,254,268	014		27.0%
+GN	Guinea	Country	14,363,931	011		41.0%
+054	Melanesia	Sub-continent	14,022,672	009		66.4%
+RW	Rwanda	Country	13,798,561	014		71.0%
+BJ	Benin	Country	12,910,087	011		42.0%
+BI	Burundi	Country	12,837,740	014		67.0%
+TN	Tunisia	Country	11,887,412	015		79.0%
+HT	Haiti	Country	11,867,032	029		61.7%
+BE	Belgium	Country	11,812,354	155		99.0%
+PG	Papua New Guinea	Country	11,781,559	054		62.0%
+JO	Jordan	Country	11,734,000	145		96.0%
+BO	Bolivia	Country	11,312,620	005		91.0%
+CU	Cuba	Country	11,089,511	029		100.0%
+CZ	Czechia	Country	10,897,237	151		99.0%
+DO	Dominican Republic	Country	10,771,504	029		90.0%
+AE	United Arab Emirates	Country	10,678,556	145		90.0%
+PT	Portugal	Country	10,639,726	039		95.0%
+SE	Sweden	Country	10,588,020	154		99.0%
+GR	Greece	Country	10,400,720	039		97.0%
+TJ	Tajikistan	Country	10,277,100	143		100.0%
+AZ	Azerbaijan	Country	10,218,536	145		100.0%
+IL	Israel	Country	10,045,100	145		97.0%
+HN	Honduras	Country	9,892,632	013		85.0%
+HU	Hungary	Country	9,540,000	151		99.0%
+AT	Austria	Country	9,198,214	155		98.0%
+BY	Belarus	Country	9,109,280	151		100.0%
+CH	Switzerland	Country	9,027,859	155		99.0%
+SL	Sierra Leone	Country	8,884,032	011		43.0%
+TG	Togo	Country	8,095,498	011		60.0%
+LA	Laos	Country	7,546,000	035		73.0%
+HK	Hong Kong SAR China	Dependency	7,534,200	030	CN	94.0%
+LY	Libya	Country	7,381,023	015		90.0%
+KG	Kyrgyzstan	Country	7,161,900	143		99.0%
+TM	Turkmenistan	Country	7,057,841	143		100.0%
+NI	Nicaragua	Country	6,803,886	013		78.0%
+RS	Serbia	Country	6,605,168	039		98.0%
+CF	Central African Republic	Country	6,470,307	017		57.0%
+BG	Bulgaria	Country	6,445,481	151		98.0%
+CG	Congo - Brazzaville	Country	6,142,180	017		84.0%
+PY	Paraguay	Country	6,109,644	005		94.0%
+SG	Singapore	Country	6,036,900	035		96.0%
+SV	El Salvador	Country	6,029,976	013		85.0%
+DK	Denmark	Country	5,992,734	154		99.0%
+FI	Finland	Country	5,639,600	154		100.0%
+NO	Norway	Country	5,594,340	154		100.0%
+LB	Lebanon	Country	5,490,000	145		90.0%
+PS	Palestinian Territories	Country	5,483,450	145		95.0%
+SK	Slovakia	Country	5,419,451	151		100.0%
+IE	Ireland	Country	5,380,300	154		99.0%
+NZ	New Zealand	Country	5,356,700	053		99.0%
+CR	Costa Rica	Country	5,309,625	013		96.0%
+OM	Oman	Country	5,274,249	145		87.0%
+LR	Liberia	Country	5,248,621	011		61.0%
+MR	Mauritania	Country	4,927,532	011		59.0%
+KW	Kuwait	Country	4,913,271	145		94.0%
+PA	Panama	Country	4,064,780	013		94.0%
+HR	Croatia	Country	3,859,686	039		99.0%
+GE	Georgia	Country	3,694,600	145		100.0%
+ER	Eritrea	Country	3,535,603	014		69.0%
+MN	Mongolia	Country	3,504,741	030		97.0%
+UY	Uruguay	Country	3,499,451	005		98.0%
+BA	Bosnia & Herzegovina	Country	3,264,873	039		98.0%
+PR	Puerto Rico	Dependency	3,203,295	029	US	90.0%
+AM	Armenia	Country	3,075,800	145		100.0%
+NA	Namibia	Country	3,022,401	018		89.0%
+LT	Lithuania	Country	2,889,888	154		100.0%
+QA	Qatar	Country	2,857,822	145		96.0%
+JM	Jamaica	Country	2,825,544	029		87.0%
+MD	Moldova	Country	2,423,300	151		99.0%
+GM	Gambia	Country	2,417,471	011		51.0%
+BW	Botswana	Country	2,410,338	018		85.0%
+GA	Gabon	Country	2,408,586	017		89.0%
+AL	Albania	Country	2,402,113	039		97.0%
+LS	Lesotho	Country	2,306,000	018		90.0%
+SI	Slovenia	Country	2,129,052	039		100.0%
+IC	Canary Islands	Dependency	2,098,593	015	ES	98.0%
+LV	Latvia	Country	1,850,100	154		100.0%
+MK	North Macedonia	Country	1,826,247	039		97.0%
+GW	Guinea-Bissau	Country	1,781,308	011		55.0%
+BH	Bahrain	Country	1,588,670	145		95.0%
+XK	Kosovo	Country	1,585,566	039		92.0%
+GQ	Equatorial Guinea	Country	1,558,160	017		94.0%
+TL	Timor-Leste	Country	1,373,024	035		58.0%
+EE	Estonia	Country	1,369,285	154		100.0%
+TT	Trinidad & Tobago	Country	1,368,333	029		99.0%
+MU	Mauritius	Country	1,244,477	014		89.0%
+SZ	Eswatini	Country	1,235,549	018		88.0%
+DJ	Djibouti	Country	1,066,809	014		68.0%
+CY	Cyprus	Country	966,400	145		99.0%
+FJ	Fiji	Country	900,869	054		94.0%
+KM	Comoros	Country	870,038	014		76.0%
+RE	Réunion	Dependency	787,584	014	FR	88.0%
+BT	Bhutan	Country	777,224	034		53.0%
+GY	Guyana	Country	772,975	005		92.0%
+SB	Solomon Islands	Country	750,325	054		84.0%
+MO	Macao SAR China	Dependency	688,300	030	CN	96.0%
+061	Polynesia	Sub-continent	676,038	009		97.4%
+LU	Luxembourg	Country	672,050	155		100.0%
+ME	Montenegro	Country	623,633	039		99.0%
+SR	Suriname	Country	616,500	005		95.0%
+EH	Western Sahara	Dependency	590,506	015	MA	50.0%
+MT	Malta	Country	563,443	039		92.0%
+057	Micronesia	Sub-continent	528,754	009		94.2%
+MV	Maldives	Country	515,132	034		98.0%
+CV	Cape Verde	Country	491,233	011		85.0%
+BN	Brunei	Country	455,500	035		95.0%
+GP	Guadeloupe	Dependency	452,776	029	FR	90.0%
+MQ	Martinique	Dependency	436,131	029	FR	98.0%
+BZ	Belize	Country	410,919	013		77.0%
+BS	Bahamas	Country	398,165	029		96.0%
+IS	Iceland	Country	389,450	154		99.0%
+VU	Vanuatu	Country	321,409	054		83.0%
+PF	French Polynesia	Dependency	279,890	061	FR	98.0%
+NC	New Caledonia	Dependency	268,510	054	FR	96.0%
+BB	Barbados	Country	267,800	029		100.0%
+ST	São Tomé & Príncipe	Country	228,319	017		70.0%
+WS	Samoa	Country	205,557	061		99.0%
+GF	French Guiana	Dependency	199,509	005	FR	83.0%
+YT	Mayotte	Dependency	194,000	014	FR	92.0%
+GU	Guam	Dependency	184,100	057	US	99.0%
+LC	St. Lucia	Country	155,826	029		90.0%
+CW	Curaçao	Dependency	153,836	029	NL	96.0%
+EA	Ceuta & Melilla	Dependency	150,000	015	ES	98.0%
+SC	Seychelles	Country	121,355	014		92.0%
+KI	Kiribati	Country	120,740	057		90.0%
+GD	Grenada	Country	112,579	029		96.0%
+VC	St. Vincent & Grenadines	Country	110,872	029		96.0%
+AW	Aruba	Dependency	107,566	029	NL	97.0%
+FM	Micronesia	Country	105,754	057		89.0%
+AG	Antigua & Barbuda	Country	103,603	029		99.0%
+JE	Jersey	Dependency	103,267	154	GB	99.0%
+TO	Tonga	Country	100,179	061		99.0%
+AD	Andorra	Country	87,486	039		100.0%
+VI	U.S. Virgin Islands	Dependency	87,146	029	US	99.0%
+KY	Cayman Islands	Dependency	84,738	029	GB	99.0%
+IM	Isle of Man	Dependency	84,530	154	GB	99.0%
+DM	Dominica	Country	67,408	029		94.0%
+GG	Guernsey	Dependency	64,781	154	GB	100.0%
+BM	Bermuda	Dependency	64,055	021	GB	98.0%
+GL	Greenland	Dependency	56,542	021	DK	100.0%
+FO	Faroe Islands	Dependency	54,741	154	DK	99.0%
+KN	St. Kitts & Nevis	Country	51,320	029		98.0%
+TC	Turks & Caicos Islands	Dependency	50,894	029	GB	98.0%
+AS	American Samoa	Dependency	49,710	061	US	97.0%
+MP	Northern Mariana Islands	Dependency	47,329	057	US	97.0%
+MH	Marshall Islands	Country	42,418	057		94.0%
+SX	Sint Maarten	Dependency	41,349	029	NL	99.0%
+LI	Liechtenstein	Country	40,900	155		100.0%
+VG	British Virgin Islands	Dependency	39,471	029	GB	98.0%
+MC	Monaco	Country	38,367	155		99.0%
+GI	Gibraltar	Dependency	38,000	039	GB	80.0%
+SM	San Marino	Country	34,042	039		96.0%
+MF	St. Martin	Dependency	31,496	029	FR	99.0%
+AX	Åland Islands	Dependency	26,200	154	FI	100.0%
+BQ	Caribbean Netherlands	Dependency	20,000	029	NL	96.0%
+PW	Palau	Country	16,733	057		92.0%
+AI	Anguilla	Dependency	15,931	029	GB	95.0%
+CK	Cook Islands	Dependency	15,040	061	NZ	95.0%
+NR	Nauru	Country	11,680	057		99.0%
+WF	Wallis & Futuna	Dependency	11,620	061	FR	50.0%
+TV	Tuvalu	Country	10,679	061		95.0%
+BL	St. Barthélemy	Dependency	10,562	029	FR	99.0%
+PM	St. Pierre & Miquelon	Dependency	5,819	021	FR	99.0%
+SH	St. Helena	Dependency	5,651	011	GB	97.0%
+MS	Montserrat	Dependency	4,386	029	GB	97.0%
+FK	Falkland Islands	Dependency	3,662	005	GB	99.0%
+IO	British Indian Ocean Territory	Dependency	3,500	014	GB	99.0%
+SJ	Svalbard & Jan Mayen	Dependency	2,583	154	NO	100.0%
+NF	Norfolk Island	Dependency	2,188	053	AU	99.0%
+CX	Christmas Island	Dependency	1,692	053	AU	99.0%
+NU	Niue	Dependency	1,681	061	NZ	95.0%
+TK	Tokelau	Dependency	1,647	061	NZ	94.0%
+AC	Ascension Island	Dependency	940	011	GB	99.0%
+VA	Vatican City	Country	882	039		100.0%
+CC	Cocos (Keeling) Islands	Dependency	593	053	AU	99.0%
+DG	Diego Garcia	Dependency	500	014	GB	99.0%
+CQ	Sark	Dependency	492	154	GB	99.0%
+UM	U.S. Outlying Islands	Dependency	316	057	US	99.0%
+TA	Tristan da Cunha	Dependency	275	011	GB	99.0%
+TF	French Southern Territories	Dependency	140	014	FR	99.0%
+PN	Pitcairn Islands	Dependency	35	061	GB	99.0%
+GS	South Georgia & South Sandwich Islands	Dependency	20	005	GB	100.0%
+BV	Bouvet Island	Dependency	6	005	NO	99.0%
+HM	Heard & McDonald Islands	Dependency	1	053	AU	99.0%
+CP	Clipperton Island	Dependency	1	013	FR	99.0%

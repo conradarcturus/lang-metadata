@@ -1,10 +1,10 @@
-// export enum Dimension {
-//   Territory = 'territory',
-//   Locale = 'locale',
-//   Language = 'language',
-//   WritingSystem = 'writing_system',
-//   VariantTag = 'variant_tag',
-// }
+export enum Dimension {
+  Language = 'Language',
+  // Locale = 'Locale',
+  Territory = 'Territory',
+  // WritingSystem = 'Writing System',
+  // VariantTag = 'Variant Tag',
+}
 
 export enum ViewType {
   CardList = 'Card List',
@@ -14,14 +14,14 @@ export enum ViewType {
 }
 
 export type PageParams = {
-  //   dimension?: Dimension;
+  dimension: Dimension;
   viewType: ViewType;
   code: string;
   nameFilter: string;
 };
 
 export type PageParamsOptional = {
-  //   dimension?: Dimension;
+  dimension?: Dimension;
   viewType?: ViewType;
   code?: string;
   nameFilter?: string;

@@ -36,3 +36,27 @@ export type LanguageData = {
   childLanguages: LanguageData[];
   // childLanguoids: LanguageData[];
 };
+
+// ISO 3166 territory code OR UN M49 code
+export type TerritoryCode = ISO3166Code | UNM49Code;
+export type ISO3166Code = string; // ISO 3166-1 alpha-2 code, eg. US, CA, etc.
+export type UNM49Code = string; // UN M49 code, eg. 001, 150, 419, etc.
+
+export enum TerritoryType {
+  World = 'World',
+  Continent = 'Continent',
+  Region = 'Region',
+  Subcontinent = 'Subcontinent',
+  Country = 'Country',
+  Dependency = 'Dependency',
+}
+
+export type TerritoryData = {
+  code: TerritoryCode;
+  nameDisplay: string;
+  territoryType: TerritoryType;
+  population: number;
+  containedUNRegion: UNM49Code;
+  sovereign: ISO3166Code;
+  literacy: number;
+};

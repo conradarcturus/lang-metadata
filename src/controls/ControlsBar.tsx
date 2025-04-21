@@ -1,16 +1,23 @@
 import React from 'react';
 import ButtonGroupSingleChoice from './ButtonGroupSingleChoice';
-import { ViewType } from './PageParamTypes';
+import { Dimension, ViewType } from './PageParamTypes';
 import { usePageParams } from './PageParamsContext';
 import TextInput from './TextInput';
 
 const ControlsBar: React.FC = () => {
-  const { viewType, updatePageParams, code, nameFilter } = usePageParams();
+  const { viewType, dimension, updatePageParams, code, nameFilter } = usePageParams();
 
   return (
     <div className="controlsBar">
+      <ButtonGroupSingleChoice<Dimension>
+        options={Object.values(Dimension)}
+        onChange={(dimension: Dimension) =>
+          updatePageParams({ dimension, code: '', nameFilter: '' })
+        }
+        selected={dimension}
+      />
       <ButtonGroupSingleChoice<ViewType>
-        options={[ViewType.CardList, ViewType.Details]}
+        options={Object.values(ViewType)}
         onChange={(viewType: ViewType) => updatePageParams({ viewType, code: '', nameFilter: '' })}
         selected={viewType}
       />

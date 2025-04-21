@@ -19,7 +19,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] ISO parent/child connections
     - [ ] Glottolog
     - [ ] Digital Support details
-  - [ ] Territories
+  - [x] Territories
   - [ ] Locales (languages + territories + potentially other specificity)
   - [ ] Writing Systems
   - [ ] Language Variants / IANA tags
