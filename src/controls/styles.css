@@ -20,6 +20,7 @@
     color: #0077d4;
     background: white;
     cursor: pointer;
+    border-radius: 0px; /* radius comes from more specific changes */
 }
 
 .selector input {

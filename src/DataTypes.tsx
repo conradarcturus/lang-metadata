@@ -66,3 +66,30 @@ export type TerritoryData = {
   sovereign?: TerritoryData;
   dependentTerritories: TerritoryData[];
 };
+
+// BCP-47 Locale	Locale Display Name	Native Locale Name	Language Code	Territory ISO	Explicit Script	Variant IANA Tag	Pop Source	Best Guess	Official Language
+export type BCP47Locale = string; // BCP-47 formatted locale, eg. en_US, fr_CA, etc.
+export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
+export type VariantIANATag = string; // IANA tag, eg. valencia (for cat-ES-valencia)
+
+export enum OfficialStatus {
+  Official = 'official',
+  DeFactoOfficial = 'de_facto_official',
+  Recognized = 'recognized',
+  OfficialRegionally = 'official_regional',
+  RecognizedRegionally = 'recognized_regional',
+  None = '',
+}
+
+export type LocaleData = {
+  code: BCP47Locale;
+  nameDisplay: string;
+  nameEndonym: string;
+  languageCode: LanguageCode;
+  territoryCode: TerritoryCode;
+  explicitScriptCode: ScriptCode;
+  variantTag: VariantIANATag;
+  populationSource: string;
+  populationEstimate: number;
+  officialStatus: OfficialStatus;
+};

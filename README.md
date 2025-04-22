@@ -20,7 +20,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] Glottolog
     - [ ] Digital Support details
   - [x] Territories
-  - [ ] Locales (languages + territories + potentially other specificity)
+  - [ ] Locales (languages + territories + potentially other specificity) -- in progress
   - [ ] Writing Systems
   - [ ] Language Variants / IANA tags
 - [ ] Views

@@ -1,18 +1,20 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from '../DataTypes';
+import { LanguageCode, LanguageData, LocaleData, TerritoryCode, TerritoryData } from '../DataTypes';
 
 import { connectLanguagesToParent, connectTerritoriesToParent } from './DataAssociations';
-import { loadLanguages, loadTerritories } from './DataLoader';
+import { loadLanguages, loadLocales, loadTerritories } from './DataLoader';
 
 type DataContextType = {
   languagesByCode: Record<LanguageCode, LanguageData>;
   territoriesByCode: Record<TerritoryCode, TerritoryData>;
+  locales: LocaleData[];
 };
 
 const DataContext = createContext<DataContextType | undefined>({
   languagesByCode: {},
   territoriesByCode: {},
+  locales: [],
 });
 
 // Create a provider component
@@ -23,10 +25,15 @@ export const DataProvider: React.FC<{
   const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
     {},
   );
+  const [locales, setLocales] = useState<LocaleData[]>([]);
 
   async function loadData() {
-    const [langs, territories] = await Promise.all([loadLanguages(), loadTerritories()]);
-    if (langs == null || territories == null) {
+    const [langs, territories, locales] = await Promise.all([
+      loadLanguages(),
+      loadTerritories(),
+      loadLocales(),
+    ]);
+    if (langs == null || territories == null || locales == null) {
       return; // Should show an error
     }
 
@@ -35,6 +42,7 @@ export const DataProvider: React.FC<{
 
     setLanguagesByCode(langs);
     setTerritoriesByCode(territories);
+    setLocales(locales);
   }
 
   useEffect(() => {
@@ -42,7 +50,7 @@ export const DataProvider: React.FC<{
   }, []);
 
   return (
-    <DataContext.Provider value={{ languagesByCode, territoriesByCode }}>
+    <DataContext.Provider value={{ languagesByCode, territoriesByCode, locales }}>
       {children}
     </DataContext.Provider>
   );

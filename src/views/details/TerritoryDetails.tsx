@@ -1,18 +1,16 @@
 import React from 'react';
 
+import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
-import { TerritoryData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableTerritoryName from '../cards/HoverableTerritoryName';
 
-type Props = {
-  territory: TerritoryData;
-};
+const TerritoryDetails: React.FC = () => {
+  const { code } = usePageParams();
+  const { territoriesByCode } = useDataContext();
+  const territory = territoriesByCode[code];
 
-const TerritoryDetails: React.FC<Props> = ({ territory }) => {
   if (territory == null) {
-    const { territoriesByCode } = useDataContext();
-
     return (
       <div className="Details" style={{ textAlign: 'center' }}>
         No territory selected. Enter a territory code in the search bar. See common territories:
@@ -33,7 +31,6 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
   }
 
   const {
-    code,
     dependentTerritories,
     literacy,
     nameDisplay,

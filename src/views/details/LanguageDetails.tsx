@@ -1,16 +1,16 @@
 import React from 'react';
 
+import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
-import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import { separateTitleAndSubtitle } from '../../utils/stringUtils';
 import HoverableLanguageName from '../cards/HoverableLanguageName';
 
-interface Props {
-  lang: LanguageData | null;
-}
+const LanguageDetails: React.FC = () => {
+  const { code } = usePageParams();
+  const { languagesByCode } = useDataContext();
+  const lang = languagesByCode[code];
 
-const LanguageDetails: React.FC<Props> = ({ lang }) => {
   if (lang == null) {
     const { languagesByCode } = useDataContext();
 
@@ -30,7 +30,6 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
   }
 
   const {
-    code,
     glottocode,
     medium,
     nameDisplay,

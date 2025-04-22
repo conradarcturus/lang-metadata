@@ -1,4 +1,10 @@
-import { LanguageData, TerritoryData, TerritoryType } from '../DataTypes';
+import {
+  LanguageData,
+  LocaleData,
+  OfficialStatus,
+  TerritoryData,
+  TerritoryType,
+} from '../DataTypes';
 
 export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');
@@ -41,5 +47,21 @@ export function parseTerritoryLine(line: string): TerritoryData {
     regionContainsTerritories: [],
     sovereign: undefined,
     dependentTerritories: [],
+  };
+}
+
+export function parseLocaleLine(line: string): LocaleData {
+  const parts = line.split('\t');
+  return {
+    code: parts[0],
+    nameDisplay: parts[1],
+    nameEndonym: parts[2],
+    languageCode: parts[3],
+    territoryCode: parts[4],
+    explicitScriptCode: parts[5],
+    variantTag: parts[6],
+    populationSource: parts[7],
+    populationEstimate: Number.parseInt(parts[8]?.replace(/,/g, '')),
+    officialStatus: parts[9] as OfficialStatus,
   };
 }
