@@ -2,18 +2,18 @@ import React from 'react';
 
 import { LocaleData } from '../../DataTypes';
 
-import { getOfficialLabel, getPopulationCitation } from './LocaleStrings';
+import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
 interface Props {
   locale: LocaleData;
 }
 const LocaleCard: React.FC<Props> = ({ locale }) => {
-  const { code, nameDisplay, populationEstimate, officialStatus } = locale;
+  const { code, populationEstimate, officialStatus } = locale;
 
   return (
     <div>
       <h3>
-        <strong>{nameDisplay}</strong> [{code}]
+        <strong>{getLocaleName(locale)}</strong> [{code}]
       </h3>
       <div>
         <h4>Speakers</h4>

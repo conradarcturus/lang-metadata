@@ -29,6 +29,7 @@ export function parseLanguageLine(line: string): LanguageData {
     // References to other objects, filled in with DataAssociations methods
     parentLanguage: undefined,
     childLanguages: [],
+    locales: [],
   };
 }
 
@@ -48,6 +49,7 @@ export function parseTerritoryLine(line: string): TerritoryData {
     regionContainsTerritories: [],
     sovereign: undefined,
     dependentTerritories: [],
+    locales: [],
   };
 }
 

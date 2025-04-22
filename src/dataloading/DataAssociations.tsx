@@ -1,4 +1,4 @@
-import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from '../DataTypes';
+import { LanguageCode, LanguageData, LocaleData, TerritoryCode, TerritoryData } from '../DataTypes';
 
 export function connectLanguagesToParent(
   languagesByCode: Record<LanguageCode, LanguageData>,
@@ -35,5 +35,35 @@ export function connectTerritoriesToParent(
         territory.sovereign = sovereign;
       }
     }
+  });
+}
+
+/**
+ * Connects locales to their languages and territories
+ * @param languagesByCode - A map of language codes to LanguageData objects
+ * @param territoriesByCode - A map of territory codes to TerritoryData objects
+ * @param locales - An array of LocaleData objects
+ *
+ * @returns - The updated array of LocaleData objects -- with some locales removed, if they were missing a match to a territory or language.
+ */
+export function connectLocales(
+  languagesByCode: Record<LanguageCode, LanguageData>,
+  territoriesByCode: Record<TerritoryCode, TerritoryData>,
+  locales: LocaleData[],
+): LocaleData[] {
+  return locales.map((locale) => {
+    const territory = territoriesByCode[locale.territoryCode];
+    const language = languagesByCode[locale.languageCode];
+
+    if (territory != null) {
+      territory.locales.push(locale);
+      locale.territory = territory;
+    }
+    if (language != null) {
+      language.locales.push(locale);
+      locale.language = language;
+    }
+
+    return locale;
   });
 }

@@ -2,7 +2,11 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 import { LanguageCode, LanguageData, LocaleData, TerritoryCode, TerritoryData } from '../DataTypes';
 
-import { connectLanguagesToParent, connectTerritoriesToParent } from './DataAssociations';
+import {
+  connectLanguagesToParent,
+  connectLocales,
+  connectTerritoriesToParent,
+} from './DataAssociations';
 import { loadLanguages, loadLocales, loadTerritories } from './DataLoader';
 
 type DataContextType = {
@@ -39,6 +43,7 @@ export const DataProvider: React.FC<{
 
     connectLanguagesToParent(langs);
     connectTerritoriesToParent(territories);
+    connectLocales(langs, territories, locales);
 
     setLanguagesByCode(langs);
     setTerritoriesByCode(territories);

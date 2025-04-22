@@ -35,6 +35,7 @@ export type LanguageData = {
   // parentLanguoid?: LanguageData; // Reserved after incorporating Glottolog data
   childLanguages: LanguageData[];
   // childLanguoids: LanguageData[];
+  locales: LocaleData[];
 };
 
 // ISO 3166 territory code OR UN M49 code
@@ -65,6 +66,7 @@ export type TerritoryData = {
   regionContainsTerritories: TerritoryData[];
   sovereign?: TerritoryData;
   dependentTerritories: TerritoryData[];
+  locales: LocaleData[];
 };
 
 // BCP-47 Locale	Locale Display Name	Native Locale Name	Language Code	Territory ISO	Explicit Script	Variant IANA Tag	Pop Source	Best Guess	Official Language
@@ -103,4 +105,8 @@ export type LocaleData = {
   populationSource: PopulationSourceCategory;
   populationEstimate: number;
   officialStatus: OfficialStatus;
+
+  // References to other objects, filled in after loading the TSV
+  language?: LanguageData;
+  territory?: TerritoryData;
 };
