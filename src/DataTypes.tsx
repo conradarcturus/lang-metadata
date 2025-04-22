@@ -102,8 +102,8 @@ export type LocaleData = {
   nameEndonym: string;
   languageCode: LanguageCode;
   territoryCode: TerritoryCode;
-  explicitScriptCode: ScriptCode;
-  variantTag: VariantIANATag;
+  explicitScriptCode: ScriptCode | null;
+  variantTag: VariantIANATag | null;
   populationSource: PopulationSourceCategory;
   populationEstimate: number;
   officialStatus: OfficialStatus;

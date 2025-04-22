@@ -1,8 +1,11 @@
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LocaleData } from '../../DataTypes';
+import HoverableLanguageName from '../language/HoverableLanguageName';
+import HoverableTerritoryName from '../territory/HoverableTerritoryName';
 
 import HoverableLocaleName from './HoverableLocaleName';
+import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
 const LocaleDetails: React.FC = () => {
   const { code } = usePageParams();
@@ -28,7 +31,75 @@ const LocaleDetails: React.FC = () => {
     );
   }
 
-  return 'Actual Locale details (not a hovercard) have not been implemented yet.';
+  const {
+    populationEstimate,
+    officialStatus,
+    language,
+    languageCode,
+    territory,
+    territoryCode,
+    explicitScriptCode,
+    variantTag,
+  } = locale;
+
+  return (
+    <div className="Details">
+      <h2>
+        <strong>{getLocaleName(locale)}</strong> [{code}]
+      </h2>
+      <div>
+        <h3>Definition</h3>
+        <div>
+          <label>Language:</label>
+          {language ? (
+            <HoverableLanguageName lang={language} />
+          ) : (
+            <span>
+              {languageCode} <em>[language not in database]</em>
+            </span>
+          )}
+        </div>
+        <div>
+          <label>Territory:</label>
+          {territory ? (
+            <HoverableTerritoryName territory={territory} />
+          ) : (
+            <span>
+              {territoryCode} <em>[territory not in database]</em>
+            </span>
+          )}
+        </div>
+
+        {explicitScriptCode && (
+          <div>
+            <label>Writing System:</label>
+            {explicitScriptCode} <em>[script not in database]</em>
+          </div>
+        )}
+
+        {variantTag && (
+          <div>
+            <label>Variant:</label>
+            {variantTag} <em>[variant not in database]</em>
+          </div>
+        )}
+      </div>
+      <div>
+        <h3>Attributes</h3>
+        <div>
+          <label>Speakers:</label>
+          {populationEstimate.toLocaleString()}
+          {' ['}
+          {getPopulationCitation(locale)}
+          {']'}
+        </div>
+        <div>
+          <label>Government status:</label>
+          {getOfficialLabel(officialStatus)}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default LocaleDetails;

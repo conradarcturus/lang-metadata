@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useHoverCard } from './HoverCardContext';
 
 type HoverableProps = {
@@ -23,7 +24,12 @@ const Hoverable: React.FC<HoverableProps> = ({ children, hoverContent, onClick }
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={hideHoverCard}
-      onClick={onClick}
+      onClick={() => {
+        hideHoverCard();
+        if (onClick != null) {
+          onClick();
+        }
+      }}
       style={{
         display: 'inline-block',
         textDecoration: 'underline',
