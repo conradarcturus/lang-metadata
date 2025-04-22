@@ -1,35 +1,7 @@
-import React from 'react';
-
 import { LocaleData, OfficialStatus, PopulationSourceCategory } from '../../DataTypes';
 
-interface Props {
-  locale: LocaleData;
-}
-const LocaleCard: React.FC<Props> = ({ locale }) => {
-  const { code, nameDisplay, populationEstimate, officialStatus } = locale;
-
-  return (
-    <div>
-      <h3>
-        <strong>{nameDisplay}</strong> [{code}]
-      </h3>
-      <div>
-        <h4>Speakers</h4>
-        {populationEstimate.toLocaleString()}
-        {' ['}
-        {getPopulationCitation(locale)}
-        {']'}
-      </div>
-      <div>
-        <h4>Government status</h4>
-        {getOfficialLabel(officialStatus)}
-      </div>
-    </div>
-  );
-};
-
 // TODO Add full Citation information, including URLs, potentially as a hovercard
-function getPopulationCitation(locale: LocaleData): string {
+export function getPopulationCitation(locale: LocaleData): string {
   switch (locale.populationSource) {
     case PopulationSourceCategory.Census:
       return locale.territoryCode + ' census'; // TODO add year
@@ -50,7 +22,7 @@ function getPopulationCitation(locale: LocaleData): string {
   }
 }
 
-function getOfficialLabel(officialStatus: OfficialStatus): string {
+export function getOfficialLabel(officialStatus: OfficialStatus): string {
   switch (officialStatus) {
     case OfficialStatus.Official:
       return 'Official';
@@ -66,5 +38,3 @@ function getOfficialLabel(officialStatus: OfficialStatus): string {
       return 'None';
   }
 }
-
-export default LocaleCard;

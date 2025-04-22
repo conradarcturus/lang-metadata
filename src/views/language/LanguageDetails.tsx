@@ -4,7 +4,8 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import { separateTitleAndSubtitle } from '../../utils/stringUtils';
-import HoverableLanguageName from '../cards/HoverableLanguageName';
+
+import HoverableLanguageName from './HoverableLanguageName';
 
 const LanguageDetails: React.FC = () => {
   const { code } = usePageParams();

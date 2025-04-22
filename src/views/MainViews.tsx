@@ -2,11 +2,11 @@ import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension, ViewType } from '../controls/PageParamTypes';
 import { HoverCardProvider } from '../generic/HoverCardContext';
 
-import LanguageCardList from './cardlists/LanguageCardList';
-import TerritoryCardList from './cardlists/TerritoryCardList';
-import LanguageDetails from './details/LanguageDetails';
-import LocaleDetails from './details/LocaleDetails';
-import TerritoryDetails from './details/TerritoryDetails';
+import LanguageCardList from './language/LanguageCardList';
+import LanguageDetails from './language/LanguageDetails';
+import LocaleDetails from './locale/LocaleDetails';
+import TerritoryCardList from './territory/TerritoryCardList';
+import TerritoryDetails from './territory/TerritoryDetails';
 import './styles.css';
 
 function MainViews() {

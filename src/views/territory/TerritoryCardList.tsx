@@ -2,8 +2,9 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
-import TerritoryCard from '../cards/TerritoryCard';
-import ViewCard from '../cards/ViewCard';
+import ViewCard from '../ViewCard';
+
+import TerritoryCard from './TerritoryCard';
 
 const TerritoryCardList: React.FC = () => {
   const { territoriesByCode } = useDataContext();

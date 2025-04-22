@@ -2,8 +2,9 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
-import LanguageCard from '../cards/LanguageCard';
-import ViewCard from '../cards/ViewCard';
+import ViewCard from '../ViewCard';
+
+import LanguageCard from './LanguageCard';
 
 const LanguageCardList: React.FC = () => {
   const { languagesByCode } = useDataContext();

@@ -3,7 +3,8 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import CommaSeparated from '../../generic/CommaSeparated';
-import HoverableTerritoryName from '../cards/HoverableTerritoryName';
+
+import HoverableTerritoryName from './HoverableTerritoryName';
 
 const TerritoryDetails: React.FC = () => {
   const { code } = usePageParams();

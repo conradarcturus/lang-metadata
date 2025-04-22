@@ -1,7 +1,8 @@
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LocaleData } from '../../DataTypes';
-import HoverableLocaleName from '../cards/HoverableLocaleName';
+
+import HoverableLocaleName from './HoverableLocaleName';
 
 const LocaleDetails: React.FC = () => {
   const { code } = usePageParams();
