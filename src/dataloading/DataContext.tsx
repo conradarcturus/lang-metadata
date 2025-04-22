@@ -1,6 +1,13 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-import { LanguageCode, LanguageData, LocaleData, TerritoryCode, TerritoryData } from '../DataTypes';
+import {
+  BCP47LocaleCode,
+  LanguageCode,
+  LanguageData,
+  LocaleData,
+  TerritoryCode,
+  TerritoryData,
+} from '../DataTypes';
 
 import {
   connectLanguagesToParent,
@@ -12,13 +19,13 @@ import { loadLanguages, loadLocales, loadTerritories } from './DataLoader';
 type DataContextType = {
   languagesByCode: Record<LanguageCode, LanguageData>;
   territoriesByCode: Record<TerritoryCode, TerritoryData>;
-  locales: LocaleData[];
+  locales: Record<BCP47LocaleCode, LocaleData>;
 };
 
 const DataContext = createContext<DataContextType | undefined>({
   languagesByCode: {},
   territoriesByCode: {},
-  locales: [],
+  locales: {},
 });
 
 // Create a provider component
@@ -29,7 +36,7 @@ export const DataProvider: React.FC<{
   const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
     {},
   );
-  const [locales, setLocales] = useState<LocaleData[]>([]);
+  const [locales, setLocales] = useState<Record<BCP47LocaleCode, LocaleData>>({});
 
   async function loadData() {
     const [langs, territories, locales] = await Promise.all([

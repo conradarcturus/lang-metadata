@@ -2,7 +2,14 @@
  * This file provides asynchronous functions to load in data
  */
 
-import { LanguageCode, LanguageData, LocaleData, TerritoryCode, TerritoryData } from '../DataTypes';
+import {
+  BCP47LocaleCode,
+  LanguageCode,
+  LanguageData,
+  LocaleData,
+  TerritoryCode,
+  TerritoryData,
+} from '../DataTypes';
 
 import { parseLanguageLine, parseLocaleLine, parseTerritoryLine } from './DataParsing';
 
@@ -37,12 +44,19 @@ export async function loadTerritories(): Promise<Record<TerritoryCode, Territory
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
-export async function loadLocales(): Promise<LocaleData[] | void> {
+export async function loadLocales(): Promise<Record<BCP47LocaleCode, LocaleData> | void> {
   const filename = 'locales200.tsv';
   return await fetch(filename)
     .then((res) => res.text())
     .then((text) => {
-      return text.split('\n').slice(1).map(parseLocaleLine);
+      return text
+        .split('\n')
+        .slice(1)
+        .map(parseLocaleLine)
+        .reduce<Record<BCP47LocaleCode, LocaleData>>((localesByCode, locale) => {
+          localesByCode[locale.code] = locale;
+          return localesByCode;
+        }, {});
     })
     .catch((err) => console.error('Error loading TSV:', err));
 }

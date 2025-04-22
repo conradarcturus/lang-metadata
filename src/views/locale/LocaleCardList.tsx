@@ -14,7 +14,7 @@ const LocaleCardList: React.FC = () => {
 
   return (
     <div className="CardList">
-      {locales
+      {Object.values(locales)
         .filter(
           (lang) =>
             (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&

@@ -72,7 +72,7 @@ export type TerritoryData = {
 };
 
 // BCP-47 Locale	Locale Display Name	Native Locale Name	Language Code	Territory ISO	Explicit Script	Variant IANA Tag	Pop Source	Best Guess	Official Language
-export type BCP47Locale = string; // BCP-47 formatted locale, eg. en_US, fr_CA, etc.
+export type BCP47LocaleCode = string; // BCP-47 formatted locale, eg. en_US, fr_CA, etc.
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
 export type VariantIANATag = string; // IANA tag, eg. valencia (for cat-ES-valencia)
 
@@ -97,7 +97,7 @@ export enum OfficialStatus {
 }
 
 export type LocaleData = {
-  code: BCP47Locale;
+  code: BCP47LocaleCode;
   nameDisplay: string;
   nameEndonym: string;
   languageCode: LanguageCode;
@@ -111,4 +111,7 @@ export type LocaleData = {
   // References to other objects, filled in after loading the TSV
   language?: LanguageData;
   territory?: TerritoryData;
+
+  // Data added up some references
+  populationPercentOfTerritory?: number;
 };

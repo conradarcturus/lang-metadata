@@ -1,6 +1,5 @@
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
-import { LocaleData } from '../../DataTypes';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';
 
@@ -10,35 +9,33 @@ import { getLocaleName, getOfficialLabel, getPopulationCitation } from './Locale
 const LocaleDetails: React.FC = () => {
   const { code } = usePageParams();
   const { locales } = useDataContext();
-
-  const getLocale = (code: string): LocaleData | null =>
-    locales.filter((locale) => locale.code === code)[0];
-  const locale = getLocale(code);
+  const locale = locales[code];
 
   if (locale == null) {
     return (
       <div className="Details" style={{ textAlign: 'center' }}>
         No locale selected. Enter a locale code in the search bar. See common locales:
         <div className="separatedButtonList">
-          {['eng_US', 'spa_MX', 'fra_FR', 'deu_DE', 'zho_Hans_CN', 'ara_EG'].map((code) => {
-            const locale = getLocale(code);
-            return (
-              locale != null && <HoverableLocaleName key={code} locale={locale} format="button" />
-            );
-          })}
+          {['eng_US', 'spa_MX', 'fra_FR', 'deu_DE', 'zho_Hans_CN', 'ara_EG'].map(
+            (code) =>
+              locales[code] != null && (
+                <HoverableLocaleName key={code} locale={locales[code]} format="button" />
+              ),
+          )}
         </div>
       </div>
     );
   }
 
   const {
-    populationEstimate,
-    officialStatus,
+    explicitScriptCode,
     language,
     languageCode,
+    officialStatus,
+    populationEstimate,
+    populationPercentOfTerritory,
     territory,
     territoryCode,
-    explicitScriptCode,
     variantTag,
   } = locale;
 
@@ -93,6 +90,13 @@ const LocaleDetails: React.FC = () => {
           {getPopulationCitation(locale)}
           {']'}
         </div>
+
+        {populationPercentOfTerritory != null && (
+          <div>
+            <label>Percent of Country:</label>
+            {populationPercentOfTerritory.toFixed(1)}%
+          </div>
+        )}
         <div>
           <label>Government status:</label>
           {getOfficialLabel(officialStatus)}

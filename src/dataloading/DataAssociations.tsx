@@ -1,4 +1,11 @@
-import { LanguageCode, LanguageData, LocaleData, TerritoryCode, TerritoryData } from '../DataTypes';
+import {
+  BCP47LocaleCode,
+  LanguageCode,
+  LanguageData,
+  LocaleData,
+  TerritoryCode,
+  TerritoryData,
+} from '../DataTypes';
 
 export function connectLanguagesToParent(
   languagesByCode: Record<LanguageCode, LanguageData>,
@@ -49,15 +56,17 @@ export function connectTerritoriesToParent(
 export function connectLocales(
   languagesByCode: Record<LanguageCode, LanguageData>,
   territoriesByCode: Record<TerritoryCode, TerritoryData>,
-  locales: LocaleData[],
-): LocaleData[] {
-  return locales.map((locale) => {
+  locales: Record<BCP47LocaleCode, LocaleData>,
+): void {
+  Object.values(locales).map((locale) => {
     const territory = territoriesByCode[locale.territoryCode];
     const language = languagesByCode[locale.languageCode];
 
     if (territory != null) {
       territory.locales.push(locale);
       locale.territory = territory;
+      locale.populationPercentOfTerritory =
+        (locale.populationEstimate * 100) / territory.population;
     }
     if (language != null) {
       language.locales.push(locale);
