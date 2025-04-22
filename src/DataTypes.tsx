@@ -72,6 +72,17 @@ export type BCP47Locale = string; // BCP-47 formatted locale, eg. en_US, fr_CA, 
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
 export type VariantIANATag = string; // IANA tag, eg. valencia (for cat-ES-valencia)
 
+export enum PopulationSourceCategory {
+  Census = '1 Census',
+  Study = '2 Study',
+  Ethnologue = '3 Ethnologue',
+  EDL = '4 EDL',
+  OtherCitation = '5 Other',
+  GeneralizedData = '6 Generalized Data',
+  Fallback = '7 Fallback',
+  NoSource = '',
+}
+
 export enum OfficialStatus {
   Official = 'official',
   DeFactoOfficial = 'de_facto_official',
@@ -89,7 +100,7 @@ export type LocaleData = {
   territoryCode: TerritoryCode;
   explicitScriptCode: ScriptCode;
   variantTag: VariantIANATag;
-  populationSource: string;
+  populationSource: PopulationSourceCategory;
   populationEstimate: number;
   officialStatus: OfficialStatus;
 };

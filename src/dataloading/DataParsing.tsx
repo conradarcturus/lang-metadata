@@ -2,6 +2,7 @@ import {
   LanguageData,
   LocaleData,
   OfficialStatus,
+  PopulationSourceCategory,
   TerritoryData,
   TerritoryType,
 } from '../DataTypes';
@@ -60,7 +61,7 @@ export function parseLocaleLine(line: string): LocaleData {
     territoryCode: parts[4],
     explicitScriptCode: parts[5],
     variantTag: parts[6],
-    populationSource: parts[7],
+    populationSource: parts[7] as PopulationSourceCategory,
     populationEstimate: Number.parseInt(parts[8]?.replace(/,/g, '')),
     officialStatus: parts[9] as OfficialStatus,
   };
