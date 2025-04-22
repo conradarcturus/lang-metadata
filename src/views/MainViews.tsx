@@ -4,6 +4,7 @@ import { HoverCardProvider } from '../generic/HoverCardContext';
 
 import LanguageCardList from './language/LanguageCardList';
 import LanguageDetails from './language/LanguageDetails';
+import LocaleCardList from './locale/LocaleCardList';
 import LocaleDetails from './locale/LocaleDetails';
 import TerritoryCardList from './territory/TerritoryCardList';
 import TerritoryDetails from './territory/TerritoryDetails';
@@ -27,7 +28,7 @@ function MainViews() {
       )}
       {dimension === Dimension.Locale && (
         <>
-          {viewType === ViewType.CardList && 'Not yet implemented'}
+          {viewType === ViewType.CardList && <LocaleCardList />}
           {viewType === ViewType.Details && <LocaleDetails />}
         </>
       )}
