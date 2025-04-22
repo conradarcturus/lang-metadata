@@ -1,6 +1,5 @@
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension, ViewType } from '../controls/PageParamTypes';
-import { HoverCardProvider } from '../generic/HoverCardContext';
 
 import LanguageCardList from './language/LanguageCardList';
 import LanguageDetails from './language/LanguageDetails';
@@ -13,7 +12,7 @@ import './styles.css';
 function MainViews() {
   const { viewType, dimension } = usePageParams();
   return (
-    <HoverCardProvider>
+    <>
       {dimension === Dimension.Language && (
         <>
           {viewType === ViewType.CardList && <LanguageCardList />}
@@ -32,7 +31,7 @@ function MainViews() {
           {viewType === ViewType.Details && <LocaleDetails />}
         </>
       )}
-    </HoverCardProvider>
+    </>
   );
 }
 
