@@ -12,20 +12,31 @@ const LocaleCardList: React.FC = () => {
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 
+  const localesToShow = Object.values(locales).filter(
+    (lang) =>
+      (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
+      (nameFilter == '' || lang.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
+  );
+  const numberOfLocalesOverall = Object.keys(locales).length;
+
   return (
-    <div className="CardList">
-      {Object.values(locales)
-        .filter(
-          (lang) =>
-            (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
-            (nameFilter == '' || lang.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
-        )
-        .sort((a, b) => b.populationEstimate - a.populationEstimate)
-        .map((locale) => (
-          <ViewCard key={locale.code}>
-            <LocaleCard locale={locale} />
-          </ViewCard>
-        ))}
+    <div>
+      <div className="CardListDescription">
+        Showing <strong>{localesToShow.length}</strong>
+        {numberOfLocalesOverall > localesToShow.length && (
+          <> of {<strong>{numberOfLocalesOverall}</strong>} </>
+        )}{' '}
+        locales.
+      </div>
+      <div className="CardList">
+        {localesToShow
+          .sort((a, b) => b.populationEstimate - a.populationEstimate)
+          .map((locale) => (
+            <ViewCard key={locale.code}>
+              <LocaleCard locale={locale} />
+            </ViewCard>
+          ))}
+      </div>
     </div>
   );
 };

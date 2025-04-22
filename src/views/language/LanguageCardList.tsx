@@ -12,21 +12,31 @@ const LanguageCardList: React.FC = () => {
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 
+  const languagesToShow = Object.values(languagesByCode).filter(
+    (lang) =>
+      (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
+      (nameFilter == '' || lang.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
+  );
+  const numberOfLanguagesOverall = Object.keys(languagesByCode).length;
+
   return (
-    <div className="CardList">
-      {Object.keys(languagesByCode)
-        .map((languageCode) => languagesByCode[languageCode])
-        .filter(
-          (lang) =>
-            (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
-            (nameFilter == '' || lang.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
-        )
-        .sort((a, b) => b.populationCited - a.populationCited)
-        .map((lang) => (
-          <ViewCard key={lang.code}>
-            <LanguageCard lang={lang} includeRelations={true} />
-          </ViewCard>
-        ))}
+    <div>
+      <div className="CardListDescription">
+        Showing <strong>{languagesToShow.length}</strong>
+        {numberOfLanguagesOverall > languagesToShow.length && (
+          <> of {<strong>{numberOfLanguagesOverall}</strong>} </>
+        )}{' '}
+        languages.
+      </div>
+      <div className="CardList">
+        {languagesToShow
+          .sort((a, b) => b.populationCited - a.populationCited)
+          .map((lang) => (
+            <ViewCard key={lang.code}>
+              <LanguageCard lang={lang} includeRelations={true} />
+            </ViewCard>
+          ))}
+      </div>
     </div>
   );
 };

@@ -4,6 +4,10 @@
     grid-gap: 25px;
 }
 
+.CardListDescription {
+    margin-bottom: 1em;
+}
+
 .ViewCard {
     border-width: 1px;
     border-radius: 5px;

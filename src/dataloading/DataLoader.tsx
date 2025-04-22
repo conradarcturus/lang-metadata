@@ -2,6 +2,7 @@
  * This file provides asynchronous functions to load in data
  */
 
+import { DataSubset } from '../controls/PageParamTypes';
 import {
   BCP47LocaleCode,
   LanguageCode,
@@ -13,8 +14,10 @@ import {
 
 import { parseLanguageLine, parseLocaleLine, parseTerritoryLine } from './DataParsing';
 
-export async function loadLanguages(): Promise<Record<LanguageCode, LanguageData> | void> {
-  const filename = 'languages200.tsv';
+export async function loadLanguages(
+  dataSubset: DataSubset,
+): Promise<Record<LanguageCode, LanguageData> | void> {
+  const filename = dataSubset === DataSubset.Top200 ? 'languages200.tsv' : 'languages.tsv';
 
   return await fetch(filename)
     .then((res) => res.text())
@@ -44,8 +47,11 @@ export async function loadTerritories(): Promise<Record<TerritoryCode, Territory
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
-export async function loadLocales(): Promise<Record<BCP47LocaleCode, LocaleData> | void> {
-  const filename = 'locales200.tsv';
+export async function loadLocales(
+  dataSubset: DataSubset,
+): Promise<Record<BCP47LocaleCode, LocaleData> | void> {
+  const filename = dataSubset === DataSubset.Top200 ? 'locales200.tsv' : 'locales.tsv';
+
   return await fetch(filename)
     .then((res) => res.text())
     .then((text) => {

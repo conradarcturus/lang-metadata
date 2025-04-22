@@ -45,7 +45,7 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Selection
   - [ ] Export
 - [ ] Manage data sources
-  - [ ] Load different subsets of data
+  - [x] Load different subsets of data
   - [ ] Show results based on different definitions of what a language is
     - [ ] ISO Languages, Macrolanguages, and Language Families
     - [ ] Glottolog Languoids

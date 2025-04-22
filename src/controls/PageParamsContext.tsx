@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { Dimension, PageParams, PageParamsOptional, ViewType } from './PageParamTypes';
+import { DataSubset, Dimension, PageParams, PageParamsOptional, ViewType } from './PageParamTypes';
 
 type PageParamsContextState = PageParams & {
   updatePageParams: (newParams: PageParamsOptional) => void;
@@ -29,9 +29,10 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const providerValue: PageParamsContextState = useMemo(
     () => ({
       code: getParam('code', ''),
+      dataSubset: getParam('dataSubset', DataSubset.Top200) as DataSubset,
+      dimension: getParam('dimension', Dimension.Language) as Dimension,
       nameFilter: getParam('nameFilter', ''),
       viewType: getParam('viewType', ViewType.CardList) as ViewType,
-      dimension: getParam('dimension', Dimension.Language) as Dimension,
       updatePageParams,
     }),
     [pageParams],

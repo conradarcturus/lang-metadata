@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
+import { usePageParams } from '../controls/PageParamsContext';
 import {
   BCP47LocaleCode,
   LanguageCode,
@@ -32,6 +33,7 @@ const DataContext = createContext<DataContextType | undefined>({
 export const DataProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
+  const { dataSubset } = usePageParams();
   const [languagesByCode, setLanguagesByCode] = useState<Record<LanguageCode, LanguageData>>({});
   const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
     {},
@@ -40,9 +42,9 @@ export const DataProvider: React.FC<{
 
   async function loadData() {
     const [langs, territories, locales] = await Promise.all([
-      loadLanguages(),
+      loadLanguages(dataSubset),
       loadTerritories(),
-      loadLocales(),
+      loadLocales(dataSubset),
     ]);
     if (langs == null || territories == null || locales == null) {
       return; // Should show an error
@@ -59,7 +61,7 @@ export const DataProvider: React.FC<{
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [dataSubset]); // this is called only 1) after page load and 2) when the dataSubset changes
 
   return (
     <DataContext.Provider value={{ languagesByCode, territoriesByCode, locales }}>

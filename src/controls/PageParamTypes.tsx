@@ -13,16 +13,23 @@ export enum ViewType {
   //   Table = 'table',
 }
 
+export enum DataSubset {
+  Top200 = 'Top 200',
+  All = 'All',
+}
+
 export type PageParams = {
-  dimension: Dimension;
-  viewType: ViewType;
   code: string;
+  dataSubset: DataSubset;
+  dimension: Dimension;
   nameFilter: string;
+  viewType: ViewType;
 };
 
 export type PageParamsOptional = {
-  dimension?: Dimension;
-  viewType?: ViewType;
   code?: string;
+  dataSubset?: DataSubset;
+  dimension?: Dimension;
   nameFilter?: string;
+  viewType?: ViewType;
 };
