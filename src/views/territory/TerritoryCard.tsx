@@ -3,6 +3,8 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { TerritoryData } from '../../DataTypes';
+import CommaSeparated from '../../generic/CommaSeparated';
+import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableTerritoryName from './HoverableTerritoryName';
 
@@ -11,7 +13,7 @@ interface Props {
 }
 
 const TerritoryCard: React.FC<Props> = ({ territory }) => {
-  const { nameDisplay, population, code, sovereign, territoryType } = territory;
+  const { nameDisplay, population, code, sovereign, territoryType, locales } = territory;
   const { updatePageParams } = usePageParams();
 
   return (
@@ -30,6 +32,17 @@ const TerritoryCard: React.FC<Props> = ({ territory }) => {
         <h4>Population</h4>
         {population.toLocaleString()}
       </div>
+
+      {locales.length > 0 && (
+        <div>
+          <h4>Languages:</h4>
+          <CommaSeparated>
+            {Object.values(locales).map((locale) => (
+              <HoverableLocaleName key={locale.code} labelSource="language" locale={locale} />
+            ))}
+          </CommaSeparated>
+        </div>
+      )}
 
       {sovereign != null && (
         <div>

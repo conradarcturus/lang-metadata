@@ -4,7 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { ViewType } from '../../controls/PageParamTypes';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
-import { separateTitleAndSubtitle } from '../../utils/stringUtils';
+import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableLanguageName from './HoverableLanguageName';
 
@@ -18,21 +18,22 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   const {
     vitalityEth2013,
     medium,
+    nameDisplayTitle,
+    nameDisplaySubtitle,
     populationCited,
-    nameDisplay,
     nameEndonym,
     parentLanguage,
     childLanguages,
+    locales,
   } = lang;
-  const [title, subtitle] = separateTitleAndSubtitle(nameDisplay);
 
   return (
     <div>
       <h3>
         <a onClick={() => updatePageParams({ code: lang.code, viewType: ViewType.Details })}>
-          <strong>{title}</strong> {title != nameEndonym && nameEndonym}
+          <strong>{nameDisplayTitle}</strong> {nameDisplayTitle != nameEndonym && nameEndonym}
         </a>
-        {subtitle != null && <div className="subtitle">{subtitle}</div>}
+        {nameDisplaySubtitle != null && <div className="subtitle">{nameDisplaySubtitle}</div>}
       </h3>
       <div>
         <h4>Speakers</h4>
@@ -47,6 +48,16 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
         {vitalityEth2013}
       </div>
 
+      {includeRelations && locales.length > 0 && (
+        <div>
+          <h4>Found in:</h4>
+          <CommaSeparated>
+            {Object.values(locales).map((locale) => (
+              <HoverableLocaleName key={locale.code} labelSource="territory" locale={locale} />
+            ))}
+          </CommaSeparated>
+        </div>
+      )}
       {includeRelations && parentLanguage != null && (
         <div>
           <h4>Group:</h4>

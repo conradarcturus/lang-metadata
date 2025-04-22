@@ -3,7 +3,7 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import CommaSeparated from '../../generic/CommaSeparated';
-import { separateTitleAndSubtitle } from '../../utils/stringUtils';
+import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableLanguageName from './HoverableLanguageName';
 
@@ -33,7 +33,8 @@ const LanguageDetails: React.FC = () => {
   const {
     glottocode,
     medium,
-    nameDisplay,
+    nameDisplayTitle,
+    nameDisplaySubtitle,
     nameEndonym,
     populationCited,
     script,
@@ -43,14 +44,14 @@ const LanguageDetails: React.FC = () => {
     vitalityEth2025,
     parentLanguage,
     childLanguages,
+    locales,
   } = lang;
-  const [title, subtitle] = separateTitleAndSubtitle(nameDisplay);
 
   return (
     <div className="Details">
       <h2>
-        <strong>{title}</strong> {title != nameEndonym && nameEndonym}
-        {subtitle != null && <div className="subtitle">{subtitle} </div>}
+        <strong>{nameDisplayTitle}</strong> {nameDisplayTitle != nameEndonym && nameEndonym}
+        {nameDisplaySubtitle != null && <div className="subtitle">{nameDisplaySubtitle} </div>}
       </h2>
       <div>
         <h3>Attributes</h3>
@@ -92,6 +93,16 @@ const LanguageDetails: React.FC = () => {
       </div>
       <div>
         <h3>Connections</h3>
+        {locales.length > 0 && (
+          <div>
+            <label>Found in:</label>
+            <CommaSeparated>
+              {Object.values(locales).map((locale) => (
+                <HoverableLocaleName key={locale.code} labelSource="territory" locale={locale} />
+              ))}
+            </CommaSeparated>
+          </div>
+        )}
         {parentLanguage != null && (
           <div>
             <label>Group:</label>
@@ -108,7 +119,7 @@ const LanguageDetails: React.FC = () => {
             </CommaSeparated>
           </div>
         )}
-        {parentLanguage == null && childLanguages.length === 0 && (
+        {locales.length === 0 && parentLanguage == null && childLanguages.length === 0 && (
           <div>There is currently no data available to show connections with other languages.</div>
         )}
       </div>

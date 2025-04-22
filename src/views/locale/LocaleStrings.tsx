@@ -1,10 +1,7 @@
 import { LocaleData, OfficialStatus, PopulationSourceCategory } from '../../DataTypes';
-import { separateTitleAndSubtitle } from '../../utils/stringUtils';
 
 export function getLocaleName(locale: LocaleData): string {
-  const languageNameFull = locale.language?.nameDisplay ?? locale.languageCode;
-  const [languageName] = separateTitleAndSubtitle(languageNameFull); // throw out subtitles
-
+  const languageName = locale.language?.nameDisplayTitle ?? locale.languageCode;
   const territoryName = locale.territory?.nameDisplay ?? locale.territoryCode;
   const scriptName = locale.explicitScriptCode != '' ? locale.explicitScriptCode : null;
   const variantName = locale.variantTag != '' ? locale.variantTag : null;

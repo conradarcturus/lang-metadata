@@ -4,7 +4,6 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { LanguageData } from '../../DataTypes';
 import Hoverable from '../../generic/Hoverable';
-import { separateTitleAndSubtitle } from '../../utils/stringUtils';
 
 import LanguageCard from './LanguageCard';
 
@@ -15,8 +14,6 @@ type Props = {
 
 const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text' }) => {
   const { updatePageParams } = usePageParams();
-  // Remove parentheses from the name (the contains can be seen in the subtitle of the tooltip)
-  const [title] = separateTitleAndSubtitle(lang.nameDisplay);
 
   return (
     <Hoverable
@@ -29,7 +26,7 @@ const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text' }) => {
         })
       }
     >
-      {format === 'text' ? title : <button>{title}</button>}
+      {format === 'text' ? lang.nameDisplayTitle : <button>{lang.nameDisplayTitle}</button>}
     </Hoverable>
   );
 };

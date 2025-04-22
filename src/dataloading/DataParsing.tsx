@@ -6,13 +6,19 @@ import {
   TerritoryData,
   TerritoryType,
 } from '../DataTypes';
+import { separateTitleAndSubtitle } from '../utils/stringUtils';
 
 export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');
+  const nameDisplay = parts[2];
+  const [nameDisplayTitle, nameDisplaySubtitle] = separateTitleAndSubtitle(nameDisplay);
+
   return {
     code: parts[0],
     glottocode: parts[1],
-    nameDisplay: parts[2],
+    nameDisplay,
+    nameDisplayTitle,
+    nameDisplaySubtitle,
     nameEndonym: parts[3],
     medium: parts[4],
     script: parts[5],

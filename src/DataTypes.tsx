@@ -17,6 +17,8 @@ export type LanguageData = {
   code: LanguageCode;
   glottocode: Glottocode;
   nameDisplay: string;
+  nameDisplayTitle: string;
+  nameDisplaySubtitle: string | null;
   nameEndonym: string;
   medium: string;
   script: string;

@@ -9,11 +9,27 @@ import LocaleCard from './LocaleCard';
 
 type Props = {
   locale: LocaleData;
+  labelSource?: 'code' | 'territory' | 'language';
   format?: 'text' | 'button';
 };
 
-const HoverableLocaleName: React.FC<Props> = ({ locale, format = 'text' }) => {
+const HoverableLocaleName: React.FC<Props> = ({
+  locale,
+  labelSource = 'code',
+  format = 'text',
+}) => {
   const { updatePageParams } = usePageParams();
+  let label = locale.code;
+  switch (labelSource) {
+    case 'language':
+      label = locale.language?.nameDisplayTitle ?? locale.languageCode;
+      break;
+    case 'territory':
+      label = locale.territory?.nameDisplay ?? locale.territoryCode;
+      break;
+    case 'code':
+    // base case
+  }
 
   return (
     <Hoverable
@@ -26,7 +42,7 @@ const HoverableLocaleName: React.FC<Props> = ({ locale, format = 'text' }) => {
         })
       }
     >
-      {format === 'text' ? locale.code : <button>{locale.code}</button>}
+      {format === 'text' ? label : <button>{label}</button>}
     </Hoverable>
   );
 };

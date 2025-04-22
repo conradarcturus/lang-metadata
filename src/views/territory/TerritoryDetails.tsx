@@ -3,6 +3,7 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import CommaSeparated from '../../generic/CommaSeparated';
+import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableTerritoryName from './HoverableTerritoryName';
 
@@ -40,6 +41,7 @@ const TerritoryDetails: React.FC = () => {
     regionContainsTerritories,
     sovereign,
     territoryType,
+    locales,
   } = territory;
 
   return (
@@ -70,6 +72,17 @@ const TerritoryDetails: React.FC = () => {
 
       <div>
         <h3>Connections</h3>
+        {locales.length > 0 && (
+          <div>
+            <label>Languages:</label>
+            <CommaSeparated>
+              {Object.values(locales).map((locale) => (
+                <HoverableLocaleName key={locale.code} labelSource="language" locale={locale} />
+              ))}
+            </CommaSeparated>
+          </div>
+        )}
+
         {parentUNRegion != null && (
           <div>
             <label>In UN region:</label>
