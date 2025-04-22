@@ -6,8 +6,10 @@ import {
   LanguageCode,
   LanguageData,
   LocaleData,
+  ScriptCode,
   TerritoryCode,
   TerritoryData,
+  WritingSystemData,
 } from '../DataTypes';
 
 import {
@@ -15,18 +17,20 @@ import {
   connectLocales,
   connectTerritoriesToParent,
 } from './DataAssociations';
-import { loadLanguages, loadLocales, loadTerritories } from './DataLoader';
+import { loadLanguages, loadLocales, loadTerritories, loadWritingSystems } from './DataLoader';
 
 type DataContextType = {
   languagesByCode: Record<LanguageCode, LanguageData>;
   territoriesByCode: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
+  writingSystems: Record<ScriptCode, WritingSystemData>;
 };
 
 const DataContext = createContext<DataContextType | undefined>({
   languagesByCode: {},
   territoriesByCode: {},
   locales: {},
+  writingSystems: {},
 });
 
 // Create a provider component
@@ -39,15 +43,18 @@ export const DataProvider: React.FC<{
     {},
   );
   const [locales, setLocales] = useState<Record<BCP47LocaleCode, LocaleData>>({});
+  const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
 
   async function loadData() {
-    const [langs, territories, locales] = await Promise.all([
+    const [langs, territories, locales, writingSystems] = await Promise.all([
       loadLanguages(dataSubset),
       loadTerritories(),
       loadLocales(dataSubset),
+      loadWritingSystems(),
     ]);
-    if (langs == null || territories == null || locales == null) {
-      return; // Should show an error
+    if (langs == null || territories == null || locales == null || writingSystems == null) {
+      alert('Error loading data. Please check the console for more details.');
+      return;
     }
 
     connectLanguagesToParent(langs);
@@ -57,6 +64,7 @@ export const DataProvider: React.FC<{
     setLanguagesByCode(langs);
     setTerritoriesByCode(territories);
     setLocales(locales);
+    setWritingSystems(writingSystems);
   }
 
   useEffect(() => {
@@ -64,7 +72,7 @@ export const DataProvider: React.FC<{
   }, [dataSubset]); // this is called only 1) after page load and 2) when the dataSubset changes
 
   return (
-    <DataContext.Provider value={{ languagesByCode, territoriesByCode, locales }}>
+    <DataContext.Provider value={{ languagesByCode, territoriesByCode, locales, writingSystems }}>
       {children}
     </DataContext.Provider>
   );

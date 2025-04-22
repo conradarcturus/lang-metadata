@@ -2,7 +2,7 @@ export enum Dimension {
   Language = 'Language',
   Locale = 'Locale',
   Territory = 'Territory',
-  // WritingSystem = 'Writing System',
+  WritingSystem = 'Writing System',
   // VariantTag = 'Variant Tag',
 }
 

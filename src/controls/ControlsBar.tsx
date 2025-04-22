@@ -79,7 +79,8 @@ const DimensionSelectorDescription: React.FC = () => {
         <label>Language (Languoid):</label>A verbal communication system used by multiple people.
         Languages should be are mutually intelligible, whereas a dialect is a subset of a language
         defined by differences in lexicon and pronounciation. Since languages families, contested
-        languages, and dialects are included it is more precise to consider these "Languoids".
+        languages, and dialects are included it is more precise to consider these
+        &quot;Languoids&quot;.
       </p>
       <p>
         <label>Locale:</label>The combination of a language and territory -- used to express how
@@ -91,6 +92,11 @@ const DimensionSelectorDescription: React.FC = () => {
         <label>Territory:</label>A geographical unit. Some may not have universal recognition.
         Currently showing both countries as well as dependencies (eg. Hong Kong) that have separate
         ISO codes.
+      </p>
+      <p>
+        <label>Writing System:</label>A system for writing a language to a persistent visual media.
+        For instance Latin alphabet, Han characters, cursive Arabic script. Some systems may contain
+        other systems.
       </p>
     </>
   );

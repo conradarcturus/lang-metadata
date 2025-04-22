@@ -23,7 +23,11 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] Countries & Dependencies
     - [ ] Continents & other regions
   - [x] Locales (languages + territories + potentially other specificity)
-  - [ ] Writing Systems
+    - [ ] Basic data
+    - [ ] Population estimate sources
+  - [x] Writing Systems
+    - [x] Basic data
+    - [ ] Relationship w/ other writing systems (containment, lineage)
   - [ ] Language Variants / IANA tags
 - [ ] Views
   - [x] Cards

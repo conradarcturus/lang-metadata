@@ -8,11 +8,18 @@ import {
   LanguageCode,
   LanguageData,
   LocaleData,
+  ScriptCode,
   TerritoryCode,
   TerritoryData,
+  WritingSystemData,
 } from '../DataTypes';
 
-import { parseLanguageLine, parseLocaleLine, parseTerritoryLine } from './DataParsing';
+import {
+  parseLanguageLine,
+  parseLocaleLine,
+  parseTerritoryLine,
+  parseWritingSystem,
+} from './DataParsing';
 
 export async function loadLanguages(
   dataSubset: DataSubset,
@@ -62,6 +69,22 @@ export async function loadLocales(
         .reduce<Record<BCP47LocaleCode, LocaleData>>((localesByCode, locale) => {
           localesByCode[locale.code] = locale;
           return localesByCode;
+        }, {});
+    })
+    .catch((err) => console.error('Error loading TSV:', err));
+}
+
+export async function loadWritingSystems(): Promise<Record<ScriptCode, WritingSystemData> | void> {
+  return await fetch('writingSystems.tsv')
+    .then((res) => res.text())
+    .then((text) => {
+      return text
+        .split('\n')
+        .slice(1)
+        .map(parseWritingSystem)
+        .reduce<Record<ScriptCode, WritingSystemData>>((writingsystemsByCode, ws) => {
+          writingsystemsByCode[ws.code] = ws;
+          return writingsystemsByCode;
         }, {});
     })
     .catch((err) => console.error('Error loading TSV:', err));

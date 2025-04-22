@@ -71,9 +71,21 @@ export type TerritoryData = {
   locales: LocaleData[];
 };
 
+export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
+
+export type WritingSystemData = {
+  code: ScriptCode;
+  nameDisplay: string;
+  nameFull: string;
+  unicodeVersion: number | null;
+  sample: string | null;
+  rightToLeft: boolean | null;
+  languageOfOriginCode: LanguageCode | null;
+  territoryOfOriginCode: TerritoryCode | null;
+};
+
 // BCP-47 Locale	Locale Display Name	Native Locale Name	Language Code	Territory ISO	Explicit Script	Variant IANA Tag	Pop Source	Best Guess	Official Language
 export type BCP47LocaleCode = string; // BCP-47 formatted locale, eg. en_US, fr_CA, etc.
-export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
 export type VariantIANATag = string; // IANA tag, eg. valencia (for cat-ES-valencia)
 
 export enum PopulationSourceCategory {

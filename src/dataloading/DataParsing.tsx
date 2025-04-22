@@ -5,6 +5,7 @@ import {
   PopulationSourceCategory,
   TerritoryData,
   TerritoryType,
+  WritingSystemData,
 } from '../DataTypes';
 import { separateTitleAndSubtitle } from '../utils/stringUtils';
 
@@ -72,5 +73,19 @@ export function parseLocaleLine(line: string): LocaleData {
     populationSource: parts[7] as PopulationSourceCategory,
     populationEstimate: Number.parseInt(parts[8]?.replace(/,/g, '')),
     officialStatus: parts[9] as OfficialStatus,
+  };
+}
+
+export function parseWritingSystem(line: string): WritingSystemData {
+  const parts = line.split('\t');
+  return {
+    code: parts[0],
+    nameDisplay: parts[1],
+    nameFull: parts[2],
+    unicodeVersion: parts[3] != '' ? parseFloat(parts[3]) : null,
+    sample: parts[4] != '' ? parts[4] : null,
+    rightToLeft: parts[5] === 'Yes' ? true : parts[5] === 'no' ? false : null,
+    languageOfOriginCode: parts[6] != '' ? parts[6] : null,
+    territoryOfOriginCode: parts[7] != '' ? parts[7] : null,
   };
 }
