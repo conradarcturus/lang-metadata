@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import { Dimension, PageParams, PageParamsOptional, ViewType } from './PageParamTypes';
 
 type PageParamsContextState = PageParams & {

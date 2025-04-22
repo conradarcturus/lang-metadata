@@ -1,15 +1,15 @@
 import js from "@eslint/js";
-import globals from "globals";
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import { defineConfig } from "eslint/config";
-import parser from '@typescript-eslint/parser';
-import prettierPlugin from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
 import typescript from '@typescript-eslint/eslint-plugin';
-
+import parser from '@typescript-eslint/parser';
+import { defineConfig } from "eslint/config";
+import prettierConfig from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import';
+import prettierPlugin from 'eslint-plugin-prettier';
+import react from 'eslint-plugin-react';
+import pluginReact from "eslint-plugin-react";
+import reactHooks from 'eslint-plugin-react-hooks';
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
 export default defineConfig([
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"], plugins: { js }, extends: ["js/recommended", ]},
@@ -40,6 +40,21 @@ export default defineConfig([
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    plugins: {
+      import: importPlugin,
+    },
+    rules: {
+      'import/order': [
+        'warn',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
     },
   },
   prettierConfig,

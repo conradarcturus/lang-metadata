@@ -1,10 +1,10 @@
 import React from 'react';
-import { LanguageData } from '../dataloading/DataTypes';
-import { separateTitleAndSubtitle } from '../utils/stringUtils';
-import CommaSeparated from '../components/CommaSeparated';
-import './styles.css';
-import HoverableLanguageName from './Cards/HoverableLanguageName';
-import { useDataContext } from '../dataloading/DataContext';
+
+import { useDataContext } from '../../dataloading/DataContext';
+import { LanguageData } from '../../DataTypes';
+import CommaSeparated from '../../generic/CommaSeparated';
+import { separateTitleAndSubtitle } from '../../utils/stringUtils';
+import HoverableLanguageName from '../cards/HoverableLanguageName';
 
 interface Props {
   lang: LanguageData | null;

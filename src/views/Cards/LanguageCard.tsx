@@ -1,9 +1,11 @@
 import React from 'react';
-import { LanguageData } from '../../dataloading/DataTypes';
-import { ViewType } from '../../controls/PageParamTypes';
-import { separateTitleAndSubtitle } from '../../utils/stringUtils';
+
 import { usePageParams } from '../../controls/PageParamsContext';
-import CommaSeparated from '../../components/CommaSeparated';
+import { ViewType } from '../../controls/PageParamTypes';
+import { LanguageData } from '../../DataTypes';
+import CommaSeparated from '../../generic/CommaSeparated';
+import { separateTitleAndSubtitle } from '../../utils/stringUtils';
+
 import HoverableLanguageName from './HoverableLanguageName';
 
 interface Props {

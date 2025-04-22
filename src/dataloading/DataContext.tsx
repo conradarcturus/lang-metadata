@@ -1,7 +1,9 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from './DataTypes';
-import { loadLanguages, loadTerritories } from './DataLoader';
+
+import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from '../DataTypes';
+
 import { connectLanguagesToParent, connectTerritoriesToParent } from './DataAssociations';
+import { loadLanguages, loadTerritories } from './DataLoader';
 
 type DataContextType = {
   languagesByCode: Record<LanguageCode, LanguageData>;

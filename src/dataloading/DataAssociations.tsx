@@ -1,4 +1,4 @@
-import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from './DataTypes';
+import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from '../DataTypes';
 
 export function connectLanguagesToParent(
   languagesByCode: Record<LanguageCode, LanguageData>,

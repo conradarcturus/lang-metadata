@@ -1,4 +1,4 @@
-import { LanguageData, TerritoryData, TerritoryType } from './DataTypes';
+import { LanguageData, TerritoryData, TerritoryType } from '../DataTypes';
 
 export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');

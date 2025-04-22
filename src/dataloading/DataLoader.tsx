@@ -2,8 +2,9 @@
  * This file provides asynchronous functions to load in data
  */
 
+import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from '../DataTypes';
+
 import { parseLanguageLine, parseTerritoryLine } from './DataParsing';
-import { LanguageCode, LanguageData, TerritoryCode, TerritoryData } from './DataTypes';
 
 export async function loadLanguages(): Promise<Record<LanguageCode, LanguageData> | void> {
   const filename = 'languages200.tsv';

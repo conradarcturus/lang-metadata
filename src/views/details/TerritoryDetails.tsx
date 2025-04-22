@@ -1,8 +1,9 @@
 import React from 'react';
-import { TerritoryData } from '../dataloading/DataTypes';
-import CommaSeparated from '../components/CommaSeparated';
-import HoverableTerritoryName from './Cards/HoverableTerritoryName';
-import { useDataContext } from '../dataloading/DataContext';
+
+import { useDataContext } from '../../dataloading/DataContext';
+import { TerritoryData } from '../../DataTypes';
+import CommaSeparated from '../../generic/CommaSeparated';
+import HoverableTerritoryName from '../cards/HoverableTerritoryName';
 
 type Props = {
   territory: TerritoryData;
@@ -14,7 +15,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
 
     return (
       <div className="Details" style={{ textAlign: 'center' }}>
-        No language selected. Enter a language code in the search bar. See common languages:
+        No territory selected. Enter a territory code in the search bar. See common territories:
         <div className="separatedButtonList">
           {['US', 'MX', 'FR', 'DE', 'CN', 'EG'].map(
             (code) =>

@@ -1,7 +1,8 @@
 import React from 'react';
+
 import ButtonGroupSingleChoice from './ButtonGroupSingleChoice';
-import { Dimension, ViewType } from './PageParamTypes';
 import { usePageParams } from './PageParamsContext';
+import { Dimension, ViewType } from './PageParamTypes';
 import TextInput from './TextInput';
 
 const ControlsBar: React.FC = () => {

@@ -1,10 +1,12 @@
 import React from 'react';
-import Hoverable from '../../components/Hoverable';
+
 import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension, ViewType } from '../../controls/PageParamTypes';
-import { LanguageData } from '../../dataloading/DataTypes';
-import LanguageCard from './LanguageCard';
+import { LanguageData } from '../../DataTypes';
+import Hoverable from '../../generic/Hoverable';
 import { separateTitleAndSubtitle } from '../../utils/stringUtils';
+
+import LanguageCard from './LanguageCard';
 
 type Props = {
   lang: LanguageData;

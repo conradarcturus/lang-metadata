@@ -1,9 +1,11 @@
 import React from 'react';
-import Hoverable from '../../components/Hoverable';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
-import { TerritoryData } from '../../dataloading/DataTypes';
-import TerritoryCard from './TerritoryCard';
+
 import { usePageParams } from '../../controls/PageParamsContext';
+import { Dimension, ViewType } from '../../controls/PageParamTypes';
+import { TerritoryData } from '../../DataTypes';
+import Hoverable from '../../generic/Hoverable';
+
+import TerritoryCard from './TerritoryCard';
 
 type Props = {
   territory: TerritoryData;

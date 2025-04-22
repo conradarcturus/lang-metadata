@@ -1,7 +1,9 @@
 import React from 'react';
-import { TerritoryData } from '../../dataloading/DataTypes';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
+
 import { usePageParams } from '../../controls/PageParamsContext';
+import { Dimension, ViewType } from '../../controls/PageParamTypes';
+import { TerritoryData } from '../../DataTypes';
+
 import HoverableTerritoryName from './HoverableTerritoryName';
 
 interface Props {

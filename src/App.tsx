@@ -1,8 +1,8 @@
 import './App.css';
-import Body from './Body';
 import ControlsBar from './controls/ControlsBar';
 import { PageParamsProvider } from './controls/PageParamsContext';
 import { DataProvider } from './dataloading/DataContext';
+import MainViews from './views/MainViews';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <PageParamsProvider>
         <DataProvider>
           <ControlsBar />
-          <Body />
+          <MainViews />
         </DataProvider>
       </PageParamsProvider>
     </>

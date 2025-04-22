@@ -74,6 +74,7 @@ This project was created using Node and Vite. ChatGPT helped a lot when starting
   2. Choose options: what: javascript, use: problems, modules: esm, framework: react, typescript: yes, runs on: browser
   3. `npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier`
   4. More magic to get it to run... I had to install ESLint on my IDE (VSCode)
+  5. Some plugins were added after the this library was started like `eslint-plugin-import`
 5. Import other lirbaries
    1. `npm install react-router-dom`
 6. Start `npm run dev`

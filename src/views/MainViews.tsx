@@ -1,14 +1,15 @@
-import './App.css';
-import { usePageParams } from './controls/PageParamsContext';
-import { Dimension, ViewType } from './controls/PageParamTypes';
-import { useDataContext } from './dataloading/DataContext';
-import LanguageCardList from './views/LanguageCardList';
-import LanguageDetails from './views/LanguageDetails';
-import { HoverCardProvider } from './components/HoverCardContext';
-import TerritoryCardList from './views/TerritoryCardList';
-import TerritoryDetails from './views/TerritoryDetails';
+import { usePageParams } from '../controls/PageParamsContext';
+import { Dimension, ViewType } from '../controls/PageParamTypes';
+import { useDataContext } from '../dataloading/DataContext';
+import { HoverCardProvider } from '../generic/HoverCardContext';
 
-function Body() {
+import LanguageCardList from './cardlists/LanguageCardList';
+import TerritoryCardList from './cardlists/TerritoryCardList';
+import LanguageDetails from './details/LanguageDetails';
+import TerritoryDetails from './details/TerritoryDetails';
+import './styles.css';
+
+function MainViews() {
   const { viewType, code, dimension } = usePageParams();
   const { languagesByCode, territoriesByCode } = useDataContext();
   return (
@@ -31,4 +32,4 @@ function Body() {
   );
 }
 
-export default Body;
+export default MainViews;
