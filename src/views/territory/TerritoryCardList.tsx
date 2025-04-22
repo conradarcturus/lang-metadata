@@ -2,6 +2,7 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
+import { TerritoryType } from '../../DataTypes';
 import ViewCard from '../ViewCard';
 
 import TerritoryCard from './TerritoryCard';
@@ -20,7 +21,8 @@ const TerritoryCardList: React.FC = () => {
           (territory) =>
             (codeFilter === '' || territory.code.toLowerCase().startsWith(lowercaseCodeFilter)) &&
             (nameFilter === '' ||
-              territory.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
+              territory.nameDisplay.toLowerCase().includes(lowercaseNameFilter)) &&
+            [TerritoryType.Country, TerritoryType.Dependency].includes(territory.territoryType),
         )
         .sort((a, b) => b.population - a.population)
         .map((territory) => (

@@ -20,6 +20,8 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] Glottolog
     - [ ] Digital Support details
   - [x] Territories
+    - [x] Countries & Dependencies
+    - [ ] Continents & other regions
   - [x] Locales (languages + territories + potentially other specificity)
   - [ ] Writing Systems
   - [ ] Language Variants / IANA tags
