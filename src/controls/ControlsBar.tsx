@@ -7,8 +7,10 @@ import { usePageParams } from './PageParamsContext';
 import { DataSubset, Dimension, ViewType } from './PageParamTypes';
 import TextInput from './TextInput';
 
+// TODO: needs debouncing on text input
 const ControlsBar: React.FC = () => {
-  const { dataSubset, viewType, dimension, updatePageParams, code, nameFilter } = usePageParams();
+  const { dataSubset, viewType, dimension, updatePageParams, code, nameFilter, limit } =
+    usePageParams();
 
   return (
     <div className="controlsBar">
@@ -63,6 +65,16 @@ const ControlsBar: React.FC = () => {
               value={nameFilter}
               onChange={(nameFilter: string) => updatePageParams({ nameFilter })}
               inputStyle={{ width: '10em' }}
+            />
+          </Hoverable>
+        )}
+        {viewType === ViewType.CardList && (
+          <Hoverable hoverContent={`Limit how many ${dimension.toLowerCase()} cards are shown.`}>
+            <TextInput
+              label="Limit"
+              value={limit < 1 || Number.isNaN(limit) ? '' : limit.toString()}
+              onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
+              inputStyle={{ width: '3em' }}
             />
           </Hoverable>
         )}

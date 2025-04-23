@@ -23,7 +23,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] Countries & Dependencies
     - [ ] Continents & other regions
   - [x] Locales (languages + territories + potentially other specificity)
-    - [ ] Basic data
+    - [x] Basic data
     - [ ] Population estimate sources
   - [x] Writing Systems
     - [x] Basic data
@@ -46,6 +46,7 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Sort
     - [ ] By Population
     - [ ] By Name
+  - [x] Limit
   - [ ] Selection
   - [ ] Export
 - [ ] Manage data sources

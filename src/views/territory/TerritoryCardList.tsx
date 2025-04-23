@@ -4,16 +4,18 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import { TerritoryType } from '../../DataTypes';
 import ViewCard from '../ViewCard';
+import VisibleItemsMeter from '../VisibleItemsMeter';
 
 import TerritoryCard from './TerritoryCard';
 
 const TerritoryCardList: React.FC = () => {
   const { territoriesByCode } = useDataContext();
-  const { code: codeFilter, nameFilter } = usePageParams();
+  const { code: codeFilter, nameFilter, limit } = usePageParams();
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 
-  const territoriesToShow = Object.keys(territoriesByCode)
+  // Filter results
+  const territoriesFiltered = Object.keys(territoriesByCode)
     .map((territoryCode) => territoriesByCode[territoryCode])
     .filter(
       (territory) =>
@@ -21,25 +23,27 @@ const TerritoryCardList: React.FC = () => {
         (nameFilter === '' || territory.nameDisplay.toLowerCase().includes(lowercaseNameFilter)) &&
         [TerritoryType.Country, TerritoryType.Dependency].includes(territory.territoryType),
     );
-  const numberOfTerritoriesOverall = Object.keys(territoriesByCode).length;
+  // Sort results & limit how many are visible
+  const territoriesVisible = territoriesFiltered
+    .sort((a, b) => b.population - a.population)
+    .slice(0, limit > 0 ? limit : undefined);
 
   return (
     <div>
       <div className="CardListDescription">
-        Showing <strong>{territoriesToShow.length}</strong>
-        {numberOfTerritoriesOverall > territoriesToShow.length && (
-          <> of {<strong>{numberOfTerritoriesOverall}</strong>}</>
-        )}{' '}
-        territories.
+        <VisibleItemsMeter
+          nShown={territoriesVisible.length}
+          nFiltered={territoriesFiltered.length}
+          nOverall={Object.keys(territoriesByCode).length}
+          nounPlural="territories"
+        />
       </div>
       <div className="CardList">
-        {territoriesToShow
-          .sort((a, b) => b.population - a.population)
-          .map((territory) => (
-            <ViewCard key={territory.code}>
-              <TerritoryCard territory={territory} />
-            </ViewCard>
-          ))}
+        {territoriesVisible.map((territory) => (
+          <ViewCard key={territory.code}>
+            <TerritoryCard territory={territory} />
+          </ViewCard>
+        ))}
       </div>
     </div>
   );

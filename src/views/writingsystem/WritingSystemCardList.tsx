@@ -3,16 +3,18 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import ViewCard from '../ViewCard';
+import VisibleItemsMeter from '../VisibleItemsMeter';
 
 import WritingSystemCard from './WritingSystemCard';
 
 const WritingSystemCardList: React.FC = () => {
   const { writingSystems } = useDataContext();
-  const { code: codeFilter, nameFilter } = usePageParams();
+  const { code: codeFilter, nameFilter, limit } = usePageParams();
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 
-  const writingSystemsToShow = Object.keys(writingSystems)
+  // Filter results
+  const writingSystemsFiltered = Object.keys(writingSystems)
     .map((writingSystemCode) => writingSystems[writingSystemCode])
     .filter(
       (writingSystem) =>
@@ -20,25 +22,27 @@ const WritingSystemCardList: React.FC = () => {
         (nameFilter === '' ||
           writingSystem.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
     );
-  const numberOfWritingSystemsOverall = Object.keys(writingSystems).length;
+  // Sort results & limit how many are visible
+  const writingSystemsVisible = writingSystemsFiltered
+    .sort((a, b) => b.populationUpperBound - a.populationUpperBound)
+    .slice(0, limit > 0 ? limit : undefined);
 
   return (
     <div>
       <div className="CardListDescription">
-        Showing <strong>{writingSystemsToShow.length}</strong>
-        {numberOfWritingSystemsOverall > writingSystemsToShow.length && (
-          <> of {<strong>{numberOfWritingSystemsOverall}</strong>}</>
-        )}{' '}
-        writing systems.
+        <VisibleItemsMeter
+          nShown={writingSystemsVisible.length}
+          nFiltered={writingSystemsFiltered.length}
+          nOverall={Object.keys(writingSystems).length}
+          nounPlural="writing systems"
+        />
       </div>
       <div className="CardList">
-        {writingSystemsToShow
-          .sort((a, b) => b.populationUpperBound - a.populationUpperBound)
-          .map((writingSystem) => (
-            <ViewCard key={writingSystem.code}>
-              <WritingSystemCard writingSystem={writingSystem} />
-            </ViewCard>
-          ))}
+        {writingSystemsVisible.map((writingSystem) => (
+          <ViewCard key={writingSystem.code}>
+            <WritingSystemCard writingSystem={writingSystem} />
+          </ViewCard>
+        ))}
       </div>
     </div>
   );

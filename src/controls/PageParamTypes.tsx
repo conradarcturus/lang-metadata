@@ -22,6 +22,7 @@ export type PageParams = {
   code: string;
   dataSubset: DataSubset;
   dimension: Dimension;
+  limit: number; // < 1 means show all
   nameFilter: string;
   viewType: ViewType;
 };
@@ -30,6 +31,7 @@ export type PageParamsOptional = {
   code?: string;
   dataSubset?: DataSubset;
   dimension?: Dimension;
+  limit?: number;
   nameFilter?: string;
   viewType?: ViewType;
 };

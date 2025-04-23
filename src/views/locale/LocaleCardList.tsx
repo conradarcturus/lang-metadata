@@ -3,39 +3,43 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import ViewCard from '../ViewCard';
+import VisibleItemsMeter from '../VisibleItemsMeter';
 
 import LocaleCard from './LocaleCard';
 
 const LocaleCardList: React.FC = () => {
   const { locales } = useDataContext();
-  const { code: codeFilter, nameFilter } = usePageParams();
+  const { code: codeFilter, nameFilter, limit } = usePageParams();
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 
-  const localesToShow = Object.values(locales).filter(
+  // Filter results
+  const localeFiltered = Object.values(locales).filter(
     (lang) =>
       (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
       (nameFilter == '' || lang.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
   );
-  const numberOfLocalesOverall = Object.keys(locales).length;
+  // Sort results & limit how many are visible
+  const localesVisible = localeFiltered
+    .sort((a, b) => b.populationEstimate - a.populationEstimate)
+    .slice(0, limit > 0 ? limit : undefined);
 
   return (
     <div>
       <div className="CardListDescription">
-        Showing <strong>{localesToShow.length}</strong>
-        {numberOfLocalesOverall > localesToShow.length && (
-          <> of {<strong>{numberOfLocalesOverall}</strong>} </>
-        )}{' '}
-        locales.
+        <VisibleItemsMeter
+          nShown={localesVisible.length}
+          nFiltered={localeFiltered.length}
+          nOverall={Object.keys(locales).length}
+          nounPlural="locales"
+        />
       </div>
       <div className="CardList">
-        {localesToShow
-          .sort((a, b) => b.populationEstimate - a.populationEstimate)
-          .map((locale) => (
-            <ViewCard key={locale.code}>
-              <LocaleCard locale={locale} />
-            </ViewCard>
-          ))}
+        {localesVisible.map((locale) => (
+          <ViewCard key={locale.code}>
+            <LocaleCard locale={locale} />
+          </ViewCard>
+        ))}
       </div>
     </div>
   );

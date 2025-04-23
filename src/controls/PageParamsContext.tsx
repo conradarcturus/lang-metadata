@@ -17,7 +17,16 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const updatePageParams = (newParams: PageParamsOptional) => {
     const next = new URLSearchParams(pageParams);
     Object.entries(newParams).forEach(([key, value]) => {
-      if (value === undefined || value == '') {
+      if (key === 'limit') {
+        const limit = parseInt(value as string);
+        if (isNaN(limit) || limit < 1) {
+          next.set(key, '-1');
+        } else if (limit === 8) {
+          next.delete(key);
+        } else {
+          next.set(key, limit.toString());
+        }
+      } else if (value === undefined || value == '') {
         next.delete(key);
       } else {
         next.set(key, value.toString());
@@ -33,6 +42,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       dimension: getParam('dimension', Dimension.Language) as Dimension,
       nameFilter: getParam('nameFilter', ''),
       viewType: getParam('viewType', ViewType.CardList) as ViewType,
+      limit: parseInt(getParam('limit', '8')),
       updatePageParams,
     }),
     [pageParams],
