@@ -1,10 +1,10 @@
 ISO 15924 (sortkey)	Display Name	Full Name	First Unicode Version	Sample	RTL?	Language of Origin	Territory of Origin
 Adlm	Adlam	Adlam	9	𞤉	Yes	ful	GN
-Afak	Afaka	Afaka					
+Afak	Afaka	Afaka				djk	SR
 Aghb	Caucasian Albanian	Caucasian Albanian	7	𐔷	no	xag	AZ
 Ahom	Tai Ahom	Ahom, Tai Ahom	8	𑜗	no	aho	IN
 Arab	Arabic	Arabic	1.1	ب	Yes	ara	SA
-Aran	Nastaliq Arabic	Arabic (Nastaliq variant)	1.1				
+Aran	Nastaliq Arabic	Arabic (Nastaliq variant)	1.1			fas	IR
 Armi	Imperial Aramaic	Imperial Aramaic	5.2	𐡀	Yes	arc	IR
 Armn	Armenian	Armenian	1.1	Ա	no	hye	AM
 Avst	Avestan	Avestan	5.2	𐬀	Yes	ave	IR
@@ -28,7 +28,7 @@ Cham	Cham	Cham	5.1	ꨀ	no	cjm	VN
 Cher	Cherokee	Cherokee	3	Ꮔ	no	chr	US
 Chis	Chisoi	Chisoi	17	𖶓	no	kyw	IN
 Chrs	Chorasmian	Chorasmian	13	𐾿	Yes	xco	UZ
-Cirt	Cirth	Cirth					
+Cirt	Cirth	Cirth				sjn	GB
 Copt	Coptic	Coptic	4.1	Ϣ	no	cop	EG
 Cpmn	Cypro-Minoan	Cypro-Minoan	14	𒿥	no	und	CY
 Cprt	Cypriot syllabary	Cypriot syllabary	4	𐠀	Yes	ecy	CY
@@ -39,8 +39,8 @@ Diak	Dives Akuru	Dives Akuru	13	𑤌	no	div	MV
 Dogr	Dogra	Dogra	11	𑠋	no	doi	IN
 Dsrt	Deseret	Deseret (Mormon)	3.1	𐐔	no	eng	US
 Dupl	Duployan	Duployan shorthand, Duployan stenography	7	𛰠	no	fra	FR
-Egyd	Egyptian demotic	Egyptian demotic					EG
-Egyh	Egyptian hieratic	Egyptian hieratic	5.2				EG
+Egyd	Egyptian demotic	Egyptian demotic				egy	EG
+Egyh	Egyptian hieratic	Egyptian hieratic	5.2			egy	EG
 Egyp	Egyptian hieroglyphs	Egyptian hieroglyphs	5.2	𓅓	no	egy	EG
 Elba	Elbasan	Elbasan	7	𐔀	no	sqi	AL
 Elym	Elymaic	Elymaic	12	𐿱	Yes	arc	IR
@@ -75,7 +75,7 @@ Inds	Harappan	Indus (Harappan)					PK
 Ital	Old Italic	Old Italic (Etruscan, Oscan, etc.)	3.1	𐌈	no	ett	IT
 Jamo	Jamo	Jamo (alias for Jamo subset of Hangul)	1.1				
 Java	Javanese	Javanese	5.2	ꦄ	no	jav	ID
-Jpan	Han + Hiragana + Katakana	Japanese (alias for Han + Hiragana + Katakana)	1.1				
+Jpan	Kanji + Hiragana + Katakana	Japanese (alias for Han + Hiragana + Katakana)	1.1				
 Jurc	Jurchen	Jurchen					
 Kali	Kayah Li	Kayah Li	5.1	ꤊ	no	eky	MM
 Kana	Katakana	Katakana	1.1	カ	no	jpn	JP
@@ -152,7 +152,7 @@ Phnx	Phoenician	Phoenician	5	𐤀	Yes	phn	LB
 Piqd	Klingon	Klingon (KLI pIqaD)					
 Plrd	Miao	Miao (Pollard)	6.1	𖼀	no	hmd	CN
 Prti	Inscriptional Parthian	Inscriptional Parthian	5.2	𐭀	Yes	xpr	IR
-Psin	Proto-Sinaitic	Proto-Sinaitic					
+Psin	Proto-Sinaitic	Proto-Sinaitic				hbo	EG
 Qaaa	Reserved for private use (start)	Reserved for private use (start)					
 Qabx	Reserved for private use (end)	Reserved for private use (end)					
 Ranj	Ranjana	Ranjana					
@@ -161,13 +161,13 @@ Rohg	Hanifi Rohingya	Hanifi Rohingya	11	𐴒	Yes	rhg	MM
 Roro	Rongorongo	Rongorongo					
 Runr	Runic	Runic	3	ᚠ	no	non	SE
 Samr	Samaritan	Samaritan	5.2	ࠀ	Yes	smp	IL
-Sara	Sarati	Sarati					
+Sara	Sarati	Sarati				qya	GB
 Sarb	Old South Arabian	Old South Arabian	5.2	𐩠	Yes	xsa	YE
 Saur	Saurashtra	Saurashtra	5.1	ꢂ	no	saz	IN
 Sgnw	SignWriting	SignWriting	8	𝡐	no	ase	
 Shaw	Shavian	Shavian (Shaw)	4	𐑐	no	eng	GB
 Shrd	Sharada	Sharada, Śāradā	6.1	𑆃	no	san	IN
-Shui	Shuishu	Shuishu					
+Shui	Shuishu	Shuishu				swi	CN
 Sidd	Siddham	Siddham, Siddhaṃ, Siddhamātṛkā	7	𑖎	no	san	IN
 Sidt	Sidetic	Sidetic	17	𐥐	Yes	xsd	TR
 Sind	Khudawadi	Khudawadi, Sindhi	7	𑊾	no	snd	IN
@@ -180,9 +180,9 @@ Sund	Sundanese	Sundanese	5.1	ᮃ	no	sun	ID
 Sunu	Sunuwar	Sunuwar	16	𑯄	no	suz	NP
 Sylo	Syloti Nagri	Syloti Nagri	4.1	ꠀ	no	syl	BD
 Syrc	Syriac	Syriac	3	ܐ	Yes	syr	SY
-Syre	Estrangelo Syriac	Syriac (Estrangelo variant)	3				
-Syrj	Western Syriac	Syriac (Western variant)	3				
-Syrn	Eastern Syriac	Syriac (Eastern variant)	3				
+Syre	Estrangelo Syriac	Syriac (Estrangelo variant)	3		Yes	syc	SY
+Syrj	Western Syriac	Syriac (Western variant)	3		Yes	tru	SY
+Syrn	Eastern Syriac	Syriac (Eastern variant)	3		Yes	syr	IQ
 Tagb	Tagbanwa	Tagbanwa	3.2	ᝣ	no	tbw	PH
 Takr	Takri	Takri, Ṭākrī, Ṭāṅkrī	6.1	𑚀	no	doi	IN
 Tale	Tai Le	Tai Le	4	ᥐ	no	tdd	CN
@@ -192,7 +192,7 @@ Tang	Tangut	Tangut	9	𘈩	no	txg	CN
 Tavt	Tai Viet	Tai Viet	5.2	ꪀ	no	blt	VN
 Tayo	Tai Yo	Tai Yo	17	𞛕	no	tyj	VN
 Telu	Telugu	Telugu	1.1	క	no	tel	IN
-Teng	Tengwar	Tengwar					
+Teng	Tengwar	Tengwar				qya	GB
 Tfng	Tifinagh	Tifinagh (Berber)	4.1	ⵞ	no	zgh	MA
 Tglg	Baybayin	Tagalog (Baybayin, Alibata)	3.2	ᜃ	no	fil	PH
 Thaa	Thaana	Thaana	3	ތ	Yes	div	MV

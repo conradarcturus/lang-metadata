@@ -16,6 +16,7 @@ import {
   connectLanguagesToParent,
   connectLocales,
   connectTerritoriesToParent,
+  connectWritingSystems,
 } from './DataAssociations';
 import { loadLanguages, loadLocales, loadTerritories, loadWritingSystems } from './DataLoader';
 
@@ -59,7 +60,8 @@ export const DataProvider: React.FC<{
 
     connectLanguagesToParent(langs);
     connectTerritoriesToParent(territories);
-    connectLocales(langs, territories, locales);
+    connectWritingSystems(langs, territories, writingSystems);
+    connectLocales(langs, territories, writingSystems, locales);
 
     setLanguagesByCode(langs);
     setTerritoriesByCode(territories);

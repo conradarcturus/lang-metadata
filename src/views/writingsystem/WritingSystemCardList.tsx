@@ -32,11 +32,13 @@ const WritingSystemCardList: React.FC = () => {
         writing systems.
       </div>
       <div className="CardList">
-        {writingSystemsToShow.map((writingSystem) => (
-          <ViewCard key={writingSystem.code}>
-            <WritingSystemCard writingSystem={writingSystem} />
-          </ViewCard>
-        ))}
+        {writingSystemsToShow
+          .sort((a, b) => b.populationUpperBound - a.populationUpperBound)
+          .map((writingSystem) => (
+            <ViewCard key={writingSystem.code}>
+              <WritingSystemCard writingSystem={writingSystem} />
+            </ViewCard>
+          ))}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
+import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystem';
 
 import HoverableLanguageName from './HoverableLanguageName';
 
@@ -31,20 +32,21 @@ const LanguageDetails: React.FC = () => {
   }
 
   const {
+    childLanguages,
     glottocode,
+    locales,
     medium,
-    nameDisplayTitle,
     nameDisplaySubtitle,
+    nameDisplayTitle,
     nameEndonym,
+    parentLanguage,
     populationCited,
-    script,
+    primaryWritingSystem,
     viabilityConfidence,
     viabilityExplanation,
     vitalityEth2013,
     vitalityEth2025,
-    parentLanguage,
-    childLanguages,
-    locales,
+    writingSystems,
   } = lang;
 
   return (
@@ -70,10 +72,6 @@ const LanguageDetails: React.FC = () => {
         <div>
           <label>Modality:</label>
           {medium}
-        </div>
-        <div>
-          <label>Writing System:</label>
-          {script}
         </div>
       </div>
       <div>
@@ -119,8 +117,24 @@ const LanguageDetails: React.FC = () => {
             </CommaSeparated>
           </div>
         )}
-        {locales.length === 0 && parentLanguage == null && childLanguages.length === 0 && (
-          <div>There is currently no data available to show connections with other languages.</div>
+        {primaryWritingSystem && (
+          <div>
+            <label>Primary Writing System:</label>
+            <HoverableWritingSystemName writingSystem={primaryWritingSystem} />
+          </div>
+        )}
+        {Object.values(writingSystems).length > 0 && (
+          <div>
+            <label>Writing Systems:</label>
+            <CommaSeparated>
+              {Object.values(writingSystems).map((writingSystem) => (
+                <HoverableWritingSystemName
+                  key={writingSystem.code}
+                  writingSystem={writingSystem}
+                />
+              ))}
+            </CommaSeparated>
+          </div>
         )}
       </div>
     </div>

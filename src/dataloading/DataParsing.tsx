@@ -22,7 +22,7 @@ export function parseLanguageLine(line: string): LanguageData {
     nameDisplaySubtitle,
     nameEndonym: parts[3],
     medium: parts[4],
-    script: parts[5],
+    primaryScriptCode: parts[5],
     vitalityEth2013: parts[6],
     vitalityEth2025: parts[7],
     digitalSupport: parts[8],
@@ -37,6 +37,8 @@ export function parseLanguageLine(line: string): LanguageData {
     parentLanguage: undefined,
     childLanguages: [],
     locales: [],
+    primaryWritingSystem: undefined,
+    writingSystems: {},
   };
 }
 
@@ -85,7 +87,17 @@ export function parseWritingSystem(line: string): WritingSystemData {
     unicodeVersion: parts[3] != '' ? parseFloat(parts[3]) : null,
     sample: parts[4] != '' ? parts[4] : null,
     rightToLeft: parts[5] === 'Yes' ? true : parts[5] === 'no' ? false : null,
-    languageOfOriginCode: parts[6] != '' ? parts[6] : null,
+    primaryLanguageCode: parts[6] != '' ? parts[6] : null,
     territoryOfOriginCode: parts[7] != '' ? parts[7] : null,
+
+    // Derived when combining other data
+    populationUpperBound: 0,
+
+    // References to other objects, filled in with DataAssociations methods
+    languages: {},
+    localesWhereExplicit: [],
+    primaryLanguage: undefined,
+    territoryOfOrigin: undefined,
+    // @nocommit add locales to languages
   };
 }

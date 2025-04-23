@@ -2,6 +2,10 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
+import CommaSeparated from '../../generic/CommaSeparated';
+import HoverableLanguageName from '../language/HoverableLanguageName';
+import HoverableLocaleName from '../locale/HoverableLocaleName';
+import HoverableTerritoryName from '../territory/HoverableTerritoryName';
 
 import HoverableWritingSystem from './HoverableWritingSystem';
 
@@ -32,13 +36,17 @@ const WritingSystemDetails: React.FC = () => {
   }
 
   const {
+    languages,
+    localesWhereExplicit,
     nameDisplay,
     nameFull,
-    unicodeVersion,
-    sample,
+    primaryLanguage,
+    primaryLanguageCode,
+    populationUpperBound,
     rightToLeft,
-    languageOfOriginCode,
-    territoryOfOriginCode,
+    sample,
+    territoryOfOrigin,
+    unicodeVersion,
   } = writingSystem;
 
   return (
@@ -69,21 +77,52 @@ const WritingSystemDetails: React.FC = () => {
             <em>Not supported by Unicode</em>
           )}
         </div>
+        {populationUpperBound > 100 && ( // Values less than 100 are suspcious and probably spurious
+          <div>
+            <label>Population (Upper Bound):</label>
+            {populationUpperBound.toLocaleString()}
+          </div>
+        )}
       </div>
 
       <div>
         <h3>Connections</h3>
-        {languageOfOriginCode && (
+        {primaryLanguageCode != null && (
           <div>
-            <label>Language of Origin:</label>
-            {languageOfOriginCode}
+            <label>Primary language:</label>
+            {primaryLanguage != null ? (
+              <HoverableLanguageName lang={primaryLanguage} />
+            ) : (
+              primaryLanguageCode
+            )}
+          </div>
+        )}
+        {Object.values(languages).length > 0 && (
+          <div>
+            <label>Languages:</label>
+            <CommaSeparated>
+              {Object.values(languages).map((lang) => (
+                <HoverableLanguageName key={lang.code} lang={lang} />
+              ))}
+            </CommaSeparated>
           </div>
         )}
 
-        {territoryOfOriginCode && (
+        {territoryOfOrigin && (
           <div>
             <label>Territory of Origin:</label>
-            {territoryOfOriginCode}
+            <HoverableTerritoryName territory={territoryOfOrigin} />
+          </div>
+        )}
+
+        {localesWhereExplicit.length > 0 && (
+          <div>
+            <label>Locales (where writing system is explicit):</label>
+            <CommaSeparated>
+              {localesWhereExplicit.map((locale) => (
+                <HoverableLocaleName key={locale.code} locale={locale} />
+              ))}
+            </CommaSeparated>
           </div>
         )}
       </div>

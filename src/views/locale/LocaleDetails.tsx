@@ -2,6 +2,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';
+import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystem';
 
 import HoverableLocaleName from './HoverableLocaleName';
 import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
@@ -37,6 +38,7 @@ const LocaleDetails: React.FC = () => {
     territory,
     territoryCode,
     variantTag,
+    writingSystem,
   } = locale;
 
   return (
@@ -70,7 +72,13 @@ const LocaleDetails: React.FC = () => {
         {explicitScriptCode && (
           <div>
             <label>Writing System:</label>
-            {explicitScriptCode} <em>[script not in database]</em>
+            {writingSystem ? (
+              <HoverableWritingSystemName writingSystem={writingSystem} />
+            ) : (
+              <span>
+                {explicitScriptCode} <em>[writing system not in database]</em>
+              </span>
+            )}
           </div>
         )}
 

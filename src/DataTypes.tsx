@@ -21,7 +21,7 @@ export type LanguageData = {
   nameDisplaySubtitle: string | null;
   nameEndonym: string;
   medium: string;
-  script: string;
+  primaryScriptCode: ScriptCode;
   vitalityEth2013: string;
   vitalityEth2025: string;
   digitalSupport: string;
@@ -38,6 +38,8 @@ export type LanguageData = {
   childLanguages: LanguageData[];
   // childLanguoids: LanguageData[];
   locales: LocaleData[];
+  primaryWritingSystem?: WritingSystemData;
+  writingSystems: Record<ScriptCode, WritingSystemData>;
 };
 
 // ISO 3166 territory code OR UN M49 code
@@ -80,8 +82,17 @@ export type WritingSystemData = {
   unicodeVersion: number | null;
   sample: string | null;
   rightToLeft: boolean | null;
-  languageOfOriginCode: LanguageCode | null;
+  primaryLanguageCode: LanguageCode | null;
   territoryOfOriginCode: TerritoryCode | null;
+
+  // Derived when combining data
+  populationUpperBound: number;
+
+  // References to other objects, filled in after loading the TSV
+  primaryLanguage?: LanguageData;
+  territoryOfOrigin?: TerritoryData;
+  languages: Record<LanguageCode, LanguageData>;
+  localesWhereExplicit: LocaleData[];
 };
 
 // BCP-47 Locale	Locale Display Name	Native Locale Name	Language Code	Territory ISO	Explicit Script	Variant IANA Tag	Pop Source	Best Guess	Official Language
@@ -123,6 +134,7 @@ export type LocaleData = {
   // References to other objects, filled in after loading the TSV
   language?: LanguageData;
   territory?: TerritoryData;
+  writingSystem?: WritingSystemData;
 
   // Data added up some references
   populationPercentOfTerritory?: number;
