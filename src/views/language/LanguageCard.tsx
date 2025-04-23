@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { ViewType } from '../../controls/PageParamTypes';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
+import Highlightable from '../../generic/Highlightable';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableLanguageName from './HoverableLanguageName';
@@ -16,22 +17,27 @@ interface Props {
 const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   const { updatePageParams } = usePageParams();
   const {
-    vitalityEth2013,
+    childLanguages,
+    code,
+    locales,
     medium,
-    nameDisplayTitle,
     nameDisplaySubtitle,
-    populationCited,
+    nameDisplayTitle,
     nameEndonym,
     parentLanguage,
-    childLanguages,
-    locales,
+    populationCited,
+    vitalityEth2013,
   } = lang;
 
   return (
     <div>
       <h3>
         <a onClick={() => updatePageParams({ code: lang.code, viewType: ViewType.Details })}>
-          <strong>{nameDisplayTitle}</strong> {nameDisplayTitle != nameEndonym && nameEndonym}
+          <strong>
+            <Highlightable str={nameDisplayTitle} match="nameFilter" />
+          </strong>{' '}
+          {nameDisplayTitle != nameEndonym && nameEndonym} [
+          <Highlightable str={code} match="codeFilter" />]
         </a>
         {nameDisplaySubtitle != null && <div className="subtitle">{nameDisplaySubtitle}</div>}
       </h3>

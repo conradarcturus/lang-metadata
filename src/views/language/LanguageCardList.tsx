@@ -17,7 +17,7 @@ const LanguageCardList: React.FC = () => {
   const languagesFiltered = Object.values(languagesByCode).filter(
     (lang) =>
       (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
-      (nameFilter == '' || lang.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
+      (nameFilter == '' || lang.nameDisplayTitle.toLowerCase().includes(lowercaseNameFilter)),
   );
   // Sort results & limit how many are visible
   const languagesVisible = languagesFiltered

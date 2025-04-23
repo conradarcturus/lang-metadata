@@ -24,3 +24,7 @@
     /* It's at the top of the card already */
     margin-top: 0px;
 }
+
+.highlighted {
+    background: #ffffa1;
+}

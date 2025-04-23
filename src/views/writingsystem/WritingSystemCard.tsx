@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { WritingSystemData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
+import Highlightable from '../../generic/Highlightable';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 
 interface Props {
@@ -26,7 +27,8 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
             })
           }
         >
-          <strong>{nameDisplay}</strong> [{code}]
+          <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
+          <Highlightable str={code} match="codeFilter" />]
         </a>
       </h3>
       {rightToLeft === true && <div>Right to Left</div>}

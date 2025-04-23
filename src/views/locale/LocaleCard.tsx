@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { usePageParams } from '../../controls/PageParamsContext';
+import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { LocaleData } from '../../DataTypes';
+import Highlightable from '../../generic/Highlightable';
 
 import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
@@ -9,11 +12,21 @@ interface Props {
 }
 const LocaleCard: React.FC<Props> = ({ locale }) => {
   const { code, populationEstimate, officialStatus, populationPercentOfTerritory } = locale;
+  const { updatePageParams } = usePageParams();
 
   return (
     <div>
       <h3>
-        <strong>{getLocaleName(locale)}</strong> [{code}]
+        <a
+          onClick={() =>
+            updatePageParams({ dimension: Dimension.Locale, code, viewType: ViewType.Details })
+          }
+        >
+          <strong>
+            <Highlightable str={getLocaleName(locale)} match="nameFilter" />
+          </strong>{' '}
+          [<Highlightable str={code} match="codeFilter" />]
+        </a>
       </h3>
       <div>
         <h4>Speakers</h4>

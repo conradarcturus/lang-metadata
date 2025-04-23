@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { TerritoryData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
+import Highlightable from '../../generic/Highlightable';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableTerritoryName from './HoverableTerritoryName';
@@ -24,7 +25,8 @@ const TerritoryCard: React.FC<Props> = ({ territory }) => {
             updatePageParams({ code, viewType: ViewType.Details, dimension: Dimension.Territory })
           }
         >
-          <strong>{nameDisplay}</strong>
+          <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
+          <Highlightable str={code} match="codeFilter" />]
           <div className="subtitle">{territoryType}</div>
         </a>
       </h3>
