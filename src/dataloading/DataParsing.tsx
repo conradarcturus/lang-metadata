@@ -51,7 +51,9 @@ export function parseLanguageLine(line: string): LanguageData {
 
     // References to other objects, filled in with DataAssociations methods
     parentLanguage: undefined,
+    parentGlottolang: undefined,
     childLanguages: [],
+    childGlottolangs: [],
     locales: [],
     primaryWritingSystem: undefined,
     writingSystems: {},

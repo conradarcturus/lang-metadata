@@ -140,7 +140,7 @@ heb	hebr1245	Hebrew	עברית	Spoken & Written	Hebr	National	1 Institutional	Th
 ckb	cent1972	Central Kurdish	سۆرانی	Spoken & Written	Arab	Provincial	1 Institutional	Vital	0	8,565,843	kur	kurd1259	Yes	Well established variant of the macrolanguage
 bam	bamb1269	Bambara	Bamanankan	Spoken & Written	Latn	Educational	1 Institutional	Ascending	0	8,506,199		east2425	Yes	
 fub	adam1253	Adamawa Fulfulde			Arab	Wider Communication	1 Institutional	Ascending	0	8,279,000	ful	adam1260	Possibly	But probably want to use macrolanguage
-mey	hass1238	Hassaniyya			Arab	Wider Communication	1 Institutional	Emerging	0	8,239,191	ara	nort3191	Yes	
+mey	hass1238	Hassaniyya			Arab	Wider Communication	1 Institutional	Emerging	0	8,239,191		nort3191	Yes	
 kik	kiku1240	Kikuyu	Gĩkũyũ	Spoken & Written	Latn	Developing	2 Stable	Ascending	0	8,229,431		giku1234	Yes	
 gsw	swis1247	Alsatian	Schwiizertüütsch		Latn	Developing	2 Stable	Vital	0	8,201,600		sout3294	Yes	
 hat	hait1244	Haitian Creole	Kreyòl ayisyen	Spoken & Written	Latn	National	1 Institutional	Vital	0	8,156,687		circ1240	Yes	
@@ -4369,7 +4369,7 @@ uli	ulit1238	Ulithian	yal’ool Yiuldiy		Latn	Developing	2 Stable	Emerging	0	3,1
 pbh	enap1235	E'ñapa Woromaipu	E’ñapa Woromaipu		Latn	Developing	2 Stable	Emerging	0	3,100		pemo1246	Yes	
 bco	kalu1248	Kaluli			Latn	Developing	1 Institutional	Emerging	0	3,100		kalu1249	Yes	
 sdp	sher1257	Sherdukpen				Vigorous	2 Stable	Emerging	0	3,100		sher1256	Yes	
-tvk	sout2859	Southeast Ambrym			Latn	Developing	2 Stable	Emerging	0	3,100		ambr1240	Yes	
+TVK	sout2859	Southeast Ambrym			Latn	Developing	2 Stable	Emerging	0	3,100		ambr1240	Yes	
 vic	virg1240	Virgin Islands Creole English			Latn	Vigorous	3 Endangered	Emerging	0	3,100		barb1266	Yes	
 gaq	gata1239	Gata'			Orya	Threatened	3 Endangered	Emerging	0	3,060		mund1335	Yes	
 kpj	kara1500	Karajá			Latn	Threatened	3 Endangered	Emerging	0	3,060		nucl1710	Yes	
@@ -7508,7 +7508,6 @@ zir	ziri1239	Ziriya				Dormant			0	1	scv	shen1251	No	ISO considers this a duplic
 gku	dans1240	ǂUngkue			Latn		4 Extinct	Still	0	1		nuuu1241	No	Extinct language
 chao1238	chao1238	Teochew									nan	chao1239	Yes, with caveat	Some linguists separate Teochew from the larger language definition Min Nan [nan]
 midd1354	midd1354	Middle-Modern Sinitic										clas1255	No	Group of multiple languages
-minn1241	minn1241	Min Nan Chinese										coas1318	No	Group of multiple languages
 chan1329	chan1329	Changgan									hnm	hain1238	No	Inexplicable language code from DLD. Teochew is nan-teo
 taib1242	taib1242	Taiwanese									nan	hokk1242	Yes, with caveat	Some linguists separate Hokkien/Taiwanese from the larger language definition Min Nan [nan]
 ltc	midd1344	Late Middle Chinese			Hant				0			midd1354	Probably not	Historical langauge

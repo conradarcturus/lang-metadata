@@ -228,6 +228,7 @@ export function addISOLanguageFamilyData(
         parentLanguageCode: family.parent,
 
         childLanguages: [],
+        childGlottolangs: [],
         writingSystems: {},
         locales: [],
       };

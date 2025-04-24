@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 import {
   BCP47LocaleCode,
+  Glottocode,
   ISO6391LanguageCode,
   LanguageCode,
   LanguageData,
@@ -29,12 +30,14 @@ import {
   connectWritingSystems,
 } from './DataAssociations';
 import { loadLanguages, loadLocales, loadTerritories, loadWritingSystems } from './DataLoader';
+import { addGlottologLanguages, connectGlottolangsToParent, loadLangoids } from './GlottologData';
 
 type DataContextType = {
   languagesByCode: Record<LanguageCode, LanguageData>;
 
-  // Languages by ISO 639-1 codes -- because some data sources use ISO 639-1 codes to index languages
+  // Languages by ISO 639-1 or Glottocodes -- so they can be indexed from these schema instead
   languagesByISO6391Code: Record<ISO6391LanguageCode, LanguageData>;
+  languagesByGlottocode: Record<Glottocode, LanguageData>;
 
   territoriesByCode: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
@@ -44,6 +47,7 @@ type DataContextType = {
 const DataContext = createContext<DataContextType | undefined>({
   languagesByCode: {},
   languagesByISO6391Code: {},
+  languagesByGlottocode: {},
   territoriesByCode: {},
   locales: {},
   writingSystems: {},
@@ -56,6 +60,9 @@ export const DataProvider: React.FC<{
   const [languagesByCode, setLanguagesByCode] = useState<Record<LanguageCode, LanguageData>>({});
   const [languagesByISO6391Code, setLanguagesByISO6391Code] = useState<
     Record<ISO6391LanguageCode, LanguageData>
+  >({});
+  const [languagesByGlottocode, setLanguagesByGlottocode] = useState<
+    Record<Glottocode, LanguageData>
   >({});
   const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
     {},
@@ -70,6 +77,7 @@ export const DataProvider: React.FC<{
       macroLangs,
       langFamilies,
       isoLangsToFamilies,
+      glottologImport,
       territories,
       locales,
       writingSystems,
@@ -79,6 +87,7 @@ export const DataProvider: React.FC<{
       loadISOMacrolanguages(),
       loadISOLanguageFamilies(),
       loadISOFamiliesToLanguages(),
+      loadLangoids(),
       loadTerritories(),
       loadLocales(),
       loadWritingSystems(),
@@ -91,7 +100,9 @@ export const DataProvider: React.FC<{
     const iso6391Langs = addISODataToLanguages(langs, isoLangs || []);
     addISOLanguageFamilyData(langs, iso6391Langs, langFamilies || [], isoLangsToFamilies || {});
     addISOMacrolanguageData(langs, macroLangs || []);
+    const languagesByGlottocode = addGlottologLanguages(langs, glottologImport || []);
     connectLanguagesToParent(langs);
+    connectGlottolangsToParent(languagesByGlottocode);
     connectTerritoriesToParent(territories);
     connectWritingSystems(langs, territories, writingSystems);
     connectLocales(langs, territories, writingSystems, locales);
@@ -99,6 +110,7 @@ export const DataProvider: React.FC<{
 
     setLanguagesByCode(langs);
     setLanguagesByISO6391Code(iso6391Langs);
+    setLanguagesByGlottocode(languagesByGlottocode);
     setTerritoriesByCode(territories);
     setLocales(locales);
     setWritingSystems(writingSystems);
@@ -113,6 +125,7 @@ export const DataProvider: React.FC<{
       value={{
         languagesByCode,
         languagesByISO6391Code,
+        languagesByGlottocode,
         territoriesByCode,
         locales,
         writingSystems,

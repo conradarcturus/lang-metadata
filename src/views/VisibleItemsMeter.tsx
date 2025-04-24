@@ -50,6 +50,7 @@ function getObjectTypeLabel(): string {
     case Dimension.Language:
       switch (languageSchema) {
         case LanguageSchema.Glottolog:
+          return 'glottolog languages';
         case LanguageSchema.Inclusive:
           return 'languoids';
         case LanguageSchema.ISO:

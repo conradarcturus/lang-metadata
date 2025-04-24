@@ -60,9 +60,9 @@ export type LanguageData = {
 
   // References to other objects, filled in after loading the TSV
   parentLanguage?: LanguageData;
-  // parentLanguoid?: LanguageData; // Reserved after incorporating Glottolog data
+  parentGlottolang?: LanguageData;
   childLanguages: LanguageData[];
-  // childLanguoids: LanguageData[];
+  childGlottolangs: LanguageData[];
   locales: LocaleData[];
   primaryWritingSystem?: WritingSystemData;
   writingSystems: Record<ScriptCode, WritingSystemData>;

@@ -16,17 +16,18 @@ type Props = {
 const LanguageDetails: React.FC<Props> = ({ lang }) => {
   const sortFunction = getSortFunction();
   const {
+    codeISO6391,
+    codeISO6392,
+    glottocode,
+    medium,
+    parentGlottolang,
     parentLanguage,
     populationCited,
-    medium,
     primaryWritingSystem,
-    writingSystems,
-    codeISO6392,
-    codeISO6391,
-    vitalityISO,
     vitalityEth2013,
     vitalityEth2025,
-    glottocode,
+    vitalityISO,
+    writingSystems,
   } = lang;
 
   return (
@@ -118,8 +119,14 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         <h3>Connections</h3>
         {parentLanguage && (
           <div>
-            <label>Group:</label>
+            <label>ISO group:</label>
             <HoverableLanguageName lang={parentLanguage} />
+          </div>
+        )}
+        {parentGlottolang && (
+          <div>
+            <label>Glottolog group:</label>
+            <HoverableLanguageName lang={parentGlottolang} />
           </div>
         )}
         <div style={{ display: 'flex' }}>
