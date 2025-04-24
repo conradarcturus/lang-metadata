@@ -6,6 +6,7 @@ import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
 
 import './treelist.css';
+import { getLocaleTreeNodes } from './locale/LocaleTreeList';
 import TreeListNode from './TreeListNode';
 
 const ViewTreeList: React.FC = () => {
@@ -23,8 +24,11 @@ const ViewTreeList: React.FC = () => {
         return Object.values(territoriesByCode)
           .filter((territory) => territory.parentUNRegion == null)
           .sort(sortFunction);
+      case Dimension.Locale:
+        // Building custom tree nodes
+        return getLocaleTreeNodes(languagesByCode, sortFunction);
       default:
-        throw new Error(`${dimension} is not supported for TreeList yet`);
+        return [];
     }
   }, [dimension, sortFunction]);
 

@@ -10,9 +10,10 @@ import WritingSystemCard from './WritingSystemCard';
 type Props = {
   writingSystem: WritingSystemData;
   format?: 'text' | 'button';
+  style?: React.CSSProperties;
 };
 
-const HoverableWritingSystemName: React.FC<Props> = ({ writingSystem, format = 'text' }) => {
+const HoverableWritingSystemName: React.FC<Props> = ({ writingSystem, format = 'text', style }) => {
   const { updatePageParams } = usePageParams();
 
   return (
@@ -25,6 +26,7 @@ const HoverableWritingSystemName: React.FC<Props> = ({ writingSystem, format = '
           dimension: Dimension.WritingSystem,
         })
       }
+      style={style}
     >
       {format === 'text' ? writingSystem.nameDisplay : <button>{writingSystem.nameDisplay}</button>}
     </Hoverable>

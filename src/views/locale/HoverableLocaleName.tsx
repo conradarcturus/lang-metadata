@@ -11,12 +11,14 @@ type Props = {
   locale: LocaleData;
   labelSource?: 'code' | 'territory' | 'language';
   format?: 'text' | 'button';
+  style?: React.CSSProperties;
 };
 
 const HoverableLocaleName: React.FC<Props> = ({
   locale,
   labelSource = 'code',
   format = 'text',
+  style,
 }) => {
   const { updatePageParams } = usePageParams();
   let label = locale.code;
@@ -41,6 +43,7 @@ const HoverableLocaleName: React.FC<Props> = ({
           dimension: Dimension.Locale,
         })
       }
+      style={style}
     >
       {format === 'text' ? label : <button>{label}</button>}
     </Hoverable>

@@ -4,14 +4,15 @@ import { Dimension } from '../controls/PageParamTypes';
 import { LanguageData, TerritoryData, TerritoryType } from '../DataTypes';
 
 import HoverableLanguageName from './language/HoverableLanguageName';
+import { LocaleTreeNodeData } from './locale/LocaleTreeList';
 import HoverableTerritoryName from './territory/HoverableTerritoryName';
 
 import './treelist.css';
 
-type NodeData = TerritoryData | LanguageData;
+type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData;
 
 type Props = {
-  nodeData: NodeData;
+  nodeData: TreeNodeData;
   expandedInititally?: boolean;
 };
 
@@ -41,16 +42,18 @@ const TreeListNode: React.FC<Props> = ({ nodeData, expandedInititally = false })
   );
 };
 
-function getChildren(nodeData: NodeData): NodeData[] | undefined {
+function getChildren(nodeData: TreeNodeData): TreeNodeData[] | undefined {
   switch (nodeData.type) {
     case Dimension.Language:
       return nodeData.childLanguages;
     case Dimension.Territory:
       return nodeData.regionContainsTerritories;
+    case Dimension.Locale:
+      return nodeData.children;
   }
 }
 
-function getNodeTitle(nodeData: NodeData): React.ReactNode {
+function getNodeTitle(nodeData: TreeNodeData): React.ReactNode {
   switch (nodeData.type) {
     case Dimension.Language:
       return (
@@ -72,6 +75,8 @@ function getNodeTitle(nodeData: NodeData): React.ReactNode {
           }}
         />
       );
+    case Dimension.Locale:
+      return nodeData.label;
   }
 }
 
