@@ -10,9 +10,10 @@ import LanguageCard from './LanguageCard';
 type Props = {
   lang: LanguageData;
   format?: 'text' | 'button';
+  style?: React.CSSProperties;
 };
 
-const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text' }) => {
+const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text', style }) => {
   const { updatePageParams } = usePageParams();
 
   return (
@@ -25,6 +26,7 @@ const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text' }) => {
           dimension: Dimension.Language,
         })
       }
+      style={style}
     >
       {format === 'text' ? lang.nameDisplayTitle : <button>{lang.nameDisplayTitle}</button>}
     </Hoverable>

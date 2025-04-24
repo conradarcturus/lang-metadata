@@ -4,6 +4,7 @@ import { Dimension, ViewType } from '../controls/PageParamTypes';
 
 import LanguageCardList from './language/LanguageCardList';
 import LanguageDetails from './language/LanguageDetails';
+import LanguageHierarchy from './language/LanguageHierarchy';
 import LocaleCardList from './locale/LocaleCardList';
 import LocaleDetails from './locale/LocaleDetails';
 import TerritoryCardList from './territory/TerritoryCardList';
@@ -23,7 +24,7 @@ function MainViews() {
         case ViewType.Details:
           return <LanguageDetails />;
         case ViewType.Hierarchy:
-          return 'Not yet implemented';
+          return <LanguageHierarchy />;
       }
     case Dimension.Territory:
       switch (viewType) {
