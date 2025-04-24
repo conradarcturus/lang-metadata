@@ -10,9 +10,10 @@ import TerritoryCard from './TerritoryCard';
 type Props = {
   territory: TerritoryData;
   format?: 'text' | 'button';
+  style?: React.CSSProperties;
 };
 
-const HoverableTerritoryName: React.FC<Props> = ({ territory, format = 'text' }) => {
+const HoverableTerritoryName: React.FC<Props> = ({ territory, format = 'text', style }) => {
   const { updatePageParams } = usePageParams();
 
   return (
@@ -25,6 +26,7 @@ const HoverableTerritoryName: React.FC<Props> = ({ territory, format = 'text' })
           dimension: Dimension.Territory,
         })
       }
+      style={style}
     >
       {format === 'text' ? territory.nameDisplay : <button>{territory.nameDisplay}</button>}
     </Hoverable>

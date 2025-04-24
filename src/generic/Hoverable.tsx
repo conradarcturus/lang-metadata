@@ -6,9 +6,10 @@ type HoverableProps = {
   children: React.ReactNode;
   hoverContent: React.ReactNode;
   onClick?: () => void;
+  style?: React.CSSProperties;
 };
 
-const Hoverable: React.FC<HoverableProps> = ({ children, hoverContent, onClick }) => {
+const Hoverable: React.FC<HoverableProps> = ({ children, hoverContent, onClick, style }) => {
   const { showHoverCard, hideHoverCard } = useHoverCard();
 
   const handleMouseEnter = (e: React.MouseEvent) => {
@@ -34,6 +35,7 @@ const Hoverable: React.FC<HoverableProps> = ({ children, hoverContent, onClick }
         display: 'inline-block',
         textDecoration: 'underline',
         cursor: onClick ? 'pointer' : 'auto',
+        ...style,
       }}
     >
       {children}

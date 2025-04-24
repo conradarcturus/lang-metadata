@@ -1,5 +1,5 @@
 TerritoryCode	Territory Name	Territory Type	Population	Contained UN Region	Sovereign	Literacy
-001	World	World	8,135,342,470	001		79.4%
+001	World	World	8,135,342,470			79.4%
 142	Asia	Continent	4,709,491,123	001		80.4%
 034	Southern Asia	Sub-continent	2,005,031,276	142		62.0%
 030	Eastern Asia	Sub-continent	1,643,989,729	142		95.5%

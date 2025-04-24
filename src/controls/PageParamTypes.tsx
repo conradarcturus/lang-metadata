@@ -9,7 +9,7 @@ export enum Dimension {
 export enum ViewType {
   CardList = 'Card List',
   Details = 'Details',
-  //   Hierarchy = 'hierarchy',
+  Hierarchy = 'Hierarchy',
   //   Table = 'table',
 }
 

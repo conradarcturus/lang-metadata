@@ -13,7 +13,7 @@ The data comes from multiple sources, primarily [CLDR](https://github.com/unicod
 
 Here's a list of planned functionality. Completed functions are checked off.
 
-- [ ] Language-adjacent objects
+- [x] Language-adjacent objects
   - [x] Languages
     - [x] Core attributes
     - [x] ISO parent/child connections
@@ -21,7 +21,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] Digital Support details
   - [x] Territories
     - [x] Countries & Dependencies
-    - [ ] Continents & other regions
+    - [ ] Continents & other regions - _in progress_
   - [x] Locales (languages + territories + potentially other specificity)
     - [x] Basic data
     - [ ] Population estimate sources
@@ -29,18 +29,19 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] Basic data
     - [ ] Relationship w/ other writing systems (containment, lineage)
   - [ ] Language Variants / IANA tags
-- [ ] Views
+- [x] Views
   - [x] Cards
   - [x] Details
-  - [ ] Hierarchy
+  - [ ] Hierarchy - _in progress_
   - [ ] Table
   - [ ] Map
-- [ ] Interactivity
-  - [ ] Filter
+- [x] Interactivity
+  - [x] Filter
     - [x] By Code
     - [x] By Name
+    - [x] Highlight search
     - [ ] Using typeahead
-  - [ ] Hovercard & Tooltips
+  - [x] Hovercard & Tooltips
     - [x] Related objects
     - [ ] Field explanations
   - [ ] Sort
