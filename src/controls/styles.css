@@ -8,7 +8,7 @@
 }
 
 .selector button, .selector input, .selector label {
-    border: 0.125em solid #0077d4;
+    border: 0.125em solid var(--color-button-primary);
     margin-left: -0.125em;
     margin-right: -0.125em;
     line-height: 1.5;
@@ -17,21 +17,27 @@
 }
 
 .selector button {
-    color: #0077d4;
-    background: white;
+    color: var(--color-button-primary);
+    background: var(--color-background);
     cursor: pointer;
     border-radius: 0px; /* radius comes from more specific changes */
 }
 
 .selector input {
-    color: #0077d4;
-    background: white;
+    color: var(--color-button-primary);
+    background: var(--color-background);
     padding: 0.50rem 1rem;
 }
 
 .selector button:hover {
-    color: #0077d4;
-    background: #e0f1ff;
+    color: var(--color-background);
+    background: var(--color-button-hover);
+    /* color: #0077d4;
+    background: #e0f1ff; */
+}
+
+.selector :focus {
+    border-color: var(--color-button-hover);
 }
 
 .selector :first-child {
@@ -45,8 +51,8 @@
 }
 
 .selector .selected, .selector label {
-    background: #0077d4;
-    color: white;
+    background: var(--color-button-primary);
+    color: var(--color-background);
 }
 
 .clear {

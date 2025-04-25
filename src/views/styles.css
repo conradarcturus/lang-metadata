@@ -11,7 +11,7 @@
 .ViewCard {
     border-width: 1px;
     border-radius: 5px;
-    box-shadow: rgba(103, 103, 103, 0.22) 0 0 1rem 5px;
+    box-shadow: var(--color-shadow) 0 0 1rem 5px;
     padding: 1rem;
     text-align: start;
 }
@@ -36,7 +36,7 @@
 
 .subtitle {
     font-size: 0.6em;
-    color: grey;
+    color: var(--color-text-secondary);
     margin-top: 0px;
     font-style: italic;
 }
