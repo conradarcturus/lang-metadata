@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import ViewCard from '../ViewCard';
 import VisibleItemsMeter from '../VisibleItemsMeter';
@@ -24,7 +25,7 @@ const WritingSystemCardList: React.FC = () => {
     );
   // Sort results & limit how many are visible
   const writingSystemsVisible = writingSystemsFiltered
-    .sort((a, b) => b.populationUpperBound - a.populationUpperBound)
+    .sort(getSortFunction())
     .slice(0, limit > 0 ? limit : undefined);
 
   return (

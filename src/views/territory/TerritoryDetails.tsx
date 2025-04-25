@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
@@ -93,7 +94,7 @@ const TerritoryDetails: React.FC = () => {
           <div>
             <label>Contains:</label>
             <CommaSeparated>
-              {regionContainsTerritories.map((territory) => (
+              {regionContainsTerritories.sort(getSortFunction()).map((territory) => (
                 <HoverableTerritoryName key={territory.code} territory={territory} />
               ))}
             </CommaSeparated>
@@ -110,7 +111,7 @@ const TerritoryDetails: React.FC = () => {
           <div>
             <label>Administers:</label>
             <CommaSeparated>
-              {dependentTerritories.map((territory) => (
+              {dependentTerritories.sort(getSortFunction()).map((territory) => (
                 <HoverableTerritoryName key={territory.code} territory={territory} />
               ))}
             </CommaSeparated>

@@ -8,6 +8,7 @@ import {
   TerritoryData,
   WritingSystemData,
 } from '../DataTypes';
+import { getLocaleName } from '../views/locale/LocaleStrings';
 
 export function connectLanguagesToParent(
   languagesByCode: Record<LanguageCode, LanguageData>,
@@ -96,7 +97,7 @@ export function connectLocales(
   writingSystems: Record<ScriptCode, WritingSystemData>,
   locales: Record<BCP47LocaleCode, LocaleData>,
 ): void {
-  Object.values(locales).map((locale) => {
+  Object.values(locales).forEach((locale) => {
     const territory = territoriesByCode[locale.territoryCode];
     const language = languagesByCode[locale.languageCode];
     const writingSystem = locale.explicitScriptCode
@@ -125,6 +126,7 @@ export function connectLocales(
       }
     }
 
-    return locale;
+    // Update the locale's display name
+    locale.nameDisplay = getLocaleName(locale);
   });
 }

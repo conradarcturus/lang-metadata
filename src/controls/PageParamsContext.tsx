@@ -1,7 +1,14 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { DataSubset, Dimension, PageParams, PageParamsOptional, ViewType } from './PageParamTypes';
+import {
+  DataSubset,
+  Dimension,
+  PageParams,
+  PageParamsOptional,
+  SortBy,
+  ViewType,
+} from './PageParamTypes';
 
 type PageParamsContextState = PageParams & {
   updatePageParams: (newParams: PageParamsOptional) => void;
@@ -40,9 +47,10 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       code: getParam('code', ''),
       dataSubset: getParam('dataSubset', DataSubset.Top200) as DataSubset,
       dimension: getParam('dimension', Dimension.Language) as Dimension,
-      nameFilter: getParam('nameFilter', ''),
-      viewType: getParam('viewType', ViewType.CardList) as ViewType,
       limit: parseInt(getParam('limit', '8')),
+      nameFilter: getParam('nameFilter', ''),
+      sortBy: getParam('sortBy', SortBy.Population) as SortBy,
+      viewType: getParam('viewType', ViewType.CardList) as ViewType,
       updatePageParams,
     }),
     [pageParams],

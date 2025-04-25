@@ -2,20 +2,23 @@ import React from 'react';
 import './styles.css';
 
 type ButtonGroupSingleChoiceProps<T extends React.Key> = {
-  options: readonly T[];
-  selected: T;
+  groupLabel?: string;
   onChange: (value: T) => void;
+  options: readonly T[];
   renderLabel?: (value: T) => React.ReactNode; // optional label renderer
+  selected: T;
 };
 
 function ButtonGroupSingleChoice<T extends React.Key>({
-  options,
-  selected,
+  groupLabel,
   onChange,
+  options,
   renderLabel = (val) => val as string,
+  selected,
 }: ButtonGroupSingleChoiceProps<T>) {
   return (
     <div className="selector">
+      {groupLabel != null && <label>{groupLabel}</label>}
       {options.map((option) => (
         <button
           key={option}

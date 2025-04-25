@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableLanguageName from '../language/HoverableLanguageName';
@@ -101,9 +102,11 @@ const WritingSystemDetails: React.FC = () => {
           <div>
             <label>Languages:</label>
             <CommaSeparated>
-              {Object.values(languages).map((lang) => (
-                <HoverableLanguageName key={lang.code} lang={lang} />
-              ))}
+              {Object.values(languages)
+                .sort(getSortFunction())
+                .map((lang) => (
+                  <HoverableLanguageName key={lang.code} lang={lang} />
+                ))}
             </CommaSeparated>
           </div>
         )}
@@ -119,7 +122,7 @@ const WritingSystemDetails: React.FC = () => {
           <div>
             <label>Locales (where writing system is explicit):</label>
             <CommaSeparated>
-              {localesWhereExplicit.map((locale) => (
+              {localesWhereExplicit.sort(getSortFunction()).map((locale) => (
                 <HoverableLocaleName key={locale.code} locale={locale} />
               ))}
             </CommaSeparated>

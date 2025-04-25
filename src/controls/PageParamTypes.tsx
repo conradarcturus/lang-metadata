@@ -18,12 +18,19 @@ export enum DataSubset {
   All = 'All',
 }
 
+export enum SortBy {
+  Population = 'Population',
+  Code = 'Code',
+  Name = 'Name',
+}
+
 export type PageParams = {
   code: string;
   dataSubset: DataSubset;
   dimension: Dimension;
   limit: number; // < 1 means show all
   nameFilter: string;
+  sortBy: SortBy;
   viewType: ViewType;
 };
 
@@ -33,5 +40,6 @@ export type PageParamsOptional = {
   dimension?: Dimension;
   limit?: number;
   nameFilter?: string;
+  sortBy?: SortBy;
   viewType?: ViewType;
 };

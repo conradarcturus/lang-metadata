@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import ViewCard from '../ViewCard';
 import VisibleItemsMeter from '../VisibleItemsMeter';
@@ -10,6 +11,7 @@ import LanguageCard from './LanguageCard';
 const LanguageCardList: React.FC = () => {
   const { languagesByCode } = useDataContext();
   const { code: codeFilter, nameFilter, limit } = usePageParams();
+  const sortByFunction = getSortFunction();
 
   // Filter results
   const lowercaseNameFilter = nameFilter.toLowerCase();
@@ -21,7 +23,7 @@ const LanguageCardList: React.FC = () => {
   );
   // Sort results & limit how many are visible
   const languagesVisible = languagesFiltered
-    .sort((a, b) => b.populationCited - a.populationCited)
+    .sort(sortByFunction)
     .slice(0, limit > 0 ? limit : undefined);
 
   return (
@@ -35,13 +37,11 @@ const LanguageCardList: React.FC = () => {
         />
       </div>
       <div className="CardList">
-        {languagesVisible
-          .sort((a, b) => b.populationCited - a.populationCited)
-          .map((lang) => (
-            <ViewCard key={lang.code}>
-              <LanguageCard lang={lang} includeRelations={true} />
-            </ViewCard>
-          ))}
+        {languagesVisible.sort(sortByFunction).map((lang) => (
+          <ViewCard key={lang.code}>
+            <LanguageCard lang={lang} includeRelations={true} />
+          </ViewCard>
+        ))}
       </div>
     </div>
   );

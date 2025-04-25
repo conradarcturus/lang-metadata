@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import { TerritoryType } from '../../DataTypes';
 import ViewCard from '../ViewCard';
@@ -25,7 +26,7 @@ const TerritoryCardList: React.FC = () => {
     );
   // Sort results & limit how many are visible
   const territoriesVisible = territoriesFiltered
-    .sort((a, b) => b.population - a.population)
+    .sort(getSortFunction())
     .slice(0, limit > 0 ? limit : undefined);
 
   return (

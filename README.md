@@ -44,9 +44,7 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [x] Hovercard & Tooltips
     - [x] Related objects
     - [ ] Field explanations
-  - [ ] Sort
-    - [ ] By Population
-    - [ ] By Name
+  - [x] Sort By: Population, Name, Code
   - [x] Limit
   - [ ] Selection
   - [ ] Export

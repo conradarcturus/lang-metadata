@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import { TerritoryData, TerritoryType } from '../../DataTypes';
 
@@ -46,11 +47,9 @@ const TerritoryNode: React.FC<TerritoryNodeProps> = ({ territory, expandedInitit
       />
       {expanded && hasChildren && (
         <ul>
-          {territory.regionContainsTerritories
-            .sort((a, b) => b.population - a.population)
-            .map((child, i) => (
-              <TerritoryNode key={child.code} territory={child} expandedInititally={i === 0} />
-            ))}
+          {territory.regionContainsTerritories.sort(getSortFunction()).map((child, i) => (
+            <TerritoryNode key={child.code} territory={child} expandedInititally={i === 0} />
+          ))}
         </ul>
       )}
     </li>

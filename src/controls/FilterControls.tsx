@@ -1,11 +1,13 @@
 import Hoverable from '../generic/Hoverable';
 
+import ButtonGroupSingleChoice from './ButtonGroupSingleChoice';
 import { usePageParams } from './PageParamsContext';
-import { ViewType } from './PageParamTypes';
+import { SortBy, ViewType } from './PageParamTypes';
 import TextInput from './TextInput';
 
 const FilterControls: React.FC = () => {
-  const { viewType, dimension, code, updatePageParams, nameFilter, limit } = usePageParams();
+  const { viewType, dimension, code, updatePageParams, nameFilter, limit, sortBy } =
+    usePageParams();
 
   return (
     <div>
@@ -48,6 +50,16 @@ const FilterControls: React.FC = () => {
           />
         </Hoverable>
       )}
+      {
+        <Hoverable hoverContent={`Choose the order of items in the view.`}>
+          <ButtonGroupSingleChoice<SortBy>
+            options={Object.values(SortBy)}
+            onChange={(sortBy: SortBy) => updatePageParams({ sortBy })}
+            selected={sortBy}
+            groupLabel="Sort by:"
+          />
+        </Hoverable>
+      }
     </div>
   );
 };

@@ -3,6 +3,10 @@
  * It includes types for language codes, glottocodes, and language data.
  */
 
+import { Dimension } from './controls/PageParamTypes';
+
+export type DataItem = LanguageData | WritingSystemData | TerritoryData | LocaleData;
+
 // LanguageCode is ideally an ISO-639 code, or a BCP047 formatted complex language tag
 // should be formatted like ab or abc. But there are some languoids with different
 // kinds of language codes here as well. This is the main index key for languages and languoids
@@ -13,6 +17,8 @@ export type LanguageCode = string;
 export type Glottocode = string;
 
 export type LanguageData = {
+  type: Dimension.Language;
+
   // Provided by the TSV files
   code: LanguageCode;
   glottocode: Glottocode;
@@ -57,6 +63,7 @@ export enum TerritoryType {
 }
 
 export type TerritoryData = {
+  type: Dimension.Territory;
   code: TerritoryCode;
   nameDisplay: string;
   territoryType: TerritoryType;
@@ -76,8 +83,10 @@ export type TerritoryData = {
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
 
 export type WritingSystemData = {
+  type: Dimension.WritingSystem;
+
   code: ScriptCode;
-  nameDisplay: string;
+  nameDisplayOriginal: string;
   nameFull: string;
   unicodeVersion: number | null;
   sample: string | null;
@@ -87,6 +96,7 @@ export type WritingSystemData = {
 
   // Derived when combining data
   populationUpperBound: number;
+  nameDisplay: string;
 
   // References to other objects, filled in after loading the TSV
   primaryLanguage?: LanguageData;
@@ -120,6 +130,8 @@ export enum OfficialStatus {
 }
 
 export type LocaleData = {
+  type: Dimension.Locale;
+
   code: BCP47LocaleCode;
   nameDisplay: string;
   nameEndonym: string;

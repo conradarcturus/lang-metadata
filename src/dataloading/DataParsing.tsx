@@ -1,3 +1,4 @@
+import { Dimension } from '../controls/PageParamTypes';
 import {
   LanguageData,
   LocaleData,
@@ -15,6 +16,8 @@ export function parseLanguageLine(line: string): LanguageData {
   const [nameDisplayTitle, nameDisplaySubtitle] = separateTitleAndSubtitle(nameDisplay);
 
   return {
+    type: Dimension.Language,
+
     code: parts[0],
     glottocode: parts[1],
     nameDisplay,
@@ -45,6 +48,8 @@ export function parseLanguageLine(line: string): LanguageData {
 export function parseTerritoryLine(line: string): TerritoryData {
   const parts = line.split('\t');
   return {
+    type: Dimension.Territory,
+
     code: parts[0],
     nameDisplay: parts[1],
     territoryType: parts[2] as TerritoryType,
@@ -65,6 +70,8 @@ export function parseTerritoryLine(line: string): TerritoryData {
 export function parseLocaleLine(line: string): LocaleData {
   const parts = line.split('\t');
   return {
+    type: Dimension.Locale,
+
     code: parts[0],
     nameDisplay: parts[1],
     nameEndonym: parts[2],
@@ -81,8 +88,11 @@ export function parseLocaleLine(line: string): LocaleData {
 export function parseWritingSystem(line: string): WritingSystemData {
   const parts = line.split('\t');
   return {
+    type: Dimension.WritingSystem,
+
     code: parts[0],
     nameDisplay: parts[1],
+    nameDisplayOriginal: parts[1],
     nameFull: parts[2],
     unicodeVersion: parts[3] != '' ? parseFloat(parts[3]) : null,
     sample: parts[4] != '' ? parts[4] : null,

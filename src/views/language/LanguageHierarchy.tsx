@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LanguageData } from '../../DataTypes';
 
@@ -11,7 +12,7 @@ const LanguageHierarchy: React.FC = () => {
   const { limit } = usePageParams();
   const rootLanguages = Object.values(languagesByCode)
     .filter((language) => language.parentLanguage == null)
-    .sort((a, b) => b.populationCited - a.populationCited)
+    .sort(getSortFunction())
     .slice(0, limit > 0 ? limit : undefined);
 
   return (
@@ -47,11 +48,9 @@ const LanguageNode: React.FC<LanguageNodeProps> = ({ language, expandedInititall
       />
       {expanded && hasChildren && (
         <ul>
-          {language.childLanguages
-            .sort((a, b) => b.populationCited - a.populationCited)
-            .map((child, i) => (
-              <LanguageNode key={child.code} language={child} expandedInititally={i === 0} />
-            ))}
+          {language.childLanguages.sort(getSortFunction()).map((child, i) => (
+            <LanguageNode key={child.code} language={child} expandedInititally={i === 0} />
+          ))}
         </ul>
       )}
     </li>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import ViewCard from '../ViewCard';
 import VisibleItemsMeter from '../VisibleItemsMeter';
@@ -21,7 +22,7 @@ const LocaleCardList: React.FC = () => {
   );
   // Sort results & limit how many are visible
   const localesVisible = localeFiltered
-    .sort((a, b) => b.populationEstimate - a.populationEstimate)
+    .sort(getSortFunction())
     .slice(0, limit > 0 ? limit : undefined);
 
   return (
