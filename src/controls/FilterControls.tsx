@@ -17,10 +17,11 @@ const FilterControls: React.FC = () => {
         }
       >
         <TextInput
-          label="Code"
+          label="Code:"
           value={code}
           onChange={(code: string) => updatePageParams({ code })}
           inputStyle={{ width: '3em' }}
+          placeholder="filter by"
         />
       </Hoverable>
       {viewType === ViewType.CardList && (
@@ -28,20 +29,22 @@ const FilterControls: React.FC = () => {
           hoverContent={`Filter the ${dimension.toLowerCase()} by its name. Caution: if you have too many items visible then this may jitter, so type slowly.`}
         >
           <TextInput
-            label="Name"
+            label="Name:"
             value={nameFilter}
             onChange={(nameFilter: string) => updatePageParams({ nameFilter })}
             inputStyle={{ width: '10em' }}
+            placeholder="filter by"
           />
         </Hoverable>
       )}
       {viewType === ViewType.CardList && (
         <Hoverable hoverContent={`Limit how many ${dimension.toLowerCase()} cards are shown.`}>
           <TextInput
-            label="Limit"
+            label="Limit:"
             value={limit < 1 || Number.isNaN(limit) ? '' : limit.toString()}
             onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
             inputStyle={{ width: '3em' }}
+            placeholder="&infin;"
           />
         </Hoverable>
       )}

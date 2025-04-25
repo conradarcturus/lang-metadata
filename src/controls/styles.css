@@ -24,20 +24,29 @@
 }
 
 .selector input {
+    color: var(--color-background);
+    background: var(--color-button-primary);
+    padding: 0.50rem 1rem;
+}
+
+.selector input.empty {
     color: var(--color-button-primary);
     background: var(--color-background);
-    padding: 0.50rem 1rem;
+}
+
+.selector input::placeholder {
+    color: var(--color-text-secondary);
+    background: var(--color-background);
 }
 
 .selector button:hover {
     color: var(--color-background);
     background: var(--color-button-hover);
-    /* color: #0077d4;
-    background: #e0f1ff; */
 }
 
 .selector :focus {
     border-color: var(--color-button-hover);
+    background: var(--color-button-hover);
 }
 
 .selector :first-child {
@@ -50,9 +59,14 @@
     border-top-right-radius: 2em;
 }
 
-.selector .selected, .selector label {
+.selector .selected {
     background: var(--color-button-primary);
     color: var(--color-background);
+}
+
+.selector label {
+    background: var(--color-button-background);
+    color: var(--color-text);
 }
 
 .clear {
