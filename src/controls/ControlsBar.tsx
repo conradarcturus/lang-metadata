@@ -40,7 +40,7 @@ const ControlsBar: React.FC = () => {
           />
         </Hoverable>
       </div>
-      {(viewType === ViewType.CardList || viewType === ViewType.Details) && <FilterControls />}
+      <FilterControls />
     </div>
   );
 };

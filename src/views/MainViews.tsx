@@ -4,12 +4,11 @@ import { Dimension, ViewType } from '../controls/PageParamTypes';
 
 import LanguageCardList from './language/LanguageCardList';
 import LanguageDetails from './language/LanguageDetails';
-import LanguageHierarchy from './language/LanguageHierarchy';
 import LocaleCardList from './locale/LocaleCardList';
 import LocaleDetails from './locale/LocaleDetails';
 import TerritoryCardList from './territory/TerritoryCardList';
 import TerritoryDetails from './territory/TerritoryDetails';
-import TerritoryHierarchy from './territory/TerritoryHierarchy';
+import TreeList from './ViewTreeList';
 import WritingSystemCardList from './writingsystem/WritingSystemCardList';
 import WritingSystemDetails from './writingsystem/WritingSystemDetails';
 import './styles.css';
@@ -24,7 +23,7 @@ function MainViews() {
         case ViewType.Details:
           return <LanguageDetails />;
         case ViewType.Hierarchy:
-          return <LanguageHierarchy />;
+          return <TreeList />;
       }
     case Dimension.Territory:
       switch (viewType) {
@@ -33,7 +32,7 @@ function MainViews() {
         case ViewType.Details:
           return <TerritoryDetails />;
         case ViewType.Hierarchy:
-          return <TerritoryHierarchy />;
+          return <TreeList />;
       }
     case Dimension.Locale:
       switch (viewType) {
@@ -42,7 +41,7 @@ function MainViews() {
         case ViewType.Details:
           return <LocaleDetails />;
         case ViewType.Hierarchy:
-          return 'Not yet implemented';
+          return <TreeList />;
       }
     case Dimension.WritingSystem:
       switch (viewType) {
@@ -51,7 +50,7 @@ function MainViews() {
         case ViewType.Details:
           return <WritingSystemDetails />;
         case ViewType.Hierarchy:
-          return 'Not yet implemented';
+          return <TreeList />;
       }
   }
 }
