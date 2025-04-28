@@ -9,6 +9,7 @@ import HoverableLocaleName from '../locale/HoverableLocaleName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';
 
 import HoverableWritingSystem from './HoverableWritingSystem';
+import HoverableWritingSystemName from './HoverableWritingSystem';
 
 const WritingSystemDetails: React.FC = () => {
   const { code } = usePageParams();
@@ -37,13 +38,17 @@ const WritingSystemDetails: React.FC = () => {
   }
 
   const {
+    childWritingSystems,
+    containsWritingSystems,
     languages,
     localesWhereExplicit,
     nameDisplay,
+    nameEndonym,
     nameFull,
+    parentWritingSystem,
+    populationUpperBound,
     primaryLanguage,
     primaryLanguageCode,
-    populationUpperBound,
     rightToLeft,
     sample,
     territoryOfOrigin,
@@ -53,7 +58,8 @@ const WritingSystemDetails: React.FC = () => {
   return (
     <div className="Details">
       <h2>
-        <strong>{nameDisplay}</strong> [{code}]
+        <strong>{nameDisplay}</strong>
+        {nameDisplay != nameEndonym && ' ' + nameEndonym} [{code}]
         {nameDisplay != nameFull && <div className="subtitle">{nameFull}</div>}
       </h2>
       <div>
@@ -124,6 +130,39 @@ const WritingSystemDetails: React.FC = () => {
             <CommaSeparated>
               {localesWhereExplicit.sort(getSortFunction()).map((locale) => (
                 <HoverableLocaleName key={locale.code} locale={locale} />
+              ))}
+            </CommaSeparated>
+          </div>
+        )}
+
+        {parentWritingSystem && (
+          <div>
+            <label>Originated from:</label>
+            <HoverableWritingSystemName writingSystem={parentWritingSystem} />
+          </div>
+        )}
+        {childWritingSystems.length > 0 && (
+          <div>
+            <label>Inspired:</label>
+            <CommaSeparated>
+              {childWritingSystems.sort(getSortFunction()).map((writingSystem) => (
+                <HoverableWritingSystemName
+                  key={writingSystem.code}
+                  writingSystem={writingSystem}
+                />
+              ))}
+            </CommaSeparated>
+          </div>
+        )}
+        {containsWritingSystems.length > 0 && (
+          <div>
+            <label>Contains:</label>
+            <CommaSeparated>
+              {containsWritingSystems.sort(getSortFunction()).map((writingSystem) => (
+                <HoverableWritingSystemName
+                  key={writingSystem.code}
+                  writingSystem={writingSystem}
+                />
               ))}
             </CommaSeparated>
           </div>

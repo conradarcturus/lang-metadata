@@ -94,11 +94,14 @@ export function parseWritingSystem(line: string): WritingSystemData {
     nameDisplay: parts[1],
     nameDisplayOriginal: parts[1],
     nameFull: parts[2],
-    unicodeVersion: parts[3] != '' ? parseFloat(parts[3]) : null,
-    sample: parts[4] != '' ? parts[4] : null,
-    rightToLeft: parts[5] === 'Yes' ? true : parts[5] === 'no' ? false : null,
-    primaryLanguageCode: parts[6] != '' ? parts[6] : null,
-    territoryOfOriginCode: parts[7] != '' ? parts[7] : null,
+    nameEndonym: parts[3],
+    unicodeVersion: parts[4] != '' ? parseFloat(parts[4]) : null,
+    sample: parts[5] != '' ? parts[4] : null,
+    rightToLeft: parts[6] === 'Yes' ? true : parts[6] === 'no' ? false : null,
+    primaryLanguageCode: parts[7] != '' ? parts[7] : null,
+    territoryOfOriginCode: parts[8] != '' ? parts[8] : null,
+    parentWritingSystemCode: parts[9] != '' ? parts[9] : null,
+    containsWritingSystemsCodes: parts[10] != '' ? parts[10].split(', ') : [],
 
     // Derived when combining other data
     populationUpperBound: 0,
@@ -108,6 +111,8 @@ export function parseWritingSystem(line: string): WritingSystemData {
     localesWhereExplicit: [],
     primaryLanguage: undefined,
     territoryOfOrigin: undefined,
-    // @nocommit add locales to languages
+    parentWritingSystem: undefined,
+    childWritingSystems: [],
+    containsWritingSystems: [],
   };
 }

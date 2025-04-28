@@ -88,11 +88,14 @@ export type WritingSystemData = {
   code: ScriptCode;
   nameDisplayOriginal: string;
   nameFull: string;
+  nameEndonym: string;
   unicodeVersion: number | null;
   sample: string | null;
   rightToLeft: boolean | null;
   primaryLanguageCode: LanguageCode | null;
   territoryOfOriginCode: TerritoryCode | null;
+  parentWritingSystemCode: ScriptCode | null;
+  containsWritingSystemsCodes: ScriptCode[];
 
   // Derived when combining data
   populationUpperBound: number;
@@ -103,6 +106,9 @@ export type WritingSystemData = {
   territoryOfOrigin?: TerritoryData;
   languages: Record<LanguageCode, LanguageData>;
   localesWhereExplicit: LocaleData[];
+  parentWritingSystem?: WritingSystemData;
+  childWritingSystems: WritingSystemData[];
+  containsWritingSystems: WritingSystemData[];
 };
 
 // BCP-47 Locale	Locale Display Name	Native Locale Name	Language Code	Territory ISO	Explicit Script	Variant IANA Tag	Pop Source	Best Guess	Official Language

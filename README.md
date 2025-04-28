@@ -27,7 +27,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] Population estimate sources
   - [x] Writing Systems
     - [x] Basic data
-    - [ ] Relationship w/ other writing systems (containment, lineage)
+    - [x] Relationship w/ other writing systems (containment, lineage)
   - [ ] Language Variants / IANA tags
 - [x] Views
   - [x] Cards

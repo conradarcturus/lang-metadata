@@ -1,225 +1,225 @@
-ISO 15924 (sortkey)	Display Name	Full Name	First Unicode Version	Sample	RTL?	Language of Origin	Territory of Origin
-Adlm	Adlam	Adlam	9	𞤉	Yes	ful	GN
-Afak	Afaka	Afaka				djk	SR
-Aghb	Caucasian Albanian	Caucasian Albanian	7	𐔷	no	xag	AZ
-Ahom	Tai Ahom	Ahom, Tai Ahom	8	𑜗	no	aho	IN
-Arab	Arabic	Arabic	1.1	ب	Yes	ara	SA
-Aran	Nastaliq Arabic	Arabic (Nastaliq variant)	1.1			fas	IR
-Armi	Imperial Aramaic	Imperial Aramaic	5.2	𐡀	Yes	arc	IR
-Armn	Armenian	Armenian	1.1	Ա	no	hye	AM
-Avst	Avestan	Avestan	5.2	𐬀	Yes	ave	IR
-Bali	Balinese	Balinese	5	ᬅ	no	ban	ID
-Bamu	Bamum	Bamum	5.2	ꚠ	no	bax	CM
-Bass	Bassa Vah	Bassa Vah	7	𖫦	no	bsq	LR
-Batk	Batak	Batak	6	ᯀ	no	bbc	ID
-Beng	Bengali	Bengali (Bangla)	1.1	ক	no	ben	BD
-Berf	Beria Erfe	Beria Erfe					
-Bhks	Bhaiksuki	Bhaiksuki	9	𑰎	no	san	IN
-Blis	Blissymbols	Blissymbols					
-Bopo	Bopomofo	Bopomofo	1.1	ㄅ	no	zho	CN
-Brah	Brahmi	Brahmi	6	𑀅	no	pka	IN
-Brai	Braille	Braille	3	⠎	n/a		FR
-Bugi	Buginese	Buginese	4.1	ᨀ	no	bug	ID
-Buhd	Buhid	Buhid	3.2	ᝃ	no	bku	PH
-Cakm	Chakma	Chakma	6.1	𑄃	no	ccp	BD
-Cans	Unified Canadian Aboriginal Syllabics	Unified Canadian Aboriginal Syllabics	3	ᓀ	no	cre	CA
-Cari	Carian	Carian	5.1	𐊷	no	xcr	TR
-Cham	Cham	Cham	5.1	ꨀ	no	cjm	VN
-Cher	Cherokee	Cherokee	3	Ꮔ	no	chr	US
-Chis	Chisoi	Chisoi	17	𖶓	no	kyw	IN
-Chrs	Chorasmian	Chorasmian	13	𐾿	Yes	xco	UZ
-Cirt	Cirth	Cirth				sjn	GB
-Copt	Coptic	Coptic	4.1	Ϣ	no	cop	EG
-Cpmn	Cypro-Minoan	Cypro-Minoan	14	𒿥	no	und	CY
-Cprt	Cypriot syllabary	Cypriot syllabary	4	𐠀	Yes	ecy	CY
-Cyrl	Cyrillic	Cyrillic	1.1	Я	no	rus	BG
-Cyrs	Old Cyrillic	Cyrillic (Old Church Slavonic variant)	1.1				BG
-Deva	Devanagari	Devanagari (Nagari)	1.1	अ	no	hin	IN
-Diak	Dives Akuru	Dives Akuru	13	𑤌	no	div	MV
-Dogr	Dogra	Dogra	11	𑠋	no	doi	IN
-Dsrt	Deseret	Deseret (Mormon)	3.1	𐐔	no	eng	US
-Dupl	Duployan	Duployan shorthand, Duployan stenography	7	𛰠	no	fra	FR
-Egyd	Egyptian demotic	Egyptian demotic				egy	EG
-Egyh	Egyptian hieratic	Egyptian hieratic	5.2			egy	EG
-Egyp	Egyptian hieroglyphs	Egyptian hieroglyphs	5.2	𓅓	no	egy	EG
-Elba	Elbasan	Elbasan	7	𐔀	no	sqi	AL
-Elym	Elymaic	Elymaic	12	𐿱	Yes	arc	IR
-Ethi	Geʻez	Ethiopic (Geʻez)	3	አ	no	amh	ET
-Gara	Garay	Garay	16	𐵝	Yes	wol	SN
-Geok	Asomtavruli and Nuskhuri	Khutsuri (Asomtavruli and Nuskhuri)	1.1				
-Geor	Mkhedruli and Mtavruli	Georgian (Mkhedruli and Mtavruli)	1.1	დ	no	kat	GE
-Glag	Glagolitic	Glagolitic	4.1	Ⰰ	no	chu	BG
-Gong	Gunjala Gondi	Gunjala Gondi	11	𑵱	no	wsg	IN
-Gonm	Masaram Gondi	Masaram Gondi	10	𑴐	no	esg	IN
-Goth	Gothic	Gothic	3.1	𐌰	no	got	UA
-Gran	Grantha	Grantha	7	𑌕	no	san	IN
-Grek	Greek	Greek	1.1	Ω	no	ell	GR
-Gujr	Gujarati	Gujarati	1.1	ક	no	guj	IN
-Gukh	Gurung Khema	Gurung Khema	16	𖄜	no	gvr	NP
-Guru	Gurmukhi	Gurmukhi	1.1	ਕ	no	pan	IN
-Hanb	Han with Bopomofo	Han with Bopomofo (alias for Han + Bopomofo)	1.1				
-Hang	Hangul	Hangul (Hangŭl, Hangeul)	1.1	가	no	kor	KR
-Hani	Han	Han (Hanzi, Kanji, Hanja)	1.1	字	no	zho	CN
-Hano	Hanunoo	Hanunoo (Hanunóo)	3.2	ᜣ	no	hnn	PH
-Hans	Simplified Han	Han (Simplified variant)	1.1		no	zho	CN
-Hant	Traditional Han	Han (Traditional variant)	1.1		no	zho	CN
-Hatr	Hatran	Hatran	8	𐣴	Yes	arc	IQ
-Hebr	Hebrew	Hebrew	1.1	א	Yes	heb	IL
-Hira	Hiragana	Hiragana	1.1	か	no	jpn	JP
-Hluw	Anatolian Hieroglyphs	Anatolian Hieroglyphs (Luwian Hieroglyphs, Hittite Hieroglyphs)	8	𔐀	no	hlu	TR
-Hmng	Pahawh Hmong	Pahawh Hmong	7	𖬜	no	hnj	LA
-Hmnp	Nyiakeng Puachue Hmong	Nyiakeng Puachue Hmong	12	𞄈	no	mww	US
-Hrkt	Hiragana + Katakana	Japanese syllabaries (alias for Hiragana + Katakana)	1.1				JP
-Hung	Hungarian Runic	Old Hungarian (Hungarian Runic)	8	𐲡	Yes	hun	HU
-Inds	Harappan	Indus (Harappan)					PK
-Ital	Old Italic	Old Italic (Etruscan, Oscan, etc.)	3.1	𐌈	no	ett	IT
-Jamo	Jamo	Jamo (alias for Jamo subset of Hangul)	1.1				
-Java	Javanese	Javanese	5.2	ꦄ	no	jav	ID
-Jpan	Kanji + Hiragana + Katakana	Japanese (alias for Han + Hiragana + Katakana)	1.1				
-Jurc	Jurchen	Jurchen					
-Kali	Kayah Li	Kayah Li	5.1	ꤊ	no	eky	MM
-Kana	Katakana	Katakana	1.1	カ	no	jpn	JP
-Kawi	Kawi	Kawi	15	𑼛	no	kaw	ID
-Khar	Kharoshthi	Kharoshthi	4.1	𐨀	Yes	pgd	PK
-Khmr	Khmer	Khmer	3	ក	no	khm	KH
-Khoj	Khojki	Khojki	7	𑈈	no	snd	IN
-Kitl	Khitan large script	Khitan large script					
-Kits	Khitan small script	Khitan small script	13	𘱥	no	zkt	CN
-Knda	Kannada	Kannada	1.1	ಕ	no	kan	IN
-Kore	Hangul + Hanja	Korean (alias for Hangul + Han)	1.1				
-Kpel	Kpelle	Kpelle					
-Krai	Kirat Rai	Kirat Rai	16	𖵅	no	bap	IN
-Kthi	Kaithi	Kaithi	5.2	𑂃	no	bho	IN
-Lana	Tai Tham	Tai Tham (Lanna)	5.2	ᨠ	no	nod	TH
-Laoo	Lao	Lao	1.1	ລ	no	lao	LA
-Latf	Fraktur Latin	Latin (Fraktur variant)	1.1				
-Latg	Gaelic Latin	Latin (Gaelic variant)	1.1				
-Latn	Latin	Latin	1.1	L	no	eng	IT
-Leke	Leke	Leke					
-Lepc	Lepcha	Lepcha (Róng)	5.1	ᰀ	no	lep	IN
-Limb	Limbu	Limbu	4	ᤀ	no	lif	IN
-Lina	Linear A	Linear A	7	𐙇	no	lab	GR
-Linb	Linear B	Linear B	4	𐀀	no	gmy	GR
-Lisu	Lisu	Lisu (Fraser)	5.2	ꓨ	no	lis	CN
-Loma	Loma	Loma					
-Lyci	Lycian	Lycian	5.1	𐊀	no	xlc	TR
-Lydi	Lydian	Lydian	5.1	𐤠	Yes	xld	TR
-Mahj	Mahajani	Mahajani	7	𑅒	no	hin	IN
-Maka	Makasar	Makasar	11	𑻥	no	mak	ID
-Mand	Mandaic	Mandaic, Mandaean	6	ࡀ	Yes	myz	IR
-Mani	Manichaean	Manichaean	7	𐫁	Yes	xmn	CN
-Marc	Marchen	Marchen	9	𑱲	no	bod	CN
-Maya	Mayan hieroglyphs	Mayan hieroglyphs					
-Medf	Medefaidrin	Medefaidrin (Oberi Okaime, Oberi Ɔkaimɛ)	11	𖹀	no	dmf	NG
-Mend	Mende Kikakui	Mende Kikakui	7	𞠂	Yes	men	SL
-Merc	Meroitic Cursive	Meroitic Cursive	6.1	𐦠	Yes	xmr	SD
-Mero	Meroitic Hieroglyphs	Meroitic Hieroglyphs	6.1	𐦀	Yes	xmr	SD
-Mlym	Malayalam	Malayalam	1.1	ക	no	mal	IN
-Modi	Modi, Moḍī	Modi, Moḍī	7	𑘎	no	mar	IN
-Mong	Mongolian	Mongolian	3	ᠦ	no	mon	MN
-Moon	Moon	Moon (Moon code, Moon script, Moon type)					
-Mroo	Mro, Mru	Mro, Mru	7	𖩏	no	mro	BD
-Mtei	Meitei Mayek	Meitei Mayek (Meithei, Meetei)	5.2	ꯀ	no	mni	IN
-Mult	Multani	Multani	8	𑊏	no	skr	PK
-Mymr	Myanmar	Myanmar (Burmese)	3	က	no	mya	
-Nagm	Nag Mundari	Nag Mundari	15	𞓦	no	unr	IN
-Nand	Nandinagari	Nandinagari	12	𑧎	no	san	IN
-Narb	Old North Arabian	Old North Arabian (Ancient North Arabian)	7	𐪕	Yes	xna	SA
-Nbat	Nabataean	Nabataean	7	𐢖	Yes	arc	JO
-Newa	Newari	Newa, Newar, Newari, Nepāla lipi	9	𑐒	no	new	NP
-Nkdb	Naxi Dongba	Naxi Dongba (na²¹ɕi³³ to³³ba²¹, Nakhi Tomba)					
-Nkgb	Naxi Geba	Naxi Geba (na²¹ɕi³³ gʌ²¹ba²¹, 'Na-'Khi ²Ggŏ-¹baw, Nakhi Geba)					
-Nkoo	N’Ko	N’Ko	5	ߘ	Yes	man	GN
-Nshu	Nüshu	Nüshu	10	𛇄	no		CN
-Ogam	Ogham	Ogham	3	ᚏ	no	sga	IE
-Olck	Ol Chiki	Ol Chiki (Ol Cemet’, Ol, Santali)	5.1	ᱚ	no	sat	IN
-Onao	Ol Onal	Ol Onal	16	𞗐	no	unr	IN
-Orkh	Old Turkic	Old Turkic, Orkhon Runic	5.2	𐰀	Yes	otk	MN
-Orya	Oriya	Oriya (Odia)	1.1	କ	no	ori	IN
-Osge	Osage	Osage	9	𐒵	no	osa	
-Osma	Osmanya	Osmanya	4	𐒀	no	som	SO
-Ougr	Old Uyghur	Old Uyghur	14	𐽼	Yes	oui	CN
-Palm	Palmyrene	Palmyrene	7	𐡳	Yes	arc	SY
-Pauc	Pau Cin Hau	Pau Cin Hau	7	𑫀	no	ctd	
-Pcun	Proto-Cuneiform	Proto-Cuneiform					
-Pelm	Proto-Elamite	Proto-Elamite					
-Perm	Old Permic	Old Permic	7	𐍫	no	kom	RU
-Phag	Phags-pa	Phags-pa	5	ꡀ	no	lzh	CN
-Phli	Inscriptional Pahlavi	Inscriptional Pahlavi	5.2	𐭠	Yes	pal	IR
-Phlp	Psalter Pahlavi	Psalter Pahlavi	7	𐮏	Yes	pal	CN
-Phlv	Book Pahlavi	Book Pahlavi					
-Phnx	Phoenician	Phoenician	5	𐤀	Yes	phn	LB
-Piqd	Klingon	Klingon (KLI pIqaD)					
-Plrd	Miao	Miao (Pollard)	6.1	𖼀	no	hmd	CN
-Prti	Inscriptional Parthian	Inscriptional Parthian	5.2	𐭀	Yes	xpr	IR
-Psin	Proto-Sinaitic	Proto-Sinaitic				hbo	EG
-Qaaa	Reserved for private use (start)	Reserved for private use (start)					
-Qabx	Reserved for private use (end)	Reserved for private use (end)					
-Ranj	Ranjana	Ranjana					
-Rjng	Rejang	Rejang (Redjang, Kaganga)	5.1	ꤰ	no	rej	ID
-Rohg	Hanifi Rohingya	Hanifi Rohingya	11	𐴒	Yes	rhg	MM
-Roro	Rongorongo	Rongorongo					
-Runr	Runic	Runic	3	ᚠ	no	non	SE
-Samr	Samaritan	Samaritan	5.2	ࠀ	Yes	smp	IL
-Sara	Sarati	Sarati				qya	GB
-Sarb	Old South Arabian	Old South Arabian	5.2	𐩠	Yes	xsa	YE
-Saur	Saurashtra	Saurashtra	5.1	ꢂ	no	saz	IN
-Sgnw	SignWriting	SignWriting	8	𝡐	no	ase	
-Shaw	Shavian	Shavian (Shaw)	4	𐑐	no	eng	GB
-Shrd	Sharada	Sharada, Śāradā	6.1	𑆃	no	san	IN
-Shui	Shuishu	Shuishu				swi	CN
-Sidd	Siddham	Siddham, Siddhaṃ, Siddhamātṛkā	7	𑖎	no	san	IN
-Sidt	Sidetic	Sidetic	17	𐥐	Yes	xsd	TR
-Sind	Khudawadi	Khudawadi, Sindhi	7	𑊾	no	snd	IN
-Sinh	Sinhala	Sinhala	3	අ	no	sin	LK
-Sogd	Sogdian	Sogdian	11	𐽂	Yes	sog	UZ
-Sogo	Old Sogdian	Old Sogdian	11	𐼙	Yes	sog	UZ
-Sora	Sora Sompeng	Sora Sompeng	6.1	𑃐	no	srb	IN
-Soyo	Soyombo	Soyombo	10	𑩜	no	cmg	MN
-Sund	Sundanese	Sundanese	5.1	ᮃ	no	sun	ID
-Sunu	Sunuwar	Sunuwar	16	𑯄	no	suz	NP
-Sylo	Syloti Nagri	Syloti Nagri	4.1	ꠀ	no	syl	BD
-Syrc	Syriac	Syriac	3	ܐ	Yes	syr	SY
-Syre	Estrangelo Syriac	Syriac (Estrangelo variant)	3		Yes	syc	SY
-Syrj	Western Syriac	Syriac (Western variant)	3		Yes	tru	SY
-Syrn	Eastern Syriac	Syriac (Eastern variant)	3		Yes	syr	IQ
-Tagb	Tagbanwa	Tagbanwa	3.2	ᝣ	no	tbw	PH
-Takr	Takri	Takri, Ṭākrī, Ṭāṅkrī	6.1	𑚀	no	doi	IN
-Tale	Tai Le	Tai Le	4	ᥐ	no	tdd	CN
-Talu	New Tai Lue	New Tai Lue	4.1	ᦀ	no	khb	CN
-Taml	Tamil	Tamil	1.1	க	no	tam	IN
-Tang	Tangut	Tangut	9	𘈩	no	txg	CN
-Tavt	Tai Viet	Tai Viet	5.2	ꪀ	no	blt	VN
-Tayo	Tai Yo	Tai Yo	17	𞛕	no	tyj	VN
-Telu	Telugu	Telugu	1.1	క	no	tel	IN
-Teng	Tengwar	Tengwar				qya	GB
-Tfng	Tifinagh	Tifinagh (Berber)	4.1	ⵞ	no	zgh	MA
-Tglg	Baybayin	Tagalog (Baybayin, Alibata)	3.2	ᜃ	no	fil	PH
-Thaa	Thaana	Thaana	3	ތ	Yes	div	MV
-Thai	Thai	Thai	1.1	ท	no	tha	TH
-Tibt	Tibetan	Tibetan	2	ཀ	no	bod	CN
-Tirh	Tirhuta	Tirhuta	7	𑒄	no	mai	IN
-Tnsa	Tangsa	Tangsa	14	𖪼	no	nst	IN
-Todr	Todhri	Todhri	16	𐗂	no	sqi	AL
-Tols	Tolong Siki	Tolong Siki	17	𑷆	no	kru	IN
-Toto	Toto	Toto	14	𞊐	no	txo	IN
-Tutg	Tulu-Tigalari	Tulu-Tigalari	16	𑎒	no	san	IN
-Ugar	Ugaritic	Ugaritic	4	𐎀	no	uga	SY
-Vaii	Vai	Vai	5.1	ꕉ	no	vai	LR
-Visp	Visible Speech	Visible Speech					
-Vith	Vithkuqi	Vithkuqi	14	𐖂	no	sqi	AL
-Wara	Warang Citi	Warang Citi (Varang Kshiti)	7	𑢴	no	hoc	IN
-Wcho	Wancho	Wancho	12	𞋡	no	nnp	IN
-Wole	Woleai	Woleai					
-Xpeo	Old Persian	Old Persian	4.1	𐎠	no	peo	IR
-Xsux	Cuneiform	Cuneiform, Sumero-Akkadian	5	𒀀	no	akk	IQ
-Yezi	Yezidi	Yezidi	13	𐺈	Yes	kur	GE
-Yiii	Yi	Yi	3	ꊈ	no	iii	CN
-Zanb	Zanabazar Square	Zanabazar Square (Zanabazarin Dörböljin Useg, Xewtee Dörböljin Bicig, Horizontal Square Script)	10	𑨋	no	cmg	MN
-Zinh	Code for inherited script	Code for inherited script		̏	n/a		
-Zmth	Mathematical notation	Mathematical notation	3.2				
-Zsye	Symbols (Emoji variant)	Symbols (Emoji variant)	6				
-Zsym	Symbols	Symbols	1.1				
-Zxxx	Unwritten documents	Code for unwritten documents					
-Zyyy	Undetermine script	Code for undetermined script		@	n/a		
-Zzzz	Uncoded script	Code for uncoded script		﷐	n/a		
+ISO 15924 (sortkey)	Display Name	Full Name	Endonym	First Unicode Version	Sample	RTL?	Language of Origin	Territory of Origin	Writing System Orig	Group of other writing systems
+Berf	Beria Erfe	Beria Erfe					zag	TD	Invented	
+Blis	Blissymbols	Blissymbols					zbl		Invented	
+Brai	Braille	Braille		3	⠎	n/a		FR	Invented	
+Chis	Chisoi	Chisoi		17	𖶓	no	kyw	IN		
+Egyp	Egyptian hieroglyphs	Egyptian hieroglyphs		5.2	𓅓	no	egy	EG		
+Hani	Han characters	Han (Hanzi, Kanji, Hanja)		1.1	字	no	zho	CN		
+Mand	Mandaic	Mandaic, Mandaean		6	ࡀ	Yes	myz	IR	Armi	
+Maya	Mayan hieroglyphs	Mayan hieroglyphs					myn	GT		
+Medf	Medefaidrin	Medefaidrin (Oberi Okaime, Oberi Ɔkaimɛ)	𖹝𖹰𖹯𖹼𖹫 𖹚𖹬𖹾𖹠𖹯‎	11	𖹀	no	dmf	NG	Invented	
+Mend	Mende Kikakui	Mende Kikakui		7	𞠂	Yes	men	SL	Invented	
+Mong	Mongolian	Mongolian	ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ	3	ᠦ	no	mon	MN	Ougr	
+Moon	Moon	Moon (Moon code, Moon script, Moon type)					eng	GB	Latn	
+Nkdb	Naxi Dongba	Naxi Dongba (na²¹ɕi³³ to³³ba²¹, Nakhi Tomba)					nxq	CN	Unknown	
+Nkgb	Naxi Geba	Naxi Geba (na²¹ɕi³³ gʌ²¹ba²¹, 'Na-'Khi ²Ggŏ-¹baw, Nakhi Geba)					nxq	CN	Unknown	
+Pcun	Proto-Cuneiform	Proto-Cuneiform					sux	IQ		
+Qaaa	Reserved for private use (start)	Reserved for private use (start)								
+Qabx	Reserved for private use (end)	Reserved for private use (end)								
+Zinh	Code for inherited script	Code for inherited script			̏	n/a				
+Zmth	Mathematical notation	Mathematical notation		3.2						
+Zsye	Symbols (Emoji variant)	Symbols (Emoji variant)		6						
+Zsym	Symbols	Symbols		1.1						
+Zxxx	Unwritten documents	Code for unwritten documents								
+Zyyy	Undetermine script	Code for undetermined script			@	n/a				
+Zzzz	Uncoded script	Code for uncoded script			﷐	n/a				
+Egyh	Egyptian hieratic	Egyptian hieratic		5.2			egy	EG	Egyp	
+Egyd	Egyptian demotic	Egyptian demotic					egy	EG	Egyh	
+Merc	Meroitic Cursive	Meroitic Cursive		6.1	𐦠	Yes	xmr	SD	Egyd	
+Mero	Meroitic Hieroglyphs	Meroitic Hieroglyphs		6.1	𐦀	Yes	xmr	SD	Egyp	
+Psin	Proto-Sinaitic	Proto-Sinaitic					hbo	EG	Egyp	
+Narb	Old North Arabian	Old North Arabian (Ancient North Arabian)		7	𐪕	Yes	xna	SA	Psin	
+Phnx	Phoenician	Phoenician		5	𐤀	Yes	phn	LB	Psin	
+Armi	Imperial Aramaic	Imperial Aramaic		5.2	𐡀	Yes	arc	IR	Phnx	
+Brah	Brahmi	Brahmi		6	𑀅	no	pka	IN	Armi	
+Bhks	Bhaiksuki	Bhaiksuki	𑰥𑰹𑰎𑰿𑰬𑰲𑰎𑰱	9	𑰎	no	san	IN	Brah	
+Cham	Cham	Cham	ꨀꨇꩉ ꨌꩌ	5.1	ꨀ	no	cjm	VN	Brah	
+Gran	Grantha	Grantha	𑌗𑍍𑌰𑌨𑍍𑌥	7	𑌕	no	san	IN	Brah	
+Diak	Dives Akuru	Dives Akuru	𑤙𑤱𑤩𑤵𑤭𑤱 𑤀𑤌𑤳𑤧𑤳	13	𑤌	no	div	MV	Gran	
+Mlym	Malayalam	Malayalam	മലയാളമെഴുത്ത്	1.1	ക	no	mal	IN	Gran	
+Saur	Saurashtra	Saurashtra	ꢱꣃꢬꢵꢰ꣄ꢜ꣄ꢬ	5.1	ꢂ	no	saz	IN	Gran	
+Sinh	Sinhala	Sinhala	සිංහල අක්ෂර මාලාව	3	අ	no	sin	LK	Gran	
+Tutg	Tulu-Tigalari	Tulu-Tigalari		16	𑎒	no	san	IN	Gran	
+Kawi	Kawi	Kawi	𑼄𑼒𑽂𑼰𑼬𑼒𑼮𑼶	15	𑼛	no	kaw	ID	Brah	
+Bali	Balinese	Balinese	ᬅᬓ᭄ᬱᬭᬩᬮᬶ	5	ᬅ	no	ban	ID	Kawi	
+Batk	Batak	Batak	ᯘᯮᯒᯖ᯲ ᯅᯖᯂ᯲	6	ᯀ	no	bbc	ID	Kawi	
+Bugi	Buginese	Buginese	ᨒᨚᨈᨑ	4.1	ᨀ	no	bug	ID	Kawi	
+Java	Javanese	Javanese	ꦲꦏ꧀ꦱꦫꦗꦮ	5.2	ꦄ	no	jav	ID	Kawi	
+Maka	Makasar	Makasar	𑻪𑻢𑻪𑻢	11	𑻥	no	mak	ID	Kawi	
+Rjng	Rejang	Rejang (Redjang, Kaganga)	ꥆꤰ꥓ꤼꤽ ꤽꥍꤺꥏ	5.1	ꤰ	no	rej	ID	Kawi	
+Sund	Sundanese	Sundanese	ᮃᮊ᮪ᮞᮛ ᮞᮥᮔ᮪ᮓ ᮊᮥᮔ	5.1	ᮃ	no	sun	ID	Kawi	
+Tglg	Baybayin	Tagalog (Baybayin, Alibata)	ᜊᜌ᜔ᜊᜌᜒᜈ᜔	3.2	ᜃ	no	fil	PH	Kawi	
+Buhd	Buhid	Buhid	ᝊᝓᝑᝒ	3.2	ᝃ	no	bku	PH	Tglg	
+Hano	Hanunoo	Hanunoo (Hanunóo)	ᜱᜨᜳᜨᜳᜢ	3.2	ᜣ	no	hnn	PH	Tglg	
+Tagb	Tagbanwa	Tagbanwa	ᝦᝪᝯ	3.2	ᝣ	no	tbw	PH	Tglg	
+Khmr	Khmer	Khmer	អក្សរខ្មែរ	3	ក	no	khm	KH	Brah	
+Laoo	Lao	Lao	ອັກສອນລາວ	1.1	ລ	no	lao	LA	Khmr	
+Tavt	Tai Viet	Tai Viet	ꪎꪳ ꪼꪕ	5.2	ꪀ	no	blt	VN	Khmr	
+Tayo	Tai Yo	Tai Yo		17	𞛕	no	tyj	VN	Khmr	
+Thai	Thai	Thai	อักษรไทย	1.1	ท	no	tha	TH	Khmr	
+Knda	Kannada	Kannada	ಕನ್ನಡ ಲಿಪಿ	1.1	ಕ	no	kan	IN	Brah	
+Mtei	Meitei Mayek	Meitei Mayek (Meithei, Meetei)	ꯃꯩꯇꯩ ꯃꯌꯦꯛ	5.2	ꯀ	no	mni	IN	Brah	
+Mymr	Mon-Burmese	Myanmar (Burmese)	မွန်မြန်မာအက္ခရာ	3	က	no	mya	MM	Brah	
+Ahom	Tai Ahom	Ahom, Tai Ahom	𑜒𑜑𑜪𑜨	8	𑜗	no	aho	IN	Mymr	
+Cakm	Chakma	Chakma	𑄌𑄋𑄴𑄟𑄳𑄦 𑄃𑄧𑄏𑄛𑄖𑄴	6.1	𑄃	no	ccp	BD	Mymr	
+Lana	Tai Tham	Tai Tham (Lanna)	ᨲ᩠ᩅᩫᨵᩢᨾ᩠ᨾ᩼	5.2	ᨠ	no	nod	TH	Mymr	
+Talu	New Tai Lue	New Tai Lue	ᦟᦲᧅᦷᦎᦺᦑᦟᦹᧉ	4.1	ᦀ	no	khb	CN	Lana	
+Leke	Leke	Leke					kjp	MM	Mymr	
+Tale	Tai Le	Tai Le	ᥖᥭᥰ ᥘᥫᥴ	4	ᥐ	no	tdd	CN	Mymr	
+Shrd	Sharada	Sharada, Śāradā	𑆯𑆳𑆫𑆢𑆳	6.1	𑆃	no	san	IN	Brah	
+Guru	Gurmukhi	Gurmukhi	ਗੁਰਮੁਖੀ	1.1	ਕ	no	pan	IN	Shrd	
+Khoj	Khojki	Khojki	𑈉𑈲𑈐𑈈𑈮	7	𑈈	no	snd	IN	Shrd	
+Mahj	Mahajani	Mahajani	𑅬𑅱𑅐𑅛𑅧𑅑‎	7	𑅒	no	hin	IN	Shrd	
+Mult	Multani	Multani	𑊠𑊂𑊣𑊖𑊀𑊚𑊁‎	8	𑊏	no	skr	PK	Shrd	
+Sind	Khudawadi	Khudawadi, Sindhi	𑊻𑋩𑋣𑋏𑋠𑋔𑋠𑋏𑋢	7	𑊾	no	snd	IN	Shrd	
+Takr	Takri	Takri, Ṭākrī, Ṭāṅkrī	𑚔𑚭𑚊𑚤𑚯	6.1	𑚀	no	doi	IN	Shrd	
+Dogr	Dogra	Dogra	𑠝𑠢𑠳𑠷 𑠖𑠵𑠌𑠤𑠬 𑠀𑠊𑠹𑠋𑠤	11	𑠋	no	doi	IN	Takr	
+Sidd	Siddham	Siddham, Siddhaṃ, Siddhamātṛkā	𑖭𑖰𑖟𑖿𑖠𑖽	7	𑖎	no	san	IN	Brah	
+Beng	Bengali	Bengali (Bangla)	বাংলা-অসমীয়া	1.1	ক	no	ben	BD	Sidd	
+Deva	Devanagari	Devanagari (Nagari)	देवनागरी	1.1	अ	no	hin	IN	Sidd	
+Gong	Gunjala Gondi	Gunjala Gondi	𑵶𑶍𑶕𑶀𑵵𑶊 𑵶𑶓𑶕𑶂𑶋 𑵵𑶋𑶅𑶋	11	𑵱	no	wsg	IN	Sidd	
+Gujr	Gujarati	Gujarati	ગુજરાતી લિપિ	1.1	ક	no	guj	IN	Sidd	
+Kthi	Kaithi	Kaithi	𑂍𑂶𑂟𑂲	5.2	𑂃	no	bho	IN	Sidd	
+Sylo	Syloti Nagri	Syloti Nagri	ꠍꠤꠟꠐꠤ ꠘꠣꠉꠞꠤ	4.1	ꠀ	no	syl	BD	Kthi	
+Modi	Modi, Moḍī	Modi, Moḍī	𑘦𑘻𑘚𑘲	7	𑘎	no	mar	IN	Sidd	
+Nand	Nandinagari	Nandinagari	𑧁𑧞𑦿𑧒𑧁𑧑𑦰𑧈𑧓	12	𑧎	no	san	IN	Sidd	
+Newa	Newari	Newa, Newar, Newari, Nepāla lipi	𑐥𑑂𑐬𑐔𑐮𑐶𑐟 𑐣𑐾𑐥𑐵𑐮	9	𑐒	no	new	NP	Sidd	
+Orya	Oriya	Oriya (Odia)	ଓଡ଼ିଆ ଅକ୍ଷର	1.1	କ	no	ori	IN	Sidd	
+Ranj	Ranjana	Ranjana					new	NP	Sidd	
+Soyo	Soyombo	Soyombo	𑪁𑩖𑩻𑩖𑪌𑩰𑩖 𑩰𑩑𑩢𑩑𑪊	10	𑩜	no	cmg	MN	Ranj	
+Tirh	Tirhuta	Tirhuta	𑒞𑒱𑒩𑒯𑒳𑒞𑒰	7	𑒄	no	mai	IN	Sidd	
+Taml	Tamil	Tamil	தமிழ்	1.1	க	no	tam	IN	Brah	
+Telu	Telugu	Telugu	తెలుగు లిపి	1.1	క	no	tel	IN	Brah	
+Tibt	Tibetan	Tibetan	བོད་ཡིག་	2	ཀ	no	bod	CN	Brah	
+Gukh	Gurung Khema	Gurung Khema		16	𖄜	no	gvr	NP	Tibt	
+Lepc	Lepcha	Lepcha (Róng)	ᰛᰩᰵᰛᰧᰵ‎	5.1	ᰀ	no	lep	IN	Tibt	
+Limb	Limbu	Limbu	ᤕᤠᤰᤌᤢᤱ ᤐᤠᤴ	4	ᤀ	no	lif	IN	Lepc	
+Marc	Marchen	Marchen		9	𑱲	no	bod	CN	Tibt	
+Phag	Phags-pa	Phags-pa	ꡏꡡꡃꡣꡡꡙꡐꡜꡞ	5	ꡀ	no	lzh	CN	Tibt	
+Zanb	Zanabazar Square	Zanabazar Square (Zanabazarin Dörböljin Useg, Xewtee Dörböljin Bicig, Horizontal Square Script)	𑨢𑨆𑨏𑨳𑨋𑨆𑨬𑨳	10	𑨋	no	cmg	MN	Phag	
+Chrs	Chorasmian	Chorasmian		13	𐾿	Yes	xco	UZ	Armi	
+Elym	Elymaic	Elymaic		12	𐿱	Yes	arc	IR	Armi	
+Hatr	Hatran	Hatran		8	𐣴	Yes	arc	IQ	Armi	
+Hebr	Hebrew	Hebrew	עִבְרִית	1.1	א	Yes	heb	IL	Armi	
+Khar	Kharoshthi	Kharoshthi	𐨑𐨪𐨆𐨮𐨿𐨛𐨁𐨌	4.1	𐨀	Yes	pgd	PK	Armi	
+Nbat	Nabataean	Nabataean		7	𐢖	Yes	arc	JO	Armi	
+Arab	Arabic	Arabic	الخط العربي	1.1	ب	Yes	ara	SA	Nbat	Aran
+Aran	Nastaliq Arabic	Arabic (Nastaliq variant)	نَسْتَعْلِیق	1.1			fas	IR	Arab	
+Nkoo	N’Ko	N’Ko	ߒߞߏ	5	ߘ	Yes	man	GN	Arab	
+Rohg	Hanifi Rohingya	Hanifi Rohingya	𐴌𐴟𐴇𐴥𐴝𐴚𐴒𐴙𐴝 𐴇𐴝𐴕𐴞𐴉𐴞 𐴓𐴠𐴑𐴤𐴝	11	𐴒	Yes	rhg	MM	Arab	
+Thaa	Thaana	Thaana	ތާނަ	3	ތ	Yes	div	MV	Arab	
+Palm	Palmyrene	Palmyrene		7	𐡳	Yes	arc	SY	Armi	
+Prti	Inscriptional Parthian	Inscriptional Parthian		5.2	𐭀	Yes	xpr	IR	Armi	
+Phli	Inscriptional Pahlavi	Inscriptional Pahlavi		5.2	𐭠	Yes	pal	IR	Prti	
+Phlp	Psalter Pahlavi	Psalter Pahlavi		7	𐮏	Yes	pal	CN	Phli	
+Phlv	Book Pahlavi	Book Pahlavi							Phli	
+Avst	Avestan	Avestan	𐬛𐬍𐬥 𐬛𐬀𐬠𐬌𐬭𐬫𐬵	5.2	𐬀	Yes	ave	IR	Phlv	
+Syre	Estrangelo Syriac	Syriac (Estrangelo variant)		3		Yes	syc	SY	Armi	
+Syrc	Syriac	Syriac		3	ܐ	Yes	syr	SY	Syre	Syre, Syrj, Syrn
+Sogo	Old Sogdian	Old Sogdian		11	𐼙	Yes	sog	UZ	Syrc	
+Sogd	Sogdian	Sogdian		11	𐽂	Yes	sog	UZ	Sogo	
+Mani	Manichaean	Manichaean		7	𐫁	Yes	xmn	CN	Sogd	
+Ougr	Old Uyghur	Old Uyghur	𐽳𐽶𐽲𐽶𐽾	14	𐽼	Yes	oui	CN	Sogd	
+Syrj	Western Syriac	Syriac (Western variant)		3		Yes	tru	SY	Syre	
+Syrn	Eastern Syriac	Syriac (Eastern variant)		3		Yes	syr	IQ	Syre	
+Grek	Greek	Greek	Ελληνικό αλφάβητο	1.1	Ω	no	ell	GR	Phnx	
+Armn	Armenian	Armenian	Հայոց գրեր	1.1	Ա	no	hye	AM	Grek	
+Aghb	Caucasian Albanian	Caucasian Albanian		7	𐔷	no	xag	AZ	Armn	
+Cari	Carian	Carian		5.1	𐊷	no	xcr	TR	Grek	
+Copt	Coptic	Coptic		4.1	Ϣ	no	cop	EG	Grek	
+Glag	Glagolitic	Glagolitic	ⰳⰾⰰⰳⱁⰾⰻⱌⰰ	4.1	Ⰰ	no	chu	BG	Grek	
+Cyrs	Old Cyrillic	Cyrillic (Old Church Slavonic variant)	Словѣньска азъбоукꙑ	1.1			chu	BG	Glag	
+Cyrl	Cyrillic	Cyrillic		1.1	Я	no	rus	BG	Cyrs	
+Perm	Old Permic	Old Permic	𐍐𐍝𐍑𐍣‎𐍠	7	𐍫	no	kom	RU	Cyrl	
+Goth	Gothic	Gothic		3.1	𐌰	no	got	UA	Grek	
+Ital	Old Italic	Old Italic (Etruscan, Oscan, etc.)		3.1	𐌈	no	ett	IT	Grek	
+Latn	Latin	Latin		1.1	L	no	eng	IT	Ital	
+Latf	Fraktur Latin	Latin (Fraktur variant)		1.1			deu	DE	Latn	
+Latg	Gaelic Latin	Latin (Gaelic variant)		1.1			gle	IE	Latn	
+Lisu	Lisu	Lisu (Fraser)		5.2	ꓨ	no	lis	CN	Latn	
+Osge	Osage	Osage	𐓏𐓘𐓻𐓘𐓻𐓟 𐒻𐓟	9	𐒵	no	osa	US	Latn	
+Runr	Runic	Runic	ᚱᚢᚾᛁᚲ	3	ᚠ	no	non	SE	Ital	
+Cirt	Cirth	Cirth					sjn	GB	Runr	
+Lyci	Lycian	Lycian		5.1	𐊀	no	xlc	TR	Grek	
+Sidt	Sidetic	Sidetic		17	𐥐	Yes	xsd	TR	Grek	
+Lydi	Lydian	Lydian		5.1	𐤠	Yes	xld	TR	Phnx	
+Samr	Samaritan	Samaritan		5.2	ࠀ	Yes	smp	IL	Phnx	
+Tfng	Tifinagh	Tifinagh (Berber)	ⵜⵉⴼⵉⵏⴰⵖ	4.1	ⵞ	no	zgh	MA	Phnx	
+Sarb	Old South Arabian	Old South Arabian	𐩣𐩯𐩬𐩵	5.2	𐩠	Yes	xsa	YE	Psin	
+Ethi	Geʻez	Ethiopic (Geʻez)	ግዕዝ	3	አ	no	amh	ET	Sarb	
+Ugar	Ugaritic	Ugaritic		4	𐎀	no	uga	SY	Psin	
+Bopo	Bopomofo	Bopomofo	ㄓㄨˋ ㄧㄣ ㄈㄨˊ ㄏㄠˋ	1.1	ㄅ	no	zho	CN	Hani	
+Hanb	Han with Bopomofo	Han with Bopomofo (alias for Han + Bopomofo)		1.1				CN	Hani	Hani, Bopo
+Hans	Simplified Han	Han (Simplified variant)	简化字	1.1		no	zho	CN	Hani	
+Hant	Traditional Han	Han (Traditional variant)	正體字	1.1		no	zho	CN	Hani	
+Hira	Hiragana	Hiragana	ひらがな	1.1	か	no	jpn	JP	Hani	
+Hrkt	Hiragana + Katakana	Japanese syllabaries (alias for Hiragana + Katakana)		1.1				JP	Hani	Hira, Kana
+Jpan	Kanji + Hiragana + Katakana	Japanese (alias for Han + Hiragana + Katakana)		1.1				JP	Hani	Hani, Hira, Kana
+Kana	Katakana	Katakana	カタカナ	1.1	カ	no	jpn	JP	Hani	
+Kits	Khitan small script	Khitan small script		13	𘱥	no	zkt	CN	Hani	
+Jurc	Jurchen	Jurchen					juc	CN	Kits	
+Kitl	Khitan large script	Khitan large script					zkt	CN	Kits	
+Kore	Hangul + Hanja	Korean (alias for Hangul + Han)		1.1					Hani	Hani, Hang
+Nshu	Nüshu	Nüshu	𛆁𛈬	10	𛇄	no		CN	Hani	
+Yiii	Yi	Yi	ꆈꌠꁱꂷ	3	ꊈ	no	iii	CN	Hani	
+Adlm	Adlam	Adlam	𞤀𞤣𞤤𞤢𞤥 𞤆𞤵𞤤𞤢𞤪	9	𞤉	Yes	ful	GN	Invented	
+Afak	Afaka	Afaka					djk	SR	Invented	
+Bamu	Bamum	Bamum		5.2	ꚠ	no	bax	CM	Invented	
+Bass	Bassa Vah	Bassa Vah	𖫔𖫧𖫱𖫒𖫨𖫴 𖫣𖫧𖫱	7	𖫦	no	bsq	LR	Invented	
+Cans	Unified Canadian Aboriginal Syllabics	Unified Canadian Aboriginal Syllabics		3	ᓀ	no	cre	CA	Invented	
+Plrd	Miao	Miao (Pollard)	𖽃𖽔𖾐 𖽑𖼄𖽻𖾐	6.1	𖼀	no	hmd	CN	Cans	
+Cher	Cherokee	Cherokee	ᏣᎳᎩ	3	Ꮔ	no	chr	US	Invented	
+Dsrt	Deseret	Deseret (Mormon)	𐐔𐐯𐑅𐐨𐑉𐐯𐐻	3.1	𐐔	no	eng	US	Invented	
+Dupl	Duployan	Duployan shorthand, Duployan stenography	𛰜𛰃𛱇𛰚𛱄𛰊𛰋𛱁𛰄𛱆 𛰈𛱒𛰂𛰆𛱄𛱆𛱇‎	7	𛰠	no	fra	FR	Invented	
+Elba	Elbasan	Elbasan		7	𐔀	no	sqi	AL	Invented	
+Gara	Garay	Garay	Ⴞⴓⴚⴓⴐⴈ	16	𐵝	Yes	wol	SN	Invented	
+Gonm	Masaram Gondi	Masaram Gondi		10	𑴐	no	esg	IN	Invented	
+Hang	Hangul	Hangul (Hangŭl, Hangeul)	한글	1.1	가	no	kor	KR	Invented	
+Jamo	Jamo	Jamo (alias for Jamo subset of Hangul)		1.1			kor	KR	Hang	
+Hmng	Pahawh Hmong	Pahawh Hmong	𖬖𖬰𖬝𖬵 𖬄𖬶𖬟 𖬌𖬣𖬵	7	𖬜	no	hnj	LA	Invented	
+Hmnp	Nyiakeng Puachue Hmong	Nyiakeng Puachue Hmong	𞄀𞄩𞄰𞄁𞄓𞄱𞄂𞄤𞄳𞄬𞄃𞄤𞄳‎	12	𞄈	no	mww	US	Invented	
+Kali	Kayah Li	Kayah Li	ꤊꤢꤛꤢ꤭ ꤜꤟꤤ꤬	5.1	ꤊ	no	eky	MM	Invented	
+Kpel	Kpelle	Kpelle					kpe	LR	Invented	
+Krai	Kirat Rai	Kirat Rai		16	𖵅	no	bap	IN	Invented	
+Loma	Loma	Loma					lom	LR	Invented	
+Mroo	Mro, Mru	Mro, Mru	𖩃𖩓𖩑	7	𖩏	no	mro	BD	Invented	
+Nagm	Nag Mundari	Nag Mundari	𞓧𞓟𞓨𞓜𞓕𞓣𞓚 𞓗𞓕𞓨𞓚	15	𞓦	no	unr	IN	Invented	
+Olck	Ol Chiki	Ol Chiki (Ol Cemet’, Ol, Santali)	ᱚᱞ ᱪᱤᱠᱤ	5.1	ᱚ	no	sat	IN	Invented	
+Onao	Ol Onal	Ol Onal	𞗘𞗪𞗢𞗑𞗜𞗥𞗰	16	𞗐	no	unr	IN	Invented	
+Osma	Osmanya	Osmanya	𐒍𐒖𐒇𐒂𐒖 𐒋𐒘𐒈𐒑𐒛𐒒𐒕𐒖	4	𐒀	no	som	SO	Invented	
+Pauc	Pau Cin Hau	Pau Cin Hau		7	𑫀	no	ctd	MM	Invented	
+Piqd	Klingon	Klingon (KLI pIqaD)	 				tlh	US	Invented	
+Sara	Sarati	Sarati					qya	GB	Invented	
+Teng	Tengwar	Tengwar					qya	GB	Sara	
+Sgnw	SignWriting	SignWriting		8	𝡐	no	ase	US	Invented	
+Shaw	Shavian	Shavian (Shaw)	𐑖𐑱𐑝𐑾𐑯 𐑨𐑤𐑓𐑩𐑚𐑧𐑑	4	𐑐	no	eng	GB	Invented	
+Sora	Sora Sompeng	Sora Sompeng	𑃐𑃦𑃝𑃗 𑃐𑃦𑃖𑃛𑃣𑃗	6.1	𑃐	no	srb	IN	Invented	
+Sunu	Sunuwar	Sunuwar		16	𑯄	no	suz	NP	Invented	
+Tang	Tangut	Tangut		9	𘈩	no	txg	CN	Invented	
+Tnsa	Tangsa	Tangsa	𖪰𖩵𖪂𖪫𖩸	14	𖪼	no	nst	IN	Invented	
+Todr	Todhri	Todhri	𐗢𐗚𐗈𐗝𐗒	16	𐗂	no	sqi	AL	Invented	
+Tols	Tolong Siki	Tolong Siki		17	𑷆	no	kru	IN	Invented	
+Toto	Toto	Toto	𞊒𞊪𞊒𞊪	14	𞊐	no	txo	IN	Invented	
+Vaii	Vai	Vai	ꕙꔤ	5.1	ꕉ	no	vai	LR	Invented	
+Visp	Visible Speech	Visible Speech							Invented	
+Vith	Vithkuqi	Vithkuqi	𐕲𐖻𐖶𐖨𐖷𐖰𐖥	14	𐖂	no	sqi	AL	Invented	
+Wara	Warang Citi	Warang Citi (Varang Kshiti)	𑢹𑣗𑣁𑣜𑣊 𑢯𑣂𑣕𑣂	7	𑢴	no	hoc	IN	Invented	
+Wcho	Wancho	Wancho	𞋒𞋀𞋉𞋃𞋕‎	12	𞋡	no	nnp	IN	Invented	
+Xsux	Cuneiform	Cuneiform, Sumero-Akkadian		5	𒀀	no	akk	IQ	Pcun	
+Xpeo	Old Persian	Old Persian		4.1	𐎠	no	peo	IR	Xsux	
+Geok	Khutsuri	Khutsuri (Asomtavruli and Nuskhuri)		1.1				GE	Unknown	
+Geor	Mkhedruli	Georgian (Mkhedruli and Mtavruli)	მხედრული	1.1	დ	no	kat	GE	Geok	
+Hluw	Anatolian Hieroglyphs	Anatolian Hieroglyphs (Luwian Hieroglyphs, Hittite Hieroglyphs)		8	𔐀	no	hlu	TR	Unknown	
+Inds	Harappan	Indus (Harappan)					xiv	PK	Unknown	
+Lina	Linear A	Linear A		7	𐙇	no	lab	GR	Unknown	
+Cpmn	Cypro-Minoan	Cypro-Minoan		14	𒿥	no	und	CY	Lina	
+Cprt	Cypriot syllabary	Cypriot syllabary		4	𐠀	Yes	ecy	CY	Cpmn	
+Linb	Linear B	Linear B		4	𐀀	no	gmy	GR	Lina	
+Ogam	Ogham	Ogham	᚛ᚑᚌᚐᚋ᚜	3	ᚏ	no	sga	IE	Unknown	
+Orkh	Old Turkic	Old Turkic, Orkhon Runic		5.2	𐰀	Yes	otk	MN	Unknown	
+Hung	Hungarian Runic	Old Hungarian (Hungarian Runic)	𐲥𐳋𐳓𐳉𐳗-𐲘𐳀𐳎𐳀𐳢 𐲢𐳛𐳮𐳁𐳤	8	𐲡	Yes	hun	HU	Orkh	
+Pelm	Proto-Elamite	Proto-Elamite					elx	IR	Unknown	
+Roro	Rongorongo	Rongorongo					rap	CL	Unknown	
+Shui	Shuishu	Shuishu					swi	CN	Unknown	
+Wole	Woleai	Woleai					woe	FM	Unknown	
+Yezi	Yezidi	Yezidi		13	𐺈	Yes	kur	GE	Unknown	

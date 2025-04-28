@@ -55,10 +55,17 @@ export function connectWritingSystems(
 ): void {
   // Connect the writing systems their origin language and territory
   Object.values(writingSystems).forEach((writingSystem) => {
-    const { primaryLanguageCode, territoryOfOriginCode } = writingSystem;
+    const {
+      primaryLanguageCode,
+      territoryOfOriginCode,
+      parentWritingSystemCode,
+      containsWritingSystemsCodes,
+    } = writingSystem;
     const language = primaryLanguageCode != null ? languagesByCode[primaryLanguageCode] : null;
     const territory =
       territoryOfOriginCode != null ? territoriesByCode[territoryOfOriginCode] : null;
+    const parentWritingSystem =
+      parentWritingSystemCode != null ? writingSystems[parentWritingSystemCode] : null;
 
     if (language != null) {
       writingSystem.primaryLanguage = language;
@@ -67,6 +74,15 @@ export function connectWritingSystems(
     }
     if (territory != null) {
       writingSystem.territoryOfOrigin = territory;
+    }
+    if (parentWritingSystem != null) {
+      writingSystem.parentWritingSystem = parentWritingSystem;
+      parentWritingSystem.childWritingSystems.push(writingSystem);
+    }
+    if (containsWritingSystemsCodes.length > 0) {
+      writingSystem.containsWritingSystems = containsWritingSystemsCodes
+        .map((code) => writingSystems[code])
+        .filter(Boolean);
     }
   });
 
