@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 
 import { Dimension } from '../controls/PageParamTypes';
-import { LanguageData, TerritoryData, TerritoryType } from '../DataTypes';
+import { getSortFunction, SortByFunctionType } from '../controls/sort';
+import { LanguageData, TerritoryData, TerritoryType, WritingSystemData } from '../DataTypes';
+
+import './treelist.css';
 
 import HoverableLanguageName from './language/HoverableLanguageName';
 import { LocaleTreeNodeData } from './locale/LocaleTreeList';
 import HoverableTerritoryName from './territory/HoverableTerritoryName';
+import HoverableWritingSystemName from './writingsystem/HoverableWritingSystem';
 
-import './treelist.css';
-
-type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData;
+type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData | WritingSystemData;
 
 type Props = {
   nodeData: TreeNodeData;
@@ -18,8 +20,9 @@ type Props = {
 
 const TreeListNode: React.FC<Props> = ({ nodeData, expandedInititally = false }) => {
   const [expanded, setExpanded] = useState(expandedInititally);
-  const children = getChildren(nodeData);
-  const hasChildren = children != null && children.length > 0;
+  const sortFunction = getSortFunction();
+  const children = getChildren(nodeData, sortFunction);
+  const hasChildren = children.length > 0;
 
   return (
     <li>
@@ -42,14 +45,16 @@ const TreeListNode: React.FC<Props> = ({ nodeData, expandedInititally = false })
   );
 };
 
-function getChildren(nodeData: TreeNodeData): TreeNodeData[] | undefined {
+function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): TreeNodeData[] {
   switch (nodeData.type) {
     case Dimension.Language:
-      return nodeData.childLanguages;
+      return nodeData.childLanguages.sort(sortFunction);
     case Dimension.Territory:
-      return nodeData.regionContainsTerritories;
+      return nodeData.regionContainsTerritories.sort(sortFunction);
     case Dimension.Locale:
-      return nodeData.children;
+      return nodeData.children; // Presorted
+    case Dimension.WritingSystem:
+      return nodeData.childWritingSystems.sort(sortFunction);
   }
 }
 
@@ -77,6 +82,17 @@ function getNodeTitle(nodeData: TreeNodeData): React.ReactNode {
       );
     case Dimension.Locale:
       return nodeData.label;
+    case Dimension.WritingSystem:
+      return (
+        <HoverableWritingSystemName
+          writingSystem={nodeData}
+          style={{
+            textDecoration: 'none',
+            fontWeight: nodeData.populationOfDescendents > 100 ? 'bold' : 'normal',
+            fontStyle: nodeData.populationUpperBound <= 100 ? 'italic' : 'normal',
+          }}
+        />
+      );
   }
 }
 

@@ -47,6 +47,7 @@ const WritingSystemDetails: React.FC = () => {
     nameFull,
     parentWritingSystem,
     populationUpperBound,
+    populationOfDescendents,
     primaryLanguage,
     primaryLanguageCode,
     rightToLeft,

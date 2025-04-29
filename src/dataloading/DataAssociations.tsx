@@ -137,7 +137,7 @@ export function connectLocales(
       if (language != null) {
         writingSystem.languages[language.code] = language;
         if (language.primaryScriptCode != locale.explicitScriptCode) {
-          writingSystem.populationUpperBound += locale.populationEstimate;
+          writingSystem.populationUpperBound += locale.populationEstimate || 0;
         }
       }
     }
@@ -145,4 +145,30 @@ export function connectLocales(
     // Update the locale's display name
     locale.nameDisplay = getLocaleName(locale);
   });
+}
+
+export function computeOtherPopulationStatistics(
+  writingSystems: Record<ScriptCode, WritingSystemData>,
+): void {
+  // Organizing writing systems by population is a bit funny because some fundamental writing systems
+  // like Egyptian have no people but writing systems that descend from then certainly do. Thereby we
+  // separately compute an upper bound for how many people speak the descendents. This is safe
+  // recursively because the writing system lineage is not a cycle.
+  Object.values(writingSystems)
+    .filter((writingSystem) => writingSystem.parentWritingSystem == null)
+    .forEach(computeWritingSystemDescendentPopulation);
+}
+
+function computeWritingSystemDescendentPopulation(writingSystem: WritingSystemData): number {
+  const { childWritingSystems } = writingSystem;
+  const descendentPopulation = childWritingSystems.reduce(
+    (total, childSystem) => total + computeWritingSystemDescendentPopulation(childSystem),
+    0,
+  );
+  writingSystem.populationOfDescendents = descendentPopulation;
+  if (Number.isNaN(descendentPopulation)) {
+    console.log(writingSystem, descendentPopulation);
+  }
+
+  return descendentPopulation + writingSystem.populationUpperBound;
 }

@@ -105,6 +105,7 @@ export function parseWritingSystem(line: string): WritingSystemData {
 
     // Derived when combining other data
     populationUpperBound: 0,
+    populationOfDescendents: 0,
 
     // References to other objects, filled in with DataAssociations methods
     languages: {},

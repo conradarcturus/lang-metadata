@@ -11,7 +11,7 @@ import TreeListNode from './TreeListNode';
 
 const ViewTreeList: React.FC = () => {
   const { dimension, limit } = usePageParams();
-  const { territoriesByCode, languagesByCode } = useDataContext();
+  const { territoriesByCode, languagesByCode, writingSystems } = useDataContext();
   const sortFunction = getSortFunction();
 
   const rootNodes = useMemo(() => {
@@ -28,12 +28,17 @@ const ViewTreeList: React.FC = () => {
         // Building custom tree nodes
         return getLocaleTreeNodes(languagesByCode, sortFunction);
       default:
-        return [];
+        return Object.values(writingSystems)
+          .filter((writingSystem) => writingSystem.parentWritingSystem == null)
+          .sort(sortFunction);
     }
   }, [dimension, sortFunction]);
 
   return (
     <div className="TreeList">
+      <div style={{ marginBottom: 8 }}>
+        <TreeListDescription />
+      </div>
       <ul className="root">
         {rootNodes.slice(0, limit > 0 ? limit : undefined).map((node, i) => (
           <TreeListNode key={node.code} nodeData={node} expandedInititally={i === 0} />
@@ -41,6 +46,37 @@ const ViewTreeList: React.FC = () => {
       </ul>
     </div>
   );
+};
+
+const TreeListDescription: React.FC = () => {
+  const { dimension } = usePageParams();
+  switch (dimension) {
+    case Dimension.Language:
+      return '';
+    case Dimension.Locale:
+      return (
+        <>
+          Locales are grouped by the language/writing system/territory that is represented by the
+          locale code. Most locale codes do not specify a writing system so they are grouped with
+          the primary writing system for the language.
+        </>
+      );
+    case Dimension.Territory:
+      return (
+        <>
+          <strong>Bold territories</strong> are countries. <em>Italicized countries</em> are
+          dependencies.
+        </>
+      );
+    case Dimension.WritingSystem:
+      return (
+        <>
+          <strong>Bold writing systems</strong> historically led to other writing systems that are
+          still used today. <em>Italicized writing systems</em> have few recorded users (either
+          missing data or it is functionally extinct).
+        </>
+      );
+  }
 };
 
 export default ViewTreeList;

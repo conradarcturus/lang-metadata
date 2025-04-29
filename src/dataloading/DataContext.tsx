@@ -13,6 +13,7 @@ import {
 } from '../DataTypes';
 
 import {
+  computeOtherPopulationStatistics,
   connectLanguagesToParent,
   connectLocales,
   connectTerritoriesToParent,
@@ -62,6 +63,7 @@ export const DataProvider: React.FC<{
     connectTerritoriesToParent(territories);
     connectWritingSystems(langs, territories, writingSystems);
     connectLocales(langs, territories, writingSystems, locales);
+    computeOtherPopulationStatistics(writingSystems);
 
     setLanguagesByCode(langs);
     setTerritoriesByCode(territories);

@@ -12,7 +12,15 @@ interface Props {
 }
 
 const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
-  const { code, languages, nameDisplay, rightToLeft, sample, unicodeVersion } = writingSystem;
+  const {
+    code,
+    languages,
+    nameDisplay,
+    populationUpperBound,
+    rightToLeft,
+    sample,
+    unicodeVersion,
+  } = writingSystem;
   const { updatePageParams } = usePageParams();
 
   return (
@@ -47,6 +55,12 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
               <HoverableLanguageName key={lang.code} lang={lang} />
             ))}
           </CommaSeparated>
+        </div>
+      )}
+      {populationUpperBound > 100 && ( // Values less than 100 are suspcious and probably spurious
+        <div>
+          <label>Population (estimate, at most):</label>
+          {populationUpperBound.toLocaleString()}
         </div>
       )}
     </div>

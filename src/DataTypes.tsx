@@ -100,6 +100,7 @@ export type WritingSystemData = {
   // Derived when combining data
   populationUpperBound: number;
   nameDisplay: string;
+  populationOfDescendents: number;
 
   // References to other objects, filled in after loading the TSV
   primaryLanguage?: LanguageData;
