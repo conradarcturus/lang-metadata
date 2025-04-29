@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Highlightable: React.FC<Props> = ({ str, match }) => {
-  const { code: codeFilter, nameFilter } = usePageParams();
+  const { codeFilter, nameFilter } = usePageParams();
   const filter = match == 'codeFilter' ? codeFilter : nameFilter;
   if (filter === '') {
     return str;

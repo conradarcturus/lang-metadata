@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { TerritoryData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
@@ -20,11 +19,7 @@ const TerritoryCard: React.FC<Props> = ({ territory }) => {
   return (
     <div>
       <h3>
-        <a
-          onClick={() =>
-            updatePageParams({ code, viewType: ViewType.Details, dimension: Dimension.Territory })
-          }
-        >
+        <a onClick={() => updatePageParams({ modalObject: code })}>
           <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
           <Highlightable str={code} match="codeFilter" />]
           <div className="subtitle">{territoryType}</div>

@@ -3,7 +3,7 @@ import { LocaleData, OfficialStatus, PopulationSourceCategory } from '../../Data
 export function getLocaleName(locale: LocaleData): string {
   const languageName = locale.language?.nameDisplayTitle ?? locale.languageCode;
   const territoryName = locale.territory?.nameDisplay ?? locale.territoryCode;
-  const scriptName = locale.explicitScriptCode != '' ? locale.explicitScriptCode : null;
+  const scriptName = locale.writingSystem != null ? locale.writingSystem.nameDisplay : null;
   const variantName = locale.variantTag != '' ? locale.variantTag : null;
 
   return (

@@ -11,7 +11,7 @@ import TerritoryCard from './TerritoryCard';
 
 const TerritoryCardList: React.FC = () => {
   const { territoriesByCode } = useDataContext();
-  const { code: codeFilter, nameFilter, limit } = usePageParams();
+  const { codeFilter, nameFilter, limit } = usePageParams();
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 

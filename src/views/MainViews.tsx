@@ -3,15 +3,15 @@ import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension, ViewType } from '../controls/PageParamTypes';
 
 import LanguageCardList from './language/LanguageCardList';
-import LanguageDetails from './language/LanguageDetails';
+import LanguageDetailsPage from './language/LanguageDetailsPage';
 import LocaleCardList from './locale/LocaleCardList';
-import LocaleDetails from './locale/LocaleDetails';
+import LocaleDetailsPage from './locale/LocaleDetailsPage';
 import TerritoryCardList from './territory/TerritoryCardList';
-import TerritoryDetails from './territory/TerritoryDetails';
+import TerritoryDetailsPage from './territory/TerritoryDetailsPage';
 import TreeList from './ViewTreeList';
 import WritingSystemCardList from './writingsystem/WritingSystemCardList';
-import './styles.css';
 import WritingSystemDetailsPage from './writingsystem/WritingSystemDetailsPage';
+import './styles.css';
 
 function MainViews() {
   const { viewType, dimension } = usePageParams();
@@ -21,7 +21,7 @@ function MainViews() {
         case ViewType.CardList:
           return <LanguageCardList />;
         case ViewType.Details:
-          return <LanguageDetails />;
+          return <LanguageDetailsPage />;
         case ViewType.Hierarchy:
           return <TreeList />;
       }
@@ -30,7 +30,7 @@ function MainViews() {
         case ViewType.CardList:
           return <TerritoryCardList />;
         case ViewType.Details:
-          return <TerritoryDetails />;
+          return <TerritoryDetailsPage />;
         case ViewType.Hierarchy:
           return <TreeList />;
       }
@@ -39,7 +39,7 @@ function MainViews() {
         case ViewType.CardList:
           return <LocaleCardList />;
         case ViewType.Details:
-          return <LocaleDetails />;
+          return <LocaleDetailsPage />;
         case ViewType.Hierarchy:
           return <TreeList />;
       }

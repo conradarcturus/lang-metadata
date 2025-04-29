@@ -35,7 +35,8 @@
 .ModalBody {
     overflow: scroll;
     padding: 0 2em 2em 2em;
-    height: auto;
+    max-height: 800px;
+max-width: 600px;
 }
 
 .ModalButtons {

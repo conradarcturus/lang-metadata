@@ -1,43 +1,18 @@
 import React from 'react';
 
-import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
-import { useDataContext } from '../../dataloading/DataContext';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
-import ObjectTitle from '../ObjectTitle';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
 import HoverableLanguageName from './HoverableLanguageName';
 
 type Props = {
-  lang?: LanguageData;
+  lang: LanguageData;
 };
 
 const LanguageDetails: React.FC<Props> = ({ lang }) => {
-  const { codeFilter } = usePageParams();
-  const { languagesByCode } = useDataContext();
-  lang ??= languagesByCode[codeFilter];
-
-  if (lang == null) {
-    const { languagesByCode } = useDataContext();
-
-    return (
-      <div className="Details" style={{ textAlign: 'center' }}>
-        No language selected. Enter a language code in the search bar. See common languages:
-        <div className="separatedButtonList">
-          {['eng', 'spa', 'fra', 'deu', 'zho', 'ara'].map(
-            (code) =>
-              languagesByCode[code] != null && (
-                <HoverableLanguageName key={code} lang={languagesByCode[code]} format="button" />
-              ),
-          )}
-        </div>
-      </div>
-    );
-  }
-
   const {
     childLanguages,
     code,
@@ -56,9 +31,6 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
 
   return (
     <div className="Details">
-      <h2>
-        <ObjectTitle object={lang} />
-      </h2>
       <div>
         <h3>Attributes</h3>
         <div>

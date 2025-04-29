@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { LocaleData } from '../../DataTypes';
 import Highlightable from '../../generic/Highlightable';
 
@@ -17,11 +16,7 @@ const LocaleCard: React.FC<Props> = ({ locale }) => {
   return (
     <div>
       <h3>
-        <a
-          onClick={() =>
-            updatePageParams({ dimension: Dimension.Locale, code, viewType: ViewType.Details })
-          }
-        >
+        <a onClick={() => updatePageParams({ modalObject: code })}>
           <strong>
             <Highlightable str={getLocaleName(locale)} match="nameFilter" />
           </strong>{' '}

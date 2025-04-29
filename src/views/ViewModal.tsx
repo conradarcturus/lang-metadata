@@ -58,6 +58,7 @@ const ViewModal: React.FC = () => {
 
   return (
     <div className="ModalOverlay">
+      {/* onClick={(e) => e.target === e.currentTarget && onClose()} */}
       <div className="Modal" aria-modal="true" role="dialog">
         <div className="ModalHeader">
           <div className="ModalTitle">

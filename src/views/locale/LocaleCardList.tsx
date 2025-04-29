@@ -10,7 +10,7 @@ import LocaleCard from './LocaleCard';
 
 const LocaleCardList: React.FC = () => {
   const { locales } = useDataContext();
-  const { code: codeFilter, nameFilter, limit } = usePageParams();
+  const { codeFilter, nameFilter, limit } = usePageParams();
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 

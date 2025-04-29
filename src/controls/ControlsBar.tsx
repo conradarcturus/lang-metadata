@@ -25,7 +25,7 @@ const ControlsBar: React.FC = () => {
         </Hoverable>
         <Hoverable hoverContent="Decide how you want to view the data.">
           <ButtonGroupSingleChoice<ViewType>
-            options={Object.values(ViewType)}
+            options={[ViewType.CardList, ViewType.Hierarchy]}
             onChange={(viewType: ViewType) => updatePageParams({ viewType })}
             selected={viewType}
           />

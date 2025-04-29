@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { ViewType } from '../../controls/PageParamTypes';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
@@ -32,7 +31,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ code: lang.code, viewType: ViewType.Details })}>
+        <a onClick={() => updatePageParams({ modalObject: lang.code })}>
           <strong>
             <Highlightable str={nameDisplayTitle} match="nameFilter" />
           </strong>{' '}

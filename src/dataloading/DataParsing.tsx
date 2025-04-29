@@ -96,7 +96,7 @@ export function parseWritingSystem(line: string): WritingSystemData {
     nameFull: parts[2],
     nameEndonym: parts[3],
     unicodeVersion: parts[4] != '' ? parseFloat(parts[4]) : null,
-    sample: parts[5] != '' ? parts[4] : null,
+    sample: parts[5] != '' ? parts[5] : null,
     rightToLeft: parts[6] === 'Yes' ? true : parts[6] === 'no' ? false : null,
     primaryLanguageCode: parts[7] != '' ? parts[7] : null,
     territoryOfOriginCode: parts[8] != '' ? parts[8] : null,

@@ -3,6 +3,8 @@ import React from 'react';
 import { Dimension } from '../controls/PageParamTypes';
 import { DataItem } from '../DataTypes';
 
+import { getLocaleName } from './locale/LocaleStrings';
+
 type Props = {
   object: DataItem;
 };
@@ -19,6 +21,19 @@ const ObjectTitle: React.FC<Props> = ({ object }) => {
           )}
         </>
       );
+    case Dimension.Locale:
+      return (
+        <>
+          <strong>{getLocaleName(object)}</strong> [{object.code}]
+        </>
+      );
+    case Dimension.Territory:
+      return (
+        <>
+          <strong>{object.nameDisplay}</strong> [{object.code}]
+          <div className="subtitle">{object.territoryType}</div>
+        </>
+      );
     case Dimension.WritingSystem:
       return (
         <>
@@ -30,7 +45,6 @@ const ObjectTitle: React.FC<Props> = ({ object }) => {
         </>
       );
   }
-  return <></>;
 };
 
 export default ObjectTitle;

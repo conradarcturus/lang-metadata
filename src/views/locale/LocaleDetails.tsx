@@ -1,42 +1,18 @@
 import React from 'react';
 
-import { usePageParams } from '../../controls/PageParamsContext';
-import { useDataContext } from '../../dataloading/DataContext';
 import { LocaleData } from '../../DataTypes';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
-import HoverableLocaleName from './HoverableLocaleName';
-import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
+import { getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
 type Props = {
-  locale?: LocaleData;
+  locale: LocaleData;
 };
 
 const LocaleDetails: React.FC<Props> = ({ locale }) => {
-  const { codeFilter } = usePageParams();
-  const { locales } = useDataContext();
-  locale ??= locales[codeFilter];
-
-  if (locale == null) {
-    return (
-      <div className="Details" style={{ textAlign: 'center' }}>
-        No locale selected. Enter a locale code in the search bar. See common locales:
-        <div className="separatedButtonList">
-          {['eng_US', 'spa_MX', 'fra_FR', 'deu_DE', 'zho_Hans_CN', 'ara_EG'].map(
-            (code) =>
-              locales[code] != null && (
-                <HoverableLocaleName key={code} locale={locales[code]} format="button" />
-              ),
-          )}
-        </div>
-      </div>
-    );
-  }
-
   const {
-    code,
     explicitScriptCode,
     language,
     languageCode,
@@ -51,9 +27,6 @@ const LocaleDetails: React.FC<Props> = ({ locale }) => {
 
   return (
     <div className="Details">
-      <h2>
-        <strong>{getLocaleName(locale)}</strong> [{code}]
-      </h2>
       <div>
         <h3>Definition</h3>
         <div>
