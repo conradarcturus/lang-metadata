@@ -9,7 +9,7 @@ import './treelist.css';
 import HoverableLanguageName from './language/HoverableLanguageName';
 import { LocaleTreeNodeData } from './locale/LocaleTreeList';
 import HoverableTerritoryName from './territory/HoverableTerritoryName';
-import HoverableWritingSystemName from './writingsystem/HoverableWritingSystem';
+import HoverableWritingSystemName from './writingsystem/HoverableWritingSystemName';
 
 type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData | WritingSystemData;
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { LanguageData } from '../../DataTypes';
 import Hoverable from '../../generic/Hoverable';
 
@@ -19,13 +18,7 @@ const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text', style }
   return (
     <Hoverable
       hoverContent={<LanguageCard lang={lang} />}
-      onClick={() =>
-        updatePageParams({
-          code: lang.code,
-          viewType: ViewType.Details,
-          dimension: Dimension.Language,
-        })
-      }
+      onClick={() => updatePageParams({ modalObject: lang.code })}
       style={style}
     >
       {format === 'text' ? lang.nameDisplayTitle : <button>{lang.nameDisplayTitle}</button>}

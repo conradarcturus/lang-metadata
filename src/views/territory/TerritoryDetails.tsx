@@ -3,15 +3,20 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
+import { TerritoryData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableTerritoryName from './HoverableTerritoryName';
 
-const TerritoryDetails: React.FC = () => {
-  const { code } = usePageParams();
+type Props = {
+  territory?: TerritoryData;
+};
+
+const TerritoryDetails: React.FC<Props> = ({ territory }) => {
+  const { codeFilter } = usePageParams();
   const { territoriesByCode } = useDataContext();
-  const territory = territoriesByCode[code];
+  territory ??= territoriesByCode[codeFilter];
 
   if (territory == null) {
     return (
@@ -34,28 +39,28 @@ const TerritoryDetails: React.FC = () => {
   }
 
   const {
+    code,
     dependentTerritories,
     literacy,
+    locales,
     nameDisplay,
     parentUNRegion,
     population,
     regionContainsTerritories,
     sovereign,
     territoryType,
-    locales,
   } = territory;
 
   return (
     <div className="Details">
       <h2>
-        {nameDisplay}
-        <div className="subtitle">{territoryType}</div>
+        {nameDisplay} [{code}]<div className="subtitle">{territoryType}</div>
       </h2>
       <div>
         <h3>Attributes</h3>
         <div>
           <label>Territory Code:</label>
-          {code}
+          {codeFilter}
         </div>
         {!Number.isNaN(population) && (
           <div>

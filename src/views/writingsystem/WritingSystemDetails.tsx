@@ -1,53 +1,26 @@
 import React from 'react';
 
-import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
-import { useDataContext } from '../../dataloading/DataContext';
+import { WritingSystemData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';
 
-import HoverableWritingSystem from './HoverableWritingSystem';
-import HoverableWritingSystemName from './HoverableWritingSystem';
+import HoverableWritingSystemName from './HoverableWritingSystemName';
 
-const WritingSystemDetails: React.FC = () => {
-  const { code } = usePageParams();
-  const { writingSystems } = useDataContext();
-  const writingSystem = writingSystems[code];
+type Props = {
+  writingSystem: WritingSystemData;
+};
 
-  if (writingSystem == null) {
-    return (
-      <div className="Details" style={{ textAlign: 'center' }}>
-        No writing system selected. Enter a writing system code in the search bar. See common
-        writing systems:
-        <div className="separatedButtonList">
-          {['Latn', 'Hans', 'Hant', 'Arab'].map(
-            (code) =>
-              writingSystems[code] != null && (
-                <HoverableWritingSystem
-                  key={code}
-                  writingSystem={writingSystems[code]}
-                  format="button"
-                />
-              ),
-          )}
-        </div>
-      </div>
-    );
-  }
-
+const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
   const {
     childWritingSystems,
     containsWritingSystems,
     languages,
     localesWhereExplicit,
-    nameDisplay,
-    nameEndonym,
-    nameFull,
     parentWritingSystem,
     populationUpperBound,
-    populationOfDescendents,
     primaryLanguage,
     primaryLanguageCode,
     rightToLeft,
@@ -58,11 +31,6 @@ const WritingSystemDetails: React.FC = () => {
 
   return (
     <div className="Details">
-      <h2>
-        <strong>{nameDisplay}</strong>
-        {nameDisplay != nameEndonym && ' ' + nameEndonym} [{code}]
-        {nameDisplay != nameFull && <div className="subtitle">{nameFull}</div>}
-      </h2>
       <div>
         <h3>Attributes</h3>
         {rightToLeft != null && (

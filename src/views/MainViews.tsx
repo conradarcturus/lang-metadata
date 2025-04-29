@@ -10,8 +10,8 @@ import TerritoryCardList from './territory/TerritoryCardList';
 import TerritoryDetails from './territory/TerritoryDetails';
 import TreeList from './ViewTreeList';
 import WritingSystemCardList from './writingsystem/WritingSystemCardList';
-import WritingSystemDetails from './writingsystem/WritingSystemDetails';
 import './styles.css';
+import WritingSystemDetailsPage from './writingsystem/WritingSystemDetailsPage';
 
 function MainViews() {
   const { viewType, dimension } = usePageParams();
@@ -48,7 +48,7 @@ function MainViews() {
         case ViewType.CardList:
           return <WritingSystemCardList />;
         case ViewType.Details:
-          return <WritingSystemDetails />;
+          return <WritingSystemDetailsPage />;
         case ViewType.Hierarchy:
           return <TreeList />;
       }

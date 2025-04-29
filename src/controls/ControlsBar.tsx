@@ -18,7 +18,7 @@ const ControlsBar: React.FC = () => {
           <ButtonGroupSingleChoice<Dimension>
             options={Object.values(Dimension)}
             onChange={(dimension: Dimension) =>
-              updatePageParams({ dimension, code: '', nameFilter: '' })
+              updatePageParams({ dimension, codeFilter: '', nameFilter: '' })
             }
             selected={dimension}
           />
@@ -26,9 +26,7 @@ const ControlsBar: React.FC = () => {
         <Hoverable hoverContent="Decide how you want to view the data.">
           <ButtonGroupSingleChoice<ViewType>
             options={Object.values(ViewType)}
-            onChange={(viewType: ViewType) =>
-              updatePageParams({ viewType, code: '', nameFilter: '' })
-            }
+            onChange={(viewType: ViewType) => updatePageParams({ viewType })}
             selected={viewType}
           />
         </Hoverable>

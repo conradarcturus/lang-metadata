@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { TerritoryData } from '../../DataTypes';
 import Hoverable from '../../generic/Hoverable';
 
@@ -19,13 +18,7 @@ const HoverableTerritoryName: React.FC<Props> = ({ territory, format = 'text', s
   return (
     <Hoverable
       hoverContent={<TerritoryCard territory={territory} />}
-      onClick={() =>
-        updatePageParams({
-          code: territory.code,
-          viewType: ViewType.Details,
-          dimension: Dimension.Territory,
-        })
-      }
+      onClick={() => updatePageParams({ modalObject: territory.code })}
       style={style}
     >
       {format === 'text' ? territory.nameDisplay : <button>{territory.nameDisplay}</button>}

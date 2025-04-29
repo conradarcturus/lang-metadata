@@ -25,20 +25,22 @@ export enum SortBy {
 }
 
 export type PageParams = {
-  code: string;
+  codeFilter: string;
   dataSubset: DataSubset;
   dimension: Dimension;
   limit: number; // < 1 means show all
+  modalObject: string | null;
   nameFilter: string;
   sortBy: SortBy;
   viewType: ViewType;
 };
 
 export type PageParamsOptional = {
-  code?: string;
+  codeFilter?: string;
   dataSubset?: DataSubset;
   dimension?: Dimension;
   limit?: number;
+  modalObject?: string | null;
   nameFilter?: string;
   sortBy?: SortBy;
   viewType?: ViewType;

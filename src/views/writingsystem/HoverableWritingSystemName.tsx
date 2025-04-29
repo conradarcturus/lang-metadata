@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { WritingSystemData } from '../../DataTypes';
 import Hoverable from '../../generic/Hoverable';
 
@@ -19,13 +18,7 @@ const HoverableWritingSystemName: React.FC<Props> = ({ writingSystem, format = '
   return (
     <Hoverable
       hoverContent={<WritingSystemCard writingSystem={writingSystem} />}
-      onClick={() =>
-        updatePageParams({
-          code: writingSystem.code,
-          viewType: ViewType.Details,
-          dimension: Dimension.WritingSystem,
-        })
-      }
+      onClick={() => updatePageParams({ modalObject: writingSystem.code })}
       style={style}
     >
       {format === 'text' ? writingSystem.nameDisplay : <button>{writingSystem.nameDisplay}</button>}

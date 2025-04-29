@@ -7,7 +7,7 @@ import {
   WritingSystemData,
 } from '../../DataTypes';
 import HoverableLanguageName from '../language/HoverableLanguageName';
-import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystem';
+import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
 import HoverableLocaleName from './HoverableLocaleName';
 

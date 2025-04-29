@@ -10,7 +10,7 @@ import WritingSystemCard from './WritingSystemCard';
 
 const WritingSystemCardList: React.FC = () => {
   const { writingSystems } = useDataContext();
-  const { code: codeFilter, nameFilter, limit } = usePageParams();
+  const { codeFilter, nameFilter, limit } = usePageParams();
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
 

@@ -3,16 +3,22 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
+import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
-import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystem';
+import ObjectTitle from '../ObjectTitle';
+import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
 import HoverableLanguageName from './HoverableLanguageName';
 
-const LanguageDetails: React.FC = () => {
-  const { code } = usePageParams();
+type Props = {
+  lang?: LanguageData;
+};
+
+const LanguageDetails: React.FC<Props> = ({ lang }) => {
+  const { codeFilter } = usePageParams();
   const { languagesByCode } = useDataContext();
-  const lang = languagesByCode[code];
+  lang ??= languagesByCode[codeFilter];
 
   if (lang == null) {
     const { languagesByCode } = useDataContext();
@@ -34,12 +40,10 @@ const LanguageDetails: React.FC = () => {
 
   const {
     childLanguages,
+    code,
     glottocode,
     locales,
     medium,
-    nameDisplaySubtitle,
-    nameDisplayTitle,
-    nameEndonym,
     parentLanguage,
     populationCited,
     primaryWritingSystem,
@@ -53,8 +57,7 @@ const LanguageDetails: React.FC = () => {
   return (
     <div className="Details">
       <h2>
-        <strong>{nameDisplayTitle}</strong> {nameDisplayTitle != nameEndonym && nameEndonym}
-        {nameDisplaySubtitle != null && <div className="subtitle">{nameDisplaySubtitle} </div>}
+        <ObjectTitle object={lang} />
       </h2>
       <div>
         <h3>Attributes</h3>

@@ -6,7 +6,7 @@ import { SortBy, ViewType } from './PageParamTypes';
 import TextInput from './TextInput';
 
 const FilterControls: React.FC = () => {
-  const { viewType, dimension, code, updatePageParams, nameFilter, limit, sortBy } =
+  const { viewType, dimension, codeFilter, updatePageParams, nameFilter, limit, sortBy } =
     usePageParams();
 
   return (
@@ -21,8 +21,8 @@ const FilterControls: React.FC = () => {
         >
           <TextInput
             label="Code:"
-            value={code}
-            onChange={(code: string) => updatePageParams({ code })}
+            value={codeFilter}
+            onChange={(codeFilter: string) => updatePageParams({ codeFilter })}
             inputStyle={{ width: '3em' }}
             placeholder="filter by"
           />

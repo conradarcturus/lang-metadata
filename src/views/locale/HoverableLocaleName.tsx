@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { LocaleData } from '../../DataTypes';
 import Hoverable from '../../generic/Hoverable';
 
@@ -36,13 +35,7 @@ const HoverableLocaleName: React.FC<Props> = ({
   return (
     <Hoverable
       hoverContent={<LocaleCard locale={locale} />}
-      onClick={() =>
-        updatePageParams({
-          code: locale.code,
-          viewType: ViewType.Details,
-          dimension: Dimension.Locale,
-        })
-      }
+      onClick={() => updatePageParams({ modalObject: locale.code })}
       style={style}
     >
       {format === 'text' ? label : <button>{label}</button>}

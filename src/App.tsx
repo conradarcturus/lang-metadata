@@ -4,6 +4,7 @@ import { PageParamsProvider } from './controls/PageParamsContext';
 import { DataProvider } from './dataloading/DataContext';
 import { HoverCardProvider } from './generic/HoverCardContext';
 import MainViews from './views/MainViews';
+import ViewModal from './views/ViewModal';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <HoverCardProvider>
             <ControlsBar />
             <MainViews />
+            <ViewModal />
           </HoverCardProvider>
         </DataProvider>
       </PageParamsProvider>

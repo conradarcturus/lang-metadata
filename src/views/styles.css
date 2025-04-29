@@ -21,11 +21,14 @@
     margin-top: 0px;
 }
 
-.Details {
-    text-align: start;
+.DetailsPage {
     width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.Details {
+    text-align: start;
 }
 
 

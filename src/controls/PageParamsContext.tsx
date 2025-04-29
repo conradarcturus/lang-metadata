@@ -33,7 +33,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         } else {
           next.set(key, limit.toString());
         }
-      } else if (value === undefined || value == '') {
+      } else if (value == null || value == '') {
         next.delete(key);
       } else {
         next.set(key, value.toString());
@@ -44,7 +44,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const providerValue: PageParamsContextState = useMemo(
     () => ({
-      code: getParam('code', ''),
+      codeFilter: getParam('codeFilter', ''),
       dataSubset: getParam('dataSubset', DataSubset.Top200) as DataSubset,
       dimension: getParam('dimension', Dimension.Language) as Dimension,
       limit: parseInt(getParam('limit', '8')),
@@ -52,6 +52,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       sortBy: getParam('sortBy', SortBy.Population) as SortBy,
       viewType: getParam('viewType', ViewType.CardList) as ViewType,
       updatePageParams,
+      modalObject: getParam('modalObject', undefined),
     }),
     [pageParams],
   );

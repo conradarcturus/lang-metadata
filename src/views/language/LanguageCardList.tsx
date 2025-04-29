@@ -10,7 +10,7 @@ import LanguageCard from './LanguageCard';
 
 const LanguageCardList: React.FC = () => {
   const { languagesByCode } = useDataContext();
-  const { code: codeFilter, nameFilter, limit } = usePageParams();
+  const { codeFilter, nameFilter, limit } = usePageParams();
   const sortByFunction = getSortFunction();
 
   // Filter results

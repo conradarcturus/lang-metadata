@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../controls/PageParamTypes';
 import { WritingSystemData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
@@ -26,15 +25,7 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
   return (
     <div>
       <h3>
-        <a
-          onClick={() =>
-            updatePageParams({
-              code,
-              viewType: ViewType.Details,
-              dimension: Dimension.WritingSystem,
-            })
-          }
-        >
+        <a onClick={() => updatePageParams({ modalObject: code })}>
           <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
           <Highlightable str={code} match="codeFilter" />]
         </a>

@@ -1,16 +1,23 @@
+import React from 'react';
+
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
+import { LocaleData } from '../../DataTypes';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';
-import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystem';
+import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
 import HoverableLocaleName from './HoverableLocaleName';
 import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
-const LocaleDetails: React.FC = () => {
-  const { code } = usePageParams();
+type Props = {
+  locale?: LocaleData;
+};
+
+const LocaleDetails: React.FC<Props> = ({ locale }) => {
+  const { codeFilter } = usePageParams();
   const { locales } = useDataContext();
-  const locale = locales[code];
+  locale ??= locales[codeFilter];
 
   if (locale == null) {
     return (
@@ -29,6 +36,7 @@ const LocaleDetails: React.FC = () => {
   }
 
   const {
+    code,
     explicitScriptCode,
     language,
     languageCode,
