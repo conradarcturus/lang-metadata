@@ -48,7 +48,12 @@ const TreeListDescription: React.FC = () => {
   const { dimension } = usePageParams();
   switch (dimension) {
     case Dimension.Language:
-      return '';
+      return (
+        <>
+          Showing <strong>languages</strong>, language families, and <em>dialects</em>. Note that
+          different people disagree on what it is a language/dialect/etc.
+        </>
+      );
     case Dimension.Locale:
       return (
         <>

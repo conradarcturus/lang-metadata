@@ -19,6 +19,7 @@ const ViewModal: React.FC = () => {
   const onClose = () => updatePageParams({ modalObject: undefined });
 
   useEffect(() => {
+    // TODO there is a problem with this changing the page parameters beyond the modal object
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();

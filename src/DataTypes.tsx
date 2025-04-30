@@ -11,10 +11,20 @@ export type ObjectData = LanguageData | WritingSystemData | TerritoryData | Loca
 // should be formatted like ab or abc. But there are some languoids with different
 // kinds of language codes here as well. This is the main index key for languages and languoids
 // TODO Replace generic strings with some form of validation
-export type LanguageCode = string;
+export type ISO6391LanguageCode = string; // eg. en, es
+export type ISO6393LanguageCode = string; // eg. eng, spa
+export type ISO6395LanguageCode = string; // eg. ine (Indo-European)
+export type ISO6392LanguageCode = ISO6393LanguageCode | ISO6395LanguageCode; // eg. eng, spa, ine
+export type Glottocode = string; // eg. abcd1234
+export type LanguageCode = ISO6391LanguageCode | ISO6392LanguageCode | Glottocode | string;
 
-// Glottocodes come from Glottolog. They should be formatted like abcd1234
-export type Glottocode = string;
+export enum LanguageScope {
+  Family = 'Family',
+  Macrolanguage = 'macrolanguage',
+  Language = 'Language',
+  Dialect = 'Dialect',
+  SpecialCode = 'Special',
+}
 
 export type LanguageData = {
   type: Dimension.Language;
@@ -22,21 +32,30 @@ export type LanguageData = {
   // Provided by the TSV files
   code: LanguageCode;
   glottocode: Glottocode;
+  codeISO6391: ISO6391LanguageCode | null; // 2-letter string
+  codeISO6392: ISO6395LanguageCode | null; // 3-letter string, either ISO 639-3 or ISO 639-5 code
+
+  scope: LanguageScope | null;
+
   nameDisplay: string;
   nameDisplayTitle: string;
   nameDisplaySubtitle: string | null;
   nameEndonym: string;
-  medium: string;
-  primaryScriptCode: ScriptCode;
+
+  vitalityISO: string | null;
   vitalityEth2013: string;
   vitalityEth2025: string;
   digitalSupport: string;
-  populationAdjusted: number;
-  populationCited: number;
-  parentLanguageCode: LanguageCode;
-  parentGlottocode: Glottocode;
   viabilityConfidence: string;
   viabilityExplanation: string;
+
+  populationAdjusted: number;
+  populationCited: number;
+
+  medium: string;
+  primaryScriptCode: ScriptCode;
+  parentLanguageCode: LanguageCode;
+  parentGlottocode: Glottocode;
 
   // References to other objects, filled in after loading the TSV
   parentLanguage?: LanguageData;

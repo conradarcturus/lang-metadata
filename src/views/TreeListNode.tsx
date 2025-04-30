@@ -3,7 +3,13 @@ import React, { useState } from 'react';
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension } from '../controls/PageParamTypes';
 import { getSortFunction, SortByFunctionType } from '../controls/sort';
-import { LanguageData, TerritoryData, TerritoryType, WritingSystemData } from '../DataTypes';
+import {
+  LanguageData,
+  LanguageScope,
+  TerritoryData,
+  TerritoryType,
+  WritingSystemData,
+} from '../DataTypes';
 
 import './treelist.css';
 
@@ -87,7 +93,18 @@ function getNodeTitle(nodeData: TreeNodeData): React.ReactNode {
     case Dimension.Language:
       return (
         <>
-          {getObjectName(nodeData)}
+          <span
+            style={{
+              fontWeight:
+                nodeData.scope === LanguageScope.Language ||
+                nodeData.scope === LanguageScope.Macrolanguage
+                  ? 'bold'
+                  : 'normal',
+              fontStyle: nodeData.scope === LanguageScope.Dialect ? 'italic' : 'normal',
+            }}
+          >
+            {getObjectName(nodeData)}
+          </span>
           {seeMore}
         </>
       );

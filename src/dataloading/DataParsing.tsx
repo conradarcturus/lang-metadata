@@ -20,21 +20,30 @@ export function parseLanguageLine(line: string): LanguageData {
 
     code: parts[0],
     glottocode: parts[1],
+    codeISO6391: null, // Added by ISO import
+    codeISO6392: null, // Added by ISO import
+
+    scope: null,
+
     nameDisplay,
     nameDisplayTitle,
     nameDisplaySubtitle,
     nameEndonym: parts[3],
-    medium: parts[4],
-    primaryScriptCode: parts[5],
+
+    vitalityISO: null, // Added by ISO import
     vitalityEth2013: parts[6],
     vitalityEth2025: parts[7],
     digitalSupport: parts[8],
-    populationAdjusted: Number.parseInt(parts[9].replace(/,/g, '')),
-    populationCited: Number.parseInt(parts[10].replace(/,/g, '')),
-    parentLanguageCode: parts[11],
-    parentGlottocode: parts[12],
     viabilityConfidence: parts[13],
     viabilityExplanation: parts[14],
+
+    populationAdjusted: Number.parseInt(parts[9].replace(/,/g, '')),
+    populationCited: Number.parseInt(parts[10].replace(/,/g, '')),
+
+    medium: parts[4],
+    primaryScriptCode: parts[5],
+    parentLanguageCode: parts[11],
+    parentGlottocode: parts[12],
 
     // References to other objects, filled in with DataAssociations methods
     parentLanguage: undefined,
