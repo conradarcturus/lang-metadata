@@ -25,7 +25,13 @@ export function getSortFunction(): SortByFunctionType {
       return (a: ObjectData, b: ObjectData) => {
         switch (a.type) {
           case Dimension.Language:
-            return b.type === Dimension.Language ? b.populationCited - a.populationCited : -1;
+            return b.type === Dimension.Language
+              ? (b.populationCited ?? 0) -
+                  (a.populationCited ?? 0) +
+                  (viewType === ViewType.Hierarchy
+                    ? (b.populationOfDescendents ?? 0) - (a.populationOfDescendents ?? 0)
+                    : 0)
+              : -1;
           case Dimension.WritingSystem:
             return b.type === Dimension.WritingSystem
               ? b.populationUpperBound -

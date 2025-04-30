@@ -15,7 +15,7 @@ export function connectLanguagesToParent(
 ): void {
   Object.values(languagesByCode).forEach((lang) => {
     // Connect regular language code, eg. cmn -> zho
-    if (lang.parentLanguageCode != '') {
+    if (lang.parentLanguageCode != null) {
       const parent = languagesByCode[lang.parentLanguageCode];
       if (parent != null) {
         parent.childLanguages.push(lang);
@@ -89,12 +89,14 @@ export function connectWritingSystems(
   // Connect languages to their primary writing system
   Object.values(languagesByCode).forEach((language) => {
     const { primaryScriptCode } = language;
-    const primaryWritingSystem = writingSystems[primaryScriptCode];
-    if (primaryWritingSystem != null) {
-      primaryWritingSystem.languages[language.code] = language;
-      primaryWritingSystem.populationUpperBound += language.populationCited || 0;
-      language.primaryWritingSystem = primaryWritingSystem;
-      language.writingSystems[primaryWritingSystem.code] = primaryWritingSystem;
+    if (primaryScriptCode != null) {
+      const primaryWritingSystem = writingSystems[primaryScriptCode];
+      if (primaryWritingSystem != null) {
+        primaryWritingSystem.languages[language.code] = language;
+        primaryWritingSystem.populationUpperBound += language.populationCited || 0;
+        language.primaryWritingSystem = primaryWritingSystem;
+        language.writingSystems[primaryWritingSystem.code] = primaryWritingSystem;
+      }
     }
   });
 }
@@ -148,6 +150,7 @@ export function connectLocales(
 }
 
 export function computeOtherPopulationStatistics(
+  languages: Record<LanguageCode, LanguageData>,
   writingSystems: Record<ScriptCode, WritingSystemData>,
 ): void {
   // Organizing writing systems by population is a bit funny because some fundamental writing systems
@@ -157,6 +160,9 @@ export function computeOtherPopulationStatistics(
   Object.values(writingSystems)
     .filter((writingSystem) => writingSystem.parentWritingSystem == null)
     .forEach(computeWritingSystemDescendentPopulation);
+  Object.values(languages)
+    .filter((lang) => lang.parentLanguageCode == null)
+    .forEach(computeLanguageDescendentPopulation);
 }
 
 function computeWritingSystemDescendentPopulation(writingSystem: WritingSystemData): number {
@@ -171,4 +177,18 @@ function computeWritingSystemDescendentPopulation(writingSystem: WritingSystemDa
   }
 
   return descendentPopulation + writingSystem.populationUpperBound;
+}
+
+function computeLanguageDescendentPopulation(lang: LanguageData): number {
+  const { childLanguages } = lang;
+  const descendentPopulation = childLanguages.reduce(
+    (total, childLang) => total + computeLanguageDescendentPopulation(childLang),
+    0,
+  );
+  lang.populationOfDescendents = descendentPopulation;
+  if (Number.isNaN(descendentPopulation)) {
+    console.log(lang, descendentPopulation);
+  }
+
+  return descendentPopulation + (lang.populationCited ?? 0);
 }

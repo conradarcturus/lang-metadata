@@ -97,7 +97,7 @@ export const DataProvider: React.FC<{
     connectTerritoriesToParent(territories);
     connectWritingSystems(langs, territories, writingSystems);
     connectLocales(langs, territories, writingSystems, locales);
-    computeOtherPopulationStatistics(writingSystems);
+    computeOtherPopulationStatistics(langs, writingSystems);
 
     setLanguagesByCode(langs);
     setLanguagesByISO6391Code(iso6391Langs);
