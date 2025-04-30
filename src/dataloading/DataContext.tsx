@@ -15,7 +15,9 @@ import {
 
 import {
   addISODataToLanguages,
+  addISOLanguageFamilyData,
   addISOMacrolanguageData,
+  loadISOLanguageFamilies,
   loadISOLanguages,
   loadISOMacrolanguages,
 } from './AddISOData';
@@ -63,20 +65,23 @@ export const DataProvider: React.FC<{
   const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
 
   async function loadData() {
-    const [langs, isoLangs, macroLangs, territories, locales, writingSystems] = await Promise.all([
-      loadLanguages(dataSubset),
-      loadISOLanguages(),
-      loadISOMacrolanguages(),
-      loadTerritories(),
-      loadLocales(dataSubset),
-      loadWritingSystems(),
-    ]);
+    const [langs, isoLangs, macroLangs, langFamilies, territories, locales, writingSystems] =
+      await Promise.all([
+        loadLanguages(dataSubset),
+        loadISOLanguages(),
+        loadISOMacrolanguages(),
+        loadISOLanguageFamilies(),
+        loadTerritories(),
+        loadLocales(dataSubset),
+        loadWritingSystems(),
+      ]);
     if (langs == null || territories == null || locales == null || writingSystems == null) {
       alert('Error loading data. Please check the console for more details.');
       return;
     }
 
     const iso6391Langs = addISODataToLanguages(langs, isoLangs || []);
+    addISOLanguageFamilyData(langs, langFamilies || []);
     addISOMacrolanguageData(langs, macroLangs || []);
     connectLanguagesToParent(langs);
     connectTerritoriesToParent(territories);

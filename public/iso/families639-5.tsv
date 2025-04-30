@@ -1,0 +1,115 @@
+ISO 639-5	Language family name	Parent
+aav	Austro-Asiatic languages	
+afa	Afro-Asiatic languages	
+alg	Algonquian languages	aql
+alv	Atlantic-Congo languages	nic
+apa	Apache languages	ath
+aqa	Alacalufan languages	sai
+aql	Algic languages	nai
+art	Artificial languages	
+ath	Athapascan languages	xnd
+auf	Arauan languages	awd
+aus	Australian languages	
+awd	Arawakan languages	sai
+azc	Uto-Aztecan languages	nai
+bad	Banda languages	alv
+bai	Bamileke languages	alv
+bat	Baltic languages	ine
+ber	Berber languages	afa
+bnt	Bantu languages	alv
+btk	Batak languages	pqw
+cai	Central American Indian languages	
+cau	Caucasian languages	
+cba	Chibchan languages	sai
+ccn	North Caucasian languages	cau
+ccs	South Caucasian languages	cau
+cdc	Chadic languages	afa
+cdd	Caddoan languages	nai
+cel	Celtic languages	ine
+cmc	Chamic languages	pqw
+cpe	Creoles and pidgins, English‑based	crp
+cpf	Creoles and pidgins, French‑based	crp
+cpp	Creoles and pidgins, Portuguese-based	crp
+crp	Creoles and pidgins	
+csu	Central Sudanic languages	ssa
+cus	Cushitic languages	afa
+day	Land Dayak languages	
+dmn	Mande languages	nic
+dra	Dravidian languages	
+egx	Egyptian languages	afa
+esx	Eskimo-Aleut languages	
+euq	Basque (family)	
+fiu	Finno-Ugrian languages	urj
+fox	Formosan languages	map
+gem	Germanic languages	ine
+gme	East Germanic languages	gem
+gmq	North Germanic languages	gem
+gmw	West Germanic languages	gem
+grk	Greek languages	ine
+hmx	Hmong-Mien languages	
+hok	Hokan languages	nai
+hyx	Armenian (family)	ine
+iir	Indo-Iranian languages	ine
+ijo	Ijo languages	alv
+inc	Indic languages	iir
+ine	Indo-European languages	
+ira	Iranian languages	iir
+iro	Iroquoian languages	nai
+itc	Italic languages	ine
+jpx	Japanese (family)	
+kar	Karen languages	tbq
+kdo	Kordofanian languages	nic
+khi	Khoisan languages	
+kro	Kru languages	alv
+map	Austronesian languages	
+mkh	Mon-Khmer languages	aav
+mno	Manobo languages	phi
+mun	Munda languages	aav
+myn	Mayan languages	cai
+nah	Nahuatl languages	azc
+nai	North American Indian languages	
+ngf	Trans-New Guinea languages	paa
+nic	Niger-Kordofanian languages	
+nub	Nubian languages	sdv
+omq	Oto-Manguean languages	cai
+omv	Omotic languages	afa
+oto	Otomian languages	omq
+paa	Papuan languages	
+phi	Philippine languages	pqw
+plf	Central Malayo-Polynesian languages	poz
+poz	Malayo-Polynesian languages	map
+pqe	Eastern Malayo-Polynesian languages	poz
+pqw	Western Malayo-Polynesian languages	poz
+pra	Prakrit languages	inc
+qwe	Quechuan (family)	sai
+roa	Romance languages	itc
+sai	South American Indian languages	
+sal	Salishan languages	nai
+sdv	Eastern Sudanic languages	ssa
+sem	Semitic languages	afa
+sgn	sign languages	
+sio	Siouan languages	nai
+sit	Sino-Tibetan languages	
+sla	Slavic languages	ine
+smi	Sami languages	fiu
+son	Songhai languages	ssa
+sqj	Albanian languages	ine
+ssa	Nilo-Saharan languages	
+syd	Samoyedic languages	urj
+tai	Tai languages	
+tbq	Tibeto-Burman languages	sit
+trk	Turkic languages	tut
+tup	Tupi languages	sai
+tut	Altaic languages	
+tuw	Tungus languages	tut
+urj	Uralic languages	
+wak	Wakashan languages	nai
+wen	Sorbian languages	zlw
+xgn	Mongolian languages	tut
+xnd	Na-Dene languages	nai
+ypk	Yupik languages	esx
+zhx	Chinese (family)	sit
+zle	East Slavic languages	sla
+zls	South Slavic languages	sla
+zlw	West Slavic languages	sla
+znd	Zande languages	alv

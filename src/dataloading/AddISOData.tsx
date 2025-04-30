@@ -1,6 +1,8 @@
+import { Dimension } from '../controls/PageParamTypes';
 import {
   ISO6391LanguageCode,
   ISO6393LanguageCode,
+  ISO6395LanguageCode,
   LanguageCode,
   LanguageData,
   LanguageScope,
@@ -98,6 +100,27 @@ export async function loadISOMacrolanguages(): Promise<ISOMacrolanguageData[] | 
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
+type ISOLanguageFamilyData = {
+  code: ISO6395LanguageCode;
+  name: string;
+  parent?: ISO6395LanguageCode;
+};
+
+export async function loadISOLanguageFamilies(): Promise<ISOLanguageFamilyData[] | void> {
+  return await fetch('iso/families639-5.tsv')
+    .then((res) => res.text())
+    .then((text) => {
+      return text
+        .split('\n')
+        .slice(1)
+        .map((line) => {
+          const parts = line.split('\t');
+          return { code: parts[0], name: parts[1], parent: parts[2] != '' ? parts[2] : undefined };
+        });
+    })
+    .catch((err) => console.error('Error loading TSV:', err));
+}
+
 export function addISODataToLanguages(
   languages: Record<LanguageCode, LanguageData>,
   isoLanguages: ISOLanguage6393Data[],
@@ -162,4 +185,42 @@ export function addISOMacrolanguageData(
         );
     }
   });
+}
+
+export function addISOLanguageFamilyData(
+  languages: Record<LanguageCode, LanguageData>,
+  families: ISOLanguageFamilyData[],
+): void {
+  families.forEach((family) => {
+    const familyEntry = languages[family.code];
+    if (familyEntry == null) {
+      const familyEntry: LanguageData = {
+        type: Dimension.Language,
+        code: family.code,
+        nameDisplay: family.name,
+        codeISO6392: family.code,
+        nameDisplayTitle: family.name,
+        scope: LanguageScope.Family,
+        viabilityConfidence: 'No',
+        viabilityExplanation: 'Language family',
+        parentLanguageCode: family.parent,
+
+        childLanguages: [],
+        writingSystems: {},
+        locales: [],
+      };
+      languages[family.code] = familyEntry;
+    } else {
+      // familyEntry exists, but it may be missing data
+      if (!familyEntry.nameDisplay || familyEntry.nameDisplay === '0') {
+        familyEntry.nameDisplay = family.name;
+      }
+      if (!familyEntry.nameDisplayTitle || familyEntry.nameDisplayTitle === '0') {
+        familyEntry.nameDisplayTitle = family.name;
+      }
+      familyEntry.parentLanguageCode = family.parent;
+      familyEntry.scope = LanguageScope.Family;
+    }
+  });
+  return;
 }
