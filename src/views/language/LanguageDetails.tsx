@@ -17,6 +17,8 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
   const sortFunction = getSortFunction();
   const {
     parentLanguage,
+    populationCited,
+    medium,
     primaryWritingSystem,
     writingSystems,
     codeISO6392,
@@ -24,6 +26,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
     vitalityISO,
     vitalityEth2013,
     vitalityEth2025,
+    glottocode,
   } = lang;
 
   return (
@@ -36,30 +39,34 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         </div>
         <div>
           <label>Glottocode:</label>
-          {lang.glottocode}
+          {glottocode ? glottocode : <em>Not in Glottolog</em>}
         </div>
         <div>
           <label>ISO Code:</label>
-          {codeISO6392 == null ? (
-            <em>Not in ISO catalog</em>
-          ) : (
+          {codeISO6392 ? (
             <>
               {codeISO6392}
-              {codeISO6391 != null ? ` | ${codeISO6391}` : ''}
+              {codeISO6391 ? ` | ${codeISO6391}` : ''}
             </>
+          ) : (
+            <em>Not in ISO catalog</em>
           )}
         </div>
       </div>
       <div>
         <h3>Attributes</h3>
-        <div>
-          <label>Population:</label>
-          {lang.populationCited.toLocaleString()}
-        </div>
-        <div>
-          <label>Modality:</label>
-          {lang.medium}
-        </div>
+        {populationCited && (
+          <div>
+            <label>Population:</label>
+            {populationCited.toLocaleString()}
+          </div>
+        )}
+        {medium && (
+          <div>
+            <label>Modality:</label>
+            {medium}
+          </div>
+        )}
         {primaryWritingSystem && (
           <div>
             <label>Primary Writing System:</label>
@@ -84,32 +91,32 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
       </div>
       <div>
         <h3>Vitality & Viability</h3>
-        {vitalityISO != null && (
+        {vitalityISO && (
           <div>
             <label>ISO Vitality / Status:</label>
             {vitalityISO}
           </div>
         )}
-        {vitalityEth2013 != null && (
+        {vitalityEth2013 && (
           <div>
             <label>Ethnologue Vitality (2013):</label>
             {vitalityEth2013}
           </div>
         )}
-        {vitalityEth2025 != null && (
+        {vitalityEth2025 && (
           <div>
             <label>Ethnologue Vitality (2025):</label>
             {vitalityEth2025}
           </div>
         )}
         <div>
-          <label>Viability:</label>
+          <label>Should use in World Atlas:</label>
           {lang.viabilityConfidence} ... {lang.viabilityExplanation}
         </div>
       </div>
       <div>
         <h3>Connections</h3>
-        {parentLanguage != null && (
+        {parentLanguage && (
           <div>
             <label>Group:</label>
             <HoverableLanguageName lang={parentLanguage} />

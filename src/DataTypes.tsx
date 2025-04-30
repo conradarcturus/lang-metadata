@@ -31,31 +31,31 @@ export type LanguageData = {
 
   // Provided by the TSV files
   code: LanguageCode;
-  glottocode: Glottocode;
-  codeISO6391: ISO6391LanguageCode | null; // 2-letter string
-  codeISO6392: ISO6395LanguageCode | null; // 3-letter string, either ISO 639-3 or ISO 639-5 code
+  glottocode?: Glottocode;
+  codeISO6391?: ISO6391LanguageCode; // 2-letter string
+  codeISO6392?: ISO6395LanguageCode; // 3-letter string, either ISO 639-3 or ISO 639-5 code
 
-  scope: LanguageScope | null;
+  scope?: LanguageScope;
 
   nameDisplay: string;
   nameDisplayTitle: string;
-  nameDisplaySubtitle: string | null;
-  nameEndonym: string;
+  nameDisplaySubtitle?: string;
+  nameEndonym?: string;
 
-  vitalityISO: string | null;
-  vitalityEth2013: string | null;
-  vitalityEth2025: string | null;
-  digitalSupport: string;
+  vitalityISO?: string;
+  vitalityEth2013?: string;
+  vitalityEth2025?: string;
+  digitalSupport?: string;
   viabilityConfidence: string;
-  viabilityExplanation: string;
+  viabilityExplanation?: string;
 
-  populationAdjusted: number;
-  populationCited: number;
+  populationAdjusted?: number;
+  populationCited?: number;
 
-  medium: string;
-  primaryScriptCode: ScriptCode;
-  parentLanguageCode: LanguageCode;
-  parentGlottocode: Glottocode;
+  medium?: string;
+  primaryScriptCode?: ScriptCode;
+  parentLanguageCode?: LanguageCode;
+  parentGlottocode?: Glottocode;
 
   // References to other objects, filled in after loading the TSV
   parentLanguage?: LanguageData;

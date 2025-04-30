@@ -18,15 +18,15 @@ type ISOLanguage6393Data = {
   codeISO6393: ISO6393LanguageCode; // ISO 639-3
   //   codeBibliographic: LanguageCode; // ISO 639-2b
   //   codeTerminological: LanguageCode; // ISO 639-2t
-  codeISO6391: ISO6391LanguageCode | null;
-  scope: LanguageScope | null;
-  vitality: ISOLanguageVitality | null;
+  codeISO6391: ISO6391LanguageCode | undefined;
+  scope: LanguageScope | undefined;
+  vitality: ISOLanguageVitality | undefined;
   name: string;
 };
 
 const DEBUG = false;
 
-function getScopeFromLetterCode(code: string): LanguageScope | null {
+function getScopeFromLetterCode(code: string): LanguageScope | undefined {
   switch (code) {
     case 'I': // Individual language
       return LanguageScope.Language;
@@ -35,11 +35,11 @@ function getScopeFromLetterCode(code: string): LanguageScope | null {
     case 'S':
       return LanguageScope.SpecialCode;
     default:
-      return null;
+      return undefined;
   }
 }
 
-function getVitalityFromLetterCode(code: string): ISOLanguageVitality | null {
+function getVitalityFromLetterCode(code: string): ISOLanguageVitality | undefined {
   switch (code) {
     case 'C':
       return ISOLanguageVitality.Constructed;
@@ -52,7 +52,7 @@ function getVitalityFromLetterCode(code: string): ISOLanguageVitality | null {
     case 'S':
       return ISOLanguageVitality.SpecialCode;
     default:
-      return null;
+      return undefined;
   }
 }
 
@@ -62,7 +62,7 @@ function parseISOLanguage6393Line(line: string): ISOLanguage6393Data {
     codeISO6393: parts[0],
     // codeBibliographic: parts[1], // Not used
     // codeTerminological: parts[2], // Not used
-    codeISO6391: parts[3] != '' ? parts[3] : null,
+    codeISO6391: parts[3] != '' ? parts[3] : undefined,
     scope: getScopeFromLetterCode(parts[4]),
     vitality: getVitalityFromLetterCode(parts[5]),
     name: parts[6],

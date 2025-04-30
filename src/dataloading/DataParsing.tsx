@@ -14,36 +14,40 @@ export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');
   const nameDisplay = parts[2];
   const [nameDisplayTitle, nameDisplaySubtitle] = separateTitleAndSubtitle(nameDisplay);
+  const populationAdjusted =
+    parts[9] != '' ? Number.parseInt(parts[9].replace(/,/g, '')) : undefined;
+  const populationCited =
+    parts[10] != '' ? Number.parseInt(parts[10].replace(/,/g, '')) : undefined;
 
   return {
     type: Dimension.Language,
 
     code: parts[0],
     glottocode: parts[1],
-    codeISO6391: null, // Added by ISO import
-    codeISO6392: null, // Added by ISO import
+    codeISO6391: undefined, // Added by ISO import
+    codeISO6392: undefined, // Added by ISO import
 
-    scope: null,
+    scope: undefined, // Added by ISO import
 
     nameDisplay,
     nameDisplayTitle,
     nameDisplaySubtitle,
     nameEndonym: parts[3],
 
-    vitalityISO: null, // Added by ISO import
-    vitalityEth2013: parts[6] != '' ? parts[6] : null,
-    vitalityEth2025: parts[7] != '' ? parts[7] : null,
-    digitalSupport: parts[8],
-    viabilityConfidence: parts[13],
-    viabilityExplanation: parts[14],
+    vitalityISO: undefined, // Added by ISO import
+    vitalityEth2013: parts[6] != '' ? parts[6] : undefined,
+    vitalityEth2025: parts[7] != '' ? parts[7] : undefined,
+    digitalSupport: parts[8] != '' ? parts[8] : undefined,
+    viabilityConfidence: parts[13] != '' ? parts[13] : 'No',
+    viabilityExplanation: parts[14] != '' ? parts[14] : undefined,
 
-    populationAdjusted: Number.parseInt(parts[9].replace(/,/g, '')),
-    populationCited: Number.parseInt(parts[10].replace(/,/g, '')),
+    populationAdjusted,
+    populationCited,
 
-    medium: parts[4],
-    primaryScriptCode: parts[5],
-    parentLanguageCode: parts[11],
-    parentGlottocode: parts[12],
+    medium: parts[4] != '' ? parts[4] : undefined,
+    primaryScriptCode: parts[5] != '' ? parts[5] : undefined,
+    parentLanguageCode: parts[11] != '' ? parts[11] : undefined,
+    parentGlottocode: parts[12] != '' ? parts[12] : undefined,
 
     // References to other objects, filled in with DataAssociations methods
     parentLanguage: undefined,

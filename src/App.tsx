@@ -9,7 +9,10 @@ import ViewModal from './views/ViewModal';
 function App() {
   return (
     <>
-      <h1>Language Metadata</h1>
+      <h1>
+        {/* href resets the page parameters */}
+        <a href="/">Language Metadata</a>
+      </h1>
       <PageParamsProvider>
         <DataProvider>
           <HoverCardProvider>

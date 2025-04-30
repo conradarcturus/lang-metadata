@@ -41,18 +41,24 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
         </a>
         {subtitle != null && <div className="subtitle">{subtitle}</div>}
       </h3>
-      <div>
-        <h4>Speakers</h4>
-        {populationCited.toLocaleString()}
-      </div>
-      <div>
-        <h4>Modality</h4>
-        {medium}
-      </div>
-      <div>
-        <h4>Vitality</h4>
-        {vitalityEth2013}
-      </div>
+      {populationCited != null && (
+        <div>
+          <h4>Speakers</h4>
+          {populationCited.toLocaleString()}
+        </div>
+      )}
+      {medium != null && (
+        <div>
+          <h4>Modality</h4>
+          {medium}
+        </div>
+      )}
+      {vitalityEth2013 != null && (
+        <div>
+          <h4>Vitality</h4>
+          {vitalityEth2013}
+        </div>
+      )}
 
       {includeRelations && locales.length > 0 && (
         <div>
