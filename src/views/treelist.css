@@ -1,18 +1,21 @@
-.TreeList {
+.TreeListView {
     text-align: start;
     max-width: 600px;
     margin: 0px auto;
 }
 
-.TreeList ul {
+ul.TreeListRoot, ul.TreeListBranch{
     list-style: none;
     margin: 0;
     position: relative;
-    margin-left: 16px;
     padding-left: 8px;
 }
 
-.TreeList ul.branch::before {
+ul.TreeListBranch {
+    margin-left: 16px;
+}
+
+ul.TreeListBranch::before {
     content: '';
     position: absolute;
     bottom: 10px;
@@ -22,13 +25,13 @@
     z-index: -1;
 }
 
-.TreeList li {
+.TreeListRoot li {
     position: relative;
     background-color: var(--color-background);
     z-index: 10;
 }
 
-.TreeList .branch li::before {
+.TreeListBranch li::before {
     content: '';
     position: absolute;
     top: 0.75em;
@@ -39,16 +42,7 @@
     z-index: -1;
 }
 
-.TreeList button {
-   background-color: var(--color-button-primary);
-   color: var(--color-background)
-}
-
-.TreeList button:hover {
-    background-color: var(--color-button-hover);
-}
-
-.expandBranch {
+.TreeListExpandBranch, .TreeListSeeAllDescendents {
     display: inline-block;
     margin: 0;
     margin-right: 4px;
@@ -56,11 +50,21 @@
     z-index: 10;
 }
 
-.expandBranch.empty {
+
+.TreeListExpandBranch {
+    background-color: var(--color-button-primary);
+    color: var(--color-background);
+}
+
+.TreeListExpandBranch.empty {
     width: 1em;
 }
 
-.TreeList button.SeeMore {
+.TreeListExpandBranch:hover {
+    background-color: var(--color-button-hover);
+}
+
+.TreeListInfoButton {
     background-color: var(--color-background);
     color: var(--color-button-primary);
     padding: 0 4px;

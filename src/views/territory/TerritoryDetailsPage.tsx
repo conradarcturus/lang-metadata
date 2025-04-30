@@ -38,7 +38,7 @@ const TerritoryDetailsPage: React.FC<Props> = ({ territory }) => {
   }
 
   return (
-    <div className="Details">
+    <div className="DetailsPage">
       <h2>
         <ObjectTitle object={territory} />
       </h2>

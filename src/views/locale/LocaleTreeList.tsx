@@ -18,10 +18,10 @@ export type LocaleTreeNodeData = {
 };
 
 export function getLocaleTreeNodes(
-  languagesByCode: Record<LanguageCode, LanguageData>,
+  languages: LanguageData[],
   sortFunction: (a: ObjectData, b: ObjectData) => number,
 ): LocaleTreeNodeData[] {
-  return Object.values(languagesByCode)
+  return languages
     .sort(sortFunction)
     .filter((lang) => lang.locales.length > 0)
     .slice(0, 200)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension } from '../controls/PageParamTypes';
 import { getSortFunction, SortByFunctionType } from '../controls/sort';
 import { LanguageData, TerritoryData, TerritoryType, WritingSystemData } from '../DataTypes';
@@ -10,15 +11,17 @@ import { getObjectName } from './common/getObjectName';
 import HoverableObject from './common/HoverableObject';
 import { LocaleTreeNodeData } from './locale/LocaleTreeList';
 
-type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData | WritingSystemData;
+export type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData | WritingSystemData;
 
 type Props = {
   nodeData: TreeNodeData;
-  expandedInititally?: boolean;
+  isExpandedInitially?: boolean;
 };
 
-const TreeListNode: React.FC<Props> = ({ nodeData, expandedInititally = false }) => {
-  const [expanded, setExpanded] = useState(expandedInititally);
+const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }) => {
+  const [expanded, setExpanded] = useState(isExpandedInitially);
+  const [seeAllChildren, setSeeAllChildren] = useState(false);
+  const { limit } = usePageParams();
   const sortFunction = getSortFunction();
   const children = getChildren(nodeData, sortFunction);
   const hasChildren = children.length > 0;
@@ -26,18 +29,34 @@ const TreeListNode: React.FC<Props> = ({ nodeData, expandedInititally = false })
   return (
     <li>
       {hasChildren ? (
-        <button className="expandBranch" onClick={() => setExpanded((prev) => !prev)}>
+        <button
+          className="TreeListExpandBranch"
+          onClick={() => {
+            setExpanded((prev) => !prev);
+            setSeeAllChildren(false);
+          }}
+        >
           {expanded ? `▼` : `▶`}
         </button>
       ) : (
-        <div className="expandBranch empty" />
+        <div className="TreeListExpandBranch empty" />
       )}
       {getNodeTitle(nodeData)}
       {expanded && hasChildren && (
-        <ul className="branch">
-          {children.map((child, i) => (
-            <TreeListNode key={child.code} nodeData={child} expandedInititally={i === 0} />
+        <ul className="TreeListBranch">
+          {children.slice(0, limit > 0 && !seeAllChildren ? limit : undefined).map((child, i) => (
+            <TreeListNode key={child.code} nodeData={child} isExpandedInitially={i === 0} />
           ))}
+          {limit > 0 && children.length > limit && !seeAllChildren && (
+            <li>
+              <button
+                className="TreeListSeeAllDescendents"
+                onClick={() => setSeeAllChildren((prev) => !prev)}
+              >
+                See {children.length - limit} more descendents
+              </button>
+            </li>
+          )}
         </ul>
       )}
     </li>
@@ -60,7 +79,7 @@ function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): 
 function getNodeTitle(nodeData: TreeNodeData): React.ReactNode {
   const seeMore = (
     <HoverableObject object={nodeData.type == Dimension.Locale ? nodeData.object : nodeData}>
-      <button className="SeeMore">&#x24D8;</button>
+      <button className="TreeListInfoButton">&#x24D8;</button>
     </HoverableObject>
   );
 

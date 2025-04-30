@@ -3,7 +3,8 @@ import React from 'react';
 import { getSortFunction } from '../../controls/sort';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
-import HoverableLocaleName from '../locale/HoverableLocaleName';
+import { getLocaleTreeNodes } from '../locale/LocaleTreeList';
+import TreeListRoot from '../TreeListRoot';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
 import HoverableLanguageName from './HoverableLanguageName';
@@ -13,11 +14,10 @@ type Props = {
 };
 
 const LanguageDetails: React.FC<Props> = ({ lang }) => {
+  const sortFunction = getSortFunction();
   const {
-    childLanguages,
     code,
     glottocode,
-    locales,
     medium,
     parentLanguage,
     populationCited,
@@ -67,32 +67,6 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
       </div>
       <div>
         <h3>Connections</h3>
-        {locales.length > 0 && (
-          <div>
-            <label>Found in:</label>
-            <CommaSeparated>
-              {Object.values(locales).map((locale) => (
-                <HoverableLocaleName key={locale.code} labelSource="territory" locale={locale} />
-              ))}
-            </CommaSeparated>
-          </div>
-        )}
-        {parentLanguage != null && (
-          <div>
-            <label>Group:</label>
-            <HoverableLanguageName lang={parentLanguage} />
-          </div>
-        )}
-        {childLanguages.length > 0 && (
-          <div>
-            <label>Includes:</label>
-            <CommaSeparated>
-              {childLanguages.sort(getSortFunction()).map((childLanguage) => (
-                <HoverableLanguageName key={childLanguage.code} lang={childLanguage} />
-              ))}
-            </CommaSeparated>
-          </div>
-        )}
         {primaryWritingSystem && (
           <div>
             <label>Primary Writing System:</label>
@@ -104,7 +78,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             <label>Writing Systems:</label>
             <CommaSeparated>
               {Object.values(writingSystems)
-                .sort(getSortFunction())
+                .sort(sortFunction)
                 .map((writingSystem) => (
                   <HoverableWritingSystemName
                     key={writingSystem.code}
@@ -114,6 +88,34 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             </CommaSeparated>
           </div>
         )}
+      </div>
+      {parentLanguage != null && (
+        <div>
+          <label>Group:</label>
+          <HoverableLanguageName lang={parentLanguage} />
+        </div>
+      )}
+      <div style={{ display: 'flex' }}>
+        <div>
+          <label>Descendent Languages:</label>
+          {lang.childLanguages.length > 0 ? (
+            <TreeListRoot rootNodes={[lang]} />
+          ) : (
+            <div>
+              <em>No languages come from this language.</em>
+            </div>
+          )}
+        </div>
+        <div>
+          <label>Locales:</label>
+          {lang.locales.length > 0 ? (
+            <TreeListRoot rootNodes={getLocaleTreeNodes([lang], sortFunction)} />
+          ) : (
+            <div>
+              <em>There are no recorded locales for this language.</em>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

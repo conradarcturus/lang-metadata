@@ -7,7 +7,7 @@ import { useDataContext } from '../dataloading/DataContext';
 
 import './treelist.css';
 import { getLocaleTreeNodes } from './locale/LocaleTreeList';
-import TreeListNode from './TreeListNode';
+import TreeListRoot from './TreeListRoot';
 
 const ViewTreeList: React.FC = () => {
   const { dimension, limit } = usePageParams();
@@ -26,7 +26,7 @@ const ViewTreeList: React.FC = () => {
           .sort(sortFunction);
       case Dimension.Locale:
         // Building custom tree nodes
-        return getLocaleTreeNodes(languagesByCode, sortFunction);
+        return getLocaleTreeNodes(Object.values(languagesByCode), sortFunction);
       default:
         return Object.values(writingSystems)
           .filter((writingSystem) => writingSystem.parentWritingSystem == null)
@@ -35,15 +35,11 @@ const ViewTreeList: React.FC = () => {
   }, [dimension, sortFunction]);
 
   return (
-    <div className="TreeList">
+    <div className="TreeListView">
       <div style={{ marginBottom: 8 }}>
         <TreeListDescription />
       </div>
-      <ul className="root">
-        {rootNodes.slice(0, limit > 0 ? limit : undefined).map((node, i) => (
-          <TreeListNode key={node.code} nodeData={node} expandedInititally={i === 0} />
-        ))}
-      </ul>
+      <TreeListRoot rootNodes={rootNodes.slice(0, limit > 0 ? limit : undefined)} />
     </div>
   );
 };

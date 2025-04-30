@@ -29,7 +29,7 @@ const LocaleDetailsPage: React.FC = () => {
   }
 
   return (
-    <div className="Details">
+    <div className="DetailsPage">
       <h2>
         <ObjectTitle object={locale} />
       </h2>
