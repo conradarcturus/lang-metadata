@@ -5,7 +5,7 @@
 
 import { Dimension } from './controls/PageParamTypes';
 
-export type DataItem = LanguageData | WritingSystemData | TerritoryData | LocaleData;
+export type ObjectData = LanguageData | WritingSystemData | TerritoryData | LocaleData;
 
 // LanguageCode is ideally an ISO-639 code, or a BCP047 formatted complex language tag
 // should be formatted like ab or abc. But there are some languoids with different

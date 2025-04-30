@@ -59,3 +59,9 @@
 .expandBranch.empty {
     width: 1em;
 }
+
+.TreeList button.SeeMore {
+    background-color: var(--color-background);
+    color: var(--color-button-primary);
+    padding: 0 4px;
+}

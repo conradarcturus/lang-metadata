@@ -8,7 +8,7 @@ import {
   TerritoryType,
   WritingSystemData,
 } from '../DataTypes';
-import { separateTitleAndSubtitle } from '../utils/stringUtils';
+import { separateTitleAndSubtitle } from '../generic/stringUtils';
 
 export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');

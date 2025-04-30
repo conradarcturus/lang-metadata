@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Dimension } from '../controls/PageParamTypes';
-import { DataItem } from '../DataTypes';
+import { ObjectData } from '../DataTypes';
 
 import { getLocaleName } from './locale/LocaleStrings';
 
 type Props = {
-  object: DataItem;
+  object: ObjectData;
 };
 
 const ObjectTitle: React.FC<Props> = ({ object }) => {

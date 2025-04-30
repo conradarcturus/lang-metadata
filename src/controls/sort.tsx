@@ -1,28 +1,28 @@
-import { DataItem } from '../DataTypes';
+import { ObjectData } from '../DataTypes';
 
 import { usePageParams } from './PageParamsContext';
 import { Dimension, SortBy, ViewType } from './PageParamTypes';
 
-export type SortByFunctionType = (a: DataItem, b: DataItem) => number;
+export type SortByFunctionType = (a: ObjectData, b: ObjectData) => number;
 
 export function getSortFunction(): SortByFunctionType {
   const { sortBy, viewType } = usePageParams();
 
   switch (sortBy) {
     case SortBy.Code:
-      return (a: DataItem, b: DataItem) => {
+      return (a: ObjectData, b: ObjectData) => {
         if (a.code > b.code) return 1;
         if (b.code > a.code) return -1;
         return 0;
       };
     case SortBy.Name:
-      return (a: DataItem, b: DataItem) => {
+      return (a: ObjectData, b: ObjectData) => {
         if (a.nameDisplay > b.nameDisplay) return 1;
         if (b.nameDisplay > a.nameDisplay) return -1;
         return 0;
       };
     case SortBy.Population:
-      return (a: DataItem, b: DataItem) => {
+      return (a: ObjectData, b: ObjectData) => {
         switch (a.type) {
           case Dimension.Language:
             return b.type === Dimension.Language ? b.populationCited - a.populationCited : -1;

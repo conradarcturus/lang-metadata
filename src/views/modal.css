@@ -23,20 +23,26 @@
     display: flex;
     justify-content: space-between;
     padding: 4px;
-    background: var(--color-shadow);
+    background: var(--color-button-primary);
+    border-radius: 10px 10px 0px 0px;
 }
 
 .ModalTitle {
     margin-left: 20px;
+    margin-right: 8px;
     font-size: 1.75em;
     text-align: left;
+}
+
+.ModalTitle .subtitle {
+    color: var(--color-button-secondary)
 }
 
 .ModalBody {
     overflow: scroll;
     padding: 0 2em 2em 2em;
     max-height: 800px;
-max-width: 600px;
+    max-width: 600px;
 }
 
 .ModalButtons {

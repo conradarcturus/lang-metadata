@@ -1,28 +1,25 @@
 import { Dimension } from '../../controls/PageParamTypes';
 import {
-  DataItem,
   LanguageCode,
   LanguageData,
   LocaleData,
+  ObjectData,
   WritingSystemData,
 } from '../../DataTypes';
-import HoverableLanguageName from '../language/HoverableLanguageName';
-import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
-
-import HoverableLocaleName from './HoverableLocaleName';
+import { getObjectName } from '../common/getObjectName';
 
 export type LocaleTreeNodeData = {
-  type: Dimension.Locale;
-  level: Dimension;
-  isFinal: boolean;
-  label: React.ReactNode;
-  code: string;
   children: LocaleTreeNodeData[];
+  code: string;
+  label: React.ReactNode;
+  level: Dimension;
+  object: ObjectData;
+  type: Dimension.Locale;
 };
 
 export function getLocaleTreeNodes(
   languagesByCode: Record<LanguageCode, LanguageData>,
-  sortFunction: (a: DataItem, b: DataItem) => number,
+  sortFunction: (a: ObjectData, b: ObjectData) => number,
 ): LocaleTreeNodeData[] {
   return Object.values(languagesByCode)
     .sort(sortFunction)
@@ -31,15 +28,8 @@ export function getLocaleTreeNodes(
     .map((lang) => ({
       type: Dimension.Locale,
       level: Dimension.Language,
-      isFinal: false,
-      label: (
-        <HoverableLanguageName
-          lang={lang}
-          style={{
-            textDecoration: 'none',
-          }}
-        />
-      ),
+      object: lang,
+      label: getObjectName(lang),
       code: lang.code,
       children: getLocaleChildrenForLanguage(lang, sortFunction),
     }));
@@ -47,7 +37,7 @@ export function getLocaleTreeNodes(
 
 function getLocaleChildrenForLanguage(
   lang: LanguageData,
-  sortFunction: (a: DataItem, b: DataItem) => number,
+  sortFunction: (a: ObjectData, b: ObjectData) => number,
 ): LocaleTreeNodeData[] {
   const territoryNodesWithoutWritingSystems = lang.locales
     .filter((locale) => locale.explicitScriptCode == null)
@@ -77,21 +67,14 @@ function getLocaleChildrenForLanguage(
 function getLocaleNodeForWritingSystem(
   writingSystem: WritingSystemData,
   languageCode: LanguageCode,
-  sortFunction: (a: DataItem, b: DataItem) => number,
+  sortFunction: (a: ObjectData, b: ObjectData) => number,
 ): LocaleTreeNodeData {
   return {
     type: Dimension.Locale,
     level: Dimension.WritingSystem,
-    isFinal: true,
+    object: writingSystem,
     code: writingSystem.code,
-    label: (
-      <HoverableWritingSystemName
-        writingSystem={writingSystem}
-        style={{
-          textDecoration: 'none',
-        }}
-      />
-    ),
+    label: getObjectName(writingSystem),
     children: writingSystem.localesWhereExplicit
       .filter((locale) => locale.languageCode === languageCode)
       .sort(sortFunction)
@@ -103,17 +86,9 @@ function getLocaleNodeForTerritory(locale: LocaleData): LocaleTreeNodeData {
   return {
     type: Dimension.Locale,
     level: Dimension.Territory,
-    isFinal: true,
+    object: locale,
     code: locale.code,
-    label: (
-      <HoverableLocaleName
-        locale={locale}
-        labelSource="territory"
-        style={{
-          textDecoration: 'none',
-        }}
-      />
-    ),
+    label: locale.territory?.nameDisplay ?? locale.territoryCode,
     children: [],
   };
 }

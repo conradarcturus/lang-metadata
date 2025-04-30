@@ -6,10 +6,9 @@ import { LanguageData, TerritoryData, TerritoryType, WritingSystemData } from '.
 
 import './treelist.css';
 
-import HoverableLanguageName from './language/HoverableLanguageName';
+import { getObjectName } from './common/getObjectName';
+import HoverableObject from './common/HoverableObject';
 import { LocaleTreeNodeData } from './locale/LocaleTreeList';
-import HoverableTerritoryName from './territory/HoverableTerritoryName';
-import HoverableWritingSystemName from './writingsystem/HoverableWritingSystemName';
 
 type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData | WritingSystemData;
 
@@ -59,39 +58,54 @@ function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): 
 }
 
 function getNodeTitle(nodeData: TreeNodeData): React.ReactNode {
+  const seeMore = (
+    <HoverableObject object={nodeData.type == Dimension.Locale ? nodeData.object : nodeData}>
+      <button className="SeeMore">&#x24D8;</button>
+    </HoverableObject>
+  );
+
   switch (nodeData.type) {
     case Dimension.Language:
       return (
-        <HoverableLanguageName
-          lang={nodeData}
-          style={{
-            textDecoration: 'none',
-          }}
-        />
+        <>
+          {getObjectName(nodeData)}
+          {seeMore}
+        </>
       );
     case Dimension.Territory:
       return (
-        <HoverableTerritoryName
-          territory={nodeData}
-          style={{
-            textDecoration: 'none',
-            fontWeight: nodeData.territoryType === TerritoryType.Country ? 'bold' : 'normal',
-            fontStyle: nodeData.territoryType === TerritoryType.Dependency ? 'italic' : 'normal',
-          }}
-        />
+        <>
+          <span
+            style={{
+              fontWeight: nodeData.territoryType === TerritoryType.Country ? 'bold' : 'normal',
+              fontStyle: nodeData.territoryType === TerritoryType.Dependency ? 'italic' : 'normal',
+            }}
+          >
+            {getObjectName(nodeData)}
+          </span>
+          {seeMore}
+        </>
       );
     case Dimension.Locale:
-      return nodeData.label;
+      return (
+        <>
+          {nodeData.label}
+          {seeMore}
+        </>
+      );
     case Dimension.WritingSystem:
       return (
-        <HoverableWritingSystemName
-          writingSystem={nodeData}
-          style={{
-            textDecoration: 'none',
-            fontWeight: nodeData.populationOfDescendents > 100 ? 'bold' : 'normal',
-            fontStyle: nodeData.populationUpperBound <= 100 ? 'italic' : 'normal',
-          }}
-        />
+        <>
+          <span
+            style={{
+              fontWeight: nodeData.populationOfDescendents > 100 ? 'bold' : 'normal',
+              fontStyle: nodeData.populationUpperBound <= 100 ? 'italic' : 'normal',
+            }}
+          >
+            {getObjectName(nodeData)}
+          </span>
+          {seeMore}
+        </>
       );
   }
 }
