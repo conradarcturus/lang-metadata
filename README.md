@@ -17,6 +17,7 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [x] Languages
     - [x] Core attributes
     - [x] ISO parent/child connections
+    - [x] Language families
     - [ ] Glottolog
     - [ ] Digital Support details
   - [x] Territories
@@ -32,7 +33,7 @@ Here's a list of planned functionality. Completed functions are checked off.
 - [x] Views
   - [x] Cards
   - [x] Details
-  - [ ] Hierarchy - _in progress_
+  - [x] Hierarchy
   - [ ] Table
   - [ ] Map
 - [x] Interactivity

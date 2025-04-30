@@ -121,6 +121,25 @@ export async function loadISOLanguageFamilies(): Promise<ISOLanguageFamilyData[]
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
+export async function loadISOFamiliesToLanguages(): Promise<Record<
+  ISO6395LanguageCode,
+  LanguageCode[]
+> | void> {
+  return await fetch('iso/familiesToLanguages.tsv')
+    .then((res) => res.text())
+    .then((text) => {
+      return text
+        .split('\n')
+        .slice(1)
+        .reduce<Record<ISO6395LanguageCode, LanguageCode[]>>((families, line) => {
+          const parts = line.split('\t');
+          families[parts[0]] = parts[1].split(' ');
+          return families;
+        }, {});
+    })
+    .catch((err) => console.error('Error loading TSV:', err));
+}
+
 export function addISODataToLanguages(
   languages: Record<LanguageCode, LanguageData>,
   isoLanguages: ISOLanguage6393Data[],
@@ -189,8 +208,11 @@ export function addISOMacrolanguageData(
 
 export function addISOLanguageFamilyData(
   languages: Record<LanguageCode, LanguageData>,
+  iso6391Langs: Record<ISO6391LanguageCode, LanguageData>,
   families: ISOLanguageFamilyData[],
+  isoLangsToFamilies: Record<ISO6395LanguageCode, LanguageCode[]>,
 ): void {
+  // Add new language entries for language families, otherwise fill in missing data
   families.forEach((family) => {
     const familyEntry = languages[family.code];
     if (familyEntry == null) {
@@ -222,5 +244,20 @@ export function addISOLanguageFamilyData(
       familyEntry.scope = LanguageScope.Family;
     }
   });
-  return;
+
+  // Iterate again to point constituent languages to the language family
+  families.forEach((family) => {
+    const constituentLanguages = isoLangsToFamilies[family.code] ?? [];
+    constituentLanguages.forEach((langCode) => {
+      const lang = languages[langCode] ?? iso6391Langs[langCode];
+      if (lang == null) {
+        console.log(`${langCode} should be part of ${family.code} but it does not exist`);
+        return;
+      }
+      if (lang.parentLanguageCode == null && lang.parentLanguageCode !== family.code) {
+        // languages may already have macrolanguage parents
+        lang.parentLanguageCode = family.code;
+      }
+    });
+  });
 }
