@@ -249,12 +249,15 @@ export function addISOLanguageFamilyData(
   families.forEach((family) => {
     const constituentLanguages = isoLangsToFamilies[family.code] ?? [];
     constituentLanguages.forEach((langCode) => {
+      if (langCode === 'kor') {
+        console.log(langCode);
+      }
       const lang = languages[langCode] ?? iso6391Langs[langCode];
       if (lang == null) {
         console.log(`${langCode} should be part of ${family.code} but it does not exist`);
         return;
       }
-      if (lang.parentLanguageCode == null && lang.parentLanguageCode !== family.code) {
+      if (lang.parentLanguageCode == null) {
         // languages may already have macrolanguage parents
         lang.parentLanguageCode = family.code;
       }
