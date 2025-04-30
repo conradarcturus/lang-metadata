@@ -24,6 +24,8 @@ type ISOLanguage6393Data = {
   name: string;
 };
 
+const DEBUG = false;
+
 function getScopeFromLetterCode(code: string): LanguageScope | null {
   switch (code) {
     case 'I': // Individual language
@@ -76,6 +78,26 @@ export async function loadISOLanguages(): Promise<ISOLanguage6393Data[] | void> 
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
+type ISOMacrolanguageData = {
+  codeMacro: ISO6393LanguageCode;
+  codeConstituent: ISO6393LanguageCode;
+};
+
+export async function loadISOMacrolanguages(): Promise<ISOMacrolanguageData[] | void> {
+  return await fetch('iso/macrolanguages.tsv')
+    .then((res) => res.text())
+    .then((text) => {
+      return text
+        .split('\n')
+        .slice(1)
+        .map((line) => {
+          const parts = line.split('\t');
+          return { codeMacro: parts[0], codeConstituent: parts[1] };
+        });
+    })
+    .catch((err) => console.error('Error loading TSV:', err));
+}
+
 export function addISODataToLanguages(
   languages: Record<LanguageCode, LanguageData>,
   isoLanguages: ISOLanguage6393Data[],
@@ -84,7 +106,7 @@ export function addISODataToLanguages(
     .map((isoLang) => {
       const lang = languages[isoLang.codeISO6393];
       if (lang == null) {
-        console.log(`${isoLang.codeISO6393} not found`);
+        if (DEBUG) console.log(`${isoLang.codeISO6393} not found`);
         return null;
       }
 
@@ -102,4 +124,42 @@ export function addISODataToLanguages(
       }
       return languagesByISO6391Code;
     }, {});
+}
+
+/**
+ * This performs a series of steps to associate languages with macrolanguages.
+ *
+ * At the moment, this is redundant because the "parentLanguage" field from the main language.tsv is complete.
+ * However, in the future we may drop that column from the main language table, and we should get that data from this process.
+ */
+export function addISOMacrolanguageData(
+  languages: Record<LanguageCode, LanguageData>,
+  macrolanguages: ISOMacrolanguageData[],
+): void {
+  macrolanguages.forEach((relation) => {
+    const macro = languages[relation.codeMacro];
+    const constituent = languages[relation.codeConstituent];
+    if (parent == null) {
+      if (DEBUG) console.log(`Macrolanguage ${relation.codeMacro} not found`);
+      return;
+    }
+    if (constituent == null) {
+      if (DEBUG) console.log(`Constituent language ${relation.codeConstituent} not found`);
+      return;
+    }
+    if (constituent.parentLanguageCode != macro.code) {
+      if (DEBUG)
+        // As of 2025-04-30 all exceptions to this are temporary
+        console.log(
+          `parent different for ${constituent.code}. Is ${constituent.parentLanguageCode} but should be ${macro.code}`,
+        );
+    }
+    if (macro.scope !== LanguageScope.Macrolanguage) {
+      if (DEBUG)
+        // As of 2025-04-30 all macrolanguage are correctly labeled above
+        console.log(
+          `Macrolanguage ${macro.code} should be considered a macrolanguage, instead it is a ${macro.scope}`,
+        );
+    }
+  });
 }

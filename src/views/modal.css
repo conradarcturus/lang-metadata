@@ -28,6 +28,7 @@
 }
 
 .ModalTitle {
+    color: var(--color-background);
     margin-left: 20px;
     margin-right: 8px;
     font-size: 1.75em;

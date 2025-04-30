@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
+import { getObjectName, getObjectSubtitle } from '../common/getObjectName';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableLanguageName from './HoverableLanguageName';
@@ -20,25 +21,25 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
     code,
     locales,
     medium,
-    nameDisplaySubtitle,
     nameDisplayTitle,
     nameEndonym,
     parentLanguage,
     populationCited,
     vitalityEth2013,
   } = lang;
+  const subtitle = getObjectSubtitle(lang);
 
   return (
     <div>
       <h3>
         <a onClick={() => updatePageParams({ modalObject: lang.code })}>
           <strong>
-            <Highlightable str={nameDisplayTitle} match="nameFilter" />
+            <Highlightable str={getObjectName(lang)} match="nameFilter" />
           </strong>{' '}
           {nameDisplayTitle != nameEndonym && nameEndonym} [
           <Highlightable str={code} match="codeFilter" />]
         </a>
-        {nameDisplaySubtitle != null && <div className="subtitle">{nameDisplaySubtitle}</div>}
+        {subtitle != null && <div className="subtitle">{subtitle}</div>}
       </h3>
       <div>
         <h4>Speakers</h4>

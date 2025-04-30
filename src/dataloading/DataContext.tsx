@@ -13,7 +13,12 @@ import {
   WritingSystemData,
 } from '../DataTypes';
 
-import { addISODataToLanguages, loadISOLanguages } from './AddISOData';
+import {
+  addISODataToLanguages,
+  addISOMacrolanguageData,
+  loadISOLanguages,
+  loadISOMacrolanguages,
+} from './AddISOData';
 import {
   computeOtherPopulationStatistics,
   connectLanguagesToParent,
@@ -58,9 +63,10 @@ export const DataProvider: React.FC<{
   const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
 
   async function loadData() {
-    const [langs, isoLangs, territories, locales, writingSystems] = await Promise.all([
+    const [langs, isoLangs, macroLangs, territories, locales, writingSystems] = await Promise.all([
       loadLanguages(dataSubset),
       loadISOLanguages(),
+      loadISOMacrolanguages(),
       loadTerritories(),
       loadLocales(dataSubset),
       loadWritingSystems(),
@@ -71,6 +77,7 @@ export const DataProvider: React.FC<{
     }
 
     const iso6391Langs = addISODataToLanguages(langs, isoLangs || []);
+    addISOMacrolanguageData(langs, macroLangs || []);
     connectLanguagesToParent(langs);
     connectTerritoriesToParent(territories);
     connectWritingSystems(langs, territories, writingSystems);

@@ -31,8 +31,8 @@ export function parseLanguageLine(line: string): LanguageData {
     nameEndonym: parts[3],
 
     vitalityISO: null, // Added by ISO import
-    vitalityEth2013: parts[6],
-    vitalityEth2025: parts[7],
+    vitalityEth2013: parts[6] != '' ? parts[6] : null,
+    vitalityEth2025: parts[7] != '' ? parts[7] : null,
     digitalSupport: parts[8],
     viabilityConfidence: parts[13],
     viabilityExplanation: parts[14],

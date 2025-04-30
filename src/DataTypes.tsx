@@ -43,8 +43,8 @@ export type LanguageData = {
   nameEndonym: string;
 
   vitalityISO: string | null;
-  vitalityEth2013: string;
-  vitalityEth2025: string;
+  vitalityEth2013: string | null;
+  vitalityEth2025: string | null;
   digitalSupport: string;
   viabilityConfidence: string;
   viabilityExplanation: string;
