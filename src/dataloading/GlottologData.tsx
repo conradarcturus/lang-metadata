@@ -40,16 +40,33 @@ function parseGlottolog(line: string): GlottologData {
   };
 }
 
-export async function loadLangoids(): Promise<GlottologData[] | void> {
+export async function loadGlottologLanguages(): Promise<GlottologData[] | void> {
   return await fetch('glottolog.tsv')
     .then((res) => res.text())
     .then((text) => text.split('\n').slice(1).map(parseGlottolog))
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
+export async function loadManualGlottocodeToISO(): Promise<Record<
+  Glottocode,
+  LanguageCode
+> | void> {
+  return await fetch('iso/manualGlottocodeToISO.tsv')
+    .then((res) => res.text())
+    .then((text) =>
+      text
+        .split('\n')
+        .slice(1)
+        .map((line) => line.split('\t')),
+    )
+    .then(Object.fromEntries)
+    .catch((err) => console.error('Error loading TSV:', err));
+}
+
 export function addGlottologLanguages(
   languagesByCode: Record<LanguageCode, LanguageData>,
   glottologImport: GlottologData[],
+  manualGlottocodeToISO: Record<Glottocode, LanguageCode>,
 ): Record<Glottocode, LanguageData> {
   // First initialize the index of glottolog languoids
   const languagesByGlottocode = Object.values(languagesByCode).reduce<
@@ -64,11 +81,22 @@ export function addGlottologLanguages(
 
   // Then add new glottocodes from the import
   glottologImport.forEach((importedLanguage) => {
-    let glottolang = languagesByGlottocode[importedLanguage.glottoCode];
+    let lang = languagesByGlottocode[importedLanguage.glottoCode];
 
-    if (glottolang == null) {
+    // If we were not able to fetch it -- maybe the glottolog list doesn't have the ISO
+    // but we can get it from the manual soruce
+    if (lang == null) {
+      const manualISO = manualGlottocodeToISO[importedLanguage.glottoCode];
+      if (manualISO != null && languagesByCode[manualISO] != null) {
+        lang = languagesByCode[manualISO];
+        lang.glottocode = importedLanguage.glottoCode;
+        languagesByGlottocode[importedLanguage.glottoCode] = lang;
+      }
+    }
+
+    if (lang == null) {
       // Create new LanguageData
-      glottolang = {
+      lang = {
         type: Dimension.Language,
         code: importedLanguage.glottoCode,
         glottocode: importedLanguage.glottoCode,
@@ -85,40 +113,25 @@ export function addGlottologLanguages(
         writingSystems: {},
         locales: [],
       };
-      languagesByGlottocode[importedLanguage.glottoCode] = glottolang;
-      languagesByCode[importedLanguage.glottoCode] = glottolang;
+      languagesByGlottocode[importedLanguage.glottoCode] = lang;
+      languagesByCode[importedLanguage.glottoCode] = lang;
     } else {
       // Fill in missing data
       if (importedLanguage.parentGlottocode != null) {
-        glottolang.parentGlottocode = importedLanguage.parentGlottocode;
-        if (glottolang.parentLanguageCode == null) {
-          glottolang.parentLanguageCode = importedLanguage.parentGlottocode;
+        lang.parentGlottocode = importedLanguage.parentGlottocode;
+        if (lang.parentLanguageCode == null) {
+          lang.parentLanguageCode = importedLanguage.parentGlottocode;
         }
       }
-      if (glottolang.scope == null) {
-        glottolang.scope = importedLanguage.scope;
-      } else if (DEBUG && importedLanguage.scope != glottolang.scope) {
+      if (lang.scope == null) {
+        lang.scope = importedLanguage.scope;
+      } else if (DEBUG && importedLanguage.scope != lang.scope) {
         console.log(
-          `${importedLanguage.glottoCode} scope is ${importedLanguage.scope} in glottolog but ${glottolang.scope} in ISO`,
+          `${importedLanguage.glottoCode} scope is ${importedLanguage.scope} in glottolog but ${lang.scope} in ISO`,
         );
       }
     }
   });
 
   return languagesByGlottocode;
-}
-
-export function connectGlottolangsToParent(
-  languagesByGlottocode: Record<Glottocode, LanguageData>,
-): void {
-  Object.values(languagesByGlottocode).forEach((lang) => {
-    // Connect glottocode, eg. mand1415 -> mand1471
-    if (lang.parentGlottocode != null) {
-      const parent = languagesByGlottocode[lang.parentGlottocode];
-      if (parent != null) {
-        parent.childGlottolangs.push(lang);
-        lang.parentGlottolang = parent;
-      }
-    }
-  });
 }

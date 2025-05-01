@@ -216,12 +216,15 @@ export function addISOLanguageFamilyData(
   families.forEach((family) => {
     const familyEntry = languages[family.code];
     if (familyEntry == null) {
+      // trim excess from the name
+      const name = family.name.replace(/ languages| \(family\)/gi, '');
+
       const familyEntry: LanguageData = {
         type: Dimension.Language,
         code: family.code,
-        nameDisplay: family.name,
+        nameDisplay: name,
         codeISO6392: family.code,
-        nameDisplayTitle: family.name,
+        nameDisplayTitle: name,
         scope: LanguageScope.Family,
         viabilityConfidence: 'No',
         viabilityExplanation: 'Language family',
@@ -251,9 +254,6 @@ export function addISOLanguageFamilyData(
   families.forEach((family) => {
     const constituentLanguages = isoLangsToFamilies[family.code] ?? [];
     constituentLanguages.forEach((langCode) => {
-      if (langCode === 'kor') {
-        console.log(langCode);
-      }
       const lang = languages[langCode] ?? iso6391Langs[langCode];
       if (lang == null) {
         console.log(`${langCode} should be part of ${family.code} but it does not exist`);

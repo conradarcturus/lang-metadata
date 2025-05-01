@@ -1,5 +1,6 @@
 import {
   BCP47LocaleCode,
+  Glottocode,
   LanguageCode,
   LanguageData,
   LocaleData,
@@ -12,14 +13,34 @@ import { getLocaleName } from '../views/locale/LocaleStrings';
 
 export function connectLanguagesToParent(
   languagesByCode: Record<LanguageCode, LanguageData>,
+  languagesByGlottocode: Record<Glottocode, LanguageData>,
 ): void {
+  // Connect regular language code, eg. cmn -> zho
   Object.values(languagesByCode).forEach((lang) => {
-    // Connect regular language code, eg. cmn -> zho
     if (lang.parentLanguageCode != null) {
       const parent = languagesByCode[lang.parentLanguageCode];
       if (parent != null) {
         parent.childLanguages.push(lang);
         lang.parentLanguage = parent;
+      } else if (lang.parentGlottocode != null) {
+        // If we couldn't find the parent, try to find it using the glottocode
+        const glottocodeParent = languagesByGlottocode[lang.parentGlottocode];
+        if (glottocodeParent != null) {
+          lang.parentLanguageCode = lang.parentGlottocode;
+          glottocodeParent.childLanguages.push(lang);
+          lang.parentLanguage = glottocodeParent;
+        }
+      }
+    }
+  });
+
+  // Connect glottocode, eg. mand1415 -> mand1471
+  Object.values(languagesByGlottocode).forEach((lang) => {
+    if (lang.parentGlottocode != null) {
+      const parent = languagesByGlottocode[lang.parentGlottocode];
+      if (parent != null) {
+        parent.childGlottolangs.push(lang);
+        lang.parentGlottolang = parent;
       }
     }
   });
@@ -182,7 +203,7 @@ function computeLanguageDescendentPopulation(lang: LanguageData): number {
   const { childLanguages } = lang;
   const descendentPopulation = childLanguages.reduce(
     (total, childLang) => total + computeLanguageDescendentPopulation(childLang),
-    0,
+    1,
   );
   lang.populationOfDescendents = descendentPopulation;
   return descendentPopulation + (lang.populationCited ?? 0);
@@ -195,5 +216,5 @@ function computeGlottoLanguageDescendentPopulation(lang: LanguageData): number {
     0,
   );
   lang.populationOfGlottoDescendents = descendentPopulation;
-  return descendentPopulation + (lang.populationCited ?? 0);
+  return descendentPopulation + (lang.populationCited ?? 0) + 1;
 }

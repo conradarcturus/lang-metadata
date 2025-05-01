@@ -1,5 +1,5 @@
 Language Code	Glottocode	Display Name	Endonym	Medium	Biggest Script	Ethnologue Vitality 2013	Ethnologue Vitality 2025	Eth Digital Support	Adjusted Populaiton	Population	Parent Language	Parent Glottocode	Recommendation	Recommendation Reason
-zho	sini1245	Chinese (macrolanguage)	中文	Spoken & Written	Hans	National			0	1,296,041,185		sino1245	Yes, with caveat	Huge macrolanguage category with very distinct constituents -- try to include those as well as this, this usually signifies the written form, regardless of spoken language
+zho	clas1255	Chinese (macrolanguage)	中文	Spoken & Written	Hans	National			0	1,296,041,185		sino1245	Yes, with caveat	Huge macrolanguage category with very distinct constituents -- try to include those as well as this, this usually signifies the written form, regardless of spoken language
 eng	stan1293	English	English	Spoken & Written	Latn	National	1 Institutional	Thriving	0	1,243,492,288		macr1271	Yes	
 cmn	mand1415	Mandarin Chinese	普通话	Mostly Spoken (but also written)	Hans	National	1 Institutional	Thriving	0	951,666,932	zho	mand1471	Yes, with caveat	Established variant of a macrolanguage -- many systems may label this as `zh` but it is much clearer to show both, even though there is overlap
 hin	hind1269	Hindi	हिन्दी	Spoken & Written	Deva	National	1 Institutional	Thriving	0	694,325,639		hind1270	Yes	
@@ -4369,7 +4369,7 @@ uli	ulit1238	Ulithian	yal’ool Yiuldiy		Latn	Developing	2 Stable	Emerging	0	3,1
 pbh	enap1235	E'ñapa Woromaipu	E’ñapa Woromaipu		Latn	Developing	2 Stable	Emerging	0	3,100		pemo1246	Yes	
 bco	kalu1248	Kaluli			Latn	Developing	1 Institutional	Emerging	0	3,100		kalu1249	Yes	
 sdp	sher1257	Sherdukpen				Vigorous	2 Stable	Emerging	0	3,100		sher1256	Yes	
-TVK	sout2859	Southeast Ambrym			Latn	Developing	2 Stable	Emerging	0	3,100		ambr1240	Yes	
+tvk	sout2859	Southeast Ambrym			Latn	Developing	2 Stable	Emerging	0	3,100		ambr1240	Yes	
 vic	virg1240	Virgin Islands Creole English			Latn	Vigorous	3 Endangered	Emerging	0	3,100		barb1266	Yes	
 gaq	gata1239	Gata'			Orya	Threatened	3 Endangered	Emerging	0	3,060		mund1335	Yes	
 kpj	kara1500	Karajá			Latn	Threatened	3 Endangered	Emerging	0	3,060		nucl1710	Yes	
@@ -7523,7 +7523,6 @@ inla1267	inla1267	Inland Min									zho	minn1248	No	Group of multiple languages
 mand1471	mand1471	Mandarinic										nort3155	No	Group of multiple languages
 hnm	hain1238	Hainanese							0		zho	qion1239	Yes, with caveat	New to ISO 20250115
 luh	leiz1236	Leizhou Chinese							0		zho	qion1239	Yes, with caveat	New to ISO 20250115
-clas1255	clas1255	Classical-Middle-Modern Sinitic										sini1245	No	Group of multiple languages
 minn1248	minn1248	Min										sini1245	No	Group of multiple languages
 och	oldc1244	Old Chinese							0			sini1245	Probably not	Historical langauge
 ping1245	ping1245	Pinghua										yuep1234	No	Group of multiple languages
@@ -8027,7 +8026,7 @@ xxx-chr-Latn		Cherokee (Latin)							0
 xch	chim1310	Chimakum			Latn		4 Extinct	Still	0			chim1311	No	Extinct language
 cid	chim1301	Chimariko				Extinct	4 Extinct	Still	0				No	Extinct language
 chi		Chinese (Bibliographic)							0		zho		No	Redundant and comes from a different naming scheme
-zhx		Chinese (family)											No	Language family -- there mare many other languages that are part of this
+zhx	sini1245	Chinese (family)											No	Language family -- there mare many other languages that are part of this
 xxx-zh-Latn		Chinese (Latin script)							0					
 xxx-zh-Hant		Chinese (Traditional)							0					
 cbe	chip1236	Chipiajes				Extinct			0			book1242	No	Declared non-existent by ISO
@@ -8517,7 +8516,7 @@ xsd	side1240	Sidetic							0			lyco1239	Probably not	Historical langauge
 xxx-en-simp		Simple English							0					
 sjn	sind1281	Sindarin							0			arti1236	Possibly	Constructed language
 sgm	sing1266	Singa			Latn	Extinct	4 Extinct	Still	0			nort3220	No	Extinct language
-sino1245	sino1245	Sino-Tibetan											No	Group of multiple languages
+sit	sino1245	Sino-Tibetan											No	Group of multiple languages
 svx		Skalvian							0				Probably not	Historical langauge
 skw	skep1238	Skepi Creole Dutch			Latn	Extinct	4 Extinct	Emerging	0			zeeu1239	No	Extinct language
 xxo-art-slovio		Slovio							0					

@@ -30,7 +30,11 @@ import {
   connectWritingSystems,
 } from './DataAssociations';
 import { loadLanguages, loadLocales, loadTerritories, loadWritingSystems } from './DataLoader';
-import { addGlottologLanguages, connectGlottolangsToParent, loadLangoids } from './GlottologData';
+import {
+  addGlottologLanguages,
+  loadGlottologLanguages,
+  loadManualGlottocodeToISO,
+} from './GlottologData';
 
 type DataContextType = {
   languagesByCode: Record<LanguageCode, LanguageData>;
@@ -78,6 +82,7 @@ export const DataProvider: React.FC<{
       langFamilies,
       isoLangsToFamilies,
       glottologImport,
+      manualGlottocodeToISO,
       territories,
       locales,
       writingSystems,
@@ -87,7 +92,8 @@ export const DataProvider: React.FC<{
       loadISOMacrolanguages(),
       loadISOLanguageFamilies(),
       loadISOFamiliesToLanguages(),
-      loadLangoids(),
+      loadGlottologLanguages(),
+      loadManualGlottocodeToISO(),
       loadTerritories(),
       loadLocales(),
       loadWritingSystems(),
@@ -100,9 +106,12 @@ export const DataProvider: React.FC<{
     const iso6391Langs = addISODataToLanguages(langs, isoLangs || []);
     addISOLanguageFamilyData(langs, iso6391Langs, langFamilies || [], isoLangsToFamilies || {});
     addISOMacrolanguageData(langs, macroLangs || []);
-    const languagesByGlottocode = addGlottologLanguages(langs, glottologImport || []);
-    connectLanguagesToParent(langs);
-    connectGlottolangsToParent(languagesByGlottocode);
+    const languagesByGlottocode = addGlottologLanguages(
+      langs,
+      glottologImport || [],
+      manualGlottocodeToISO || {},
+    );
+    connectLanguagesToParent(langs, languagesByGlottocode);
     connectTerritoriesToParent(territories);
     connectWritingSystems(langs, territories, writingSystems);
     connectLocales(langs, territories, writingSystems, locales);
