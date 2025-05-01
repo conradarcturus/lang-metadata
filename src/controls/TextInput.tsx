@@ -8,6 +8,7 @@ type Props = {
   value: string;
 };
 
+// TODO: needs debouncing
 const TextInput: React.FC<Props> = ({ label, value, onChange, inputStyle, placeholder }) => {
   return (
     <div className="selector">

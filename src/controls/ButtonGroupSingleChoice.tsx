@@ -1,32 +1,37 @@
 import React from 'react';
+
 import './styles.css';
+import HoverableButton from '../generic/HoverableButton';
 
 type ButtonGroupSingleChoiceProps<T extends React.Key> = {
+  getOptionDescription?: (value: T) => React.ReactNode;
+  getOptionLabel?: (value: T) => React.ReactNode; // optional label renderer
   groupLabel?: string;
   onChange: (value: T) => void;
   options: readonly T[];
-  renderLabel?: (value: T) => React.ReactNode; // optional label renderer
   selected: T;
 };
 
 function ButtonGroupSingleChoice<T extends React.Key>({
+  getOptionDescription = () => undefined,
+  getOptionLabel = (val) => val as string,
   groupLabel,
   onChange,
   options,
-  renderLabel = (val) => val as string,
   selected,
 }: ButtonGroupSingleChoiceProps<T>) {
   return (
     <div className="selector">
       {groupLabel != null && <label>{groupLabel}</label>}
       {options.map((option) => (
-        <button
+        <HoverableButton
           key={option}
+          hoverContent={getOptionDescription(option)}
           onClick={() => onChange(option)}
           className={selected === option ? 'selected' : ''}
         >
-          {renderLabel(option)}
-        </button>
+          {getOptionLabel(option)}
+        </HoverableButton>
       ))}
     </div>
   );

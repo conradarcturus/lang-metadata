@@ -4,16 +4,32 @@ import { useHoverCard } from './HoverCardContext';
 
 type HoverableProps = {
   children: React.ReactNode;
+  className?: string;
   hoverContent?: React.ReactNode;
   onClick?: () => void;
   style?: React.CSSProperties;
 };
 
-const Hoverable: React.FC<HoverableProps> = ({ children, hoverContent, onClick, style }) => {
+const HoverableButton: React.FC<HoverableProps> = ({
+  children,
+  className,
+  hoverContent,
+  onClick,
+  style,
+}) => {
   const { showHoverCard, hideHoverCard } = useHoverCard();
 
   if (hoverContent == null) {
-    return <>{children}</>;
+    <button
+      className={className}
+      onClick={onClick}
+      style={{
+        cursor: onClick ? 'pointer' : 'auto',
+        ...style,
+      }}
+    >
+      {children}
+    </button>;
   }
 
   const handleMouseEnter = (e: React.MouseEvent) => {
@@ -25,7 +41,8 @@ const Hoverable: React.FC<HoverableProps> = ({ children, hoverContent, onClick, 
   };
 
   return (
-    <span
+    <button
+      className={className}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={hideHoverCard}
@@ -36,15 +53,13 @@ const Hoverable: React.FC<HoverableProps> = ({ children, hoverContent, onClick, 
         }
       }}
       style={{
-        display: 'inline-block',
-        textDecoration: 'underline',
         cursor: onClick ? 'pointer' : 'auto',
         ...style,
       }}
     >
       {children}
-    </span>
+    </button>
   );
 };
 
-export default Hoverable;
+export default HoverableButton;
