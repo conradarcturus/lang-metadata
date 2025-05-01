@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-import { usePageParams } from '../controls/PageParamsContext';
 import {
   BCP47LocaleCode,
   ISO6391LanguageCode,
@@ -54,7 +53,6 @@ const DataContext = createContext<DataContextType | undefined>({
 export const DataProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const { dataSubset } = usePageParams();
   const [languagesByCode, setLanguagesByCode] = useState<Record<LanguageCode, LanguageData>>({});
   const [languagesByISO6391Code, setLanguagesByISO6391Code] = useState<
     Record<ISO6391LanguageCode, LanguageData>
@@ -76,13 +74,13 @@ export const DataProvider: React.FC<{
       locales,
       writingSystems,
     ] = await Promise.all([
-      loadLanguages(dataSubset),
+      loadLanguages(),
       loadISOLanguages(),
       loadISOMacrolanguages(),
       loadISOLanguageFamilies(),
       loadISOFamiliesToLanguages(),
       loadTerritories(),
-      loadLocales(dataSubset),
+      loadLocales(),
       loadWritingSystems(),
     ]);
     if (langs == null || territories == null || locales == null || writingSystems == null) {
@@ -108,7 +106,7 @@ export const DataProvider: React.FC<{
 
   useEffect(() => {
     loadData();
-  }, [dataSubset]); // this is called only 1) after page load and 2) when the dataSubset changes
+  }, []); // this is called once after page load
 
   return (
     <DataContext.Provider

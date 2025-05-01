@@ -5,11 +5,11 @@ import Hoverable from '../generic/Hoverable';
 import ButtonGroupSingleChoice from './ButtonGroupSingleChoice';
 import FilterControls from './FilterControls';
 import { usePageParams } from './PageParamsContext';
-import { DataSubset, Dimension, ViewType } from './PageParamTypes';
+import { LanguageSchema, Dimension, ViewType } from './PageParamTypes';
 
 // TODO: needs debouncing on text input
 const ControlsBar: React.FC = () => {
-  const { dataSubset, viewType, dimension, updatePageParams } = usePageParams();
+  const { languageSchema, viewType, dimension, updatePageParams } = usePageParams();
 
   return (
     <div className="controlsBar">
@@ -30,11 +30,11 @@ const ControlsBar: React.FC = () => {
             selected={viewType}
           />
         </Hoverable>
-        <Hoverable hoverContent='Decide how much data is loaded. "All" will impact page performance.'>
-          <ButtonGroupSingleChoice<DataSubset>
-            options={Object.values(DataSubset)}
-            onChange={(dataSubset: DataSubset) => updatePageParams({ dataSubset })}
-            selected={dataSubset}
+        <Hoverable hoverContent="Different groups identify what a language is. Use this option to control the schema of language you want to follow.">
+          <ButtonGroupSingleChoice<LanguageSchema>
+            options={Object.values(LanguageSchema)}
+            onChange={(languageSchema: LanguageSchema) => updatePageParams({ languageSchema })}
+            selected={languageSchema}
           />
         </Hoverable>
       </div>

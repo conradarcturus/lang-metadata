@@ -2,8 +2,8 @@ import React, { createContext, useContext, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
-  DataSubset,
   Dimension,
+  LanguageSchema,
   PageParams,
   PageParamsOptional,
   SortBy,
@@ -45,7 +45,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const providerValue: PageParamsContextState = useMemo(
     () => ({
       codeFilter: getParam('codeFilter', ''),
-      dataSubset: getParam('dataSubset', DataSubset.Top200) as DataSubset,
+      languageSchema: getParam('languageSchema', LanguageSchema.ISO) as LanguageSchema,
       dimension: getParam('dimension', Dimension.Language) as Dimension,
       limit: parseInt(getParam('limit', '8')),
       nameFilter: getParam('nameFilter', ''),

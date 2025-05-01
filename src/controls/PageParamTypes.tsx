@@ -13,9 +13,11 @@ export enum ViewType {
   //   Table = 'table',
 }
 
-export enum DataSubset {
-  Top200 = 'Top 200',
-  All = 'All',
+export enum LanguageSchema {
+  Inclusive = 'Inclusive',
+  ISO = 'ISO',
+  WAL = 'WAL',
+  Glottolog = 'Glottolog',
 }
 
 export enum SortBy {
@@ -26,7 +28,7 @@ export enum SortBy {
 
 export type PageParams = {
   codeFilter: string;
-  dataSubset: DataSubset;
+  languageSchema: LanguageSchema;
   dimension: Dimension;
   limit: number; // < 1 means show all
   modalObject: string | null;
@@ -37,7 +39,7 @@ export type PageParams = {
 
 export type PageParamsOptional = {
   codeFilter?: string;
-  dataSubset?: DataSubset;
+  languageSchema?: LanguageSchema;
   dimension?: Dimension;
   limit?: number;
   modalObject?: string | null;
