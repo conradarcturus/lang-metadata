@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
-import { ObjectData } from '../DataTypes';
+import { LanguageData, LanguageScope, ObjectData, TerritoryType } from '../DataTypes';
 
 import { usePageParams } from './PageParamsContext';
-import { Dimension } from './PageParamTypes';
+import { Dimension, LanguageSchema, ViewType } from './PageParamTypes';
 
 export type FilterFunctionType = (a: ObjectData) => boolean;
 
@@ -42,4 +42,71 @@ export function getSubstringFilter(): FilterFunctionType {
     };
   }, [codeFilterFunction, lowercaseNameFilter]);
   return substringFilterFunction;
+}
+
+export function getLanguageSchemaFilter(): (a: LanguageData) => boolean {
+  const { languageSchema } = usePageParams();
+  switch (languageSchema) {
+    case LanguageSchema.Inclusive:
+      return () => true;
+    case LanguageSchema.ISO:
+      return (a: LanguageData) => a.codeISO6392 != null;
+    case LanguageSchema.Glottolog:
+      return (a: LanguageData) => a.glottocode != null;
+    case LanguageSchema.WAL:
+      return (a: LanguageData) => a.viabilityConfidence != null && a.viabilityConfidence != 'No';
+  }
+}
+
+/**
+ * Provides a function that provides the viable subset of results for a given view.
+ */
+export function getViableRootEntriesFilter(): FilterFunctionType {
+  const { viewType } = usePageParams();
+  const languageSchemaFilterFunction = getLanguageSchemaFilter();
+
+  const viableLanguageFunction = (a: LanguageData): boolean => {
+    switch (viewType) {
+      case ViewType.CardList:
+        return languageSchemaFilterFunction(a) && a.scope != LanguageScope.Family;
+      case ViewType.Hierarchy:
+        return (
+          languageSchemaFilterFunction(a) &&
+          (a.parentLanguage == null || !languageSchemaFilterFunction(a.parentLanguage))
+        );
+      case ViewType.Details:
+        return true; // not filtering Details
+    }
+  };
+
+  switch (viewType) {
+    case ViewType.CardList:
+      return (a: ObjectData) => {
+        switch (a.type) {
+          case Dimension.Language:
+            return viableLanguageFunction(a);
+          case Dimension.Locale:
+            return a.language != null && viableLanguageFunction(a.language);
+          case Dimension.Territory:
+            return [TerritoryType.Country, TerritoryType.Dependency].includes(a.territoryType);
+          case Dimension.WritingSystem:
+            return true; // not filtering WritingSystem
+        }
+      };
+    case ViewType.Hierarchy:
+      return (a: ObjectData) => {
+        switch (a.type) {
+          case Dimension.Language:
+            return viableLanguageFunction(a);
+          case Dimension.Locale:
+            return a.language != null && viableLanguageFunction(a.language);
+          case Dimension.Territory:
+            return a.parentUNRegion == null;
+          case Dimension.WritingSystem:
+            return a.parentWritingSystem == null;
+        }
+      };
+  }
+
+  return () => true;
 }

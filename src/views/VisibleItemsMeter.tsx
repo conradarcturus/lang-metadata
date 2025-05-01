@@ -1,19 +1,22 @@
 import React from 'react';
 
+import { usePageParams } from '../controls/PageParamsContext';
+import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
+
 interface Props {
   nShown: number;
   nFiltered: number;
   nOverall: number;
-  nounPlural: string;
 }
 
-const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall, nounPlural }) => {
+const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => {
   if (nOverall === 0) {
     return 'Data is still loading. If you are waiting awhile there could be an error in the data.';
   }
   const totalItemsLoaded = (
     <>
-      {nOverall > nFiltered && <> There are {<strong>{nOverall}</strong>} total</>} {nounPlural}
+      {nOverall > nFiltered && <> There are {<strong>{nOverall}</strong>} total</>}{' '}
+      {getObjectTypeLabel()}
     </>
   );
 
@@ -26,7 +29,7 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall, nounP
     return (
       <>
         Showing <strong>{nShown}</strong>
-        {nOverall > nShown && <> of {<strong>{nOverall}</strong>}</>} {nounPlural}.
+        {nOverall > nShown && <> of {<strong>{nOverall}</strong>}</>} {getObjectTypeLabel()}.
       </>
     );
   }
@@ -34,10 +37,34 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall, nounP
   return (
     <>
       Showing <strong>{nShown}</strong>
-      {nFiltered > nShown && <> of {<strong>{nFiltered}</strong>}</>} filtered {nounPlural}.
-      {nOverall > nFiltered && totalItemsLoaded}
+      {nFiltered > nShown && <> of {<strong>{nFiltered}</strong>}</>} filtered{' '}
+      {getObjectTypeLabel()}.{nOverall > nFiltered && totalItemsLoaded}
     </>
   );
 };
+
+function getObjectTypeLabel(): string {
+  const { languageSchema, dimension } = usePageParams();
+
+  switch (dimension) {
+    case Dimension.Language:
+      switch (languageSchema) {
+        case LanguageSchema.Glottolog:
+        case LanguageSchema.Inclusive:
+          return 'languoids';
+        case LanguageSchema.ISO:
+          return 'ISO languages';
+        case LanguageSchema.WAL:
+          return 'languages';
+      }
+    // eslint-disable-next-line no-fallthrough
+    case Dimension.Locale:
+      return 'locales';
+    case Dimension.Territory:
+      return 'countries and dependencies';
+    case Dimension.WritingSystem:
+      return 'writing systems';
+  }
+}
 
 export default VisibleItemsMeter;

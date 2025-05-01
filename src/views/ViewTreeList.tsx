@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 
+import { getLanguageSchemaFilter, getViableRootEntriesFilter } from '../controls/filter';
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension } from '../controls/PageParamTypes';
 import { getSortFunction } from '../controls/sort';
@@ -13,26 +14,25 @@ const ViewTreeList: React.FC = () => {
   const { dimension, limit } = usePageParams();
   const { territoriesByCode, languagesByCode, writingSystems } = useDataContext();
   const sortFunction = getSortFunction();
+  const viableEntriesFunction = getViableRootEntriesFilter();
+  const languageSchemaFilterFunction = getLanguageSchemaFilter();
 
   const rootNodes = useMemo(() => {
     switch (dimension) {
       case Dimension.Language:
-        return Object.values(languagesByCode)
-          .filter((lang) => lang.parentLanguage == null)
-          .sort(sortFunction);
+        return Object.values(languagesByCode).filter(viableEntriesFunction).sort(sortFunction);
       case Dimension.Territory:
-        return Object.values(territoriesByCode)
-          .filter((territory) => territory.parentUNRegion == null)
-          .sort(sortFunction);
+        return Object.values(territoriesByCode).filter(viableEntriesFunction).sort(sortFunction);
       case Dimension.Locale:
         // Building custom tree nodes
-        return getLocaleTreeNodes(Object.values(languagesByCode), sortFunction);
+        return getLocaleTreeNodes(
+          Object.values(languagesByCode).filter(languageSchemaFilterFunction),
+          sortFunction,
+        );
       default:
-        return Object.values(writingSystems)
-          .filter((writingSystem) => writingSystem.parentWritingSystem == null)
-          .sort(sortFunction);
+        return Object.values(writingSystems).filter(viableEntriesFunction).sort(sortFunction);
     }
-  }, [dimension, sortFunction]);
+  }, [dimension, sortFunction, viableEntriesFunction, languageSchemaFilterFunction]);
 
   return (
     <div className="TreeListView">

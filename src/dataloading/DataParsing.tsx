@@ -23,7 +23,7 @@ export function parseLanguageLine(line: string): LanguageData {
     type: Dimension.Language,
 
     code: parts[0],
-    glottocode: parts[1],
+    glottocode: parts[1] != '' ? parts[1] : undefined,
     codeISO6391: undefined, // Added by ISO import
     codeISO6392: undefined, // Added by ISO import
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getSubstringFilter } from '../../controls/filter';
+import { getSubstringFilter, getViableRootEntriesFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -13,9 +13,12 @@ const LocaleCardList: React.FC = () => {
   const { locales } = useDataContext();
   const { limit } = usePageParams();
   const substringFilterFunction = getSubstringFilter();
+  const viableEntriesFunction = getViableRootEntriesFilter();
 
+  // Find the viable languages
+  const localesViable = Object.values(locales).filter(viableEntriesFunction);
   // Filter results
-  const localeFiltered = Object.values(locales).filter(substringFilterFunction);
+  const localeFiltered = localesViable.filter(substringFilterFunction);
   // Sort results & limit how many are visible
   const localesVisible = localeFiltered
     .sort(getSortFunction())
@@ -27,8 +30,7 @@ const LocaleCardList: React.FC = () => {
         <VisibleItemsMeter
           nShown={localesVisible.length}
           nFiltered={localeFiltered.length}
-          nOverall={Object.keys(locales).length}
-          nounPlural="locales"
+          nOverall={localesViable.length}
         />
       </div>
       <div className="CardList">

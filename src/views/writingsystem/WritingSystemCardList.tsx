@@ -31,7 +31,6 @@ const WritingSystemCardList: React.FC = () => {
           nShown={writingSystemsVisible.length}
           nFiltered={writingSystemsFiltered.length}
           nOverall={Object.keys(writingSystems).length}
-          nounPlural="writing systems"
         />
       </div>
       <div className="CardList">
