@@ -52,6 +52,7 @@ export type LanguageData = {
   populationAdjusted?: number;
   populationCited?: number;
   populationOfDescendents?: number;
+  populationOfGlottoDescendents?: number;
 
   medium?: string;
   primaryScriptCode?: ScriptCode;

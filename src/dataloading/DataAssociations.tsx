@@ -163,6 +163,9 @@ export function computeOtherPopulationStatistics(
   Object.values(languages)
     .filter((lang) => lang.parentLanguageCode == null)
     .forEach(computeLanguageDescendentPopulation);
+  Object.values(languages)
+    .filter((lang) => lang.parentGlottocode == null)
+    .forEach(computeGlottoLanguageDescendentPopulation);
 }
 
 function computeWritingSystemDescendentPopulation(writingSystem: WritingSystemData): number {
@@ -172,10 +175,6 @@ function computeWritingSystemDescendentPopulation(writingSystem: WritingSystemDa
     0,
   );
   writingSystem.populationOfDescendents = descendentPopulation;
-  if (Number.isNaN(descendentPopulation)) {
-    console.log(writingSystem, descendentPopulation);
-  }
-
   return descendentPopulation + writingSystem.populationUpperBound;
 }
 
@@ -186,9 +185,15 @@ function computeLanguageDescendentPopulation(lang: LanguageData): number {
     0,
   );
   lang.populationOfDescendents = descendentPopulation;
-  if (Number.isNaN(descendentPopulation)) {
-    console.log(lang, descendentPopulation);
-  }
+  return descendentPopulation + (lang.populationCited ?? 0);
+}
 
+function computeGlottoLanguageDescendentPopulation(lang: LanguageData): number {
+  const { childGlottolangs } = lang;
+  const descendentPopulation = childGlottolangs.reduce(
+    (total, childLang) => total + computeGlottoLanguageDescendentPopulation(childLang),
+    0,
+  );
+  lang.populationOfGlottoDescendents = descendentPopulation;
   return descendentPopulation + (lang.populationCited ?? 0);
 }

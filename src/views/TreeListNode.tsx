@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { getLanguageSchemaFilter } from '../controls/filter';
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension } from '../controls/PageParamTypes';
+import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
 import { getSortFunction, SortByFunctionType } from '../controls/sort';
 import {
   LanguageData,
@@ -71,9 +71,15 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
 };
 
 function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): TreeNodeData[] {
+  const { languageSchema } = usePageParams();
+
   switch (nodeData.type) {
     case Dimension.Language:
-      return nodeData.childLanguages.filter(getLanguageSchemaFilter()).sort(sortFunction);
+      if (languageSchema === LanguageSchema.Glottolog) {
+        return nodeData.childGlottolangs.filter(getLanguageSchemaFilter()).sort(sortFunction);
+      } else {
+        return nodeData.childLanguages.filter(getLanguageSchemaFilter()).sort(sortFunction);
+      }
     case Dimension.Territory:
       return nodeData.regionContainsTerritories.sort(sortFunction);
     case Dimension.Locale:

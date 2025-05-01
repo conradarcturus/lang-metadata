@@ -18,7 +18,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] Core attributes
     - [x] ISO parent/child connections
     - [x] Language families
-    - [ ] Glottolog -- _in progress_
+    - [x] Glottolog
     - [ ] Digital Support details
   - [x] Territories
     - [x] Countries & Dependencies

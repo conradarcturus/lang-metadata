@@ -62,7 +62,7 @@ export function getLanguageSchemaFilter(): (a: LanguageData) => boolean {
  * Provides a function that provides the viable subset of results for a given view.
  */
 export function getViableRootEntriesFilter(): FilterFunctionType {
-  const { viewType } = usePageParams();
+  const { viewType, languageSchema } = usePageParams();
   const languageSchemaFilterFunction = getLanguageSchemaFilter();
 
   const viableLanguageFunction = (a: LanguageData): boolean => {
@@ -70,10 +70,17 @@ export function getViableRootEntriesFilter(): FilterFunctionType {
       case ViewType.CardList:
         return languageSchemaFilterFunction(a) && a.scope != LanguageScope.Family;
       case ViewType.Hierarchy:
-        return (
-          languageSchemaFilterFunction(a) &&
-          (a.parentLanguage == null || !languageSchemaFilterFunction(a.parentLanguage))
-        );
+        if (languageSchema == LanguageSchema.Glottolog) {
+          return (
+            languageSchemaFilterFunction(a) &&
+            (a.parentGlottolang == null || !languageSchemaFilterFunction(a.parentGlottolang))
+          );
+        } else {
+          return (
+            languageSchemaFilterFunction(a) &&
+            (a.parentLanguage == null || !languageSchemaFilterFunction(a.parentLanguage))
+          );
+        }
       case ViewType.Details:
         return true; // not filtering Details
     }

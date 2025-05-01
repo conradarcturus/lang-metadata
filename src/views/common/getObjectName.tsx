@@ -18,28 +18,28 @@ export function getObjectName(object: ObjectData) {
   }
 }
 
-export function getObjectSubtitle(object: ObjectData): string | null {
+export function getObjectSubtitle(object: ObjectData): string | undefined {
   switch (object.type) {
     case Dimension.Language:
       return getLanguageSubtitle(object);
     case Dimension.Locale:
-      return null;
+      return undefined;
     case Dimension.Territory:
       return object.territoryType;
     case Dimension.WritingSystem:
-      return object.nameDisplay != object.nameFull ? object.nameFull : null;
+      return object.nameDisplay != object.nameFull ? object.nameFull : undefined;
   }
 }
 
-function getLanguageSubtitle(lang: LanguageData): string | null {
+function getLanguageSubtitle(lang: LanguageData): string | undefined {
   let nameDisplaySubtitle = lang.nameDisplaySubtitle;
   let scope = lang.scope;
   if (nameDisplaySubtitle === 'macrolanguage') {
-    nameDisplaySubtitle = null; // Already covered by the scope argument
+    nameDisplaySubtitle = undefined; // Already covered by the scope argument
   }
   if (scope == LanguageScope.Language) {
-    scope = null; // Not particularly interesting
+    scope = undefined; // Not particularly interesting
   }
   const composite = [scope, nameDisplaySubtitle].filter(Boolean).join(', ');
-  return composite !== '' ? composite : null;
+  return composite !== '' ? composite : undefined;
 }
