@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getSubstringFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -10,17 +11,12 @@ import LanguageCard from './LanguageCard';
 
 const LanguageCardList: React.FC = () => {
   const { languagesByCode } = useDataContext();
-  const { codeFilter, nameFilter, limit } = usePageParams();
+  const { limit } = usePageParams();
   const sortByFunction = getSortFunction();
+  const substringFilterFunction = getSubstringFilter();
 
   // Filter results
-  const lowercaseNameFilter = nameFilter.toLowerCase();
-  const lowercaseCodeFilter = codeFilter.toLowerCase();
-  const languagesFiltered = Object.values(languagesByCode).filter(
-    (lang) =>
-      (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
-      (nameFilter == '' || lang.nameDisplayTitle.toLowerCase().includes(lowercaseNameFilter)),
-  );
+  const languagesFiltered = Object.values(languagesByCode).filter(substringFilterFunction);
   // Sort results & limit how many are visible
   const languagesVisible = languagesFiltered
     .sort(sortByFunction)

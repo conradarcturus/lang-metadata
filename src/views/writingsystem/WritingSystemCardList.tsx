@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getSubstringFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -10,22 +11,17 @@ import WritingSystemCard from './WritingSystemCard';
 
 const WritingSystemCardList: React.FC = () => {
   const { writingSystems } = useDataContext();
-  const { codeFilter, nameFilter, limit } = usePageParams();
-  const lowercaseNameFilter = nameFilter.toLowerCase();
-  const lowercaseCodeFilter = codeFilter.toLowerCase();
+  const { limit } = usePageParams();
+  const sortFunction = getSortFunction();
+  const substringFilterFunction = getSubstringFilter();
 
   // Filter results
   const writingSystemsFiltered = Object.keys(writingSystems)
     .map((writingSystemCode) => writingSystems[writingSystemCode])
-    .filter(
-      (writingSystem) =>
-        (codeFilter === '' || writingSystem.code.toLowerCase().startsWith(lowercaseCodeFilter)) &&
-        (nameFilter === '' ||
-          writingSystem.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
-    );
+    .filter(substringFilterFunction);
   // Sort results & limit how many are visible
   const writingSystemsVisible = writingSystemsFiltered
-    .sort(getSortFunction())
+    .sort(sortFunction)
     .slice(0, limit > 0 ? limit : undefined);
 
   return (

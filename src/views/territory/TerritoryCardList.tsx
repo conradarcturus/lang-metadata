@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getSubstringFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -11,22 +12,21 @@ import TerritoryCard from './TerritoryCard';
 
 const TerritoryCardList: React.FC = () => {
   const { territoriesByCode } = useDataContext();
-  const { codeFilter, nameFilter, limit } = usePageParams();
-  const lowercaseNameFilter = nameFilter.toLowerCase();
-  const lowercaseCodeFilter = codeFilter.toLowerCase();
+  const { limit } = usePageParams();
+  const sortFunction = getSortFunction();
+  const substringFilterFunction = getSubstringFilter();
 
   // Filter results
   const territoriesFiltered = Object.keys(territoriesByCode)
     .map((territoryCode) => territoriesByCode[territoryCode])
     .filter(
       (territory) =>
-        (codeFilter === '' || territory.code.toLowerCase().startsWith(lowercaseCodeFilter)) &&
-        (nameFilter === '' || territory.nameDisplay.toLowerCase().includes(lowercaseNameFilter)) &&
+        substringFilterFunction(territory) &&
         [TerritoryType.Country, TerritoryType.Dependency].includes(territory.territoryType),
     );
   // Sort results & limit how many are visible
   const territoriesVisible = territoriesFiltered
-    .sort(getSortFunction())
+    .sort(sortFunction)
     .slice(0, limit > 0 ? limit : undefined);
 
   return (

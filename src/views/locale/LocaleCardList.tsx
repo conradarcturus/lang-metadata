@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getSubstringFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -10,16 +11,11 @@ import LocaleCard from './LocaleCard';
 
 const LocaleCardList: React.FC = () => {
   const { locales } = useDataContext();
-  const { codeFilter, nameFilter, limit } = usePageParams();
-  const lowercaseNameFilter = nameFilter.toLowerCase();
-  const lowercaseCodeFilter = codeFilter.toLowerCase();
+  const { limit } = usePageParams();
+  const substringFilterFunction = getSubstringFilter();
 
   // Filter results
-  const localeFiltered = Object.values(locales).filter(
-    (lang) =>
-      (codeFilter == '' || lang.code.toLowerCase().includes(lowercaseCodeFilter)) &&
-      (nameFilter == '' || lang.nameDisplay.toLowerCase().includes(lowercaseNameFilter)),
-  );
+  const localeFiltered = Object.values(locales).filter(substringFilterFunction);
   // Sort results & limit how many are visible
   const localesVisible = localeFiltered
     .sort(getSortFunction())
