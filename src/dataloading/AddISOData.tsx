@@ -241,6 +241,7 @@ export function addISOLanguageFamilyData(
         familyEntry.nameDisplayTitle = family.name;
       }
       familyEntry.parentLanguageCode = family.parent;
+      familyEntry.codeISO6392 = family.code;
       familyEntry.scope = LanguageScope.Family;
     }
   });

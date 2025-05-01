@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { getLanguageSchemaFilter } from '../controls/filter';
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension } from '../controls/PageParamTypes';
 import { getSortFunction, SortByFunctionType } from '../controls/sort';
@@ -72,7 +73,7 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
 function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): TreeNodeData[] {
   switch (nodeData.type) {
     case Dimension.Language:
-      return nodeData.childLanguages.sort(sortFunction);
+      return nodeData.childLanguages.filter(getLanguageSchemaFilter()).sort(sortFunction);
     case Dimension.Territory:
       return nodeData.regionContainsTerritories.sort(sortFunction);
     case Dimension.Locale:
