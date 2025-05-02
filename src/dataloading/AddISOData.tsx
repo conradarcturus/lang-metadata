@@ -229,8 +229,10 @@ export function addISOLanguageFamilyData(
         viabilityConfidence: 'No',
         viabilityExplanation: 'Language family',
         parentLanguageCode: family.parent,
+        parentISOCode: family.parent,
 
         childLanguages: [],
+        childISOLangs: [],
         childGlottolangs: [],
         writingSystems: {},
         locales: [],
@@ -245,6 +247,7 @@ export function addISOLanguageFamilyData(
         familyEntry.nameDisplayTitle = family.name;
       }
       familyEntry.parentLanguageCode = family.parent;
+      familyEntry.parentISOCode = family.parent;
       familyEntry.codeISO6392 = family.code;
       familyEntry.scope = LanguageScope.Family;
     }
@@ -262,6 +265,7 @@ export function addISOLanguageFamilyData(
       if (lang.parentLanguageCode == null) {
         // languages may already have macrolanguage parents
         lang.parentLanguageCode = family.code;
+        lang.parentISOCode = family.code;
       }
     });
   });

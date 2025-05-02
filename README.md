@@ -41,6 +41,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] By Code
     - [x] By Name
     - [x] Highlight search
+    - [ ] For Hierarchy
     - [ ] Using typeahead
   - [x] Hovercard & Tooltips
     - [x] Related objects
@@ -51,10 +52,9 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Export
 - [ ] Manage data sources
   - [x] Load different subsets of data
-  - [ ] Show results based on different definitions of what a language is - _in progress_
-    - [ ] ISO Languages, Macrolanguages, and Language Families
-    - [ ] Glottolog Languoids
-    - [ ] Inclusive
+  - [x] Show results based on different definitions of what a language is
+    - [x] ISO, Glottolog, Inclusive
+    - [ ] Highlight codes in each
 - [ ] Future ideas
   - [ ] Database-powered backend
   - [ ] Feedback mechanisms

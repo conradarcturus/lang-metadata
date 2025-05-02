@@ -16,7 +16,7 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
   const totalItemsLoaded = (
     <>
       {nOverall > nFiltered && <> There are {<strong>{nOverall}</strong>} total</>}{' '}
-      {getObjectTypeLabel()}
+      <ObjectTypeLabel />
     </>
   );
 
@@ -29,7 +29,7 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
     return (
       <>
         Showing <strong>{nShown}</strong>
-        {nOverall > nShown && <> of {<strong>{nOverall}</strong>}</>} {getObjectTypeLabel()}.
+        {nOverall > nShown && <> of {<strong>{nOverall}</strong>}</>} <ObjectTypeLabel />.
       </>
     );
   }
@@ -37,13 +37,13 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
   return (
     <>
       Showing <strong>{nShown}</strong>
-      {nFiltered > nShown && <> of {<strong>{nFiltered}</strong>}</>} filtered{' '}
-      {getObjectTypeLabel()}.{nOverall > nFiltered && totalItemsLoaded}
+      {nFiltered > nShown && <> of {<strong>{nFiltered}</strong>}</>} filtered <ObjectTypeLabel />.
+      {nOverall > nFiltered && totalItemsLoaded}
     </>
   );
 };
 
-function getObjectTypeLabel(): string {
+const ObjectTypeLabel: React.FC = () => {
   const { languageSchema, dimension } = usePageParams();
 
   switch (dimension) {
@@ -66,6 +66,6 @@ function getObjectTypeLabel(): string {
     case Dimension.WritingSystem:
       return 'writing systems';
   }
-}
+};
 
 export default VisibleItemsMeter;

@@ -77,8 +77,10 @@ function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): 
     case Dimension.Language:
       if (languageSchema === LanguageSchema.Glottolog) {
         return nodeData.childGlottolangs.filter(getLanguageSchemaFilter()).sort(sortFunction);
-      } else {
+      } else if (languageSchema === LanguageSchema.Inclusive) {
         return nodeData.childLanguages.filter(getLanguageSchemaFilter()).sort(sortFunction);
+      } else {
+        return nodeData.childISOLangs.filter(getLanguageSchemaFilter()).sort(sortFunction);
       }
     case Dimension.Territory:
       return nodeData.regionContainsTerritories.sort(sortFunction);

@@ -52,17 +52,21 @@ export type LanguageData = {
   populationAdjusted?: number;
   populationCited?: number;
   populationOfDescendents?: number;
+  populationOfISODescendents?: number;
   populationOfGlottoDescendents?: number;
 
   medium?: string;
   primaryScriptCode?: ScriptCode;
   parentLanguageCode?: LanguageCode;
+  parentISOCode?: LanguageCode;
   parentGlottocode?: Glottocode;
 
   // References to other objects, filled in after loading the TSV
   parentLanguage?: LanguageData;
+  parentISOlang?: LanguageData;
   parentGlottolang?: LanguageData;
   childLanguages: LanguageData[];
+  childISOLangs: LanguageData[];
   childGlottolangs: LanguageData[];
   locales: LocaleData[];
   primaryWritingSystem?: WritingSystemData;

@@ -47,12 +47,14 @@ export function parseLanguageLine(line: string): LanguageData {
     medium: parts[4] != '' ? parts[4] : undefined,
     primaryScriptCode: parts[5] != '' ? parts[5] : undefined,
     parentLanguageCode: parts[11] != '' ? parts[11] : undefined,
+    parentISOCode: parts[11] != '' && parts[11].length <= 3 ? parts[11] : undefined,
     parentGlottocode: parts[12] != '' ? parts[12] : undefined,
 
     // References to other objects, filled in with DataAssociations methods
     parentLanguage: undefined,
     parentGlottolang: undefined,
     childLanguages: [],
+    childISOLangs: [],
     childGlottolangs: [],
     locales: [],
     primaryWritingSystem: undefined,

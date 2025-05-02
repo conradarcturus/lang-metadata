@@ -75,10 +75,15 @@ export function getViableRootEntriesFilter(): FilterFunctionType {
             languageSchemaFilterFunction(a) &&
             (a.parentGlottolang == null || !languageSchemaFilterFunction(a.parentGlottolang))
           );
-        } else {
+        } else if (languageSchema == LanguageSchema.Inclusive) {
           return (
             languageSchemaFilterFunction(a) &&
             (a.parentLanguage == null || !languageSchemaFilterFunction(a.parentLanguage))
+          );
+        } else {
+          return (
+            languageSchemaFilterFunction(a) &&
+            (a.parentISOlang == null || !languageSchemaFilterFunction(a.parentISOlang))
           );
         }
       case ViewType.Details:

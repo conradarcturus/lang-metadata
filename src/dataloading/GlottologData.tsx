@@ -109,6 +109,7 @@ export function addGlottologLanguages(
         parentGlottocode: importedLanguage.parentGlottocode,
 
         childLanguages: [],
+        childISOLangs: [],
         childGlottolangs: [],
         writingSystems: {},
         locales: [],
