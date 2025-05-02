@@ -3,7 +3,7 @@
  * It includes types for language codes, glottocodes, and language data.
  */
 
-import { Dimension } from './controls/PageParamTypes';
+import { Dimension, LanguageSchema } from './controls/PageParamTypes';
 
 export type ObjectData = LanguageData | WritingSystemData | TerritoryData | LocaleData;
 
@@ -30,11 +30,8 @@ export type LanguageData = {
   type: Dimension.Language;
 
   // Provided by the TSV files
-  code: LanguageCode;
-  glottocode?: Glottocode;
-  codeISO6391?: ISO6391LanguageCode; // 2-letter string
-  codeISO6392?: ISO6395LanguageCode; // 3-letter string, either ISO 639-3 or ISO 639-5 code
-
+  code: LanguageCode; // Universal key, definitely non-null, prefers ISO
+  codeISO6391?: LanguageCode;
   scope?: LanguageScope;
 
   nameDisplay: string;
@@ -51,26 +48,26 @@ export type LanguageData = {
 
   populationAdjusted?: number;
   populationCited?: number;
-  populationOfDescendents?: number;
-  populationOfISODescendents?: number;
-  populationOfGlottoDescendents?: number;
 
   medium?: string;
   primaryScriptCode?: ScriptCode;
-  parentLanguageCode?: LanguageCode;
-  parentISOCode?: LanguageCode;
-  parentGlottocode?: Glottocode;
+
+  schemaSpecific: Record<LanguageSchema, LanguageDataInSchema>;
 
   // References to other objects, filled in after loading the TSV
-  parentLanguage?: LanguageData;
-  parentISOlang?: LanguageData;
-  parentGlottolang?: LanguageData;
-  childLanguages: LanguageData[];
-  childISOLangs: LanguageData[];
-  childGlottolangs: LanguageData[];
   locales: LocaleData[];
   primaryWritingSystem?: WritingSystemData;
   writingSystems: Record<ScriptCode, WritingSystemData>;
+};
+
+// Since languages can be categorized by ISO, Glottolog, or other schema, these values will vary based on the language schema
+type LanguageDataInSchema = {
+  code?: LanguageCode;
+  scope?: LanguageScope;
+  populationOfDescendents?: number;
+  parentLanguageCode?: LanguageCode;
+  parentLanguage?: LanguageData;
+  childLanguages: LanguageData[];
 };
 
 // ISO 3166 territory code OR UN M49 code

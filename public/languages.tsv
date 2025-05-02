@@ -7518,8 +7518,8 @@ sjc	shao1234	Shaojiang Chinese							0		zho	minb1244	Yes, with caveat	New to ISO
 chao1239	chao1239	Chaoshan									nan	minn1241	No	Inexplicable language code from DLD. Teochew is nan-teo
 qion1239	qion1239	Qiong-Lei										minn1241	No	Group of multiple languages
 hokk1242	hokk1242	Quanzhang										minn1241	No	Group of multiple languages
-coas1318	coas1318	Coastal Min									zho	minn1248	No	Group of multiple languages
-inla1267	inla1267	Inland Min									zho	minn1248	No	Group of multiple languages
+coas1318	coas1318	Coastal Min										minn1248	No	Group of multiple languages
+inla1267	inla1267	Inland Min										minn1248	No	Group of multiple languages
 mand1471	mand1471	Mandarinic										nort3155	No	Group of multiple languages
 hnm	hain1238	Hainanese							0		zho	qion1239	Yes, with caveat	New to ISO 20250115
 luh	leiz1236	Leizhou Chinese							0		zho	qion1239	Yes, with caveat	New to ISO 20250115
@@ -8084,7 +8084,7 @@ xdm	edom1234	Edomite							0			anci1244	Probably not	Historical langauge
 elx	elam1244	Elamite							0				Probably not	Historical langauge
 qer	dale1238	Elfdalian							0			east2780		
 xly	elym1237	Elymian			Elym				0			uncl1493	Probably not	Historical langauge
-xxx-eml		Emilian-Romagnol							0					
+eml		Emilian-Romagnol							0					
 emo	emok1238	Emok				Extinct			0			book1242	No	Declared non-existent by ISO
 xxx-en-AU		English (Australia)							0					
 xxx-en-BW		English (Botswana)							0					

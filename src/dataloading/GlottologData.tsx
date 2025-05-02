@@ -1,4 +1,4 @@
-import { Dimension } from '../controls/PageParamTypes';
+import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
 import { Glottocode, LanguageCode, LanguageData, LanguageScope } from '../DataTypes';
 
 const DEBUG = false;
@@ -63,76 +63,70 @@ export async function loadManualGlottocodeToISO(): Promise<Record<
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
+/**
+ *
+ * languagesBySchema.Glottolog is updated with new entries
+ */
 export function addGlottologLanguages(
-  languagesByCode: Record<LanguageCode, LanguageData>,
+  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
   glottologImport: GlottologData[],
   manualGlottocodeToISO: Record<Glottocode, LanguageCode>,
-): Record<Glottocode, LanguageData> {
-  // First initialize the index of glottolog languoids
-  const languagesByGlottocode = Object.values(languagesByCode).reduce<
-    Record<Glottocode, LanguageData>
-  >((languagesByGlottocode, lang) => {
-    const { glottocode } = lang;
-    if (glottocode) {
-      languagesByGlottocode[glottocode] = lang;
-    }
-    return languagesByGlottocode;
-  }, {});
-
-  // Then add new glottocodes from the import
-  glottologImport.forEach((importedLanguage) => {
-    let lang = languagesByGlottocode[importedLanguage.glottoCode];
-
-    // If we were not able to fetch it -- maybe the glottolog list doesn't have the ISO
-    // but we can get it from the manual soruce
-    if (lang == null) {
-      const manualISO = manualGlottocodeToISO[importedLanguage.glottoCode];
-      if (manualISO != null && languagesByCode[manualISO] != null) {
-        lang = languagesByCode[manualISO];
-        lang.glottocode = importedLanguage.glottoCode;
-        languagesByGlottocode[importedLanguage.glottoCode] = lang;
-      }
-    }
-
-    if (lang == null) {
-      // Create new LanguageData
-      lang = {
-        type: Dimension.Language,
-        code: importedLanguage.glottoCode,
-        glottocode: importedLanguage.glottoCode,
-        nameDisplay: importedLanguage.name,
-        nameDisplayTitle: importedLanguage.name,
-        scope: importedLanguage.scope,
-        viabilityConfidence: 'No',
-        viabilityExplanation: 'Glottolog entry not found in ISO',
-        parentLanguageCode: importedLanguage.parentGlottocode,
-        parentGlottocode: importedLanguage.parentGlottocode,
-
-        childLanguages: [],
-        childISOLangs: [],
-        childGlottolangs: [],
-        writingSystems: {},
-        locales: [],
-      };
-      languagesByGlottocode[importedLanguage.glottoCode] = lang;
-      languagesByCode[importedLanguage.glottoCode] = lang;
-    } else {
-      // Fill in missing data
-      if (importedLanguage.parentGlottocode != null) {
-        lang.parentGlottocode = importedLanguage.parentGlottocode;
-        if (lang.parentLanguageCode == null) {
-          lang.parentLanguageCode = importedLanguage.parentGlottocode;
-        }
-      }
-      if (lang.scope == null) {
-        lang.scope = importedLanguage.scope;
-      } else if (DEBUG && importedLanguage.scope != lang.scope) {
-        console.log(
-          `${importedLanguage.glottoCode} scope is ${importedLanguage.scope} in glottolog but ${lang.scope} in ISO`,
-        );
-      }
+): void {
+  // Add the entries from the manualGlottocodeToISO to languagesBySchema.Glottolog
+  Object.entries(manualGlottocodeToISO).forEach(([glottoCode, isoCode]) => {
+    const glottolang = languagesBySchema.Glottolog[glottoCode];
+    const isoLang = languagesBySchema.ISO[isoCode];
+    if (glottolang == null && isoLang != null) {
+      isoLang.schemaSpecific.Glottolog.code = glottoCode;
+      languagesBySchema.Glottolog[glottoCode] = isoLang;
     }
   });
 
-  return languagesByGlottocode;
+  // Add new glottocodes from the import
+  glottologImport.forEach((importedLanguage) => {
+    const { glottoCode, parentGlottocode, scope } = importedLanguage;
+    const lang = languagesBySchema.Glottolog[glottoCode];
+    const parentLanguageCode =
+      parentGlottocode != null ? languagesBySchema.Glottolog[parentGlottocode]?.code : undefined;
+
+    if (lang == null) {
+      // Create new LanguageData
+      const schemaSpecific = {
+        Inclusive: {
+          code: glottoCode,
+          parentLanguageCode: parentLanguageCode ?? parentGlottocode,
+          childLanguages: [],
+        },
+        ISO: { childLanguages: [] },
+        WAL: { childLanguages: [] },
+        Glottolog: { code: glottoCode, parentLanguageCode: parentGlottocode, childLanguages: [] },
+      };
+      const newLang: LanguageData = {
+        type: Dimension.Language,
+        code: glottoCode,
+        nameDisplay: importedLanguage.name,
+        nameDisplayTitle: importedLanguage.name,
+        scope,
+        viabilityConfidence: 'No',
+        viabilityExplanation: 'Glottolog entry not found in ISO',
+        schemaSpecific,
+        writingSystems: {},
+        locales: [],
+      };
+      languagesBySchema.Inclusive[importedLanguage.glottoCode] = newLang;
+      languagesBySchema.Glottolog[importedLanguage.glottoCode] = newLang;
+    } else {
+      // Fill in missing data
+      if (parentGlottocode != null) {
+        lang.schemaSpecific.Inclusive.parentLanguageCode = parentLanguageCode ?? parentGlottocode; // Prefer Glottolog parentage
+        lang.schemaSpecific.Glottolog.parentLanguageCode = parentGlottocode;
+      }
+      lang.schemaSpecific.Glottolog.scope = scope;
+      if (lang.scope == null) {
+        lang.scope = scope;
+      } else if (DEBUG && scope != lang.scope) {
+        console.log(`${glottoCode} scope is ${scope} in glottolog but ${lang.scope} in ISO`);
+      }
+    }
+  });
 }

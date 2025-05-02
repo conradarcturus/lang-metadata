@@ -1,7 +1,7 @@
 import { ObjectData } from '../DataTypes';
 
 import { usePageParams } from './PageParamsContext';
-import { Dimension, LanguageSchema, SortBy, ViewType } from './PageParamTypes';
+import { Dimension, SortBy, ViewType } from './PageParamTypes';
 
 export type SortByFunctionType = (a: ObjectData, b: ObjectData) => number;
 
@@ -28,16 +28,9 @@ export function getSortFunction(): SortByFunctionType {
             return b.type === Dimension.Language
               ? (b.populationCited ?? 0) -
                   (a.populationCited ?? 0) +
-                  (viewType === ViewType.Hierarchy && languageSchema == LanguageSchema.Inclusive
-                    ? (b.populationOfDescendents ?? 0) - (a.populationOfDescendents ?? 0)
-                    : 0) +
-                  (viewType === ViewType.Hierarchy &&
-                  [LanguageSchema.ISO, LanguageSchema.WAL].includes(languageSchema)
-                    ? (b.populationOfISODescendents ?? 0) - (a.populationOfISODescendents ?? 0)
-                    : 0) +
-                  (viewType === ViewType.Hierarchy && languageSchema == LanguageSchema.Glottolog
-                    ? (b.populationOfGlottoDescendents ?? 0) -
-                      (a.populationOfGlottoDescendents ?? 0)
+                  (viewType === ViewType.Hierarchy
+                    ? (b.schemaSpecific[languageSchema].populationOfDescendents ?? 0) -
+                      (a.schemaSpecific[languageSchema].populationOfDescendents ?? 0)
                     : 0)
               : -1;
           case Dimension.WritingSystem:

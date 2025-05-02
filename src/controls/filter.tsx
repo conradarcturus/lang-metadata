@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { LanguageData, LanguageScope, ObjectData, TerritoryType } from '../DataTypes';
 
 import { usePageParams } from './PageParamsContext';
-import { Dimension, LanguageSchema, ViewType } from './PageParamTypes';
+import { Dimension, ViewType } from './PageParamTypes';
 
 export type FilterFunctionType = (a: ObjectData) => boolean;
 
@@ -44,48 +44,18 @@ export function getSubstringFilter(): FilterFunctionType {
   return substringFilterFunction;
 }
 
-export function getLanguageSchemaFilter(): (a: LanguageData) => boolean {
-  const { languageSchema } = usePageParams();
-  switch (languageSchema) {
-    case LanguageSchema.Inclusive:
-      return () => true;
-    case LanguageSchema.ISO:
-      return (a: LanguageData) => a.codeISO6392 != null;
-    case LanguageSchema.Glottolog:
-      return (a: LanguageData) => a.glottocode != null;
-    case LanguageSchema.WAL:
-      return (a: LanguageData) => a.viabilityConfidence != null && a.viabilityConfidence != 'No';
-  }
-}
-
 /**
  * Provides a function that provides the viable subset of results for a given view.
  */
 export function getViableRootEntriesFilter(): FilterFunctionType {
   const { viewType, languageSchema } = usePageParams();
-  const languageSchemaFilterFunction = getLanguageSchemaFilter();
 
   const viableLanguageFunction = (a: LanguageData): boolean => {
     switch (viewType) {
       case ViewType.CardList:
-        return languageSchemaFilterFunction(a) && a.scope != LanguageScope.Family;
+        return a.scope != LanguageScope.Family;
       case ViewType.Hierarchy:
-        if (languageSchema == LanguageSchema.Glottolog) {
-          return (
-            languageSchemaFilterFunction(a) &&
-            (a.parentGlottolang == null || !languageSchemaFilterFunction(a.parentGlottolang))
-          );
-        } else if (languageSchema == LanguageSchema.Inclusive) {
-          return (
-            languageSchemaFilterFunction(a) &&
-            (a.parentLanguage == null || !languageSchemaFilterFunction(a.parentLanguage))
-          );
-        } else {
-          return (
-            languageSchemaFilterFunction(a) &&
-            (a.parentISOlang == null || !languageSchemaFilterFunction(a.parentISOlang))
-          );
-        }
+        return a.schemaSpecific[languageSchema].parentLanguage == null;
       case ViewType.Details:
         return true; // not filtering Details
     }

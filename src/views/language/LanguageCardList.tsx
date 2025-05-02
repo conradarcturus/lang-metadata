@@ -10,14 +10,16 @@ import VisibleItemsMeter from '../VisibleItemsMeter';
 import LanguageCard from './LanguageCard';
 
 const LanguageCardList: React.FC = () => {
-  const { languagesByCode } = useDataContext();
-  const { limit } = usePageParams();
+  const { languagesBySchema } = useDataContext();
+  const { limit, languageSchema } = usePageParams();
   const sortByFunction = getSortFunction();
   const substringFilterFunction = getSubstringFilter();
   const viableEntriesFunction = getViableRootEntriesFilter();
 
   // Find the viable languages
-  const languagesViable = Object.values(languagesByCode).filter(viableEntriesFunction);
+  const languagesViable = Object.values(languagesBySchema[languageSchema]).filter(
+    viableEntriesFunction,
+  );
   // Filter results by the substring filter
   const languagesFiltered = languagesViable.filter(substringFilterFunction);
   // Sort results & limit how many are visible

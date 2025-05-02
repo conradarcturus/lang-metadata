@@ -1,6 +1,6 @@
+import { LanguageSchema } from '../controls/PageParamTypes';
 import {
   BCP47LocaleCode,
-  Glottocode,
   LanguageCode,
   LanguageData,
   LocaleData,
@@ -12,64 +12,21 @@ import {
 import { getLocaleName } from '../views/locale/LocaleStrings';
 
 export function connectLanguagesToParent(
-  languagesByCode: Record<LanguageCode, LanguageData>,
-  languagesByGlottocode: Record<Glottocode, LanguageData>,
+  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
 ): void {
   // Connect general parents
-  Object.values(languagesByCode).forEach((lang) => {
-    if (lang.parentLanguageCode != null) {
-      const parentISO = languagesByCode[lang.parentISOCode || ''];
-      const parentGlotto = languagesByGlottocode[lang.parentGlottocode || ''];
-      if (parentGlotto) {
-        parentGlotto.childGlottolangs.push(lang);
-        lang.parentGlottolang = parentGlotto;
-
-        // Make the primary parent the glottocode parent
-        parentGlotto.childLanguages.push(lang);
-        lang.parentLanguage = parentGlotto;
-      }
-      if (parentISO) {
-        parentISO.childISOLangs.push(lang);
-        lang.parentISOlang = parentISO;
-
-        // If the glottolog connection failed, use the ISO parent as the general parent instead
-        if (parentGlotto == null) {
-          parentISO.childLanguages.push(lang);
-          lang.parentLanguage = parentISO;
+  Object.values(languagesBySchema[LanguageSchema.Inclusive]).forEach((lang) => {
+    Object.values(LanguageSchema).forEach((schema) => {
+      const parentCode = lang.schemaSpecific[schema].parentLanguageCode;
+      if (parentCode != null) {
+        const parent = languagesBySchema[schema][parentCode];
+        if (parent != null) {
+          lang.schemaSpecific[schema].parentLanguage = parent;
+          parent.schemaSpecific[schema].childLanguages.push(lang);
         }
       }
-    }
+    });
   });
-
-  // // Connect ISO language code, eg. cmn -> zho
-  // Object.values(languagesByCode).forEach((lang) => {
-  //   if (lang.parentLanguageCode != null) {
-  //     const parent = languagesByCode[lang.parentLanguageCode];
-  //     if (parent != null) {
-  //       parent.childLanguages.push(lang);
-  //       lang.parentLanguage = parent;
-  //     } else if (lang.parentGlottocode != null) {
-  //       // If we couldn't find the parent, try to find it using the glottocode
-  //       const glottocodeParent = languagesByGlottocode[lang.parentGlottocode];
-  //       if (glottocodeParent != null) {
-  //         lang.parentLanguageCode = lang.parentGlottocode;
-  //         glottocodeParent.childLanguages.push(lang);
-  //         lang.parentLanguage = glottocodeParent;
-  //       }
-  //     }
-  //   }
-  // });
-
-  // // Connect glottocode, eg. mand1415 -> mand1471
-  // Object.values(languagesByGlottocode).forEach((lang) => {
-  //   if (lang.parentGlottocode != null) {
-  //     const parent = languagesByGlottocode[lang.parentGlottocode];
-  //     if (parent != null) {
-  //       parent.childGlottolangs.push(lang);
-  //       lang.parentGlottolang = parent;
-  //     }
-  //   }
-  // });
 }
 
 export function connectTerritoriesToParent(
@@ -96,7 +53,7 @@ export function connectTerritoriesToParent(
 }
 
 export function connectWritingSystems(
-  languagesByCode: Record<LanguageCode, LanguageData>,
+  languages: Record<LanguageCode, LanguageData>,
   territoriesByCode: Record<TerritoryCode, TerritoryData>,
   writingSystems: Record<ScriptCode, WritingSystemData>,
 ): void {
@@ -108,7 +65,7 @@ export function connectWritingSystems(
       parentWritingSystemCode,
       containsWritingSystemsCodes,
     } = writingSystem;
-    const language = primaryLanguageCode != null ? languagesByCode[primaryLanguageCode] : null;
+    const language = primaryLanguageCode != null ? languages[primaryLanguageCode] : null;
     const territory =
       territoryOfOriginCode != null ? territoriesByCode[territoryOfOriginCode] : null;
     const parentWritingSystem =
@@ -134,7 +91,7 @@ export function connectWritingSystems(
   });
 
   // Connect languages to their primary writing system
-  Object.values(languagesByCode).forEach((language) => {
+  Object.values(languages).forEach((language) => {
     const { primaryScriptCode } = language;
     if (primaryScriptCode != null) {
       const primaryWritingSystem = writingSystems[primaryScriptCode];
@@ -196,8 +153,44 @@ export function connectLocales(
   });
 }
 
-export function computeOtherPopulationStatistics(
+/**
+ * Recompose the structure of languages, leaving the primary index intact but also
+ * creating 3 other indices based on the definitions of languages from ISO, WAL, and Glottolog
+ */
+export function groupLanguagesBySchema(
   languages: Record<LanguageCode, LanguageData>,
+): Record<LanguageSchema, Record<LanguageCode, LanguageData>> {
+  return {
+    Inclusive: languages,
+    ISO: Object.values(languages).reduce<Record<LanguageCode, LanguageData>>((isoLangs, lang) => {
+      const code = lang.schemaSpecific.ISO.code;
+      if (code != null) {
+        isoLangs[code] = lang;
+      }
+      return isoLangs;
+    }, {}),
+    WAL: Object.values(languages).reduce<Record<LanguageCode, LanguageData>>((walLangs, lang) => {
+      const code = lang.schemaSpecific.WAL.code;
+      if (code != null && lang.viabilityConfidence != null && lang.viabilityConfidence != 'No') {
+        walLangs[code] = lang;
+      }
+      return walLangs;
+    }, {}),
+    Glottolog: Object.values(languages).reduce<Record<LanguageCode, LanguageData>>(
+      (glottoLangs, lang) => {
+        const code = lang.schemaSpecific.Glottolog.code;
+        if (code != null) {
+          glottoLangs[code] = lang;
+        }
+        return glottoLangs;
+      },
+      {},
+    ),
+  };
+}
+
+export function computeOtherPopulationStatistics(
+  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
   writingSystems: Record<ScriptCode, WritingSystemData>,
 ): void {
   // Organizing writing systems by population is a bit funny because some fundamental writing systems
@@ -210,15 +203,11 @@ export function computeOtherPopulationStatistics(
 
   // Need to compute the language descendent populations 3 times because nodes will be organized
   // differently in the different language schemas
-  Object.values(languages)
-    .filter((lang) => lang.parentLanguage == null)
-    .forEach(computeLanguageDescendentPopulation);
-  Object.values(languages)
-    .filter((lang) => lang.parentISOlang == null)
-    .forEach(computeISOLanguageDescendentPopulation);
-  Object.values(languages)
-    .filter((lang) => lang.parentGlottolang == null)
-    .forEach(computeGlottoLanguageDescendentPopulation);
+  Object.values(LanguageSchema).forEach((schema) => {
+    Object.values(languagesBySchema[schema])
+      .filter((lang) => lang.schemaSpecific[schema].parentLanguage == null) // start at roots
+      .forEach((lang) => computeLanguageDescendentPopulation(lang, schema));
+  });
 }
 
 function computeWritingSystemDescendentPopulation(writingSystem: WritingSystemData): number {
@@ -231,32 +220,12 @@ function computeWritingSystemDescendentPopulation(writingSystem: WritingSystemDa
   return descendentPopulation + writingSystem.populationUpperBound;
 }
 
-function computeLanguageDescendentPopulation(lang: LanguageData): number {
-  const { childLanguages } = lang;
+function computeLanguageDescendentPopulation(lang: LanguageData, schema: LanguageSchema): number {
+  const { childLanguages } = lang.schemaSpecific[schema];
   const descendentPopulation = childLanguages.reduce(
-    (total, childLang) => total + computeLanguageDescendentPopulation(childLang),
+    (total, childLang) => total + computeLanguageDescendentPopulation(childLang, schema),
     1,
   );
-  lang.populationOfDescendents = descendentPopulation;
-  return descendentPopulation + (lang.populationCited ?? 0);
-}
-
-function computeISOLanguageDescendentPopulation(lang: LanguageData): number {
-  const { childISOLangs } = lang;
-  const descendentPopulation = childISOLangs.reduce(
-    (total, childLang) => total + computeISOLanguageDescendentPopulation(childLang),
-    1,
-  );
-  lang.populationOfISODescendents = descendentPopulation;
-  return descendentPopulation + (lang.populationCited ?? 0);
-}
-
-function computeGlottoLanguageDescendentPopulation(lang: LanguageData): number {
-  const { childGlottolangs } = lang;
-  const descendentPopulation = childGlottolangs.reduce(
-    (total, childLang) => total + computeGlottoLanguageDescendentPopulation(childLang),
-    0,
-  );
-  lang.populationOfGlottoDescendents = descendentPopulation;
-  return descendentPopulation + (lang.populationCited ?? 0) + 1;
+  lang.schemaSpecific[schema].populationOfDescendents = descendentPopulation;
+  return descendentPopulation + (lang.populationCited ?? 0) + 1; // Tiebreaker = number of child nodes
 }

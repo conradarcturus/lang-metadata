@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { getLanguageSchemaFilter, getViableRootEntriesFilter } from '../controls/filter';
+import { getViableRootEntriesFilter } from '../controls/filter';
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension } from '../controls/PageParamTypes';
 import { getSortFunction } from '../controls/sort';
@@ -11,28 +11,26 @@ import { getLocaleTreeNodes } from './locale/LocaleTreeList';
 import TreeListRoot from './TreeListRoot';
 
 const ViewTreeList: React.FC = () => {
-  const { dimension, limit } = usePageParams();
-  const { territoriesByCode, languagesByCode, writingSystems } = useDataContext();
+  const { dimension, limit, languageSchema } = usePageParams();
+  const { territoriesByCode, languagesBySchema, writingSystems } = useDataContext();
   const sortFunction = getSortFunction();
   const viableEntriesFunction = getViableRootEntriesFilter();
-  const languageSchemaFilterFunction = getLanguageSchemaFilter();
 
   const rootNodes = useMemo(() => {
     switch (dimension) {
       case Dimension.Language:
-        return Object.values(languagesByCode).filter(viableEntriesFunction).sort(sortFunction);
+        return Object.values(languagesBySchema[languageSchema])
+          .filter(viableEntriesFunction)
+          .sort(sortFunction);
       case Dimension.Territory:
         return Object.values(territoriesByCode).filter(viableEntriesFunction).sort(sortFunction);
       case Dimension.Locale:
         // Building custom tree nodes
-        return getLocaleTreeNodes(
-          Object.values(languagesByCode).filter(languageSchemaFilterFunction),
-          sortFunction,
-        );
+        return getLocaleTreeNodes(Object.values(languagesBySchema[languageSchema]), sortFunction);
       default:
         return Object.values(writingSystems).filter(viableEntriesFunction).sort(sortFunction);
     }
-  }, [dimension, sortFunction, viableEntriesFunction, languageSchemaFilterFunction]);
+  }, [dimension, sortFunction, viableEntriesFunction]);
 
   return (
     <div className="TreeListView">

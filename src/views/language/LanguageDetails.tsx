@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
@@ -14,21 +15,20 @@ type Props = {
 };
 
 const LanguageDetails: React.FC<Props> = ({ lang }) => {
+  const { languageSchema } = usePageParams();
   const sortFunction = getSortFunction();
   const {
     codeISO6391,
-    codeISO6392,
-    glottocode,
     medium,
-    parentGlottolang,
-    parentLanguage,
     populationCited,
     primaryWritingSystem,
+    schemaSpecific,
     vitalityEth2013,
     vitalityEth2025,
     vitalityISO,
     writingSystems,
   } = lang;
+  const { Glottolog, ISO } = schemaSpecific;
 
   return (
     <div className="Details">
@@ -40,13 +40,13 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         </div>
         <div>
           <label>Glottocode:</label>
-          {glottocode ? glottocode : <em>Not in Glottolog</em>}
+          {Glottolog.code ? Glottolog.code : <em>Not in Glottolog</em>}
         </div>
         <div>
           <label>ISO Code:</label>
-          {codeISO6392 ? (
+          {ISO.code ? (
             <>
-              {codeISO6392}
+              {ISO.code}
               {codeISO6391 ? ` | ${codeISO6391}` : ''}
             </>
           ) : (
@@ -117,22 +117,22 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
       </div>
       <div>
         <h3>Connections</h3>
-        {parentLanguage && (
+        {ISO.parentLanguage && (
           <div>
             <label>ISO group:</label>
-            <HoverableLanguageName lang={parentLanguage} />
+            <HoverableLanguageName lang={ISO.parentLanguage} />
           </div>
         )}
-        {parentGlottolang && (
+        {Glottolog.parentLanguage && (
           <div>
             <label>Glottolog group:</label>
-            <HoverableLanguageName lang={parentGlottolang} />
+            <HoverableLanguageName lang={Glottolog.parentLanguage} />
           </div>
         )}
         <div style={{ display: 'flex' }}>
           <div>
             <label>Descendent Languages:</label>
-            {lang.childLanguages.length > 0 ? (
+            {schemaSpecific[languageSchema].childLanguages.length > 0 ? (
               <TreeListRoot rootNodes={[lang]} />
             ) : (
               <div>

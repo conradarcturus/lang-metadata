@@ -18,16 +18,26 @@ export function parseLanguageLine(line: string): LanguageData {
     parts[9] != '' ? Number.parseInt(parts[9].replace(/,/g, '')) : undefined;
   const populationCited =
     parts[10] != '' ? Number.parseInt(parts[10].replace(/,/g, '')) : undefined;
+  const code = parts[0];
+  const parentLanguageCode = parts[11] != '' ? parts[11] : undefined;
+  const parentISOCode = parts[11] != '' && parts[11].length <= 3 ? parts[11] : undefined;
+  const parentGlottocode = parts[12] != '' ? parts[12] : undefined;
+  const schemaSpecific = {
+    Inclusive: { code, parentLanguageCode, childLanguages: [] },
+    ISO: { code, parentLanguageCode: parentISOCode, childLanguages: [] },
+    WAL: { code, parentLanguageCode: parentISOCode, childLanguages: [] },
+    Glottolog: {
+      code: parts[1] != '' ? parts[1] : undefined,
+      parentLanguageCode: parentGlottocode,
+      childLanguages: [],
+    },
+  };
 
   return {
     type: Dimension.Language,
 
-    code: parts[0],
-    glottocode: parts[1] != '' ? parts[1] : undefined,
-    codeISO6391: undefined, // Added by ISO import
-    codeISO6392: undefined, // Added by ISO import
-
-    scope: undefined, // Added by ISO import
+    code,
+    scope: undefined, // Added by imports
 
     nameDisplay,
     nameDisplayTitle,
@@ -46,16 +56,9 @@ export function parseLanguageLine(line: string): LanguageData {
 
     medium: parts[4] != '' ? parts[4] : undefined,
     primaryScriptCode: parts[5] != '' ? parts[5] : undefined,
-    parentLanguageCode: parts[11] != '' ? parts[11] : undefined,
-    parentISOCode: parts[11] != '' && parts[11].length <= 3 ? parts[11] : undefined,
-    parentGlottocode: parts[12] != '' ? parts[12] : undefined,
 
     // References to other objects, filled in with DataAssociations methods
-    parentLanguage: undefined,
-    parentGlottolang: undefined,
-    childLanguages: [],
-    childISOLangs: [],
-    childGlottolangs: [],
+    schemaSpecific,
     locales: [],
     primaryWritingSystem: undefined,
     writingSystems: {},

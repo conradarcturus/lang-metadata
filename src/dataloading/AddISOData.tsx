@@ -1,4 +1,4 @@
-import { Dimension } from '../controls/PageParamTypes';
+import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
 import {
   ISO6391LanguageCode,
   ISO6393LanguageCode,
@@ -154,12 +154,12 @@ export function addISODataToLanguages(
 
       // Fill out ISO information on the language data
       lang.codeISO6391 = isoLang.codeISO6391;
-      lang.codeISO6392 = isoLang.codeISO6393;
       lang.vitalityISO = isoLang.vitality;
       lang.scope = isoLang.scope;
+      lang.schemaSpecific.ISO.scope = isoLang.scope;
       return lang;
     })
-    .reduce<Record<LanguageCode, LanguageData>>((languagesByISO6391Code, lang) => {
+    .reduce<Record<ISO6391LanguageCode, LanguageData>>((languagesByISO6391Code, lang) => {
       // Produce a list of ISO 639-1 languages to be used when we need to import data that uses the ISO 639-1 code
       if (lang != null && lang.codeISO6391 != null) {
         languagesByISO6391Code[lang.codeISO6391] = lang;
@@ -189,11 +189,12 @@ export function addISOMacrolanguageData(
       if (DEBUG) console.log(`Constituent language ${relation.codeConstituent} not found`);
       return;
     }
-    if (constituent.parentLanguageCode != macro.code) {
+    const parentLanguageCode = constituent.schemaSpecific.ISO.parentLanguageCode;
+    if (parentLanguageCode != macro.code) {
       if (DEBUG)
         // As of 2025-04-30 all exceptions to this are temporary
         console.log(
-          `parent different for ${constituent.code}. Is ${constituent.parentLanguageCode} but should be ${macro.code}`,
+          `parent different for ${constituent.code}. Is ${parentLanguageCode} but should be ${macro.code}`,
         );
     }
     if (macro.scope !== LanguageScope.Macrolanguage) {
@@ -207,37 +208,38 @@ export function addISOMacrolanguageData(
 }
 
 export function addISOLanguageFamilyData(
-  languages: Record<LanguageCode, LanguageData>,
+  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
   iso6391Langs: Record<ISO6391LanguageCode, LanguageData>,
   families: ISOLanguageFamilyData[],
   isoLangsToFamilies: Record<ISO6395LanguageCode, LanguageCode[]>,
 ): void {
   // Add new language entries for language families, otherwise fill in missing data
   families.forEach((family) => {
-    const familyEntry = languages[family.code];
+    const familyEntry = languagesBySchema.ISO[family.code];
     if (familyEntry == null) {
       // trim excess from the name
       const name = family.name.replace(/ languages| \(family\)/gi, '');
+      const schemaSpecific = {
+        Inclusive: { code: family.code, parentLanguageCode: family.parent, childLanguages: [] },
+        ISO: { code: family.code, parentLanguageCode: family.parent, childLanguages: [] },
+        WAL: { childLanguages: [] }, // Not including lang families in WAL
+        Glottolog: { childLanguages: [] }, // No glottolog dat
+      };
 
       const familyEntry: LanguageData = {
         type: Dimension.Language,
         code: family.code,
         nameDisplay: name,
-        codeISO6392: family.code,
         nameDisplayTitle: name,
         scope: LanguageScope.Family,
         viabilityConfidence: 'No',
         viabilityExplanation: 'Language family',
-        parentLanguageCode: family.parent,
-        parentISOCode: family.parent,
-
-        childLanguages: [],
-        childISOLangs: [],
-        childGlottolangs: [],
+        schemaSpecific,
         writingSystems: {},
         locales: [],
       };
-      languages[family.code] = familyEntry;
+      languagesBySchema.Inclusive[family.code] = familyEntry;
+      languagesBySchema.ISO[family.code] = familyEntry;
     } else {
       // familyEntry exists, but it may be missing data
       if (!familyEntry.nameDisplay || familyEntry.nameDisplay === '0') {
@@ -246,27 +248,27 @@ export function addISOLanguageFamilyData(
       if (!familyEntry.nameDisplayTitle || familyEntry.nameDisplayTitle === '0') {
         familyEntry.nameDisplayTitle = family.name;
       }
-      familyEntry.parentLanguageCode = family.parent;
-      familyEntry.parentISOCode = family.parent;
-      familyEntry.codeISO6392 = family.code;
+      familyEntry.schemaSpecific.Inclusive.parentLanguageCode = family.parent;
+      familyEntry.schemaSpecific.ISO.parentLanguageCode = family.parent;
+      familyEntry.schemaSpecific.ISO.scope = LanguageScope.Family;
       familyEntry.scope = LanguageScope.Family;
     }
   });
 
+  // Now that we have language families
   // Iterate again to point constituent languages to the language family
-  families.forEach((family) => {
-    const constituentLanguages = isoLangsToFamilies[family.code] ?? [];
+  Object.entries(isoLangsToFamilies).forEach(([familyCode, constituentLanguages]) => {
     constituentLanguages.forEach((langCode) => {
-      const lang = languages[langCode] ?? iso6391Langs[langCode];
-      if (lang == null) {
-        console.log(`${langCode} should be part of ${family.code} but it does not exist`);
+      const lang = languagesBySchema.ISO[langCode] ?? iso6391Langs[langCode];
+      if (DEBUG && lang == null) {
+        console.log(`${langCode} should be part of ${familyCode} but it does not exist`);
         return;
       }
-      if (lang.parentLanguageCode == null) {
-        // languages may already have macrolanguage parents
-        lang.parentLanguageCode = family.code;
-        lang.parentISOCode = family.code;
-      }
+      // if (lang.schemaSpecific.ISO.parentLanguageCode == null) {
+      // languages may already have macrolanguage parents
+      lang.schemaSpecific.Inclusive.parentLanguageCode ??= familyCode;
+      lang.schemaSpecific.ISO.parentLanguageCode ??= familyCode;
+      // }
     });
   });
 }

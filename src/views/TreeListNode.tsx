@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-import { getLanguageSchemaFilter } from '../controls/filter';
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
+import { Dimension } from '../controls/PageParamTypes';
 import { getSortFunction, SortByFunctionType } from '../controls/sort';
 import {
   LanguageData,
@@ -75,13 +74,7 @@ function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): 
 
   switch (nodeData.type) {
     case Dimension.Language:
-      if (languageSchema === LanguageSchema.Glottolog) {
-        return nodeData.childGlottolangs.filter(getLanguageSchemaFilter()).sort(sortFunction);
-      } else if (languageSchema === LanguageSchema.Inclusive) {
-        return nodeData.childLanguages.filter(getLanguageSchemaFilter()).sort(sortFunction);
-      } else {
-        return nodeData.childISOLangs.filter(getLanguageSchemaFilter()).sort(sortFunction);
-      }
+      return nodeData.schemaSpecific[languageSchema].childLanguages.sort(sortFunction);
     case Dimension.Territory:
       return nodeData.regionContainsTerritories.sort(sortFunction);
     case Dimension.Locale:
