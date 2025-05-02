@@ -9,7 +9,7 @@ const ViewSelector: React.FC = () => {
 
   return (
     <ButtonGroupSingleChoice<ViewType>
-      options={[ViewType.CardList, ViewType.Hierarchy]}
+      options={[ViewType.CardList, ViewType.Hierarchy, ViewType.Warnings]}
       onChange={(viewType: ViewType) => updatePageParams({ viewType })}
       selected={viewType}
       getOptionDescription={() => (
@@ -26,6 +26,12 @@ const ViewSelector: React.FC = () => {
               <label>Hierarchy:</label>
               <div>
                 <img src="hierarchy.png" width={200} />
+              </div>
+            </div>
+            <div>
+              <label>Warnings:</label>
+              <div>
+                <img src="warnings.png" width={200} />
               </div>
             </div>
           </div>

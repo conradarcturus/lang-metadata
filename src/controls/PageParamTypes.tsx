@@ -11,6 +11,7 @@ export enum ViewType {
   Details = 'Details',
   Hierarchy = 'Hierarchy',
   //   Table = 'table',
+  Warnings = 'Warnings',
 }
 
 export enum LanguageSchema {

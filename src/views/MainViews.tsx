@@ -1,4 +1,3 @@
-/* eslint-disable no-fallthrough */
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension, ViewType } from '../controls/PageParamTypes';
 
@@ -9,49 +8,43 @@ import LocaleDetailsPage from './locale/LocaleDetailsPage';
 import TerritoryCardList from './territory/TerritoryCardList';
 import TerritoryDetailsPage from './territory/TerritoryDetailsPage';
 import TreeList from './ViewTreeList';
+import ViewWarnings from './ViewWarnings';
 import WritingSystemCardList from './writingsystem/WritingSystemCardList';
 import WritingSystemDetailsPage from './writingsystem/WritingSystemDetailsPage';
 import './styles.css';
 
 function MainViews() {
   const { viewType, dimension } = usePageParams();
-  switch (dimension) {
-    case Dimension.Language:
-      switch (viewType) {
-        case ViewType.CardList:
+
+  switch (viewType) {
+    case ViewType.CardList:
+      switch (dimension) {
+        case Dimension.Language:
           return <LanguageCardList />;
-        case ViewType.Details:
-          return <LanguageDetailsPage />;
-        case ViewType.Hierarchy:
-          return <TreeList />;
-      }
-    case Dimension.Territory:
-      switch (viewType) {
-        case ViewType.CardList:
+        case Dimension.Territory:
           return <TerritoryCardList />;
-        case ViewType.Details:
-          return <TerritoryDetailsPage />;
-        case ViewType.Hierarchy:
-          return <TreeList />;
-      }
-    case Dimension.Locale:
-      switch (viewType) {
-        case ViewType.CardList:
+        case Dimension.Locale:
           return <LocaleCardList />;
-        case ViewType.Details:
-          return <LocaleDetailsPage />;
-        case ViewType.Hierarchy:
-          return <TreeList />;
-      }
-    case Dimension.WritingSystem:
-      switch (viewType) {
-        case ViewType.CardList:
+        case Dimension.WritingSystem:
           return <WritingSystemCardList />;
-        case ViewType.Details:
-          return <WritingSystemDetailsPage />;
-        case ViewType.Hierarchy:
-          return <TreeList />;
       }
+    // eslint-disable-next-line no-fallthrough
+    case ViewType.Details:
+      switch (dimension) {
+        case Dimension.Language:
+          return <LanguageDetailsPage />;
+        case Dimension.Territory:
+          return <TerritoryDetailsPage />;
+        case Dimension.Locale:
+          return <LocaleDetailsPage />;
+        case Dimension.WritingSystem:
+          return <WritingSystemDetailsPage />;
+      }
+    // eslint-disable-next-line no-fallthrough
+    case ViewType.Hierarchy:
+      return <TreeList />;
+    case ViewType.Warnings:
+      return <ViewWarnings />;
   }
 }
 
