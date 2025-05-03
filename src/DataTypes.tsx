@@ -20,7 +20,7 @@ export type LanguageCode = ISO6391LanguageCode | ISO6392LanguageCode | Glottocod
 
 export enum LanguageScope {
   Family = 'Family',
-  Macrolanguage = 'macrolanguage',
+  Macrolanguage = 'Macrolanguage',
   Language = 'Language',
   Dialect = 'Dialect',
   SpecialCode = 'Special',

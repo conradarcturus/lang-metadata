@@ -37,7 +37,10 @@ const ViewTreeList: React.FC = () => {
       <div style={{ marginBottom: 8 }}>
         <TreeListDescription />
       </div>
-      <TreeListRoot rootNodes={rootNodes.slice(0, limit > 0 ? limit : undefined)} />
+      <TreeListRoot
+        rootNodes={rootNodes.slice(0, limit > 0 ? limit : undefined)}
+        languageSchema={languageSchema}
+      />
     </div>
   );
 };

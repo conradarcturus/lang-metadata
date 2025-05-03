@@ -1,12 +1,13 @@
 import { ObjectData } from '../DataTypes';
 
 import { usePageParams } from './PageParamsContext';
-import { Dimension, SortBy, ViewType } from './PageParamTypes';
+import { Dimension, LanguageSchema, SortBy, ViewType } from './PageParamTypes';
 
 export type SortByFunctionType = (a: ObjectData, b: ObjectData) => number;
 
-export function getSortFunction(): SortByFunctionType {
-  const { sortBy, viewType, languageSchema } = usePageParams();
+export function getSortFunction(languageSchema?: LanguageSchema): SortByFunctionType {
+  const { sortBy, viewType, languageSchema: languageSchemaPageParam } = usePageParams();
+  const effectiveLanguageSchema = languageSchema ?? languageSchemaPageParam;
 
   switch (sortBy) {
     case SortBy.Code:
@@ -29,8 +30,8 @@ export function getSortFunction(): SortByFunctionType {
               ? (b.populationCited ?? 0) -
                   (a.populationCited ?? 0) +
                   (viewType === ViewType.Hierarchy
-                    ? (b.schemaSpecific[languageSchema].populationOfDescendents ?? 0) -
-                      (a.schemaSpecific[languageSchema].populationOfDescendents ?? 0)
+                    ? (b.schemaSpecific[effectiveLanguageSchema].populationOfDescendents ?? 0) -
+                      (a.schemaSpecific[effectiveLanguageSchema].populationOfDescendents ?? 0)
                     : 0)
               : -1;
           case Dimension.WritingSystem:

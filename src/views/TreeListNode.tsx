@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension } from '../controls/PageParamTypes';
+import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
 import { getSortFunction, SortByFunctionType } from '../controls/sort';
 import {
   LanguageData,
@@ -22,14 +22,19 @@ export type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData | W
 type Props = {
   nodeData: TreeNodeData;
   isExpandedInitially?: boolean;
+  languageSchema: LanguageSchema;
 };
 
-const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }) => {
+const TreeListNode: React.FC<Props> = ({
+  nodeData,
+  isExpandedInitially = false,
+  languageSchema,
+}) => {
   const [expanded, setExpanded] = useState(isExpandedInitially);
   const [seeAllChildren, setSeeAllChildren] = useState(false);
   const { limit } = usePageParams();
-  const sortFunction = getSortFunction();
-  const children = getChildren(nodeData, sortFunction);
+  const sortFunction = getSortFunction(languageSchema);
+  const children = getChildren(nodeData, sortFunction, languageSchema);
   const hasChildren = children.length > 0;
 
   return (
@@ -51,7 +56,12 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
       {expanded && hasChildren && (
         <ul className="TreeListBranch">
           {children.slice(0, limit > 0 && !seeAllChildren ? limit : undefined).map((child, i) => (
-            <TreeListNode key={child.code} nodeData={child} isExpandedInitially={i === 0} />
+            <TreeListNode
+              key={child.code}
+              nodeData={child}
+              isExpandedInitially={i === 0}
+              languageSchema={languageSchema}
+            />
           ))}
           {limit > 0 && children.length > limit && !seeAllChildren && (
             <li>
@@ -69,9 +79,11 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
   );
 };
 
-function getChildren(nodeData: TreeNodeData, sortFunction: SortByFunctionType): TreeNodeData[] {
-  const { languageSchema } = usePageParams();
-
+function getChildren(
+  nodeData: TreeNodeData,
+  sortFunction: SortByFunctionType,
+  languageSchema: LanguageSchema,
+): TreeNodeData[] {
   switch (nodeData.type) {
     case Dimension.Language:
       return nodeData.schemaSpecific[languageSchema].childLanguages.sort(sortFunction);

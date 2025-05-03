@@ -57,7 +57,7 @@ function getLocaleChildrenForLanguage(
     defaultWritingSystemNode.children = [
       ...territoryNodesWithoutWritingSystems,
       ...defaultWritingSystemNode.children,
-    ];
+    ].sort((a, b) => sortFunction(a.object, b.object));
     return [defaultWritingSystemNode, ...otherWritingSystemNodes];
   }
 

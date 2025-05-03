@@ -133,7 +133,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           <div>
             <label>Descendent Languages:</label>
             {schemaSpecific[languageSchema].childLanguages.length > 0 ? (
-              <TreeListRoot rootNodes={[lang]} />
+              <TreeListRoot rootNodes={[lang]} languageSchema={languageSchema} />
             ) : (
               <div>
                 <em>No languages come from this language.</em>
@@ -143,7 +143,10 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           <div>
             <label>Locales:</label>
             {lang.locales.length > 0 ? (
-              <TreeListRoot rootNodes={getLocaleTreeNodes([lang], sortFunction)} />
+              <TreeListRoot
+                rootNodes={getLocaleTreeNodes([lang], sortFunction)}
+                languageSchema={languageSchema}
+              />
             ) : (
               <div>
                 <em>There are no recorded locales for this language.</em>

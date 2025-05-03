@@ -58,6 +58,8 @@ export function getViableRootEntriesFilter(): FilterFunctionType {
         return a.schemaSpecific[languageSchema].parentLanguage == null;
       case ViewType.Details:
         return true; // not filtering Details
+      case ViewType.Warnings:
+        return true; // not filtering Warnings
     }
   };
 

@@ -94,12 +94,18 @@ export function addGlottologLanguages(
       const schemaSpecific = {
         Inclusive: {
           code: glottoCode,
+          scope,
           parentLanguageCode: parentLanguageCode ?? parentGlottocode,
           childLanguages: [],
         },
         ISO: { childLanguages: [] },
         WAL: { childLanguages: [] },
-        Glottolog: { code: glottoCode, parentLanguageCode: parentGlottocode, childLanguages: [] },
+        Glottolog: {
+          code: glottoCode,
+          scope,
+          parentLanguageCode: parentGlottocode,
+          childLanguages: [],
+        },
       };
       const newLang: LanguageData = {
         type: Dimension.Language,
