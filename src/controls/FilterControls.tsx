@@ -28,7 +28,7 @@ const FilterControls: React.FC = () => {
           />
         </Hoverable>
       )}
-      {viewType === ViewType.CardList && (
+      {[ViewType.CardList, ViewType.Warnings].includes(viewType) && (
         <Hoverable
           hoverContent={`Filter the ${dimension.toLowerCase()} by its name. Caution: if you have too many items visible then this may jitter, so type slowly.`}
         >

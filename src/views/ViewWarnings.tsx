@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
+import { getSubstringFilter } from '../controls/filter';
+import { usePageParams } from '../controls/PageParamsContext';
 import { LanguageSchema } from '../controls/PageParamTypes';
+import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
 import { LanguageData } from '../DataTypes';
 
@@ -23,14 +26,18 @@ const LanguagesWithIdenticalNames: React.FC = () => {
   const {
     languagesBySchema: { Inclusive },
   } = useDataContext();
+  const { nameFilter } = usePageParams();
+  const lowercaseNameFilter = nameFilter.toLowerCase();
+  const sortFunction = getSortFunction();
   const languagesByName = Object.values(Inclusive).reduce<Record<string, LanguageData[]>>(
     (languagesByName, lang) => {
       const name = lang.nameDisplay + (lang.nameDisplaySubtitle ?? '');
-      // const name = lang.scope + ': ' + lang.nameDisplay + (lang.nameDisplaySubtitle ?? '');
-      if (languagesByName[name] == null) {
-        languagesByName[name] = [lang];
-      } else {
-        languagesByName[name].push(lang);
+      if (name.toLowerCase().includes(lowercaseNameFilter)) {
+        if (languagesByName[name] == null) {
+          languagesByName[name] = [lang];
+        } else {
+          languagesByName[name].push(lang);
+        }
       }
       return languagesByName;
     },
@@ -85,8 +92,15 @@ const LanguagesWithIdenticalNames: React.FC = () => {
       </div>
       <div>
         {showduplicatedNamesISOMismatch &&
-          Object.entries(duplicatedNamesISOMismatch).map(
-            ([name, { ISO: ISOonly = [], Glottolog: GlottologOnly = [] }]) => {
+          Object.entries(duplicatedNamesISOMismatch)
+            .sort((a, b) => {
+              const aISO = a[1].ISO;
+              const bISO = b[1].ISO;
+              return aISO != null && aISO[0] != null && bISO != null && bISO[0] != null
+                ? sortFunction(aISO[0], bISO[0])
+                : 0;
+            })
+            .map(([name, { ISO: ISOonly = [], Glottolog: GlottologOnly = [] }]) => {
               return (
                 <div key={name} style={{ textAlign: 'start' }}>
                   <h3>{name}</h3>
@@ -135,8 +149,7 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                   </div>
                 </div>
               );
-            },
-          )}
+            })}
       </div>
       <div>
         <span style={{ fontSize: '1.5em' }}>Other Languages with Identical names</span>{' '}
@@ -150,8 +163,13 @@ const LanguagesWithIdenticalNames: React.FC = () => {
       </div>
       <div>
         {showotherLangsWithDupNames &&
-          Object.entries(otherLangsWithDupNames).map(([name, langs]) => {
-            return (
+          Object.entries(otherLangsWithDupNames)
+            .sort((a, b) => {
+              const aData = a[1][0];
+              const bData = b[1][0];
+              return aData != null && bData != null ? sortFunction(aData, bData) : 0;
+            })
+            .map(([name, langs]) => (
               <div key={name} style={{ textAlign: 'start' }}>
                 <h3>{name}</h3>
                 <div className="CardList">
@@ -192,8 +210,7 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                   })}
                 </div>
               </div>
-            );
-          })}
+            ))}
       </div>
     </div>
   );
