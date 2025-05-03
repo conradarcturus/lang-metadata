@@ -1,38 +1,25 @@
 import { Dimension } from '../../controls/PageParamTypes';
 import { ObjectData, WritingSystemData } from '../../DataTypes';
-import { TreeNodeData } from '../TreeListNode';
+import { TreeNodeData } from '../common/TreeList/TreeListNode';
 
 export function getWritingSystemTreeNodes(
   writingSystems: WritingSystemData[],
   sortFunction: (a: ObjectData, b: ObjectData) => number,
-  filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData[] {
   return writingSystems
     .sort(sortFunction)
-    .map((writingSystem) => getWritingSystemTreeNode(writingSystem, sortFunction, filterFunction))
+    .map((writingSystem) => getWritingSystemTreeNode(writingSystem, sortFunction))
     .filter((node) => node != null);
 }
 
 function getWritingSystemTreeNode(
   writingSystem: WritingSystemData,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
-  filterFunction: (a: ObjectData) => boolean,
-): TreeNodeData | undefined {
-  const childNodes = getWritingSystemTreeNodes(
-    writingSystem.childWritingSystems,
-    sortFunction,
-    filterFunction,
-  );
-
-  // If there are no children, verify that this node passes the filter function, otherwise we will leave it out
-  if (childNodes.length == 0 && !filterFunction(writingSystem)) {
-    return undefined;
-  }
-
+): TreeNodeData {
   return {
     type: Dimension.WritingSystem,
     object: writingSystem,
-    children: childNodes,
+    children: getWritingSystemTreeNodes(writingSystem.childWritingSystems, sortFunction),
     labelStyle: {
       fontWeight: writingSystem.populationOfDescendents > 100 ? 'bold' : 'normal',
       fontStyle: writingSystem.populationUpperBound <= 100 ? 'italic' : 'normal',

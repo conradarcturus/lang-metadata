@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, ViewType } from '../controls/PageParamTypes';
-import { ObjectData } from '../DataTypes';
-import Highlightable from '../generic/Highlightable';
+import { usePageParams } from '../../../controls/PageParamsContext';
+import { Dimension, ViewType } from '../../../controls/PageParamTypes';
+import { ObjectData } from '../../../DataTypes';
+import Highlightable from '../../../generic/Highlightable';
+import { getObjectName } from '../getObjectName';
+import HoverableObject from '../HoverableObject';
 
 import './treelist.css';
-
-import { getObjectName } from './common/getObjectName';
-import HoverableObject from './common/HoverableObject';
 
 export type TreeNodeData = {
   children: TreeNodeData[];
   object: ObjectData;
   type: Dimension;
   labelStyle?: React.CSSProperties;
-  startsOpen?: boolean;
+  descendentsPassFilter?: boolean;
 };
 
 type Props = {
@@ -24,12 +23,17 @@ type Props = {
 };
 
 const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }) => {
-  const { children, object, labelStyle, startsOpen } = nodeData;
+  const { children, object, labelStyle, descendentsPassFilter } = nodeData;
   const { codeFilter, viewType } = usePageParams();
-  const [expanded, setExpanded] = useState(isExpandedInitially || startsOpen);
+  const [expanded, setExpanded] = useState(isExpandedInitially || descendentsPassFilter);
   const [seeAllChildren, setSeeAllChildren] = useState(false);
   const { limit } = usePageParams();
-  useEffect(() => setExpanded(startsOpen || isExpandedInitially), [startsOpen]);
+
+  // Update the initial opening if a user is typing things in the search box
+  useEffect(
+    () => setExpanded(descendentsPassFilter || isExpandedInitially),
+    [descendentsPassFilter],
+  );
 
   return (
     <li>

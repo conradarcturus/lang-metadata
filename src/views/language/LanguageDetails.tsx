@@ -4,8 +4,8 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
-import { getLocaleTreeNodes } from '../locale/LocaleTreeList';
-import TreeListRoot from '../TreeListRoot';
+import TreeListRoot from '../common/TreeList/TreeListRoot';
+import { getLocaleTreeNodes } from '../locale/getLocaleTreeNodes';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
 import { getLanguageTreeNodes } from './getLanguageTreeNodes';

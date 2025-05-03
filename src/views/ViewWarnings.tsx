@@ -6,8 +6,8 @@ import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
 import { LanguageData } from '../DataTypes';
 
+import TreeListRoot from './common/TreeList/TreeListRoot';
 import { getLanguageTreeNodes } from './language/getLanguageTreeNodes';
-import TreeListRoot from './TreeListRoot';
 import ViewCard from './ViewCard';
 
 /**

@@ -1,17 +1,18 @@
 import React, { useMemo } from 'react';
 
-import { getSubstringFilter, getViableRootEntriesFilter } from '../controls/filter';
-import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension } from '../controls/PageParamTypes';
-import { getSortFunction } from '../controls/sort';
-import { useDataContext } from '../dataloading/DataContext';
+import { getSubstringFilter, getViableRootEntriesFilter } from '../../../controls/filter';
+import { usePageParams } from '../../../controls/PageParamsContext';
+import { Dimension } from '../../../controls/PageParamTypes';
+import { getSortFunction } from '../../../controls/sort';
+import { useDataContext } from '../../../dataloading/DataContext';
+import { getLanguageTreeNodes } from '../../language/getLanguageTreeNodes';
+import { getLocaleTreeNodes } from '../../locale/getLocaleTreeNodes';
+import { getTerritoryTreeNodes } from '../../territory/getTerritoryTreeNodes';
+import { getWritingSystemTreeNodes } from '../../writingsystem/getWritingSystemTreeNodes';
 
-import './treelist.css';
-import { getLanguageTreeNodes } from './language/getLanguageTreeNodes';
-import { getLocaleTreeNodes } from './locale/LocaleTreeList';
-import { getTerritoryTreeNodes } from './territory/getTerritoryTreeNodes';
+import { filterBranch } from './filterBranch';
 import TreeListRoot from './TreeListRoot';
-import { getWritingSystemTreeNodes } from './writingsystem/getWritingSystemTreeNodes';
+import './treelist.css';
 
 const ViewTreeList: React.FC = () => {
   const { dimension, limit, languageSchema } = usePageParams();
@@ -27,7 +28,6 @@ const ViewTreeList: React.FC = () => {
           Object.values(languagesBySchema[languageSchema]).filter(viableEntriesFunction),
           languageSchema,
           sortFunction,
-          substringFilterFunction,
         );
       case Dimension.Locale:
         return getLocaleTreeNodes(Object.values(languagesBySchema[languageSchema]), sortFunction);
@@ -35,13 +35,11 @@ const ViewTreeList: React.FC = () => {
         return getTerritoryTreeNodes(
           Object.values(territoriesByCode).filter(viableEntriesFunction),
           sortFunction,
-          substringFilterFunction,
         );
       case Dimension.WritingSystem:
         return getWritingSystemTreeNodes(
           Object.values(writingSystems).filter(viableEntriesFunction),
           sortFunction,
-          substringFilterFunction,
         );
     }
   }, [dimension, sortFunction, viableEntriesFunction]);
@@ -51,7 +49,12 @@ const ViewTreeList: React.FC = () => {
       <div style={{ marginBottom: 8 }}>
         <TreeListDescription />
       </div>
-      <TreeListRoot rootNodes={rootNodes.slice(0, limit > 0 ? limit : undefined)} />
+      <TreeListRoot
+        rootNodes={rootNodes
+          .map((node) => filterBranch(node, substringFilterFunction))
+          .filter((node) => node != null)
+          .slice(0, limit > 0 ? limit : undefined)}
+      />
     </div>
   );
 };

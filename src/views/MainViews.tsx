@@ -1,13 +1,13 @@
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension, ViewType } from '../controls/PageParamTypes';
 
+import TreeList from './common/TreeList/ViewTreeList';
 import LanguageCardList from './language/LanguageCardList';
 import LanguageDetailsPage from './language/LanguageDetailsPage';
 import LocaleCardList from './locale/LocaleCardList';
 import LocaleDetailsPage from './locale/LocaleDetailsPage';
 import TerritoryCardList from './territory/TerritoryCardList';
 import TerritoryDetailsPage from './territory/TerritoryDetailsPage';
-import TreeList from './ViewTreeList';
 import ViewWarnings from './ViewWarnings';
 import WritingSystemCardList from './writingsystem/WritingSystemCardList';
 import WritingSystemDetailsPage from './writingsystem/WritingSystemDetailsPage';
