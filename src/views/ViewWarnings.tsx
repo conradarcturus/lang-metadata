@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import { getSubstringFilter } from '../controls/filter';
 import { usePageParams } from '../controls/PageParamsContext';
 import { LanguageSchema } from '../controls/PageParamTypes';
 import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
 import { LanguageData } from '../DataTypes';
 
+import { getLanguageTreeNodes } from './language/getLanguageTreeNodes';
 import TreeListRoot from './TreeListRoot';
 import ViewCard from './ViewCard';
 
@@ -119,7 +119,13 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                             {ISO.scope ?? <em>Unknown</em>}
                           </div>
                           <div>
-                            <TreeListRoot rootNodes={[lang]} languageSchema={LanguageSchema.ISO} />
+                            <TreeListRoot
+                              rootNodes={getLanguageTreeNodes(
+                                [lang],
+                                LanguageSchema.ISO,
+                                sortFunction,
+                              )}
+                            />
                           </div>
                         </ViewCard>
                       );
@@ -139,8 +145,11 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                           </div>
                           <div>
                             <TreeListRoot
-                              rootNodes={[lang]}
-                              languageSchema={LanguageSchema.Glottolog}
+                              rootNodes={getLanguageTreeNodes(
+                                [lang],
+                                LanguageSchema.Glottolog,
+                                sortFunction,
+                              )}
                             />
                           </div>
                         </ViewCard>
@@ -193,15 +202,24 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                         {ISO.code != null && (
                           <div>
                             ISO Hierarchy:{' '}
-                            <TreeListRoot rootNodes={[lang]} languageSchema={LanguageSchema.ISO} />
+                            <TreeListRoot
+                              rootNodes={getLanguageTreeNodes(
+                                [lang],
+                                LanguageSchema.ISO,
+                                sortFunction,
+                              )}
+                            />
                           </div>
                         )}
                         {Glottolog.code != null && (
                           <div>
                             Glottolog Hierarchy:{' '}
                             <TreeListRoot
-                              rootNodes={[lang]}
-                              languageSchema={LanguageSchema.Glottolog}
+                              rootNodes={getLanguageTreeNodes(
+                                [lang],
+                                LanguageSchema.Glottolog,
+                                sortFunction,
+                              )}
                             />
                           </div>
                         )}

@@ -8,6 +8,7 @@ import { getLocaleTreeNodes } from '../locale/LocaleTreeList';
 import TreeListRoot from '../TreeListRoot';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
+import { getLanguageTreeNodes } from './getLanguageTreeNodes';
 import HoverableLanguageName from './HoverableLanguageName';
 
 type Props = {
@@ -133,7 +134,9 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           <div>
             <label>Descendent Languages:</label>
             {schemaSpecific[languageSchema].childLanguages.length > 0 ? (
-              <TreeListRoot rootNodes={[lang]} languageSchema={languageSchema} />
+              <TreeListRoot
+                rootNodes={getLanguageTreeNodes([lang], languageSchema, sortFunction)}
+              />
             ) : (
               <div>
                 <em>No languages come from this language.</em>
@@ -143,10 +146,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           <div>
             <label>Locales:</label>
             {lang.locales.length > 0 ? (
-              <TreeListRoot
-                rootNodes={getLocaleTreeNodes([lang], sortFunction)}
-                languageSchema={languageSchema}
-              />
+              <TreeListRoot rootNodes={getLocaleTreeNodes([lang], sortFunction)} />
             ) : (
               <div>
                 <em>There are no recorded locales for this language.</em>

@@ -1,45 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
-import { getSortFunction, SortByFunctionType } from '../controls/sort';
-import {
-  LanguageData,
-  LanguageScope,
-  TerritoryData,
-  TerritoryType,
-  WritingSystemData,
-} from '../DataTypes';
+import { Dimension, ViewType } from '../controls/PageParamTypes';
+import { ObjectData } from '../DataTypes';
+import Highlightable from '../generic/Highlightable';
 
 import './treelist.css';
 
 import { getObjectName } from './common/getObjectName';
 import HoverableObject from './common/HoverableObject';
-import { LocaleTreeNodeData } from './locale/LocaleTreeList';
 
-export type TreeNodeData = TerritoryData | LanguageData | LocaleTreeNodeData | WritingSystemData;
+export type TreeNodeData = {
+  children: TreeNodeData[];
+  object: ObjectData;
+  type: Dimension;
+  labelStyle?: React.CSSProperties;
+  startsOpen?: boolean;
+};
 
 type Props = {
   nodeData: TreeNodeData;
   isExpandedInitially?: boolean;
-  languageSchema: LanguageSchema;
 };
 
-const TreeListNode: React.FC<Props> = ({
-  nodeData,
-  isExpandedInitially = false,
-  languageSchema,
-}) => {
-  const [expanded, setExpanded] = useState(isExpandedInitially);
+const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }) => {
+  const { children, object, labelStyle, startsOpen } = nodeData;
+  const { codeFilter, viewType } = usePageParams();
+  const [expanded, setExpanded] = useState(isExpandedInitially || startsOpen);
   const [seeAllChildren, setSeeAllChildren] = useState(false);
   const { limit } = usePageParams();
-  const sortFunction = getSortFunction(languageSchema);
-  const children = getChildren(nodeData, sortFunction, languageSchema);
-  const hasChildren = children.length > 0;
+  useEffect(() => setExpanded(startsOpen || isExpandedInitially), [startsOpen]);
 
   return (
     <li>
-      {hasChildren ? (
+      {children.length > 0 ? (
         <button
           className="TreeListExpandBranch"
           onClick={() => {
@@ -52,16 +46,24 @@ const TreeListNode: React.FC<Props> = ({
       ) : (
         <div className="TreeListExpandBranch empty" />
       )}
-      {getNodeTitle(nodeData)}
-      {expanded && hasChildren && (
+      <>
+        <span style={labelStyle}>
+          <Highlightable str={getObjectName(object)} match="nameFilter" />
+        </span>
+        {codeFilter != '' && viewType === ViewType.Hierarchy && (
+          <>
+            {' '}
+            [<Highlightable str={object.code} match="codeFilter" />]
+          </>
+        )}
+        <HoverableObject object={object}>
+          <button className="TreeListInfoButton">&#x24D8;</button>
+        </HoverableObject>
+      </>
+      {expanded && children.length > 0 && (
         <ul className="TreeListBranch">
           {children.slice(0, limit > 0 && !seeAllChildren ? limit : undefined).map((child, i) => (
-            <TreeListNode
-              key={child.code}
-              nodeData={child}
-              isExpandedInitially={i === 0}
-              languageSchema={languageSchema}
-            />
+            <TreeListNode key={child.object.code} nodeData={child} isExpandedInitially={i === 0} />
           ))}
           {limit > 0 && children.length > limit && !seeAllChildren && (
             <li>
@@ -78,86 +80,5 @@ const TreeListNode: React.FC<Props> = ({
     </li>
   );
 };
-
-function getChildren(
-  nodeData: TreeNodeData,
-  sortFunction: SortByFunctionType,
-  languageSchema: LanguageSchema,
-): TreeNodeData[] {
-  switch (nodeData.type) {
-    case Dimension.Language:
-      return nodeData.schemaSpecific[languageSchema].childLanguages.sort(sortFunction);
-    case Dimension.Territory:
-      return nodeData.regionContainsTerritories.sort(sortFunction);
-    case Dimension.Locale:
-      return nodeData.children; // Presorted
-    case Dimension.WritingSystem:
-      return nodeData.childWritingSystems.sort(sortFunction);
-  }
-}
-
-function getNodeTitle(nodeData: TreeNodeData): React.ReactNode {
-  const seeMore = (
-    <HoverableObject object={nodeData.type == Dimension.Locale ? nodeData.object : nodeData}>
-      <button className="TreeListInfoButton">&#x24D8;</button>
-    </HoverableObject>
-  );
-
-  switch (nodeData.type) {
-    case Dimension.Language:
-      return (
-        <>
-          <span
-            style={{
-              fontWeight:
-                nodeData.scope === LanguageScope.Language ||
-                nodeData.scope === LanguageScope.Macrolanguage
-                  ? 'bold'
-                  : 'normal',
-              fontStyle: nodeData.scope === LanguageScope.Dialect ? 'italic' : 'normal',
-            }}
-          >
-            {getObjectName(nodeData)}
-          </span>
-          {seeMore}
-        </>
-      );
-    case Dimension.Territory:
-      return (
-        <>
-          <span
-            style={{
-              fontWeight: nodeData.territoryType === TerritoryType.Country ? 'bold' : 'normal',
-              fontStyle: nodeData.territoryType === TerritoryType.Dependency ? 'italic' : 'normal',
-            }}
-          >
-            {getObjectName(nodeData)}
-          </span>
-          {seeMore}
-        </>
-      );
-    case Dimension.Locale:
-      return (
-        <>
-          {nodeData.label}
-          {seeMore}
-        </>
-      );
-    case Dimension.WritingSystem:
-      return (
-        <>
-          <span
-            style={{
-              fontWeight: nodeData.populationOfDescendents > 100 ? 'bold' : 'normal',
-              fontStyle: nodeData.populationUpperBound <= 100 ? 'italic' : 'normal',
-            }}
-          >
-            {getObjectName(nodeData)}
-          </span>
-          {seeMore}
-        </>
-      );
-  }
-}
 
 export default TreeListNode;

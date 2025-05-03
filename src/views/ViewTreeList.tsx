@@ -1,34 +1,48 @@
 import React, { useMemo } from 'react';
 
-import { getViableRootEntriesFilter } from '../controls/filter';
+import { getSubstringFilter, getViableRootEntriesFilter } from '../controls/filter';
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension } from '../controls/PageParamTypes';
 import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
 
 import './treelist.css';
+import { getLanguageTreeNodes } from './language/getLanguageTreeNodes';
 import { getLocaleTreeNodes } from './locale/LocaleTreeList';
+import { getTerritoryTreeNodes } from './territory/getTerritoryTreeNodes';
 import TreeListRoot from './TreeListRoot';
+import { getWritingSystemTreeNodes } from './writingsystem/getWritingSystemTreeNodes';
 
 const ViewTreeList: React.FC = () => {
   const { dimension, limit, languageSchema } = usePageParams();
   const { territoriesByCode, languagesBySchema, writingSystems } = useDataContext();
   const sortFunction = getSortFunction();
   const viableEntriesFunction = getViableRootEntriesFilter();
+  const substringFilterFunction = getSubstringFilter();
 
   const rootNodes = useMemo(() => {
     switch (dimension) {
       case Dimension.Language:
-        return Object.values(languagesBySchema[languageSchema])
-          .filter(viableEntriesFunction)
-          .sort(sortFunction);
-      case Dimension.Territory:
-        return Object.values(territoriesByCode).filter(viableEntriesFunction).sort(sortFunction);
+        return getLanguageTreeNodes(
+          Object.values(languagesBySchema[languageSchema]).filter(viableEntriesFunction),
+          languageSchema,
+          sortFunction,
+          substringFilterFunction,
+        );
       case Dimension.Locale:
-        // Building custom tree nodes
         return getLocaleTreeNodes(Object.values(languagesBySchema[languageSchema]), sortFunction);
-      default:
-        return Object.values(writingSystems).filter(viableEntriesFunction).sort(sortFunction);
+      case Dimension.Territory:
+        return getTerritoryTreeNodes(
+          Object.values(territoriesByCode).filter(viableEntriesFunction),
+          sortFunction,
+          substringFilterFunction,
+        );
+      case Dimension.WritingSystem:
+        return getWritingSystemTreeNodes(
+          Object.values(writingSystems).filter(viableEntriesFunction),
+          sortFunction,
+          substringFilterFunction,
+        );
     }
   }, [dimension, sortFunction, viableEntriesFunction]);
 
@@ -37,10 +51,7 @@ const ViewTreeList: React.FC = () => {
       <div style={{ marginBottom: 8 }}>
         <TreeListDescription />
       </div>
-      <TreeListRoot
-        rootNodes={rootNodes.slice(0, limit > 0 ? limit : undefined)}
-        languageSchema={languageSchema}
-      />
+      <TreeListRoot rootNodes={rootNodes.slice(0, limit > 0 ? limit : undefined)} />
     </div>
   );
 };
