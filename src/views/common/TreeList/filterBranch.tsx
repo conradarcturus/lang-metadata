@@ -8,6 +8,7 @@ export function filterBranch(
 ): TreeNodeData | undefined {
   if (!filterFunction) {
     // If there is no filter function, don't change the node or filter descendents
+    node.descendentsPassFilter = undefined;
     return node;
   }
 

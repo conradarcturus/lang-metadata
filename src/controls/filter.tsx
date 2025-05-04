@@ -10,7 +10,7 @@ export type FilterFunctionType = (a: ObjectData) => boolean;
 /**
  * Provide a function that filters out items if they match the code or name substring filters
  */
-export function getSubstringFilter(): FilterFunctionType {
+export function getSubstringFilter(): FilterFunctionType | undefined {
   const { nameFilter, codeFilter } = usePageParams();
   const lowercaseNameFilter = nameFilter.toLowerCase();
   const lowercaseCodeFilter = codeFilter.toLowerCase();
@@ -41,6 +41,10 @@ export function getSubstringFilter(): FilterFunctionType {
       }
     };
   }, [codeFilterFunction, lowercaseNameFilter]);
+
+  if (nameFilter === '' && codeFilter === '') {
+    return undefined;
+  }
   return substringFilterFunction;
 }
 

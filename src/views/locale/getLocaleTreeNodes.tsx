@@ -6,20 +6,16 @@ import {
   ObjectData,
   WritingSystemData,
 } from '../../DataTypes';
-import { filterBranch } from '../common/TreeList/filterBranch';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
 
 export function getLocaleTreeNodes(
   languages: LanguageData[],
   sortFunction: (a: ObjectData, b: ObjectData) => number,
-  filterFunction?: (a: ObjectData) => boolean,
 ): TreeNodeData[] {
   return languages
     .sort(sortFunction)
     .filter((lang) => lang.locales.length > 0)
-    .map((lang) => getLanguageTreeNode(lang, sortFunction))
-    .map((node) => filterBranch(node, filterFunction))
-    .filter((lang) => lang != null);
+    .map((lang) => getLanguageTreeNode(lang, sortFunction));
 }
 
 function getLanguageTreeNode(

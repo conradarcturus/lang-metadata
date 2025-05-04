@@ -21,7 +21,9 @@ const LanguageCardList: React.FC = () => {
     viableEntriesFunction,
   );
   // Filter results by the substring filter
-  const languagesFiltered = languagesViable.filter(substringFilterFunction);
+  const languagesFiltered = substringFilterFunction
+    ? languagesViable.filter(substringFilterFunction)
+    : languagesViable;
   // Sort results & limit how many are visible
   const languagesVisible = languagesFiltered
     .sort(sortByFunction)

@@ -15,10 +15,11 @@ const WritingSystemCardList: React.FC = () => {
   const sortFunction = getSortFunction();
   const substringFilterFunction = getSubstringFilter();
 
+  const writingSystemsViable = Object.values(writingSystems);
   // Filter results
-  const writingSystemsFiltered = Object.keys(writingSystems)
-    .map((writingSystemCode) => writingSystems[writingSystemCode])
-    .filter(substringFilterFunction);
+  const writingSystemsFiltered = substringFilterFunction
+    ? writingSystemsViable.filter(substringFilterFunction)
+    : writingSystemsViable;
   // Sort results & limit how many are visible
   const writingSystemsVisible = writingSystemsFiltered
     .sort(sortFunction)

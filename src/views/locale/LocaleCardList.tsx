@@ -18,7 +18,9 @@ const LocaleCardList: React.FC = () => {
   // Find the viable languages
   const localesViable = Object.values(locales).filter(viableEntriesFunction);
   // Filter results
-  const localeFiltered = localesViable.filter(substringFilterFunction);
+  const localeFiltered = substringFilterFunction
+    ? localesViable.filter(substringFilterFunction)
+    : localesViable;
   // Sort results & limit how many are visible
   const localesVisible = localeFiltered
     .sort(getSortFunction())

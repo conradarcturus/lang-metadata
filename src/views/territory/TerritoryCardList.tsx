@@ -19,7 +19,9 @@ const TerritoryCardList: React.FC = () => {
   // Filter to only countries & dependencies
   const territoriesViable = Object.values(territoriesByCode).filter(viableEntriesFunction);
   // Filter results
-  const territoriesFiltered = territoriesViable.filter(substringFilterFunction);
+  const territoriesFiltered = substringFilterFunction
+    ? territoriesViable.filter(substringFilterFunction)
+    : territoriesViable;
   // Sort results & limit how many are visible
   const territoriesVisible = territoriesFiltered
     .sort(sortFunction)

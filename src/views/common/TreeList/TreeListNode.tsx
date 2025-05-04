@@ -31,7 +31,7 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
 
   // Update the initial opening if a user is typing things in the search box
   useEffect(
-    () => setExpanded(descendentsPassFilter || isExpandedInitially),
+    () => setExpanded(isExpandedInitially || descendentsPassFilter),
     [descendentsPassFilter],
   );
 
