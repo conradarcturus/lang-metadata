@@ -1,4 +1,9 @@
+import React from 'react';
+
+import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension } from '../../controls/PageParamTypes';
+import { getSortFunction } from '../../controls/sort';
+import { useDataContext } from '../../dataloading/DataContext';
 import {
   LanguageCode,
   LanguageData,
@@ -7,6 +12,31 @@ import {
   WritingSystemData,
 } from '../../DataTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
+import TreeListPageBody from '../common/TreeList/TreeListPageBody';
+
+export const LocaleHierarchy: React.FC = () => {
+  const { languageSchema } = usePageParams();
+  const { languagesBySchema } = useDataContext();
+  const sortFunction = getSortFunction();
+
+  const rootNodes = getLocaleTreeNodes(
+    Object.values(languagesBySchema[languageSchema]),
+    sortFunction,
+  );
+
+  return (
+    <TreeListPageBody
+      rootNodes={rootNodes}
+      description={
+        <>
+          Locales are grouped by the language/writing system/territory that is represented by the
+          locale code. Most locale codes do not specify a writing system so they are grouped with
+          the primary writing system for the language.
+        </>
+      }
+    />
+  );
+};
 
 export function getLocaleTreeNodes(
   languages: LanguageData[],

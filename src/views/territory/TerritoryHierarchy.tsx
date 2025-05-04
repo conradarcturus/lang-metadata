@@ -1,6 +1,35 @@
+import React from 'react';
+
+import { getViableRootEntriesFilter } from '../../controls/filter';
 import { Dimension } from '../../controls/PageParamTypes';
+import { getSortFunction } from '../../controls/sort';
+import { useDataContext } from '../../dataloading/DataContext';
 import { ObjectData, TerritoryData, TerritoryType } from '../../DataTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
+import TreeListPageBody from '../common/TreeList/TreeListPageBody';
+
+export const TerritoryHierarchy: React.FC = () => {
+  const { territoriesByCode } = useDataContext();
+  const viableEntriesFunction = getViableRootEntriesFilter();
+  const sortFunction = getSortFunction();
+
+  const rootNodes = getTerritoryTreeNodes(
+    Object.values(territoriesByCode).filter(viableEntriesFunction),
+    sortFunction,
+  );
+
+  return (
+    <TreeListPageBody
+      rootNodes={rootNodes}
+      description={
+        <>
+          <strong>Bold territories</strong> are countries. <em>Italicized countries</em> are
+          dependencies.
+        </>
+      }
+    />
+  );
+};
 
 export function getTerritoryTreeNodes(
   territories: TerritoryData[],

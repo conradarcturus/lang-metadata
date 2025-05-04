@@ -1,6 +1,36 @@
+import React from 'react';
+
+import { getViableRootEntriesFilter } from '../../controls/filter';
 import { Dimension } from '../../controls/PageParamTypes';
+import { getSortFunction } from '../../controls/sort';
+import { useDataContext } from '../../dataloading/DataContext';
 import { ObjectData, WritingSystemData } from '../../DataTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
+import TreeListPageBody from '../common/TreeList/TreeListPageBody';
+
+export const WritingSystemHierarchy: React.FC = () => {
+  const { writingSystems } = useDataContext();
+  const viableEntriesFunction = getViableRootEntriesFilter();
+  const sortFunction = getSortFunction();
+
+  const rootNodes = getWritingSystemTreeNodes(
+    Object.values(writingSystems).filter(viableEntriesFunction),
+    sortFunction,
+  );
+
+  return (
+    <TreeListPageBody
+      rootNodes={rootNodes}
+      description={
+        <>
+          <strong>Bold writing systems</strong> historically led to other writing systems that are
+          still used today. <em>Italicized writing systems</em> have few recorded users (either
+          missing data or it is functionally extinct).
+        </>
+      }
+    />
+  );
+};
 
 export function getWritingSystemTreeNodes(
   writingSystems: WritingSystemData[],
