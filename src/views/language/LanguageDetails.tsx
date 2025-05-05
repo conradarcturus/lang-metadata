@@ -20,16 +20,16 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
   const sortFunction = getSortFunction();
   const {
     codeISO6391,
+    childLanguages,
     medium,
     populationCited,
     primaryWritingSystem,
-    schemaSpecific,
+    schemaSpecific: { Glottolog, ISO },
     vitalityEth2013,
     vitalityEth2025,
     vitalityISO,
     writingSystems,
   } = lang;
-  const { Glottolog, ISO } = schemaSpecific;
 
   return (
     <div className="Details">
@@ -133,7 +133,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         <div style={{ display: 'flex' }}>
           <div>
             <label>Descendent Languages:</label>
-            {schemaSpecific[languageSchema].childLanguages.length > 0 ? (
+            {childLanguages.length > 0 ? (
               <TreeListRoot
                 rootNodes={getLanguageTreeNodes([lang], languageSchema, sortFunction)}
               />

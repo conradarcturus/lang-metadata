@@ -1,5 +1,13 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 
+import { usePageParams } from '../controls/PageParamsContext';
 import { LanguageSchema } from '../controls/PageParamTypes';
 import {
   BCP47LocaleCode,
@@ -36,8 +44,11 @@ import {
   loadManualGlottocodeToISO,
 } from './GlottologData';
 
+type LanguageDict = Record<LanguageCode, LanguageData>;
+
 type DataContextType = {
-  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>;
+  languagesBySchema: Record<LanguageSchema, LanguageDict>;
+  languages: LanguageDict;
   territoriesByCode: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
   writingSystems: Record<ScriptCode, WritingSystemData>;
@@ -50,6 +61,7 @@ const DataContext = createContext<DataContextType | undefined>({
     Glottolog: {},
     WAL: {},
   },
+  languages: {},
   territoriesByCode: {},
   locales: {},
   writingSystems: {},
@@ -59,6 +71,8 @@ const DataContext = createContext<DataContextType | undefined>({
 export const DataProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
+  const { languageSchema } = usePageParams();
+  const [languages, setLanguages] = useState<Record<LanguageCode, LanguageData>>({});
   const [languagesBySchema, setLanguagesBySchema] = useState<
     Record<LanguageSchema, Record<LanguageCode, LanguageData>>
   >({
@@ -119,6 +133,7 @@ export const DataProvider: React.FC<{
     computeOtherPopulationStatistics(languagesBySchema, writingSystems);
 
     setLanguagesBySchema(languagesBySchema);
+    updateLanguageBasedOnSchema(languagesBySchema, setLanguages, languageSchema);
     setTerritoriesByCode(territories);
     setLocales(locales);
     setWritingSystems(writingSystems);
@@ -128,10 +143,15 @@ export const DataProvider: React.FC<{
     loadData();
   }, []); // this is called once after page load
 
+  useEffect(() => {
+    updateLanguageBasedOnSchema(languagesBySchema, setLanguages, languageSchema);
+  }, [languageSchema]); // this is called once after page load
+
   return (
     <DataContext.Provider
       value={{
         languagesBySchema,
+        languages,
         territoriesByCode,
         locales,
         writingSystems,
@@ -141,6 +161,25 @@ export const DataProvider: React.FC<{
     </DataContext.Provider>
   );
 };
+
+function updateLanguageBasedOnSchema(
+  languagesBySchema: Record<LanguageSchema, LanguageDict>,
+  setLanguages: Dispatch<SetStateAction<LanguageDict>>,
+  languageSchema: LanguageSchema,
+): void {
+  const languages = languagesBySchema[languageSchema];
+  // Update language codes
+  Object.values(languages).forEach((lang) => {
+    const specific = lang.schemaSpecific[languageSchema];
+    lang.code = specific.code ?? lang.code;
+    lang.scope = specific.scope ?? lang.scope;
+    lang.populationOfDescendents = specific.populationOfDescendents ?? undefined;
+    lang.parentLanguage = specific.parentLanguage ?? undefined;
+    lang.childLanguages = specific.childLanguages ?? [];
+  });
+
+  setLanguages(languages);
+}
 
 // Custom hook for easier usage
 export const useDataContext = () => {

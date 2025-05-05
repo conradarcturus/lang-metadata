@@ -230,13 +230,13 @@ export function addISOLanguageFamilyData(
         type: Dimension.Language,
         code: family.code,
         nameDisplay: name,
-        nameDisplayTitle: name,
         scope: LanguageScope.Family,
         viabilityConfidence: 'No',
         viabilityExplanation: 'Language family',
         schemaSpecific,
         writingSystems: {},
         locales: [],
+        childLanguages: [],
       };
       languagesBySchema.Inclusive[family.code] = familyEntry;
       languagesBySchema.ISO[family.code] = familyEntry;
@@ -244,9 +244,6 @@ export function addISOLanguageFamilyData(
       // familyEntry exists, but it may be missing data
       if (!familyEntry.nameDisplay || familyEntry.nameDisplay === '0') {
         familyEntry.nameDisplay = family.name;
-      }
-      if (!familyEntry.nameDisplayTitle || familyEntry.nameDisplayTitle === '0') {
-        familyEntry.nameDisplayTitle = family.name;
       }
       familyEntry.schemaSpecific.Inclusive.parentLanguageCode = family.parent;
       familyEntry.schemaSpecific.ISO.parentLanguageCode = family.parent;

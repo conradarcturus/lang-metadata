@@ -5,9 +5,11 @@
 
 import { Dimension, LanguageSchema } from './controls/PageParamTypes';
 
-export interface ObjectDataBase {
+export interface ObjectBase {
+  type: Dimension;
   code: string;
   nameDisplay: string;
+  nameEndonym?: string;
 }
 
 export type ObjectData = LanguageData | WritingSystemData | TerritoryData | LocaleData;
@@ -31,17 +33,16 @@ export enum LanguageScope {
   SpecialCode = 'Special',
 }
 
-export interface LanguageData extends ObjectDataBase {
+export interface LanguageData extends ObjectBase {
   type: Dimension.Language;
 
   // Provided by the TSV files
-  code: LanguageCode; // Universal key, definitely non-null, prefers ISO
+  code: LanguageCode;
   codeISO6391?: LanguageCode;
   scope?: LanguageScope;
 
   nameDisplay: string;
-  nameDisplayTitle: string;
-  nameDisplaySubtitle?: string;
+  nameSubtitle?: string;
   nameEndonym?: string;
 
   vitalityISO?: string;
@@ -53,6 +54,7 @@ export interface LanguageData extends ObjectDataBase {
 
   populationAdjusted?: number;
   populationCited?: number;
+  populationOfDescendents?: number;
 
   medium?: string;
   primaryScriptCode?: ScriptCode;
@@ -63,6 +65,8 @@ export interface LanguageData extends ObjectDataBase {
   locales: LocaleData[];
   primaryWritingSystem?: WritingSystemData;
   writingSystems: Record<ScriptCode, WritingSystemData>;
+  parentLanguage?: LanguageData;
+  childLanguages: LanguageData[];
 }
 
 // Since languages can be categorized by ISO, Glottolog, or other schema, these values will vary based on the language schema
@@ -89,7 +93,7 @@ export enum TerritoryType {
   Dependency = 'Dependency',
 }
 
-export interface TerritoryData extends ObjectDataBase {
+export interface TerritoryData extends ObjectBase {
   type: Dimension.Territory;
   code: TerritoryCode;
   nameDisplay: string;
@@ -109,7 +113,7 @@ export interface TerritoryData extends ObjectDataBase {
 
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
 
-export interface WritingSystemData extends ObjectDataBase {
+export interface WritingSystemData extends ObjectBase {
   type: Dimension.WritingSystem;
 
   code: ScriptCode;
@@ -163,7 +167,7 @@ export enum OfficialStatus {
   None = '',
 }
 
-export interface LocaleData extends ObjectDataBase {
+export interface LocaleData extends ObjectBase {
   type: Dimension.Locale;
 
   code: BCP47LocaleCode;

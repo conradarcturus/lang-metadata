@@ -23,7 +23,7 @@ const HoverableLocaleName: React.FC<Props> = ({
   let label = locale.code;
   switch (labelSource) {
     case 'language':
-      label = locale.language?.nameDisplayTitle ?? locale.languageCode;
+      label = locale.language?.nameDisplay ?? locale.languageCode;
       break;
     case 'territory':
       label = locale.territory?.nameDisplay ?? locale.territoryCode;

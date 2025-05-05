@@ -15,18 +15,19 @@ interface Props {
 }
 
 const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
-  const { updatePageParams, languageSchema } = usePageParams();
+  const { updatePageParams } = usePageParams();
   const {
+    childLanguages,
+    code,
     locales,
     medium,
-    nameDisplayTitle,
+    nameDisplay,
     nameEndonym,
-    schemaSpecific,
+    parentLanguage,
     populationCited,
     vitalityEth2013,
   } = lang;
   const subtitle = getObjectSubtitle(lang);
-  const { code, parentLanguage, childLanguages } = schemaSpecific[languageSchema];
 
   return (
     <div>
@@ -35,7 +36,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           <strong>
             <Highlightable str={getObjectName(lang)} match="nameFilter" />
           </strong>{' '}
-          {nameDisplayTitle != nameEndonym && nameEndonym} [
+          {nameDisplay != nameEndonym && nameEndonym} [
           <Highlightable str={code ?? lang.code} match="codeFilter" />]
         </a>
         {subtitle != null && <div className="subtitle">{subtitle}</div>}

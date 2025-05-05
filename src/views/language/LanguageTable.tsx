@@ -1,30 +1,28 @@
 import React, { useMemo } from 'react';
 
 import { getViableRootEntriesFilter } from '../../controls/filter';
-import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LanguageData } from '../../DataTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
 import ObjectTable from '../common/table/ObjectTable';
 
 const LanguageTable: React.FC = () => {
-  const { languagesBySchema } = useDataContext();
-  const { languageSchema } = usePageParams();
+  const { languages } = useDataContext();
   const viableEntriesFunction = getViableRootEntriesFilter();
-  const languages = useMemo(
-    () => Object.values(languagesBySchema[languageSchema]).filter(viableEntriesFunction),
-    [languageSchema, viableEntriesFunction],
+  const languagesFiltered = useMemo(
+    () => Object.values(languages).filter(viableEntriesFunction),
+    [viableEntriesFunction],
   );
 
   return (
     <ObjectTable<LanguageData>
-      objects={languages}
+      objects={languagesFiltered}
       columns={[
         CodeColumn,
         NameColumn,
         {
           label: 'Scope',
-          render: (lang) => lang.schemaSpecific[languageSchema].scope ?? lang.scope,
+          render: (lang) => lang.scope ?? lang.scope,
         },
         {
           label: 'Population',

@@ -8,7 +8,7 @@ import { getLocaleName } from '../locale/LocaleStrings';
 export function getObjectName(object: ObjectData) {
   switch (object.type) {
     case Dimension.Language:
-      return object.nameDisplayTitle;
+      return object.nameDisplay;
     case Dimension.Locale:
       return getLocaleName(object);
     case Dimension.Territory:
@@ -32,14 +32,14 @@ export function getObjectSubtitle(object: ObjectData): string | undefined {
 }
 
 function getLanguageSubtitle(lang: LanguageData): string | undefined {
-  let nameDisplaySubtitle = lang.nameDisplaySubtitle;
+  let nameSubtitle: string | undefined = lang.nameDisplay;
   let scope = lang.scope;
-  if (nameDisplaySubtitle === 'macrolanguage') {
-    nameDisplaySubtitle = undefined; // Already covered by the scope argument
+  if (nameSubtitle === 'macrolanguage') {
+    nameSubtitle = undefined; // Already covered by the scope argument
   }
   if (scope == LanguageScope.Language) {
     scope = undefined; // Not particularly interesting
   }
-  const composite = [scope, nameDisplaySubtitle].filter(Boolean).join(', ');
+  const composite = [scope, nameSubtitle].filter(Boolean).join(', ');
   return composite !== '' ? composite : undefined;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -15,14 +14,10 @@ import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
 export const LocaleHierarchy: React.FC = () => {
-  const { languageSchema } = usePageParams();
-  const { languagesBySchema } = useDataContext();
+  const { languages } = useDataContext();
   const sortFunction = getSortFunction();
 
-  const rootNodes = getLocaleTreeNodes(
-    Object.values(languagesBySchema[languageSchema]),
-    sortFunction,
-  );
+  const rootNodes = getLocaleTreeNodes(Object.values(languages), sortFunction);
 
   return (
     <TreeListPageBody

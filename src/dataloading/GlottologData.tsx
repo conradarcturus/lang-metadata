@@ -111,13 +111,14 @@ export function addGlottologLanguages(
         type: Dimension.Language,
         code: glottoCode,
         nameDisplay: importedLanguage.name,
-        nameDisplayTitle: importedLanguage.name,
+        nameSubtitle: importedLanguage.name,
         scope,
         viabilityConfidence: 'No',
         viabilityExplanation: 'Glottolog entry not found in ISO',
         schemaSpecific,
         writingSystems: {},
         locales: [],
+        childLanguages: [],
       };
       languagesBySchema.Inclusive[importedLanguage.glottoCode] = newLang;
       languagesBySchema.Glottolog[importedLanguage.glottoCode] = newLang;

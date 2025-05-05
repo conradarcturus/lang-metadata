@@ -26,20 +26,8 @@ export function getSubstringFilter(): FilterFunctionType | undefined {
       return codeFilterFunction;
     }
 
-    return (a: ObjectData) => {
-      switch (a.type) {
-        case Dimension.Language:
-          return (
-            codeFilterFunction(a) && a.nameDisplayTitle.toLowerCase().includes(lowercaseNameFilter)
-          );
-        case Dimension.Locale:
-          return codeFilterFunction(a) && a.nameDisplay.toLowerCase().includes(lowercaseNameFilter);
-        case Dimension.Territory:
-          return codeFilterFunction(a) && a.nameDisplay.toLowerCase().includes(lowercaseNameFilter);
-        case Dimension.WritingSystem:
-          return codeFilterFunction(a) && a.nameDisplay.toLowerCase().includes(lowercaseNameFilter);
-      }
-    };
+    return (a: ObjectData) =>
+      codeFilterFunction(a) && a.nameDisplay.toLowerCase().includes(lowercaseNameFilter);
   }, [codeFilterFunction, lowercaseNameFilter]);
 
   if (nameFilter === '' && codeFilter === '') {

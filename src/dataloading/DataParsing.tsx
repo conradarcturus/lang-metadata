@@ -12,8 +12,8 @@ import { separateTitleAndSubtitle } from '../generic/stringUtils';
 
 export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');
-  const nameDisplay = parts[2];
-  const [nameDisplayTitle, nameDisplaySubtitle] = separateTitleAndSubtitle(nameDisplay);
+  const nameFull = parts[2];
+  const [nameDisplay, nameSubtitle] = separateTitleAndSubtitle(nameFull);
   const populationAdjusted =
     parts[9] != '' ? Number.parseInt(parts[9].replace(/,/g, '')) : undefined;
   const populationCited =
@@ -40,8 +40,7 @@ export function parseLanguageLine(line: string): LanguageData {
     scope: undefined, // Added by imports
 
     nameDisplay,
-    nameDisplayTitle,
-    nameDisplaySubtitle,
+    nameSubtitle,
     nameEndonym: parts[3],
 
     vitalityISO: undefined, // Added by ISO import
@@ -62,6 +61,7 @@ export function parseLanguageLine(line: string): LanguageData {
     locales: [],
     primaryWritingSystem: undefined,
     writingSystems: {},
+    childLanguages: [],
   };
 }
 

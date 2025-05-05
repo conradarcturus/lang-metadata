@@ -11,12 +11,12 @@ import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
 export const LanguageHierarchy: React.FC = () => {
   const { languageSchema } = usePageParams();
-  const { languagesBySchema } = useDataContext();
+  const { languages } = useDataContext();
   const viableEntriesFunction = getViableRootEntriesFilter();
   const sortFunction = getSortFunction();
 
   const rootNodes = getLanguageTreeNodes(
-    Object.values(languagesBySchema[languageSchema]).filter(viableEntriesFunction),
+    Object.values(languages).filter(viableEntriesFunction),
     languageSchema,
     sortFunction,
   );

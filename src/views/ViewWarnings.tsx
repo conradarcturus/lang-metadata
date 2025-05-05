@@ -31,7 +31,7 @@ const LanguagesWithIdenticalNames: React.FC = () => {
   const sortFunction = getSortFunction();
   const languagesByName = Object.values(Inclusive).reduce<Record<string, LanguageData[]>>(
     (languagesByName, lang) => {
-      const name = lang.nameDisplay + (lang.nameDisplaySubtitle ?? '');
+      const name = lang.nameDisplay + (lang.nameSubtitle ?? '');
       if (name.toLowerCase().includes(lowercaseNameFilter)) {
         if (languagesByName[name] == null) {
           languagesByName[name] = [lang];
