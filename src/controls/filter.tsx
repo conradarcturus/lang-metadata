@@ -59,7 +59,9 @@ export function getViableRootEntriesFilter(): FilterFunctionType {
       case ViewType.CardList:
         return a.scope != LanguageScope.Family;
       case ViewType.Hierarchy:
-        return a.schemaSpecific[languageSchema].parentLanguage == null;
+        return a.schemaSpecific[languageSchema]?.parentLanguage == null;
+      case ViewType.Table:
+        return true; // not filtering Table
       case ViewType.Details:
         return true; // not filtering Details
       case ViewType.Warnings:

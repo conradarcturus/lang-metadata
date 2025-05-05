@@ -63,9 +63,3 @@ ul.TreeListBranch::before {
 .TreeListExpandBranch:hover {
     background-color: var(--color-button-hover);
 }
-
-.TreeListInfoButton {
-    background-color: var(--color-background);
-    color: var(--color-button-primary);
-    padding: 0 4px;
-}

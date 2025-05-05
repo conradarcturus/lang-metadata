@@ -68,6 +68,12 @@ a:hover {
     margin-top: 1em;
 }
 
+.InfoButton {
+    background-color: var(--color-background);
+    color: var(--color-button-primary);
+    padding: 0 4px;
+}
+
 @media (min-width: 0px) {
     .CardList {
         grid-template-columns: repeat(1, 1fr);

@@ -1,4 +1,5 @@
 import Hoverable from '../generic/Hoverable';
+import { TABLE_MAX_ROWS } from '../views/common/table/ObjectTable';
 
 import ButtonGroupSingleChoice from './ButtonGroupSingleChoice';
 import { usePageParams } from './PageParamsContext';
@@ -11,7 +12,9 @@ const FilterControls: React.FC = () => {
 
   return (
     <div>
-      {[ViewType.CardList, ViewType.Hierarchy, ViewType.Details].includes(viewType) && (
+      {[ViewType.CardList, ViewType.Hierarchy, ViewType.Table, ViewType.Details].includes(
+        viewType,
+      ) && (
         <Hoverable
           hoverContent={
             viewType == ViewType.CardList
@@ -28,7 +31,9 @@ const FilterControls: React.FC = () => {
           />
         </Hoverable>
       )}
-      {[ViewType.CardList, ViewType.Hierarchy, ViewType.Warnings].includes(viewType) && (
+      {[ViewType.CardList, ViewType.Hierarchy, ViewType.Table, ViewType.Warnings].includes(
+        viewType,
+      ) && (
         <Hoverable
           hoverContent={`Filter the ${dimension.toLowerCase()} by its name. Caution: if you have too many items visible then this may jitter, so type slowly.`}
         >
@@ -41,31 +46,44 @@ const FilterControls: React.FC = () => {
           />
         </Hoverable>
       )}
-      {[ViewType.CardList, ViewType.Hierarchy].includes(viewType) && (
+      {[ViewType.CardList, ViewType.Hierarchy, ViewType.Table].includes(viewType) && (
         <Hoverable
-          hoverContent={`Limit how many ${dimension.toLowerCase()} ${viewType === ViewType.CardList ? 'cards' : 'root nodes'} are shown.`}
+          hoverContent={`Limit how many ${dimension.toLowerCase()} ${getLimitableObjectName(viewType)} are shown.`}
         >
           <TextInput
             label="Limit:"
             value={limit < 1 || Number.isNaN(limit) ? '' : limit.toString()}
             onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
             inputStyle={{ width: '3em' }}
-            placeholder="&infin;"
+            placeholder={viewType === ViewType.Table ? TABLE_MAX_ROWS.toString() : '∞'}
           />
         </Hoverable>
       )}
-      {
-        <Hoverable hoverContent={`Choose the order of items in the view.`}>
-          <ButtonGroupSingleChoice<SortBy>
-            options={Object.values(SortBy)}
-            onChange={(sortBy: SortBy) => updatePageParams({ sortBy })}
-            selected={sortBy}
-            groupLabel="Sort by:"
-          />
-        </Hoverable>
-      }
+      <Hoverable hoverContent={`Choose the order of items in the view.`}>
+        <ButtonGroupSingleChoice<SortBy>
+          options={Object.values(SortBy)}
+          onChange={(sortBy: SortBy) => updatePageParams({ sortBy })}
+          selected={sortBy}
+          groupLabel="Sort by:"
+        />
+      </Hoverable>
     </div>
   );
 };
+
+function getLimitableObjectName(viewType: ViewType) {
+  switch (viewType) {
+    case ViewType.CardList:
+      return 'cards';
+    case ViewType.Hierarchy:
+      return 'root nodes';
+    case ViewType.Details:
+      return '???';
+    case ViewType.Table:
+      return 'rows';
+    case ViewType.Warnings:
+      return 'warnings';
+  }
+}
 
 export default FilterControls;

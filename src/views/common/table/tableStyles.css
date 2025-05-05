@@ -1,0 +1,6 @@
+
+
+.numeric {
+    text-align: right; /* align right for both LTR and RTL views */
+    font-family: monospace; /* equalize the character width */
+}

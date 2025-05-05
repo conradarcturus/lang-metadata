@@ -5,6 +5,11 @@
 
 import { Dimension, LanguageSchema } from './controls/PageParamTypes';
 
+export interface ObjectDataBase {
+  code: string;
+  nameDisplay: string;
+}
+
 export type ObjectData = LanguageData | WritingSystemData | TerritoryData | LocaleData;
 
 // LanguageCode is ideally an ISO-639 code, or a BCP047 formatted complex language tag
@@ -26,7 +31,7 @@ export enum LanguageScope {
   SpecialCode = 'Special',
 }
 
-export type LanguageData = {
+export interface LanguageData extends ObjectDataBase {
   type: Dimension.Language;
 
   // Provided by the TSV files
@@ -58,7 +63,7 @@ export type LanguageData = {
   locales: LocaleData[];
   primaryWritingSystem?: WritingSystemData;
   writingSystems: Record<ScriptCode, WritingSystemData>;
-};
+}
 
 // Since languages can be categorized by ISO, Glottolog, or other schema, these values will vary based on the language schema
 type LanguageDataInSchema = {
@@ -84,7 +89,7 @@ export enum TerritoryType {
   Dependency = 'Dependency',
 }
 
-export type TerritoryData = {
+export interface TerritoryData extends ObjectDataBase {
   type: Dimension.Territory;
   code: TerritoryCode;
   nameDisplay: string;
@@ -100,11 +105,11 @@ export type TerritoryData = {
   sovereign?: TerritoryData;
   dependentTerritories: TerritoryData[];
   locales: LocaleData[];
-};
+}
 
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
 
-export type WritingSystemData = {
+export interface WritingSystemData extends ObjectDataBase {
   type: Dimension.WritingSystem;
 
   code: ScriptCode;
@@ -132,7 +137,7 @@ export type WritingSystemData = {
   parentWritingSystem?: WritingSystemData;
   childWritingSystems: WritingSystemData[];
   containsWritingSystems: WritingSystemData[];
-};
+}
 
 // BCP-47 Locale	Locale Display Name	Native Locale Name	Language Code	Territory ISO	Explicit Script	Variant IANA Tag	Pop Source	Best Guess	Official Language
 export type BCP47LocaleCode = string; // BCP-47 formatted locale, eg. en_US, fr_CA, etc.
@@ -158,7 +163,7 @@ export enum OfficialStatus {
   None = '',
 }
 
-export type LocaleData = {
+export interface LocaleData extends ObjectDataBase {
   type: Dimension.Locale;
 
   code: BCP47LocaleCode;
@@ -179,4 +184,4 @@ export type LocaleData = {
 
   // Data added up some references
   populationPercentOfTerritory?: number;
-};
+}

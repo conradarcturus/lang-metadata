@@ -4,17 +4,21 @@ import { Dimension, ViewType } from '../controls/PageParamTypes';
 import LanguageCardList from './language/LanguageCardList';
 import LanguageDetailsPage from './language/LanguageDetailsPage';
 import { LanguageHierarchy } from './language/LanguageHierarchy';
+import LanguageTable from './language/LanguageTable';
 import LocaleCardList from './locale/LocaleCardList';
 import LocaleDetailsPage from './locale/LocaleDetailsPage';
 import { LocaleHierarchy } from './locale/LocaleHierarchy';
+import LocaleTable from './locale/LocaleTable';
 import TerritoryCardList from './territory/TerritoryCardList';
 import TerritoryDetailsPage from './territory/TerritoryDetailsPage';
 import { TerritoryHierarchy } from './territory/TerritoryHierarchy';
+import TerritoryTable from './territory/TerritoryTable';
 import ViewWarnings from './ViewWarnings';
 import WritingSystemCardList from './writingsystem/WritingSystemCardList';
 import WritingSystemDetailsPage from './writingsystem/WritingSystemDetailsPage';
-import './styles.css';
 import { WritingSystemHierarchy } from './writingsystem/WritingSystemHierarchy';
+import WritingSystemTable from './writingsystem/WritingSystemTable';
+import './styles.css';
 
 function MainViews() {
   const { viewType, dimension } = usePageParams();
@@ -54,6 +58,18 @@ function MainViews() {
           return <TerritoryHierarchy />;
         case Dimension.WritingSystem:
           return <WritingSystemHierarchy />;
+      }
+    // eslint-disable-next-line no-fallthrough
+    case ViewType.Table:
+      switch (dimension) {
+        case Dimension.Language:
+          return <LanguageTable />;
+        case Dimension.Locale:
+          return <LocaleTable />;
+        case Dimension.Territory:
+          return <TerritoryTable />;
+        case Dimension.WritingSystem:
+          return <WritingSystemTable />;
       }
     // eslint-disable-next-line no-fallthrough
     case ViewType.Warnings:

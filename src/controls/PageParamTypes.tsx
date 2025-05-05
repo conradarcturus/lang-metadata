@@ -10,7 +10,7 @@ export enum ViewType {
   CardList = 'Card List',
   Details = 'Details',
   Hierarchy = 'Hierarchy',
-  //   Table = 'table',
+  Table = 'Table',
   Warnings = 'Warnings',
 }
 
