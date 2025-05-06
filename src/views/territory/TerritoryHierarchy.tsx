@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getScopeFilter } from '../../controls/filter';
 import { Dimension } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -10,10 +11,14 @@ import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 export const TerritoryHierarchy: React.FC = () => {
   const { territoriesByCode } = useDataContext();
   const sortFunction = getSortFunction();
+  const filterByScope = getScopeFilter();
 
   const rootNodes = getTerritoryTreeNodes(
-    Object.values(territoriesByCode).filter((t) => t.parentUNRegion == null),
+    Object.values(territoriesByCode).filter(
+      (t) => t.parentUNRegion == null || !filterByScope(t.parentUNRegion),
+    ),
     sortFunction,
+    filterByScope,
   );
 
   return (
@@ -32,20 +37,27 @@ export const TerritoryHierarchy: React.FC = () => {
 export function getTerritoryTreeNodes(
   territories: TerritoryData[],
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterByScope: (a: ObjectData) => boolean,
 ): TreeNodeData[] {
   return territories
     .sort(sortFunction)
-    .map((territory) => getTerritoryTreeNode(territory, sortFunction));
+    .filter(filterByScope)
+    .map((territory) => getTerritoryTreeNode(territory, sortFunction, filterByScope));
 }
 
 function getTerritoryTreeNode(
   territory: TerritoryData,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterByScope: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
     type: Dimension.Language,
     object: territory,
-    children: getTerritoryTreeNodes(territory.regionContainsTerritories, sortFunction),
+    children: getTerritoryTreeNodes(
+      territory.regionContainsTerritories,
+      sortFunction,
+      filterByScope,
+    ),
     labelStyle: {
       fontWeight: territory.territoryType === TerritoryType.Country ? 'bold' : 'normal',
       fontStyle: territory.territoryType === TerritoryType.Dependency ? 'italic' : 'normal',

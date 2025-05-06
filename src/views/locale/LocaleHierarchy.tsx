@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getScopeFilter } from '../../controls/filter';
 import { Dimension } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -16,8 +17,9 @@ import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 export const LocaleHierarchy: React.FC = () => {
   const { languages } = useDataContext();
   const sortFunction = getSortFunction();
+  const filterByScope = getScopeFilter();
 
-  const rootNodes = getLocaleTreeNodes(Object.values(languages), sortFunction);
+  const rootNodes = getLocaleTreeNodes(Object.values(languages), sortFunction, filterByScope);
 
   return (
     <TreeListPageBody
@@ -36,21 +38,24 @@ export const LocaleHierarchy: React.FC = () => {
 export function getLocaleTreeNodes(
   languages: LanguageData[],
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterFunction: (a: ObjectData) => boolean = () => true,
 ): TreeNodeData[] {
   return languages
-    .sort(sortFunction)
+    .filter(filterFunction ?? (() => true))
     .filter((lang) => lang.locales.length > 0)
-    .map((lang) => getLanguageTreeNode(lang, sortFunction));
+    .sort(sortFunction)
+    .map((lang) => getLanguageTreeNode(lang, sortFunction, filterFunction));
 }
 
 function getLanguageTreeNode(
   lang: LanguageData,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
     type: Dimension.Locale,
     object: lang,
-    children: getWritingSystemNodesForLanguage(lang, sortFunction),
+    children: getWritingSystemNodesForLanguage(lang, sortFunction, filterFunction),
   };
 }
 
@@ -58,6 +63,7 @@ function getLanguageTreeNode(
 function getWritingSystemNodesForLanguage(
   lang: LanguageData,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData[] {
   const territoryNodesWithoutWritingSystems = lang.locales
     .filter((locale) => locale.explicitScriptCode == null)
@@ -66,13 +72,16 @@ function getWritingSystemNodesForLanguage(
   const otherWritingSystemNodes = Object.values(lang.writingSystems)
     .filter((ws) => ws.code != lang.primaryScriptCode)
     .sort(sortFunction)
-    .map((writingSystem) => getLocaleNodeForWritingSystem(writingSystem, lang.code, sortFunction));
+    .map((writingSystem) =>
+      getLocaleNodeForWritingSystem(writingSystem, lang.code, sortFunction, filterFunction),
+    );
 
   if (lang.primaryWritingSystem) {
     const defaultWritingSystemNode = getLocaleNodeForWritingSystem(
       lang.primaryWritingSystem,
       lang.code,
       sortFunction,
+      filterFunction,
     );
     defaultWritingSystemNode.children = [
       ...territoryNodesWithoutWritingSystems,
@@ -92,11 +101,17 @@ function getLocaleNodeForWritingSystem(
   writingSystem: WritingSystemData,
   languageCode: LanguageCode,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
     type: Dimension.Locale,
     object: writingSystem,
-    children: getTerritoryNodesForWritingSystem(writingSystem, languageCode, sortFunction),
+    children: getTerritoryNodesForWritingSystem(
+      writingSystem,
+      languageCode,
+      sortFunction,
+      filterFunction,
+    ),
   };
 }
 
@@ -104,9 +119,11 @@ function getTerritoryNodesForWritingSystem(
   writingSystem: WritingSystemData,
   languageCode: LanguageCode,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData[] {
   return writingSystem.localesWhereExplicit
     .filter((locale) => locale.languageCode === languageCode)
+    .filter(filterFunction)
     .sort(sortFunction)
     .map((locale) => getLocaleNodeForTerritory(locale));
 }

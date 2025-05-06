@@ -49,27 +49,47 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setPageParams(next);
   };
 
-  const providerValue: PageParamsContextState = useMemo(
-    () => ({
-      codeFilter: getParam('codeFilter', ''),
-      languageSchema: getParam('languageSchema', LanguageSchema.ISO) as LanguageSchema,
-      dimension: getParam('dimension', Dimension.Language) as Dimension,
-      limit: parseInt(getParam('limit', '8')),
-      nameFilter: getParam('nameFilter', ''),
-      scopes: getParam('scopes', ScopeLevel.Individuals)
+  const providerValue: PageParamsContextState = useMemo(() => {
+    const dimension = getParam('dimension', Dimension.Language) as Dimension;
+    const viewType = getParam('viewType', ViewType.CardList) as ViewType;
+    const defaults = getDefaultParams(dimension, viewType);
+    return {
+      codeFilter: getParam('codeFilter', defaults.codeFilter),
+      dimension,
+      languageSchema: getParam('languageSchema', defaults.languageSchema) as LanguageSchema,
+      limit: parseInt(getParam('limit', defaults.limit.toString())),
+      modalObject: getParam('modalObject', undefined),
+      nameFilter: getParam('nameFilter', defaults.nameFilter),
+      scopes: getParam('scopes', defaults.scopes.join(','))
         .split(',')
         .map((s) => s as ScopeLevel)
         .filter(Boolean),
-      sortBy: getParam('sortBy', SortBy.Population) as SortBy,
-      viewType: getParam('viewType', ViewType.CardList) as ViewType,
+      sortBy: getParam('sortBy', defaults.sortBy) as SortBy,
+      viewType,
       updatePageParams,
-      modalObject: getParam('modalObject', undefined),
-    }),
-    [pageParams],
-  );
+    };
+  }, [pageParams]);
 
   return <PageParamsContext.Provider value={providerValue}>{children}</PageParamsContext.Provider>;
 };
+
+// If there is nothing in the URL string, then use this instead
+function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams {
+  return {
+    codeFilter: '',
+    dimension,
+    languageSchema: LanguageSchema.ISO,
+    limit: viewType === ViewType.Table ? 200 : 8,
+    modalObject: null,
+    nameFilter: '',
+    scopes:
+      viewType === ViewType.Hierarchy
+        ? [ScopeLevel.Groups, ScopeLevel.Individuals]
+        : [ScopeLevel.Individuals],
+    sortBy: SortBy.Population,
+    viewType,
+  };
+}
 
 export const usePageParams = () => {
   const context = useContext(PageParamsContext);

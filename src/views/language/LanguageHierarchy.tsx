@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getScopeFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { Dimension, LanguageSchema } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
@@ -12,11 +13,15 @@ export const LanguageHierarchy: React.FC = () => {
   const { languageSchema } = usePageParams();
   const { languages } = useDataContext();
   const sortFunction = getSortFunction();
+  const filterByScope = getScopeFilter();
 
   const rootNodes = getLanguageTreeNodes(
-    Object.values(languages).filter((lang) => lang.parentLanguage == null),
+    Object.values(languages).filter(
+      (lang) => lang.parentLanguage == null || !filterByScope(lang.parentLanguage),
+    ),
     languageSchema,
     sortFunction,
+    filterByScope,
   );
 
   return (
@@ -36,10 +41,12 @@ export function getLanguageTreeNodes(
   languages: LanguageData[],
   languageSchema: LanguageSchema,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterFunction: (a: ObjectData) => boolean = () => true,
 ): TreeNodeData[] {
   return languages
+    .filter(filterFunction)
     .sort(sortFunction)
-    .map((lang) => getLanguageTreeNode(lang, languageSchema, sortFunction))
+    .map((lang) => getLanguageTreeNode(lang, languageSchema, sortFunction, filterFunction))
     .filter((node) => node != null);
 }
 
@@ -47,6 +54,7 @@ function getLanguageTreeNode(
   lang: LanguageData,
   languageSchema: LanguageSchema,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
+  filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
     type: Dimension.Language,
@@ -55,6 +63,7 @@ function getLanguageTreeNode(
       lang.schemaSpecific[languageSchema].childLanguages,
       languageSchema,
       sortFunction,
+      filterFunction,
     ),
     labelStyle: {
       fontWeight:

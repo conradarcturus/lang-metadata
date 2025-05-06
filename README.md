@@ -22,7 +22,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] Digital Support details
   - [x] Territories
     - [x] Countries & Dependencies
-    - [ ] Continents & other regions - _in progress_
+    - [x] Continents & other regions
   - [x] Locales (languages + territories + potentially other specificity)
     - [x] Basic data
     - [ ] Population estimate sources
@@ -34,18 +34,19 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [x] Cards
   - [x] Details
   - [x] Hierarchy
-  - [ ] Table
+  - [x] Table
   - [ ] Map
 - [x] Interactivity
   - [x] Filter
     - [x] By Code
     - [x] By Name
     - [x] Highlight search
-    - [ ] For Hierarchy
+    - [x] For Hierarchy
+    - [x] By Scope
     - [ ] Using typeahead
   - [x] Hovercard & Tooltips
     - [x] Related objects
-    - [ ] Field explanations
+    - [x] Field explanations
   - [x] Sort By: Population, Name, Code
   - [x] Limit
   - [ ] Selection
@@ -54,7 +55,7 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [x] Load different subsets of data
   - [x] Show results based on different definitions of what a language is
     - [x] ISO, Glottolog, Inclusive
-    - [ ] Highlight codes in each
+    - [x] Highlight codes in each
 - [ ] Future ideas
   - [ ] Database-powered backend
   - [ ] Feedback mechanisms

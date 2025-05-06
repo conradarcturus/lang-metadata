@@ -7,7 +7,7 @@ import { Dimension, ScopeLevel, ViewType } from '../PageParamTypes';
 
 const ScopeFilterSelector: React.FC = () => {
   const { viewType, scopes, updatePageParams, dimension } = usePageParams();
-  if ([ViewType.Details, ViewType.Hierarchy].includes(viewType)) {
+  if ([ViewType.Details].includes(viewType)) {
     return <></>;
   }
   if ([Dimension.Locale, Dimension.WritingSystem].includes(dimension)) {

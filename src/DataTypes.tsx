@@ -89,7 +89,7 @@ export enum TerritoryType {
   World = 'World',
   Continent = 'Continent',
   Region = 'Region',
-  Subcontinent = 'Subcontinent',
+  Subcontinent = 'Sub-continent',
   Country = 'Country',
   Dependency = 'Dependency',
 }
