@@ -84,7 +84,7 @@ export function addGlottologLanguages(
 
   // Add new glottocodes from the import
   glottologImport.forEach((importedLanguage) => {
-    const { glottoCode, parentGlottocode, scope } = importedLanguage;
+    const { glottoCode, parentGlottocode, scope, name } = importedLanguage;
     const lang = languagesBySchema.Glottolog[glottoCode];
     const parentLanguageCode =
       parentGlottocode != null ? languagesBySchema.Glottolog[parentGlottocode]?.code : undefined;
@@ -102,6 +102,7 @@ export function addGlottologLanguages(
         WAL: { childLanguages: [] },
         Glottolog: {
           code: glottoCode,
+          name,
           scope,
           parentLanguageCode: parentGlottocode,
           childLanguages: [],
@@ -110,8 +111,7 @@ export function addGlottologLanguages(
       const newLang: LanguageData = {
         type: Dimension.Language,
         code: glottoCode,
-        nameDisplay: importedLanguage.name,
-        nameSubtitle: importedLanguage.name,
+        nameDisplay: name,
         scope,
         viabilityConfidence: 'No',
         viabilityExplanation: 'Glottolog entry not found in ISO',
@@ -120,15 +120,16 @@ export function addGlottologLanguages(
         locales: [],
         childLanguages: [],
       };
-      languagesBySchema.Inclusive[importedLanguage.glottoCode] = newLang;
-      languagesBySchema.Glottolog[importedLanguage.glottoCode] = newLang;
+      languagesBySchema.Inclusive[glottoCode] = newLang;
+      languagesBySchema.Glottolog[glottoCode] = newLang;
     } else {
       // Fill in missing data
       if (parentGlottocode != null) {
-        lang.schemaSpecific.Inclusive.parentLanguageCode = parentLanguageCode ?? parentGlottocode; // Prefer Glottolog parentage
+        lang.schemaSpecific.Inclusive.parentLanguageCode = parentLanguageCode ?? parentGlottocode; // Prefer original parentage
         lang.schemaSpecific.Glottolog.parentLanguageCode = parentGlottocode;
       }
       lang.schemaSpecific.Glottolog.scope = scope;
+      lang.schemaSpecific.Glottolog.name = name;
       if (lang.scope == null) {
         lang.scope = scope;
       } else if (DEBUG && scope != lang.scope) {

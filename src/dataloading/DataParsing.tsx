@@ -23,9 +23,9 @@ export function parseLanguageLine(line: string): LanguageData {
   const parentISOCode = parts[11] != '' && parts[11].length <= 3 ? parts[11] : undefined;
   const parentGlottocode = parts[12] != '' ? parts[12] : undefined;
   const schemaSpecific = {
-    Inclusive: { code, parentLanguageCode, childLanguages: [] },
+    Inclusive: { code, name: nameDisplay, parentLanguageCode, childLanguages: [] },
     ISO: { code, parentLanguageCode: parentISOCode, childLanguages: [] },
-    WAL: { code, parentLanguageCode: parentISOCode, childLanguages: [] },
+    WAL: { code, name: nameDisplay, parentLanguageCode: parentISOCode, childLanguages: [] },
     Glottolog: {
       code: parts[1] != '' ? parts[1] : undefined,
       parentLanguageCode: parentGlottocode,

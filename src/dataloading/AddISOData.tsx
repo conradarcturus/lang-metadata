@@ -157,6 +157,7 @@ export function addISODataToLanguages(
       lang.vitalityISO = isoLang.vitality;
       lang.scope = isoLang.scope;
       lang.schemaSpecific.ISO.scope = isoLang.scope;
+      lang.schemaSpecific.ISO.name = isoLang.name;
       return lang;
     })
     .reduce<Record<ISO6391LanguageCode, LanguageData>>((languagesByISO6391Code, lang) => {
@@ -216,12 +217,14 @@ export function addISOLanguageFamilyData(
   // Add new language entries for language families, otherwise fill in missing data
   families.forEach((family) => {
     const familyEntry = languagesBySchema.ISO[family.code];
+    // trim excess from the name
+    const name = family.name.replace(/ languages| \(family\)/gi, '');
+
+    // If the entry is missing, create a new one
     if (familyEntry == null) {
-      // trim excess from the name
-      const name = family.name.replace(/ languages| \(family\)/gi, '');
       const schemaSpecific = {
         Inclusive: { code: family.code, parentLanguageCode: family.parent, childLanguages: [] },
-        ISO: { code: family.code, parentLanguageCode: family.parent, childLanguages: [] },
+        ISO: { code: family.code, name, parentLanguageCode: family.parent, childLanguages: [] },
         WAL: { childLanguages: [] }, // Not including lang families in WAL
         Glottolog: { childLanguages: [] }, // No glottolog dat
       };
@@ -248,6 +251,7 @@ export function addISOLanguageFamilyData(
       familyEntry.schemaSpecific.Inclusive.parentLanguageCode = family.parent;
       familyEntry.schemaSpecific.ISO.parentLanguageCode = family.parent;
       familyEntry.schemaSpecific.ISO.scope = LanguageScope.Family;
+      familyEntry.schemaSpecific.ISO.name = name;
       familyEntry.scope = LanguageScope.Family;
     }
   });

@@ -172,6 +172,7 @@ function updateLanguageBasedOnSchema(
   Object.values(languages).forEach((lang) => {
     const specific = lang.schemaSpecific[languageSchema];
     lang.code = specific.code ?? lang.code;
+    lang.nameDisplay = specific.name ?? lang.nameDisplay;
     lang.scope = specific.scope ?? lang.scope;
     lang.populationOfDescendents = specific.populationOfDescendents ?? undefined;
     lang.parentLanguage = specific.parentLanguage ?? undefined;

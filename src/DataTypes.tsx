@@ -72,6 +72,7 @@ export interface LanguageData extends ObjectBase {
 // Since languages can be categorized by ISO, Glottolog, or other schema, these values will vary based on the language schema
 type LanguageDataInSchema = {
   code?: LanguageCode;
+  name?: string;
   scope?: LanguageScope;
   populationOfDescendents?: number;
   parentLanguageCode?: LanguageCode;
