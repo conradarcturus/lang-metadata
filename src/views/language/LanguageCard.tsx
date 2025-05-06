@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { LanguageData } from '../../DataTypes';
+import { LanguageData, LanguageScope } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
 import { getObjectName, getObjectSubtitle } from '../common/getObjectName';
@@ -70,12 +70,14 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           </CommaSeparated>
         </div>
       )}
-      {includeRelations && parentLanguage != null && (
-        <div>
-          <h4>Group:</h4>
-          <HoverableLanguageName lang={parentLanguage} />
-        </div>
-      )}
+      {includeRelations &&
+        parentLanguage != null &&
+        parentLanguage.scope != LanguageScope.Family && (
+          <div>
+            <h4>Group:</h4>
+            <HoverableLanguageName lang={parentLanguage} />
+          </div>
+        )}
       {includeRelations && Object.keys(childLanguages).length > 0 && (
         <div>
           <h4>Includes:</h4>

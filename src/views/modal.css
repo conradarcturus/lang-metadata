@@ -17,6 +17,7 @@
     background-color: var(--color-background);
     border-radius: 10px;
     box-shadow: var(--color-shadow) 0 0 2em 1em;
+    max-height: 100%;
 }
 
 .ModalHeader {

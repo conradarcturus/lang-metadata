@@ -56,7 +56,16 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         </div>
         <div>
           <label>Glottocode:</label>
-          {Glottolog.code ? Glottolog.code : <em>Not in Glottolog</em>}
+          {Glottolog.code ? (
+            <>
+              {Glottolog.code}
+              <a href={`https://glottolog.org/resource/languoid/id/${Glottolog.code}`}>
+                <button className="LinkButton">Open in Glottolog</button>
+              </a>
+            </>
+          ) : (
+            <em>Not in Glottolog</em>
+          )}
         </div>
         <div>
           <label>ISO Code:</label>
@@ -64,6 +73,9 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             <>
               {ISO.code}
               {codeISO6391 ? ` | ${codeISO6391}` : ''}
+              <a href={`https://iso639-3.sil.org/code/${ISO.code}`}>
+                <button className="LinkButton">Open in ISO</button>
+              </a>
             </>
           ) : (
             <em>Not in ISO catalog</em>
