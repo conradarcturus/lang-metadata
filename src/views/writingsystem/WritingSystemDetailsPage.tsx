@@ -37,6 +37,9 @@ const WritingSystemDetailsPage: React.FC = () => {
     <div className="DetailsPage">
       <h2>
         <ObjectTitle object={writingSystem} />
+        {writingSystem.nameFull !== writingSystem.nameDisplay && (
+          <div className="subtitle">{writingSystem.nameFull}</div>
+        )}
       </h2>
       <div>
         <WritingSystemDetails writingSystem={writingSystem} />

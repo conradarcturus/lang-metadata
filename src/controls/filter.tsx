@@ -7,6 +7,8 @@ import {
   ObjectData,
   TerritoryData,
   TerritoryType,
+  WritingSystemData,
+  WritingSystemScope,
 } from '../DataTypes';
 
 import { usePageParams } from './PageParamsContext';
@@ -61,7 +63,7 @@ export function getScopeFilter(): FilterFunctionType {
       case Dimension.Territory:
         return scopes.includes(getTerritoryScopeLevel(object));
       case Dimension.WritingSystem:
-        return true; // Scope not defined yet
+        return scopes.includes(getWritingSystemScopeLevel(object));
     }
   }
   return scopeFilter;
@@ -98,5 +100,18 @@ function getTerritoryScopeLevel(territory: TerritoryData): ScopeLevel {
       return ScopeLevel.Individuals;
     case TerritoryType.Dependency:
       return ScopeLevel.Parts;
+  }
+}
+
+function getWritingSystemScopeLevel(writingSystem: WritingSystemData): ScopeLevel {
+  switch (writingSystem.scope) {
+    case WritingSystemScope.Group:
+      return ScopeLevel.Groups;
+    case WritingSystemScope.IndividualScript:
+      return ScopeLevel.Individuals;
+    case WritingSystemScope.Variation:
+      return ScopeLevel.Parts;
+    case WritingSystemScope.SpecialCode:
+      return ScopeLevel.Other;
   }
 }

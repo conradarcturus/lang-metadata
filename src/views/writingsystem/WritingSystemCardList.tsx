@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getSubstringFilter } from '../../controls/filter';
+import { getScopeFilter, getSubstringFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -13,13 +13,13 @@ const WritingSystemCardList: React.FC = () => {
   const { writingSystems } = useDataContext();
   const { limit } = usePageParams();
   const sortFunction = getSortFunction();
-  const substringFilterFunction = getSubstringFilter();
+  const filterBySubstring = getSubstringFilter();
+  const filterByScope = getScopeFilter();
 
-  const writingSystemsViable = Object.values(writingSystems);
   // Filter results
-  const writingSystemsFiltered = substringFilterFunction
-    ? writingSystemsViable.filter(substringFilterFunction)
-    : writingSystemsViable;
+  const writingSystemsFiltered = Object.values(writingSystems)
+    .filter(filterBySubstring ?? (() => true))
+    .filter(filterByScope);
   // Sort results & limit how many are visible
   const writingSystemsVisible = writingSystemsFiltered
     .sort(sortFunction)

@@ -10,8 +10,8 @@ const ScopeFilterSelector: React.FC = () => {
   if ([ViewType.Details].includes(viewType)) {
     return <></>;
   }
-  if ([Dimension.Locale, Dimension.WritingSystem].includes(dimension)) {
-    // Not well defined yet for locales and writing systems
+  if ([Dimension.Locale].includes(dimension)) {
+    // Not well defined yet for locales
     return <></>;
   }
 
@@ -71,7 +71,7 @@ export function getScopeLevelDescription(dimension: Dimension, scope: ScopeLevel
     case Dimension.WritingSystem:
       switch (scope) {
         case ScopeLevel.Groups:
-          return 'composite writing systems';
+          return 'code with multiple co-existing scripts';
         case ScopeLevel.Individuals:
           return 'major scripts';
         case ScopeLevel.Parts:

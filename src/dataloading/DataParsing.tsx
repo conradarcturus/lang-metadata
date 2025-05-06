@@ -7,6 +7,7 @@ import {
   TerritoryData,
   TerritoryType,
   WritingSystemData,
+  WritingSystemScope,
 } from '../DataTypes';
 import { separateTitleAndSubtitle } from '../generic/stringUtils';
 
@@ -111,6 +112,7 @@ export function parseWritingSystem(line: string): WritingSystemData {
     type: Dimension.WritingSystem,
 
     code: parts[0],
+    scope: parts[11] as WritingSystemScope,
     nameDisplay: parts[1],
     nameDisplayOriginal: parts[1],
     nameFull: parts[2],

@@ -114,10 +114,18 @@ export interface TerritoryData extends ObjectBase {
 
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.
 
+export enum WritingSystemScope {
+  Group = 'Group',
+  IndividualScript = 'Individual script',
+  Variation = 'Variation',
+  SpecialCode = 'Special Code',
+}
+
 export interface WritingSystemData extends ObjectBase {
   type: Dimension.WritingSystem;
 
   code: ScriptCode;
+  scope: WritingSystemScope;
   nameDisplayOriginal: string;
   nameFull: string;
   nameEndonym: string;

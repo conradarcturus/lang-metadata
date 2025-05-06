@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { WritingSystemData } from '../../DataTypes';
+import { WritingSystemData, WritingSystemScope } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
 import HoverableLanguageName from '../language/HoverableLanguageName';
+
+import HoverableWritingSystemName from './HoverableWritingSystemName';
 
 interface Props {
   writingSystem: WritingSystemData;
@@ -13,11 +15,14 @@ interface Props {
 const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
   const {
     code,
+    containsWritingSystems,
     languages,
     nameDisplay,
+    parentWritingSystem,
     populationUpperBound,
     rightToLeft,
     sample,
+    scope,
     unicodeVersion,
   } = writingSystem;
   const { updatePageParams } = usePageParams();
@@ -52,6 +57,22 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
         <div>
           <label>Population (estimate, at most):</label>
           {populationUpperBound.toLocaleString()}
+        </div>
+      )}
+      {scope === WritingSystemScope.Variation && parentWritingSystem && (
+        <div>
+          <label>Variant of:</label>
+          <HoverableWritingSystemName writingSystem={parentWritingSystem} />
+        </div>
+      )}
+      {scope == WritingSystemScope.Group && containsWritingSystems.length > 0 && (
+        <div>
+          <label>Contains:</label>
+          <CommaSeparated>
+            {containsWritingSystems.map((w) => (
+              <HoverableWritingSystemName key={w.code} writingSystem={w} />
+            ))}
+          </CommaSeparated>
         </div>
       )}
     </div>

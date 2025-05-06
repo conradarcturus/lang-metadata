@@ -25,6 +25,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
     primaryLanguageCode,
     rightToLeft,
     sample,
+    scope,
     territoryOfOrigin,
     unicodeVersion,
   } = writingSystem;
@@ -33,6 +34,10 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
     <div className="Details">
       <div>
         <h3>Attributes</h3>
+        <div>
+          <label>Scope:</label>
+          {scope}
+        </div>
         {rightToLeft != null && (
           <div>
             <label>Direction:</label>
