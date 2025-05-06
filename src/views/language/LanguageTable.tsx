@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { getViableRootEntriesFilter } from '../../controls/filter';
+import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LanguageData } from '../../DataTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
@@ -28,6 +29,7 @@ const LanguageTable: React.FC = () => {
           label: 'Population',
           render: (lang) => lang.populationCited,
           isNumeric: true,
+          sortParam: SortBy.Population,
         },
         InfoButtonColumn,
       ]}

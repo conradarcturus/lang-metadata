@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { getViableRootEntriesFilter } from '../../controls/filter';
+import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
 import { WritingSystemData } from '../../DataTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
@@ -24,6 +25,7 @@ const WritingSystemTable: React.FC = () => {
           label: 'Population',
           render: (object) => object.populationUpperBound,
           isNumeric: true,
+          sortParam: SortBy.Population,
         },
         InfoButtonColumn,
       ]}

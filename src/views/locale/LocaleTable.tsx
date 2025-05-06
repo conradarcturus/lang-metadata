@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { getViableRootEntriesFilter } from '../../controls/filter';
+import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LocaleData } from '../../DataTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
@@ -24,6 +25,7 @@ const LocaleTable: React.FC = () => {
           label: 'Population',
           render: (object) => object.populationEstimate,
           isNumeric: true,
+          sortParam: SortBy.Population,
         },
         InfoButtonColumn,
       ]}

@@ -59,14 +59,16 @@ const FilterControls: React.FC = () => {
           />
         </Hoverable>
       )}
-      <Hoverable hoverContent={`Choose the order of items in the view.`}>
-        <ButtonGroupSingleChoice<SortBy>
-          options={Object.values(SortBy)}
-          onChange={(sortBy: SortBy) => updatePageParams({ sortBy })}
-          selected={sortBy}
-          groupLabel="Sort by:"
-        />
-      </Hoverable>
+      {viewType != ViewType.Table && (
+        <Hoverable hoverContent={`Choose the order of items in the view.`}>
+          <ButtonGroupSingleChoice<SortBy>
+            options={Object.values(SortBy)}
+            onChange={(sortBy: SortBy) => updatePageParams({ sortBy })}
+            selected={sortBy}
+            groupLabel="Sort by:"
+          />
+        </Hoverable>
+      )}
     </div>
   );
 };
