@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import { getViableRootEntriesFilter } from '../../controls/filter';
 import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
 import { TerritoryData } from '../../DataTypes';
@@ -9,15 +8,10 @@ import ObjectTable from '../common/table/ObjectTable';
 
 const TerritoryTable: React.FC = () => {
   const { territoriesByCode } = useDataContext();
-  const viableEntriesFunction = getViableRootEntriesFilter();
-
-  const objects: TerritoryData[] = useMemo(() => {
-    return Object.values(territoriesByCode).filter(viableEntriesFunction);
-  }, [viableEntriesFunction]);
 
   return (
     <ObjectTable<TerritoryData>
-      objects={objects}
+      objects={Object.values(territoriesByCode)}
       columns={[
         CodeColumn,
         NameColumn,

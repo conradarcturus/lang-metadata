@@ -27,24 +27,33 @@ export enum SortBy {
   Name = 'Name',
 }
 
+export enum ScopeLevel {
+  Groups = 'Groups', // Continents, Language Families
+  Individuals = 'Individuals', // Countries, Languages
+  Parts = 'Parts', // Dependencies, Dialects
+  Other = 'Other', // Control Codes, No declared scope
+}
+
 export type PageParams = {
   codeFilter: string;
-  languageSchema: LanguageSchema;
   dimension: Dimension;
+  languageSchema: LanguageSchema;
   limit: number; // < 1 means show all
   modalObject: string | null;
   nameFilter: string;
+  scopes: ScopeLevel[];
   sortBy: SortBy;
   viewType: ViewType;
 };
 
 export type PageParamsOptional = {
   codeFilter?: string;
-  languageSchema?: LanguageSchema;
   dimension?: Dimension;
+  languageSchema?: LanguageSchema;
   limit?: number;
-  modalObject?: string | null;
+  modalObject?: string;
   nameFilter?: string;
+  scopes?: ScopeLevel[];
   sortBy?: SortBy;
   viewType?: ViewType;
 };

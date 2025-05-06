@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import { getViableRootEntriesFilter } from '../../controls/filter';
 import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LocaleData } from '../../DataTypes';
@@ -9,15 +8,10 @@ import ObjectTable from '../common/table/ObjectTable';
 
 const LocaleTable: React.FC = () => {
   const { locales } = useDataContext();
-  const viableEntriesFunction = getViableRootEntriesFilter();
-
-  const objects: LocaleData[] = useMemo(() => {
-    return Object.values(locales).filter(viableEntriesFunction);
-  }, [viableEntriesFunction]);
 
   return (
     <ObjectTable<LocaleData>
-      objects={objects}
+      objects={Object.values(locales)}
       columns={[
         CodeColumn,
         NameColumn,

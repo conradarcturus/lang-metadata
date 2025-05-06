@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { getViableRootEntriesFilter } from '../../controls/filter';
+import { getScopeFilter } from '../../controls/filter';
 import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LanguageData } from '../../DataTypes';
@@ -9,10 +9,10 @@ import ObjectTable from '../common/table/ObjectTable';
 
 const LanguageTable: React.FC = () => {
   const { languages } = useDataContext();
-  const viableEntriesFunction = getViableRootEntriesFilter();
+  const scopeFilter = getScopeFilter();
   const languagesFiltered = useMemo(
-    () => Object.values(languages).filter(viableEntriesFunction),
-    [viableEntriesFunction],
+    () => Object.values(languages).filter(scopeFilter),
+    [scopeFilter],
   );
 
   return (

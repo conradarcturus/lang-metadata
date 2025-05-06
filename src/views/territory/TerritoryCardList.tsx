@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getSubstringFilter, getViableRootEntriesFilter } from '../../controls/filter';
+import { getScopeFilter, getSubstringFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -12,19 +12,17 @@ import TerritoryCard from './TerritoryCard';
 const TerritoryCardList: React.FC = () => {
   const { territoriesByCode } = useDataContext();
   const { limit } = usePageParams();
-  const sortFunction = getSortFunction();
-  const substringFilterFunction = getSubstringFilter();
-  const viableEntriesFunction = getViableRootEntriesFilter();
+  const sortBy = getSortFunction();
+  const filterBySubstring = getSubstringFilter() || (() => true);
+  const filterByScope = getScopeFilter();
 
-  // Filter to only countries & dependencies
-  const territoriesViable = Object.values(territoriesByCode).filter(viableEntriesFunction);
   // Filter results
-  const territoriesFiltered = substringFilterFunction
-    ? territoriesViable.filter(substringFilterFunction)
-    : territoriesViable;
+  const territoriesFiltered = Object.values(territoriesByCode)
+    .filter(filterByScope)
+    .filter(filterBySubstring);
   // Sort results & limit how many are visible
   const territoriesVisible = territoriesFiltered
-    .sort(sortFunction)
+    .sort(sortBy)
     .slice(0, limit > 0 ? limit : undefined);
 
   return (
@@ -33,7 +31,7 @@ const TerritoryCardList: React.FC = () => {
         <VisibleItemsMeter
           nShown={territoriesVisible.length}
           nFiltered={territoriesFiltered.length}
-          nOverall={territoriesViable.length}
+          nOverall={Object.values(territoriesByCode).length}
         />
       </div>
       <div className="CardList">

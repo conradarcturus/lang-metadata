@@ -1,14 +1,21 @@
 import { useMemo } from 'react';
 
-import { LanguageData, LanguageScope, ObjectData, TerritoryType } from '../DataTypes';
+import {
+  LanguageData,
+  LanguageScope,
+  LocaleData,
+  ObjectData,
+  TerritoryData,
+  TerritoryType,
+} from '../DataTypes';
 
 import { usePageParams } from './PageParamsContext';
-import { Dimension, ViewType } from './PageParamTypes';
+import { Dimension, ScopeLevel } from './PageParamTypes';
 
 export type FilterFunctionType = (a: ObjectData) => boolean;
 
 /**
- * Provide a function that filters out items if they match the code or name substring filters
+ * Provide a function that returns true for items that match filters based on substrings of their code or name.
  */
 export function getSubstringFilter(): FilterFunctionType | undefined {
   const { nameFilter, codeFilter } = usePageParams();
@@ -37,54 +44,59 @@ export function getSubstringFilter(): FilterFunctionType | undefined {
 }
 
 /**
- * Provides a function that provides the viable subset of results for a given view.
+ * Provides a function that filters on the scope of an object
  */
-export function getViableRootEntriesFilter(): FilterFunctionType {
-  const { viewType, languageSchema } = usePageParams();
+export function getScopeFilter(): FilterFunctionType {
+  const { scopes } = usePageParams();
 
-  const viableLanguageFunction = (a: LanguageData): boolean => {
-    switch (viewType) {
-      case ViewType.CardList:
-        return a.scope != LanguageScope.Family;
-      case ViewType.Hierarchy:
-        return a.schemaSpecific[languageSchema]?.parentLanguage == null;
-      case ViewType.Table:
-        return true; // not filtering Table
-      case ViewType.Details:
-        return true; // not filtering Details
-      case ViewType.Warnings:
-        return true; // not filtering Warnings
+  function scopeFilter(object: ObjectData) {
+    if (scopes.length == 0) {
+      return true;
     }
-  };
-
-  switch (viewType) {
-    case ViewType.CardList:
-      return (a: ObjectData) => {
-        switch (a.type) {
-          case Dimension.Language:
-            return viableLanguageFunction(a);
-          case Dimension.Locale:
-            return a.language != null && viableLanguageFunction(a.language);
-          case Dimension.Territory:
-            return [TerritoryType.Country, TerritoryType.Dependency].includes(a.territoryType);
-          case Dimension.WritingSystem:
-            return true; // not filtering WritingSystem
-        }
-      };
-    case ViewType.Hierarchy:
-      return (a: ObjectData) => {
-        switch (a.type) {
-          case Dimension.Language:
-            return viableLanguageFunction(a);
-          case Dimension.Locale:
-            return a.language != null && viableLanguageFunction(a.language);
-          case Dimension.Territory:
-            return a.parentUNRegion == null;
-          case Dimension.WritingSystem:
-            return a.parentWritingSystem == null;
-        }
-      };
+    switch (object.type) {
+      case Dimension.Language:
+        return scopes.includes(getLanguageScopeLevel(object));
+      case Dimension.Locale:
+        return scopes.includes(getLocaleScopeLevel(object));
+      case Dimension.Territory:
+        return scopes.includes(getTerritoryScopeLevel(object));
+      case Dimension.WritingSystem:
+        return true; // Scope not defined yet
+    }
   }
+  return scopeFilter;
+}
 
-  return () => true;
+function getLanguageScopeLevel(lang: LanguageData): ScopeLevel {
+  switch (lang.scope) {
+    case LanguageScope.Family:
+      return ScopeLevel.Groups;
+    case LanguageScope.Macrolanguage:
+    case LanguageScope.Language:
+      return ScopeLevel.Individuals;
+    case LanguageScope.Dialect:
+      return ScopeLevel.Parts;
+  }
+  return ScopeLevel.Other;
+}
+
+function getLocaleScopeLevel(locale: LocaleData): ScopeLevel {
+  if (locale.variantTag != null) {
+    return ScopeLevel.Parts;
+  }
+  return ScopeLevel.Individuals;
+}
+
+function getTerritoryScopeLevel(territory: TerritoryData): ScopeLevel {
+  switch (territory.territoryType) {
+    case TerritoryType.World:
+    case TerritoryType.Continent:
+    case TerritoryType.Subcontinent:
+    case TerritoryType.Region:
+      return ScopeLevel.Groups;
+    case TerritoryType.Country:
+      return ScopeLevel.Individuals;
+    case TerritoryType.Dependency:
+      return ScopeLevel.Parts;
+  }
 }

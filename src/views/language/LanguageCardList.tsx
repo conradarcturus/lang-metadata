@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import { getSubstringFilter, getViableRootEntriesFilter } from '../../controls/filter';
+import { getScopeFilter, getSubstringFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -13,15 +13,17 @@ const LanguageCardList: React.FC = () => {
   const { languages } = useDataContext();
   const { limit } = usePageParams();
   const sortByFunction = getSortFunction();
-  const substringFilterFunction = getSubstringFilter();
-  const viableEntriesFunction = getViableRootEntriesFilter();
+  const substringFilter = getSubstringFilter();
+  const scopeFilter = getScopeFilter();
 
-  // Find the viable languages
-  const languagesViable = Object.values(languages).filter(viableEntriesFunction);
-  // Filter results by the substring filter
-  const languagesFiltered = substringFilterFunction
-    ? languagesViable.filter(substringFilterFunction)
-    : languagesViable;
+  // Filter results by the substring and scope filters
+  const languagesFiltered = useMemo(
+    () =>
+      Object.values(languages)
+        .filter(substringFilter ?? (() => true))
+        .filter(scopeFilter),
+    [scopeFilter, substringFilter],
+  );
   // Sort results & limit how many are visible
   const languagesVisible = languagesFiltered
     .sort(sortByFunction)
@@ -33,7 +35,7 @@ const LanguageCardList: React.FC = () => {
         <VisibleItemsMeter
           nShown={languagesVisible.length}
           nFiltered={languagesFiltered.length}
-          nOverall={languagesViable.length}
+          nOverall={Object.values(languages).length}
         />
       </div>
       <div className="CardList">

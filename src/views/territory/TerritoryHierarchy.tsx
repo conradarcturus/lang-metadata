@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { getViableRootEntriesFilter } from '../../controls/filter';
 import { Dimension } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -10,11 +9,10 @@ import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
 export const TerritoryHierarchy: React.FC = () => {
   const { territoriesByCode } = useDataContext();
-  const viableEntriesFunction = getViableRootEntriesFilter();
   const sortFunction = getSortFunction();
 
   const rootNodes = getTerritoryTreeNodes(
-    Object.values(territoriesByCode).filter(viableEntriesFunction),
+    Object.values(territoriesByCode).filter((t) => t.parentUNRegion == null),
     sortFunction,
   );
 

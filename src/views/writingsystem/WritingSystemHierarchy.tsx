@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { getViableRootEntriesFilter } from '../../controls/filter';
 import { Dimension } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -10,11 +9,10 @@ import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
 export const WritingSystemHierarchy: React.FC = () => {
   const { writingSystems } = useDataContext();
-  const viableEntriesFunction = getViableRootEntriesFilter();
   const sortFunction = getSortFunction();
 
   const rootNodes = getWritingSystemTreeNodes(
-    Object.values(writingSystems).filter(viableEntriesFunction),
+    Object.values(writingSystems).filter((w) => w.parentWritingSystem == null),
     sortFunction,
   );
 

@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useMemo, useState } from 'react';
 
-import { getSubstringFilter } from '../../../controls/filter';
+import { getScopeFilter, getSubstringFilter } from '../../../controls/filter';
 import { usePageParams } from '../../../controls/PageParamsContext';
 import { SortBy } from '../../../controls/PageParamTypes';
 import { getSortFunction } from '../../../controls/sort';
@@ -29,19 +29,20 @@ interface Props<T> {
  */
 function ObjectTable<T extends ObjectData>({ objects, columns }: Props<T>) {
   const { limit } = usePageParams();
-  const sortFunction = getSortFunction();
-  const substringFilterFunction = getSubstringFilter();
+  const sortBy = getSortFunction();
+  const substringFilter = getSubstringFilter();
+  const scopeFilter = getScopeFilter();
   const [sortDirectionIsNormal, setSortDirectionIsNormal] = useState(true);
 
   const objectsFilteredAndSorted = useMemo(() => {
-    let result = objects.filter(substringFilterFunction ?? (() => true));
+    let result = objects.filter(substringFilter ?? (() => true)).filter(scopeFilter);
     if (sortDirectionIsNormal) {
-      result = result.sort(sortFunction);
+      result = result.sort(sortBy);
     } else {
-      result = result.sort((a, b) => -sortFunction(a, b));
+      result = result.sort((a, b) => -sortBy(a, b));
     }
     return result;
-  }, [sortFunction, objects, substringFilterFunction, setSortDirectionIsNormal]);
+  }, [sortBy, objects, substringFilter, scopeFilter, sortDirectionIsNormal]);
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>

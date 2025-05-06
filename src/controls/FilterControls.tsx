@@ -4,10 +4,11 @@ import { TABLE_MAX_ROWS } from '../views/common/table/ObjectTable';
 import ButtonGroupSingleChoice from './ButtonGroupSingleChoice';
 import { usePageParams } from './PageParamsContext';
 import { SortBy, ViewType } from './PageParamTypes';
+import ScopeFilterSelector from './selectors/ScopeFilterSelector';
 import TextInput from './TextInput';
 
 const FilterControls: React.FC = () => {
-  const { viewType, dimension, codeFilter, updatePageParams, nameFilter, limit, sortBy } =
+  const { codeFilter, dimension, limit, nameFilter, sortBy, updatePageParams, viewType } =
     usePageParams();
 
   return (
@@ -69,6 +70,7 @@ const FilterControls: React.FC = () => {
           />
         </Hoverable>
       )}
+      <ScopeFilterSelector />
     </div>
   );
 };

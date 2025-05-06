@@ -52,7 +52,7 @@ const ObjectTypeLabel: React.FC = () => {
         case LanguageSchema.Glottolog:
           return 'glottolog languages';
         case LanguageSchema.Inclusive:
-          return 'languoids';
+          return 'languages and language-like entities';
         case LanguageSchema.ISO:
           return 'ISO languages';
         case LanguageSchema.WAL:
@@ -62,7 +62,7 @@ const ObjectTypeLabel: React.FC = () => {
     case Dimension.Locale:
       return 'locales';
     case Dimension.Territory:
-      return 'countries and dependencies';
+      return 'territories';
     case Dimension.WritingSystem:
       return 'writing systems';
   }

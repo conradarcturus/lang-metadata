@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import { getSubstringFilter, getViableRootEntriesFilter } from '../../controls/filter';
+import { getSubstringFilter, getScopeFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
@@ -12,15 +12,17 @@ import LocaleCard from './LocaleCard';
 const LocaleCardList: React.FC = () => {
   const { locales } = useDataContext();
   const { limit } = usePageParams();
-  const substringFilterFunction = getSubstringFilter();
-  const viableEntriesFunction = getViableRootEntriesFilter();
+  const filterBySubstring = getSubstringFilter();
+  const filterByScope = getScopeFilter();
 
-  // Find the viable languages
-  const localesViable = Object.values(locales).filter(viableEntriesFunction);
   // Filter results
-  const localeFiltered = substringFilterFunction
-    ? localesViable.filter(substringFilterFunction)
-    : localesViable;
+  const localeFiltered = useMemo(
+    () =>
+      Object.values(locales)
+        .filter(filterBySubstring ?? (() => true))
+        .filter(filterByScope),
+    [filterBySubstring, filterByScope],
+  );
   // Sort results & limit how many are visible
   const localesVisible = localeFiltered
     .sort(getSortFunction())
@@ -32,7 +34,7 @@ const LocaleCardList: React.FC = () => {
         <VisibleItemsMeter
           nShown={localesVisible.length}
           nFiltered={localeFiltered.length}
-          nOverall={localesViable.length}
+          nOverall={Object.values(locales).length}
         />
       </div>
       <div className="CardList">

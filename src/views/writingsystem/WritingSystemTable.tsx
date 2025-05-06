@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import { getViableRootEntriesFilter } from '../../controls/filter';
 import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
 import { WritingSystemData } from '../../DataTypes';
@@ -9,15 +8,10 @@ import ObjectTable from '../common/table/ObjectTable';
 
 const WritingSystemTable: React.FC = () => {
   const { writingSystems } = useDataContext();
-  const viableEntriesFunction = getViableRootEntriesFilter();
-
-  const objects: WritingSystemData[] = useMemo(() => {
-    return Object.values(writingSystems).filter(viableEntriesFunction);
-  }, [viableEntriesFunction]);
 
   return (
     <ObjectTable<WritingSystemData>
-      objects={objects}
+      objects={Object.values(writingSystems)}
       columns={[
         CodeColumn,
         NameColumn,
