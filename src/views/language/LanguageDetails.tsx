@@ -22,6 +22,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
     codeISO6391,
     childLanguages,
     medium,
+    nameDisplay,
     populationCited,
     primaryWritingSystem,
     schemaSpecific: { Glottolog, ISO },
@@ -31,10 +32,24 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
     writingSystems,
   } = lang;
 
+  const otherNames = [];
+  if (Glottolog.name && nameDisplay !== Glottolog.name) {
+    otherNames.push(Glottolog.name);
+  }
+  if (ISO.name && nameDisplay !== ISO.name) {
+    otherNames.push(ISO.name);
+  }
+
   return (
     <div className="Details">
       <div>
         <h3>Identification</h3>
+        {otherNames.length > 0 && (
+          <div>
+            <label>Other names:</label>
+            {otherNames.join(', ')}
+          </div>
+        )}
         <div>
           <label>Language Code:</label>
           {lang.code}

@@ -15,7 +15,7 @@ const ObjectTitle: React.FC<Props> = ({ object }) => {
   return (
     <>
       <strong>{nameDisplay}</strong>
-      {nameDisplay != nameEndonym && ' ' + nameEndonym} [{code}]
+      {nameEndonym && nameDisplay != nameEndonym && ' ' + nameEndonym} [{code}]
       {subtitle != null && <div className="subtitle">{subtitle}</div>}
     </>
   );

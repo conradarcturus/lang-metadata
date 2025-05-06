@@ -261,15 +261,13 @@ export function addISOLanguageFamilyData(
   Object.entries(isoLangsToFamilies).forEach(([familyCode, constituentLanguages]) => {
     constituentLanguages.forEach((langCode) => {
       const lang = languagesBySchema.ISO[langCode] ?? iso6391Langs[langCode];
-      if (DEBUG && lang == null) {
-        console.log(`${langCode} should be part of ${familyCode} but it does not exist`);
+      if (lang == null) {
+        console.log(`${langCode} should be part of ${familyCode} but ${langCode} does not exist`);
         return;
       }
-      // if (lang.schemaSpecific.ISO.parentLanguageCode == null) {
-      // languages may already have macrolanguage parents
+      // languages may already have macrolanguage parents but if its unset, set the parent
       lang.schemaSpecific.Inclusive.parentLanguageCode ??= familyCode;
       lang.schemaSpecific.ISO.parentLanguageCode ??= familyCode;
-      // }
     });
   });
 }
