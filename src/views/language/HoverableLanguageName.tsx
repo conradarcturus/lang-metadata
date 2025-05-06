@@ -21,7 +21,7 @@ const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text', style }
       onClick={() => updatePageParams({ modalObject: lang.code })}
       style={style}
     >
-      {format === 'text' ? lang.nameDisplayTitle : <button>{lang.nameDisplayTitle}</button>}
+      {format === 'text' ? lang.nameDisplay : <button>{lang.nameDisplay}</button>}
     </Hoverable>
   );
 };
