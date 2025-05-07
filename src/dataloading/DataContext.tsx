@@ -1,10 +1,10 @@
 import React, {
   createContext,
-  useState,
-  useContext,
-  useEffect,
   Dispatch,
   SetStateAction,
+  useContext,
+  useEffect,
+  useState,
 } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
@@ -20,29 +20,7 @@ import {
   WritingSystemData,
 } from '../DataTypes';
 
-import {
-  addISODataToLanguages,
-  addISOLanguageFamilyData,
-  addISOMacrolanguageData,
-  loadISOFamiliesToLanguages,
-  loadISOLanguageFamilies,
-  loadISOLanguages,
-  loadISOMacrolanguages,
-} from './AddISOData';
-import {
-  computeOtherPopulationStatistics,
-  connectLanguagesToParent,
-  connectLocales,
-  connectTerritoriesToParent,
-  connectWritingSystems,
-  groupLanguagesBySchema,
-} from './DataAssociations';
-import { loadLanguages, loadLocales, loadTerritories, loadWritingSystems } from './DataLoader';
-import {
-  addGlottologLanguages,
-  loadGlottologLanguages,
-  loadManualGlottocodeToISO,
-} from './GlottologData';
+import { useCoreData } from './CoreData';
 
 type LanguageDict = Record<LanguageCode, LanguageData>;
 
@@ -72,94 +50,21 @@ export const DataProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const { languageSchema } = usePageParams();
+  const { coreData, loadCoreData } = useCoreData();
   const [languages, setLanguages] = useState<Record<LanguageCode, LanguageData>>({});
-  const [languagesBySchema, setLanguagesBySchema] = useState<
-    Record<LanguageSchema, Record<LanguageCode, LanguageData>>
-  >({
-    Inclusive: {},
-    ISO: {},
-    Glottolog: {},
-    WAL: {},
-  });
-  const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
-    {},
-  );
-  const [locales, setLocales] = useState<Record<BCP47LocaleCode, LocaleData>>({});
-  const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
-
-  async function loadData() {
-    const [
-      initialLangs,
-      isoLangs,
-      macroLangs,
-      langFamilies,
-      isoLangsToFamilies,
-      glottologImport,
-      manualGlottocodeToISO,
-      territories,
-      locales,
-      writingSystems,
-    ] = await Promise.all([
-      loadLanguages(),
-      loadISOLanguages(),
-      loadISOMacrolanguages(),
-      loadISOLanguageFamilies(),
-      loadISOFamiliesToLanguages(),
-      loadGlottologLanguages(),
-      loadManualGlottocodeToISO(),
-      loadTerritories(),
-      loadLocales(),
-      loadWritingSystems(),
-    ]);
-    if (initialLangs == null || territories == null || locales == null || writingSystems == null) {
-      alert('Error loading data. Please check the console for more details.');
-      return;
-    }
-
-    const languagesBySchema = groupLanguagesBySchema(initialLangs);
-    const iso6391Langs = addISODataToLanguages(languagesBySchema.ISO, isoLangs || []);
-    addISOLanguageFamilyData(
-      languagesBySchema,
-      iso6391Langs,
-      langFamilies || [],
-      isoLangsToFamilies || {},
-    );
-    addISOMacrolanguageData(languagesBySchema.ISO, macroLangs || []);
-    addGlottologLanguages(languagesBySchema, glottologImport || [], manualGlottocodeToISO || {});
-    connectLanguagesToParent(languagesBySchema);
-    connectTerritoriesToParent(territories);
-    connectWritingSystems(languagesBySchema.Inclusive, territories, writingSystems);
-    connectLocales(languagesBySchema.Inclusive, territories, writingSystems, locales);
-    computeOtherPopulationStatistics(languagesBySchema, writingSystems);
-
-    setLanguagesBySchema(languagesBySchema);
-    updateLanguageBasedOnSchema(languagesBySchema, setLanguages, languageSchema);
-    setTerritoriesByCode(territories);
-    setLocales(locales);
-    setWritingSystems(writingSystems);
-  }
 
   useEffect(() => {
-    loadData();
+    const load = async () => {
+      await loadCoreData();
+    };
+    load();
   }, []); // this is called once after page load
 
   useEffect(() => {
-    updateLanguageBasedOnSchema(languagesBySchema, setLanguages, languageSchema);
-  }, [languageSchema]); // this is called once after page load
+    updateLanguageBasedOnSchema(coreData.languagesBySchema, setLanguages, languageSchema);
+  }, [coreData.languagesBySchema, languageSchema]); // when core language data or the language schema changes
 
-  return (
-    <DataContext.Provider
-      value={{
-        languagesBySchema,
-        languages,
-        territoriesByCode,
-        locales,
-        writingSystems,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
-  );
+  return <DataContext.Provider value={{ ...coreData, languages }}>{children}</DataContext.Provider>;
 };
 
 function updateLanguageBasedOnSchema(
