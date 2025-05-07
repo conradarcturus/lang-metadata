@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
+import { CLDRCoverageLevel, CLDRData } from '../../types/cldr';
 import TreeListRoot from '../common/TreeList/TreeListRoot';
 import { getLocaleTreeNodes } from '../locale/LocaleHierarchy';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
@@ -21,6 +22,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
   const {
     codeISO6391,
     childLanguages,
+    cldr,
     medium,
     nameDisplay,
     populationCited,
@@ -64,7 +66,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
               </a>
             </>
           ) : (
-            <em>Not in Glottolog</em>
+            <span className="unsupported">Not in Glottolog</span>
           )}
         </div>
         <div>
@@ -78,7 +80,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
               </a>
             </>
           ) : (
-            <em>Not in ISO catalog</em>
+            <span className="unsupported">Not in ISO catalog</span>
           )}
         </div>
       </div>
@@ -142,6 +144,10 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           <label>Should use in World Atlas:</label>
           {lang.viabilityConfidence} ... {lang.viabilityExplanation}
         </div>
+        <div>
+          <label>Internet Technologies:</label>
+          <CLDRCoverageInfo cldr={cldr} />
+        </div>
       </div>
       <div>
         <h3>Connections</h3>
@@ -166,7 +172,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
               />
             ) : (
               <div>
-                <em>No languages come from this language.</em>
+                <span className="unsupported">No languages come from this language.</span>
               </div>
             )}
           </div>
@@ -176,7 +182,9 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
               <TreeListRoot rootNodes={getLocaleTreeNodes([lang], sortFunction)} />
             ) : (
               <div>
-                <em>There are no recorded locales for this language.</em>
+                <span className="unsupported">
+                  There are no recorded locales for this language.
+                </span>
               </div>
             )}
           </div>
@@ -185,5 +193,35 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
     </div>
   );
 };
+
+export const CLDRCoverageInfo: React.FC<{ cldr?: CLDRData }> = ({ cldr }) => {
+  if (cldr == null) {
+    return <span className="unsupported">Not supported by CLDR or ICU.</span>;
+  }
+
+  return (
+    <>
+      CLDR:{' '}
+      <span style={{ color: getCLDRCoverageColor(cldr.actualCoverageLevel) }}>
+        {cldr.actualCoverageLevel}
+      </span>{' '}
+      coverage by {cldr.countOfCLDRLocales} locale{cldr.countOfCLDRLocales > 1 && 's'}. ICU:{' '}
+      {cldr.inICU ? '✅' : '❌'}
+    </>
+  );
+};
+
+function getCLDRCoverageColor(coverageLevel: CLDRCoverageLevel): string {
+  switch (coverageLevel) {
+    case CLDRCoverageLevel.Core:
+      return 'var(--color-text-secondary)';
+    case CLDRCoverageLevel.Basic:
+      return 'gold';
+    case CLDRCoverageLevel.Moderate:
+      return 'green';
+    case CLDRCoverageLevel.Modern:
+      return 'blue';
+  }
+}
 
 export default LanguageDetails;

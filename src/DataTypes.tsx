@@ -4,6 +4,7 @@
  */
 
 import { Dimension, LanguageSchema } from './controls/PageParamTypes';
+import { CLDRData } from './types/cldr';
 
 export interface ObjectBase {
   type: Dimension;
@@ -60,6 +61,8 @@ export interface LanguageData extends ObjectBase {
   primaryScriptCode?: ScriptCode;
 
   schemaSpecific: Record<LanguageSchema, LanguageDataInSchema>;
+  cldr?: CLDRData;
+  cldrByScript?: Record<ScriptCode, CLDRData>;
 
   // References to other objects, filled in after loading the TSV
   locales: LocaleData[];

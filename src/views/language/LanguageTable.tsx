@@ -7,6 +7,8 @@ import { LanguageData } from '../../DataTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
 import ObjectTable from '../common/table/ObjectTable';
 
+import { CLDRCoverageInfo } from './LanguageDetails';
+
 const LanguageTable: React.FC = () => {
   const { languages } = useDataContext();
   const scopeFilter = getScopeFilter();
@@ -30,6 +32,10 @@ const LanguageTable: React.FC = () => {
           render: (lang) => lang.populationCited,
           isNumeric: true,
           sortParam: SortBy.Population,
+        },
+        {
+          label: 'Internet Technologies',
+          render: (lang) => <CLDRCoverageInfo cldr={lang.cldr} />,
         },
         InfoButtonColumn,
       ]}

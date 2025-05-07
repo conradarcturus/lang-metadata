@@ -65,6 +65,12 @@ button {
   background-color: var(--color-button-secondary);
 }
 
+.unsupported {
+  font-style: italic;
+  font-weight: lighter;
+  color: var(--color-text-secondary);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-text: #f1f1f1;

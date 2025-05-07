@@ -4,6 +4,7 @@ import React, {
   SetStateAction,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 
@@ -20,7 +21,8 @@ import {
   WritingSystemData,
 } from '../DataTypes';
 
-import { useCoreData } from './CoreData';
+import { CoreData, useCoreData } from './CoreData';
+import { loadSupplementalData } from './SupplementalData';
 
 type LanguageDict = Record<LanguageCode, LanguageData>;
 
@@ -51,14 +53,27 @@ export const DataProvider: React.FC<{
 }> = ({ children }) => {
   const { languageSchema } = usePageParams();
   const { coreData, loadCoreData } = useCoreData();
+  const [loadProgress, setLoadProgress] = useState(0);
   const [languages, setLanguages] = useState<Record<LanguageCode, LanguageData>>({});
 
   useEffect(() => {
-    const load = async () => {
-      await loadCoreData();
+    const loadPrimaryData = async () => {
+      return await loadCoreData();
     };
-    load();
+    loadPrimaryData();
+    setLoadProgress(1);
   }, []); // this is called once after page load
+
+  // After the main load, load additional data
+  useMemo(() => {
+    if (loadProgress === 1) {
+      const loadSecondaryData = async (coreData: CoreData) => {
+        await loadSupplementalData(coreData);
+      };
+
+      loadSecondaryData(coreData);
+    }
+  }, [coreData, loadProgress]); // this is called once after page load
 
   useEffect(() => {
     updateLanguageBasedOnSchema(coreData.languagesBySchema, setLanguages, languageSchema);
