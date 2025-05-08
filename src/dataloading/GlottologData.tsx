@@ -113,6 +113,7 @@ export function addGlottologLanguages(
           parentLanguageCode: parentGlottocode,
           childLanguages: [],
         },
+        CLDR: { childLanguages: [] },
       };
       const newLang: LanguageData = {
         type: Dimension.Language,

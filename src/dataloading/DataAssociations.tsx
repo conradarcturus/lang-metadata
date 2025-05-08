@@ -11,6 +11,7 @@ import {
   LanguageDictionary,
   LanguagesBySchema,
   LanguageSchema,
+  LanguageScope,
 } from '../types/LanguageTypes';
 import { getLocaleName } from '../views/locale/LocaleStrings';
 
@@ -181,6 +182,13 @@ export function groupLanguagesBySchema(languages: LanguageDictionary): Languages
         glottoLangs[code] = lang;
       }
       return glottoLangs;
+    }, {}),
+    CLDR: Object.values(languages).reduce<LanguageDictionary>((cldrLangs, lang) => {
+      const code = lang.codeISO6391 ?? lang.schemaSpecific.ISO.code;
+      if (code != null && lang.scope !== LanguageScope.Family) {
+        cldrLangs[code] = lang;
+      }
+      return cldrLangs;
     }, {}),
   };
 }

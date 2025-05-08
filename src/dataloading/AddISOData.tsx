@@ -160,6 +160,7 @@ export function addISODataToLanguages(
       lang.scope = isoLang.scope;
       lang.schemaSpecific.ISO.scope = isoLang.scope;
       lang.schemaSpecific.ISO.name = isoLang.name;
+      lang.schemaSpecific.CLDR.code = isoLang.codeISO6391 ?? isoLang.codeISO6393;
       return lang;
     })
     .reduce<Record<ISO6391LanguageCode, LanguageData>>((languagesByISO6391Code, lang) => {
@@ -228,7 +229,8 @@ export function addISOLanguageFamilyData(
         Inclusive: { code: family.code, parentLanguageCode: family.parent, childLanguages: [] },
         ISO: { code: family.code, name, parentLanguageCode: family.parent, childLanguages: [] },
         WAL: { childLanguages: [] }, // Not including lang families in WAL
-        Glottolog: { childLanguages: [] }, // No glottolog dat
+        Glottolog: { childLanguages: [] }, // No glottolog data
+        CLDR: { childLanguages: [] }, // CLDR does not include language families
       };
 
       const familyEntry: LanguageData = {

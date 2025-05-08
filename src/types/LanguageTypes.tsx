@@ -19,6 +19,7 @@ export enum LanguageSchema {
   ISO = 'ISO',
   WAL = 'WAL',
   Glottolog = 'Glottolog',
+  CLDR = 'CLDR',
 }
 
 // TODO Replace generic strings with some form of validation

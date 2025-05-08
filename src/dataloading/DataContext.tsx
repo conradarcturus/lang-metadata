@@ -19,7 +19,7 @@ import {
 } from '../types/DataTypes';
 import { LanguageDictionary, LanguagesBySchema, LanguageSchema } from '../types/LanguageTypes';
 
-import { CoreData, useCoreData } from './CoreData';
+import { CoreData, EMPTY_LANGUAGES_BY_SCHEMA, useCoreData } from './CoreData';
 import { loadSupplementalData } from './SupplementalData';
 
 type DataContextType = {
@@ -31,12 +31,7 @@ type DataContextType = {
 };
 
 const DataContext = createContext<DataContextType | undefined>({
-  languagesBySchema: {
-    Inclusive: {},
-    ISO: {},
-    Glottolog: {},
-    WAL: {},
-  },
+  languagesBySchema: EMPTY_LANGUAGES_BY_SCHEMA,
   languages: {},
   territoriesByCode: {},
   locales: {},

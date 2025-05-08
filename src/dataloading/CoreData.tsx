@@ -41,24 +41,30 @@ export type CoreData = {
   writingSystems: Record<ScriptCode, WritingSystemData>;
 };
 
-const EMPTY_LANGUAGE_DICTS = { Inclusive: {}, ISO: {}, Glottolog: {}, WAL: {} };
+export const EMPTY_LANGUAGES_BY_SCHEMA: LanguagesBySchema = {
+  Inclusive: {},
+  ISO: {},
+  Glottolog: {},
+  WAL: {},
+  CLDR: {},
+};
 
 /**
  * Get core data needed to show the tables -- things like language codes, relationships with other languages.
  */
 export function useCoreData(): {
-  loadCoreData: () => Promise<LanguagesBySchema>;
+  loadCoreData: () => Promise<void>;
   coreData: CoreData;
 } {
   const [languagesBySchema, setLanguagesBySchema] =
-    useState<LanguagesBySchema>(EMPTY_LANGUAGE_DICTS);
+    useState<LanguagesBySchema>(EMPTY_LANGUAGES_BY_SCHEMA);
   const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
     {},
   );
   const [locales, setLocales] = useState<Record<BCP47LocaleCode, LocaleData>>({});
   const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
 
-  async function loadCoreData(): Promise<LanguagesBySchema> {
+  async function loadCoreData(): Promise<void> {
     const [
       initialLangs,
       isoLangs,
@@ -84,7 +90,7 @@ export function useCoreData(): {
     ]);
     if (initialLangs == null || territories == null || locales == null || writingSystems == null) {
       alert('Error loading data. Please check the console for more details.');
-      return EMPTY_LANGUAGE_DICTS;
+      return;
     }
 
     const languagesBySchema = groupLanguagesBySchema(initialLangs);
@@ -107,8 +113,6 @@ export function useCoreData(): {
     setTerritoriesByCode(territories);
     setLocales(locales);
     setWritingSystems(writingSystems);
-
-    return languagesBySchema;
   }
 
   return {

@@ -32,6 +32,7 @@ export function parseLanguageLine(line: string): LanguageData {
       parentLanguageCode: parentGlottocode,
       childLanguages: [],
     },
+    CLDR: { childLanguages: [] }, // Empty for now
   };
 
   return {

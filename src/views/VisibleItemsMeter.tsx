@@ -57,6 +57,7 @@ const ObjectTypeLabel: React.FC = () => {
         case LanguageSchema.ISO:
           return 'ISO languages';
         case LanguageSchema.WAL:
+        case LanguageSchema.CLDR:
           return 'languages';
       }
     // eslint-disable-next-line no-fallthrough
