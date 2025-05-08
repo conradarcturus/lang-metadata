@@ -114,3 +114,9 @@ function getWritingSystemScopeLevel(writingSystem: WritingSystemData): ScopeLeve
       return ScopeLevel.Other;
   }
 }
+
+export function getSliceFunction<T>(): (arr: T[]) => T[] {
+  const { page, limit } = usePageParams();
+  return (arr: T[]) =>
+    limit < 1 || arr.length < limit ? arr : arr.slice(limit * (page - 1), limit * page);
+}

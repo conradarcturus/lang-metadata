@@ -36,6 +36,7 @@ export type PageParams = {
   limit: number; // < 1 means show all
   modalObject: string | null;
   nameFilter: string;
+  page: number; // 0 indexed
   scopes: ScopeLevel[];
   sortBy: SortBy;
   viewType: ViewType;
@@ -48,6 +49,7 @@ export type PageParamsOptional = {
   limit?: number;
   modalObject?: string;
   nameFilter?: string;
+  page?: number;
   scopes?: ScopeLevel[];
   sortBy?: SortBy;
   viewType?: ViewType;

@@ -2,7 +2,6 @@ import React from 'react';
 
 import Hoverable from '../../generic/Hoverable';
 import { ViewType } from '../../types/PageParamTypes';
-import { TABLE_MAX_ROWS } from '../../views/common/table/ObjectTable';
 import { usePageParams } from '../PageParamsContext';
 import TextInput from '../TextInput';
 
@@ -22,7 +21,7 @@ const LimitInput: React.FC = () => {
         value={limit < 1 || Number.isNaN(limit) ? '' : limit.toString()}
         onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
         inputStyle={{ width: '3em' }}
-        placeholder={viewType === ViewType.Table ? TABLE_MAX_ROWS.toString() : '∞'}
+        placeholder="∞"
       />
     </Hoverable>
   );

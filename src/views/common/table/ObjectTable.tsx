@@ -1,11 +1,12 @@
 import React, { Dispatch, SetStateAction, useMemo, useState } from 'react';
 
-import { getScopeFilter, getSubstringFilter } from '../../../controls/filter';
+import { getScopeFilter, getSliceFunction, getSubstringFilter } from '../../../controls/filter';
 import { usePageParams } from '../../../controls/PageParamsContext';
 import { getSortFunction } from '../../../controls/sort';
 import HoverableButton from '../../../generic/HoverableButton';
 import { ObjectData } from '../../../types/DataTypes';
 import { SortBy } from '../../../types/PageParamTypes';
+import VisibleItemsMeter from '../../VisibleItemsMeter';
 
 import './tableStyles.css';
 
@@ -16,8 +17,6 @@ export interface TableColumn<T> {
   isNumeric?: boolean;
   sortParam?: SortBy;
 }
-
-export const TABLE_MAX_ROWS = 200;
 
 interface Props<T> {
   objects: T[];
@@ -33,6 +32,7 @@ function ObjectTable<T extends ObjectData>({ objects, columns }: Props<T>) {
   const substringFilter = getSubstringFilter();
   const scopeFilter = getScopeFilter();
   const [sortDirectionIsNormal, setSortDirectionIsNormal] = useState(true);
+  const sliceFunction = getSliceFunction<T>();
 
   const objectsFilteredAndSorted = useMemo(() => {
     let result = objects.filter(substringFilter ?? (() => true)).filter(scopeFilter);
@@ -43,9 +43,18 @@ function ObjectTable<T extends ObjectData>({ objects, columns }: Props<T>) {
     }
     return result;
   }, [sortBy, objects, substringFilter, scopeFilter, sortDirectionIsNormal]);
+  const nRowsAfterFilter = useMemo(
+    () => objectsFilteredAndSorted.length,
+    [objectsFilteredAndSorted],
+  );
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+      <VisibleItemsMeter
+        nShown={nRowsAfterFilter < limit || limit < 1 ? nRowsAfterFilter : limit}
+        nFiltered={nRowsAfterFilter}
+        nOverall={objects.length}
+      />
       <table style={{ textAlign: 'start' }}>
         <thead>
           <tr>
@@ -61,24 +70,22 @@ function ObjectTable<T extends ObjectData>({ objects, columns }: Props<T>) {
           </tr>
         </thead>
         <tbody>
-          {objectsFilteredAndSorted
-            .slice(0, limit > 0 ? limit : TABLE_MAX_ROWS)
-            .map((object, i) => (
-              <tr key={i}>
-                {columns.map((column, i) => {
-                  let content = column.render(object);
-                  if (typeof content === 'number') {
-                    content = content.toLocaleString();
-                  }
+          {sliceFunction(objectsFilteredAndSorted).map((object, i) => (
+            <tr key={i}>
+              {columns.map((column, i) => {
+                let content = column.render(object);
+                if (typeof content === 'number') {
+                  content = content.toLocaleString();
+                }
 
-                  return (
-                    <td key={i} className={column.isNumeric ? 'numeric' : undefined}>
-                      {content}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
+                return (
+                  <td key={i} className={column.isNumeric ? 'numeric' : undefined}>
+                    {content}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

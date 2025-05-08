@@ -74,3 +74,14 @@
     border-bottom-left-radius: 0px;
     border-left: none !important;
 }
+
+.selector.compact button, .selector.compact input, .selector.compact label {
+    line-height: 1.5;
+    padding: 0em 0.25em;
+    font-size: 1em;
+}
+
+.selector button:disabled, .selector button:disabled:hover {
+    color: var(--color-text-secondary);
+    pointer-events: none;
+}
