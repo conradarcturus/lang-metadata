@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { ViewType } from '../controls/PageParamTypes';
 import { useDataContext } from '../dataloading/DataContext';
 import Hoverable from '../generic/Hoverable';
+import { ViewType } from '../types/PageParamTypes';
 
 import './modal.css';
 

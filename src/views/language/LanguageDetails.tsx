@@ -2,9 +2,9 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
-import { LanguageData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
-import { CLDRCoverageLevel, CLDRData } from '../../types/cldr';
+import { CLDRCoverageLevel, CLDRData } from '../../types/CLDRTypes';
+import { LanguageData } from '../../types/LanguageTypes';
 import TreeListRoot from '../common/TreeList/TreeListRoot';
 import { getLocaleTreeNodes } from '../locale/LocaleHierarchy';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';

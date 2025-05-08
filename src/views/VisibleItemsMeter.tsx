@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
+import { LanguageSchema } from '../types/LanguageTypes';
+import { Dimension } from '../types/PageParamTypes';
 
 interface Props {
   nShown: number;

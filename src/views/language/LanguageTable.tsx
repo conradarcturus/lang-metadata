@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 
 import { getScopeFilter } from '../../controls/filter';
-import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
-import { LanguageData } from '../../DataTypes';
+import { LanguageData } from '../../types/LanguageTypes';
+import { SortBy } from '../../types/PageParamTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
 import ObjectTable from '../common/table/ObjectTable';
 

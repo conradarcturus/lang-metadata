@@ -1,5 +1,6 @@
-import { Dimension } from '../../controls/PageParamTypes';
-import { LanguageData, LanguageScope, ObjectData } from '../../DataTypes';
+import { ObjectData } from '../../types/DataTypes';
+import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
+import { Dimension } from '../../types/PageParamTypes';
 import { getLocaleName } from '../locale/LocaleStrings';
 
 /**

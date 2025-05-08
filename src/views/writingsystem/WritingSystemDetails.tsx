@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { getSortFunction } from '../../controls/sort';
-import { WritingSystemData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
+import { WritingSystemData } from '../../types/DataTypes';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';

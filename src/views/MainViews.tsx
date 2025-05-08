@@ -1,5 +1,5 @@
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, ViewType } from '../controls/PageParamTypes';
+import { Dimension, ViewType } from '../types/PageParamTypes';
 
 import LanguageCardList from './language/LanguageCardList';
 import LanguageDetailsPage from './language/LanguageDetailsPage';

@@ -1,6 +1,6 @@
-import { SortBy } from '../../../controls/PageParamTypes';
-import { ObjectData } from '../../../DataTypes';
 import Highlightable from '../../../generic/Highlightable';
+import { ObjectData } from '../../../types/DataTypes';
+import { SortBy } from '../../../types/PageParamTypes';
 import { getObjectName } from '../getObjectName';
 import HoverableObject from '../HoverableObject';
 

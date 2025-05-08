@@ -1,4 +1,4 @@
-import { CLDRCoverageLevel, CLDRCoverageImport } from '../types/cldr';
+import { CLDRCoverageLevel, CLDRCoverageImport } from '../types/CLDRTypes';
 
 import { CoreData } from './CoreData';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { TerritoryData } from '../../DataTypes';
 import Hoverable from '../../generic/Hoverable';
+import { TerritoryData } from '../../types/DataTypes';
 
 import TerritoryCard from './TerritoryCard';
 

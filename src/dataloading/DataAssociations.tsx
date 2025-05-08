@@ -1,19 +1,20 @@
-import { LanguageSchema } from '../controls/PageParamTypes';
 import {
   BCP47LocaleCode,
-  LanguageCode,
-  LanguageData,
   LocaleData,
   ScriptCode,
   TerritoryCode,
   TerritoryData,
   WritingSystemData,
-} from '../DataTypes';
+} from '../types/DataTypes';
+import {
+  LanguageData,
+  LanguageDictionary,
+  LanguagesBySchema,
+  LanguageSchema,
+} from '../types/LanguageTypes';
 import { getLocaleName } from '../views/locale/LocaleStrings';
 
-export function connectLanguagesToParent(
-  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
-): void {
+export function connectLanguagesToParent(languagesBySchema: LanguagesBySchema): void {
   // Connect general parents
   Object.values(languagesBySchema[LanguageSchema.Inclusive]).forEach((lang) => {
     Object.values(LanguageSchema).forEach((schema) => {
@@ -53,7 +54,7 @@ export function connectTerritoriesToParent(
 }
 
 export function connectWritingSystems(
-  languages: Record<LanguageCode, LanguageData>,
+  languages: LanguageDictionary,
   territoriesByCode: Record<TerritoryCode, TerritoryData>,
   writingSystems: Record<ScriptCode, WritingSystemData>,
 ): void {
@@ -114,7 +115,7 @@ export function connectWritingSystems(
  * @returns - The updated array of LocaleData objects -- with some locales removed, if they were missing a match to a territory or language.
  */
 export function connectLocales(
-  languagesByCode: Record<LanguageCode, LanguageData>,
+  languagesByCode: LanguageDictionary,
   territoriesByCode: Record<TerritoryCode, TerritoryData>,
   writingSystems: Record<ScriptCode, WritingSystemData>,
   locales: Record<BCP47LocaleCode, LocaleData>,
@@ -157,40 +158,35 @@ export function connectLocales(
  * Recompose the structure of languages, leaving the primary index intact but also
  * creating 3 other indices based on the definitions of languages from ISO, WAL, and Glottolog
  */
-export function groupLanguagesBySchema(
-  languages: Record<LanguageCode, LanguageData>,
-): Record<LanguageSchema, Record<LanguageCode, LanguageData>> {
+export function groupLanguagesBySchema(languages: LanguageDictionary): LanguagesBySchema {
   return {
     Inclusive: languages,
-    ISO: Object.values(languages).reduce<Record<LanguageCode, LanguageData>>((isoLangs, lang) => {
+    ISO: Object.values(languages).reduce<LanguageDictionary>((isoLangs, lang) => {
       const code = lang.schemaSpecific.ISO.code;
       if (code != null) {
         isoLangs[code] = lang;
       }
       return isoLangs;
     }, {}),
-    WAL: Object.values(languages).reduce<Record<LanguageCode, LanguageData>>((walLangs, lang) => {
+    WAL: Object.values(languages).reduce<LanguageDictionary>((walLangs, lang) => {
       const code = lang.schemaSpecific.WAL.code;
       if (code != null && lang.viabilityConfidence != null && lang.viabilityConfidence != 'No') {
         walLangs[code] = lang;
       }
       return walLangs;
     }, {}),
-    Glottolog: Object.values(languages).reduce<Record<LanguageCode, LanguageData>>(
-      (glottoLangs, lang) => {
-        const code = lang.schemaSpecific.Glottolog.code;
-        if (code != null) {
-          glottoLangs[code] = lang;
-        }
-        return glottoLangs;
-      },
-      {},
-    ),
+    Glottolog: Object.values(languages).reduce<LanguageDictionary>((glottoLangs, lang) => {
+      const code = lang.schemaSpecific.Glottolog.code;
+      if (code != null) {
+        glottoLangs[code] = lang;
+      }
+      return glottoLangs;
+    }, {}),
   };
 }
 
 export function computeOtherPopulationStatistics(
-  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
+  languagesBySchema: LanguagesBySchema,
   writingSystems: Record<ScriptCode, WritingSystemData>,
 ): void {
   // Organizing writing systems by population is a bit funny because some fundamental writing systems

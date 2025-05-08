@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { WritingSystemData, WritingSystemScope } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
+import { WritingSystemData, WritingSystemScope } from '../../types/DataTypes';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 
 import HoverableWritingSystemName from './HoverableWritingSystemName';

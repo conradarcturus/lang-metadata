@@ -1,18 +1,17 @@
 import { useMemo } from 'react';
 
 import {
-  LanguageData,
-  LanguageScope,
   LocaleData,
   ObjectData,
   TerritoryData,
   TerritoryType,
   WritingSystemData,
   WritingSystemScope,
-} from '../DataTypes';
+} from '../types/DataTypes';
+import { LanguageData, LanguageScope } from '../types/LanguageTypes';
+import { Dimension, ScopeLevel } from '../types/PageParamTypes';
 
 import { usePageParams } from './PageParamsContext';
-import { Dimension, ScopeLevel } from './PageParamTypes';
 
 export type FilterFunctionType = (a: ObjectData) => boolean;
 

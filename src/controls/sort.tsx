@@ -1,7 +1,8 @@
-import { ObjectData } from '../DataTypes';
+import { ObjectData } from '../types/DataTypes';
+import { LanguageSchema } from '../types/LanguageTypes';
+import { Dimension, SortBy, ViewType } from '../types/PageParamTypes';
 
 import { usePageParams } from './PageParamsContext';
-import { Dimension, LanguageSchema, SortBy, ViewType } from './PageParamTypes';
 
 export type SortByFunctionType = (a: ObjectData, b: ObjectData) => number;
 

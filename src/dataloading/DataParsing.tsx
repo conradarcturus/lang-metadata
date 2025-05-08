@@ -1,6 +1,5 @@
-import { Dimension } from '../controls/PageParamTypes';
+import { separateTitleAndSubtitle } from '../generic/stringUtils';
 import {
-  LanguageData,
   LocaleData,
   OfficialStatus,
   PopulationSourceCategory,
@@ -8,8 +7,9 @@ import {
   TerritoryType,
   WritingSystemData,
   WritingSystemScope,
-} from '../DataTypes';
-import { separateTitleAndSubtitle } from '../generic/stringUtils';
+} from '../types/DataTypes';
+import { LanguageData } from '../types/LanguageTypes';
+import { Dimension } from '../types/PageParamTypes';
 
 export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');

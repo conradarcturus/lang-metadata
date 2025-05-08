@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { WritingSystemData } from '../../DataTypes';
 import Hoverable from '../../generic/Hoverable';
+import { WritingSystemData } from '../../types/DataTypes';
 
 import WritingSystemCard from './WritingSystemCard';
 

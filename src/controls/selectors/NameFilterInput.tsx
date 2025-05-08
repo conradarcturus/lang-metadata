@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Hoverable from '../../generic/Hoverable';
+import { ViewType } from '../../types/PageParamTypes';
 import { usePageParams } from '../PageParamsContext';
-import { ViewType } from '../PageParamTypes';
 import TextInput from '../TextInput';
 
 const NameFilterInput: React.FC = () => {

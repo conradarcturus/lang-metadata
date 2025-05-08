@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Hoverable from '../../generic/Hoverable';
+import { SortBy, ViewType } from '../../types/PageParamTypes';
 import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
-import { SortBy, ViewType } from '../PageParamTypes';
 
 const SortBySelector: React.FC = () => {
   const { sortBy, updatePageParams, viewType } = usePageParams();

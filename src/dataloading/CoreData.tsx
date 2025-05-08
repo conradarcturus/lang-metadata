@@ -1,16 +1,14 @@
 import { useState } from 'react';
 
-import { LanguageSchema } from '../controls/PageParamTypes';
 import {
   BCP47LocaleCode,
-  LanguageCode,
-  LanguageData,
   LocaleData,
   ScriptCode,
   TerritoryCode,
   TerritoryData,
   WritingSystemData,
-} from '../DataTypes';
+} from '../types/DataTypes';
+import { LanguagesBySchema } from '../types/LanguageTypes';
 
 import {
   addISODataToLanguages,
@@ -36,10 +34,8 @@ import {
   loadManualGlottocodeToISO,
 } from './GlottologData';
 
-type LanguageDict = Record<LanguageCode, LanguageData>;
-
 export type CoreData = {
-  languagesBySchema: Record<LanguageSchema, LanguageDict>;
+  languagesBySchema: LanguagesBySchema;
   territoriesByCode: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
   writingSystems: Record<ScriptCode, WritingSystemData>;
@@ -51,18 +47,18 @@ const EMPTY_LANGUAGE_DICTS = { Inclusive: {}, ISO: {}, Glottolog: {}, WAL: {} };
  * Get core data needed to show the tables -- things like language codes, relationships with other languages.
  */
 export function useCoreData(): {
-  loadCoreData: () => Promise<Record<LanguageSchema, LanguageDict>>;
+  loadCoreData: () => Promise<LanguagesBySchema>;
   coreData: CoreData;
 } {
   const [languagesBySchema, setLanguagesBySchema] =
-    useState<Record<LanguageSchema, LanguageDict>>(EMPTY_LANGUAGE_DICTS);
+    useState<LanguagesBySchema>(EMPTY_LANGUAGE_DICTS);
   const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
     {},
   );
   const [locales, setLocales] = useState<Record<BCP47LocaleCode, LocaleData>>({});
   const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
 
-  async function loadCoreData(): Promise<Record<LanguageSchema, LanguageDict>> {
+  async function loadCoreData(): Promise<LanguagesBySchema> {
     const [
       initialLangs,
       isoLangs,

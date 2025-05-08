@@ -4,14 +4,13 @@
 
 import {
   BCP47LocaleCode,
-  LanguageCode,
-  LanguageData,
   LocaleData,
   ScriptCode,
   TerritoryCode,
   TerritoryData,
   WritingSystemData,
-} from '../DataTypes';
+} from '../types/DataTypes';
+import { LanguageDictionary } from '../types/LanguageTypes';
 
 import {
   parseLanguageLine,
@@ -20,12 +19,12 @@ import {
   parseWritingSystem,
 } from './DataParsing';
 
-export async function loadLanguages(): Promise<Record<LanguageCode, LanguageData> | void> {
+export async function loadLanguages(): Promise<LanguageDictionary | void> {
   return await fetch('languages.tsv')
     .then((res) => res.text())
     .then((text) => {
       const languages = text.split('\n').slice(1).map(parseLanguageLine);
-      return languages.reduce<Record<LanguageCode, LanguageData>>((languagesByCode, lang) => {
+      return languages.reduce<LanguageDictionary>((languagesByCode, lang) => {
         languagesByCode[lang.code] = lang;
         return languagesByCode;
       }, {});

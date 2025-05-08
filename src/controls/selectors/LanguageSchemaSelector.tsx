@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { LanguageSchema } from '../../types/LanguageTypes';
 import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
-import { LanguageSchema } from '../PageParamTypes';
 
 const LanguageSchemaSelector: React.FC = () => {
   const { languageSchema, updatePageParams } = usePageParams();

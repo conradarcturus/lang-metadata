@@ -1,5 +1,11 @@
-import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
-import { Glottocode, LanguageCode, LanguageData, LanguageScope } from '../DataTypes';
+import {
+  Glottocode,
+  LanguageCode,
+  LanguageData,
+  LanguagesBySchema,
+  LanguageScope,
+} from '../types/LanguageTypes';
+import { Dimension } from '../types/PageParamTypes';
 
 const DEBUG = false;
 
@@ -68,7 +74,7 @@ export async function loadManualGlottocodeToISO(): Promise<Record<
  * languagesBySchema.Glottolog is updated with new entries
  */
 export function addGlottologLanguages(
-  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
+  languagesBySchema: LanguagesBySchema,
   glottologImport: GlottologData[],
   manualGlottocodeToISO: Record<Glottocode, LanguageCode>,
 ): void {

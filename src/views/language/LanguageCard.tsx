@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { LanguageData, LanguageScope } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
+import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
 import { getObjectName, getObjectSubtitle } from '../common/getObjectName';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 

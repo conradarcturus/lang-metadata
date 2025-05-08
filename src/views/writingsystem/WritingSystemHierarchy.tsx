@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { getScopeFilter } from '../../controls/filter';
-import { Dimension } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
-import { ObjectData, WritingSystemData } from '../../DataTypes';
+import { ObjectData, WritingSystemData } from '../../types/DataTypes';
+import { Dimension } from '../../types/PageParamTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 

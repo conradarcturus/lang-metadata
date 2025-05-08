@@ -1,12 +1,14 @@
-import { Dimension, LanguageSchema } from '../controls/PageParamTypes';
 import {
   ISO6391LanguageCode,
   ISO6393LanguageCode,
   ISO6395LanguageCode,
   LanguageCode,
   LanguageData,
+  LanguageDictionary,
+  LanguagesBySchema,
   LanguageScope,
-} from '../DataTypes';
+} from '../types/LanguageTypes';
+import { Dimension } from '../types/PageParamTypes';
 
 export enum ISOLanguageVitality {
   Living = 'Living',
@@ -141,7 +143,7 @@ export async function loadISOFamiliesToLanguages(): Promise<Record<
 }
 
 export function addISODataToLanguages(
-  languages: Record<LanguageCode, LanguageData>,
+  languages: LanguageDictionary,
   isoLanguages: ISOLanguage6393Data[],
 ): Record<ISO6391LanguageCode, LanguageData> {
   return isoLanguages
@@ -176,7 +178,7 @@ export function addISODataToLanguages(
  * However, in the future we may drop that column from the main language table, and we should get that data from this process.
  */
 export function addISOMacrolanguageData(
-  languages: Record<LanguageCode, LanguageData>,
+  languages: LanguageDictionary,
   macrolanguages: ISOMacrolanguageData[],
 ): void {
   macrolanguages.forEach((relation) => {
@@ -209,7 +211,7 @@ export function addISOMacrolanguageData(
 }
 
 export function addISOLanguageFamilyData(
-  languagesBySchema: Record<LanguageSchema, Record<LanguageCode, LanguageData>>,
+  languagesBySchema: LanguagesBySchema,
   iso6391Langs: Record<ISO6391LanguageCode, LanguageData>,
   families: ISOLanguageFamilyData[],
   isoLangsToFamilies: Record<ISO6395LanguageCode, LanguageCode[]>,

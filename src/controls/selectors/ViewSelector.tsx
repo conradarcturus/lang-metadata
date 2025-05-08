@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { ViewType } from '../../types/PageParamTypes';
 import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
-import { ViewType } from '../PageParamTypes';
 
 const ViewSelector: React.FC = () => {
   const { viewType, updatePageParams } = usePageParams();

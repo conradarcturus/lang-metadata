@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Hoverable from '../../generic/Hoverable';
+import { ViewType } from '../../types/PageParamTypes';
 import { TABLE_MAX_ROWS } from '../../views/common/table/ObjectTable';
 import { usePageParams } from '../PageParamsContext';
-import { ViewType } from '../PageParamTypes';
 import TextInput from '../TextInput';
 
 const LimitInput: React.FC = () => {

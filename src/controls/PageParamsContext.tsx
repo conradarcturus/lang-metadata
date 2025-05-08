@@ -1,15 +1,15 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { LanguageSchema } from '../types/LanguageTypes';
 import {
   Dimension,
-  LanguageSchema,
   PageParams,
   PageParamsOptional,
   ScopeLevel,
   SortBy,
   ViewType,
-} from './PageParamTypes';
+} from '../types/PageParamTypes';
 
 type PageParamsContextState = PageParams & {
   updatePageParams: (newParams: PageParamsOptional) => void;

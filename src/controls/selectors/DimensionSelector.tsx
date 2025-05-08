@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { Dimension } from '../../types/PageParamTypes';
 import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
-import { Dimension } from '../PageParamTypes';
 
 const DimensionSelector: React.FC = () => {
   const { dimension, updatePageParams } = usePageParams();

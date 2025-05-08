@@ -9,26 +9,22 @@ import React, {
 } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { LanguageSchema } from '../controls/PageParamTypes';
 import {
   BCP47LocaleCode,
-  LanguageCode,
-  LanguageData,
   LocaleData,
   ScriptCode,
   TerritoryCode,
   TerritoryData,
   WritingSystemData,
-} from '../DataTypes';
+} from '../types/DataTypes';
+import { LanguageDictionary, LanguagesBySchema, LanguageSchema } from '../types/LanguageTypes';
 
 import { CoreData, useCoreData } from './CoreData';
 import { loadSupplementalData } from './SupplementalData';
 
-type LanguageDict = Record<LanguageCode, LanguageData>;
-
 type DataContextType = {
-  languagesBySchema: Record<LanguageSchema, LanguageDict>;
-  languages: LanguageDict;
+  languagesBySchema: LanguagesBySchema;
+  languages: LanguageDictionary;
   territoriesByCode: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
   writingSystems: Record<ScriptCode, WritingSystemData>;
@@ -54,7 +50,7 @@ export const DataProvider: React.FC<{
   const { languageSchema } = usePageParams();
   const { coreData, loadCoreData } = useCoreData();
   const [loadProgress, setLoadProgress] = useState(0);
-  const [languages, setLanguages] = useState<Record<LanguageCode, LanguageData>>({});
+  const [languages, setLanguages] = useState<LanguageDictionary>({});
 
   useEffect(() => {
     const loadPrimaryData = async () => {
@@ -83,8 +79,8 @@ export const DataProvider: React.FC<{
 };
 
 function updateLanguageBasedOnSchema(
-  languagesBySchema: Record<LanguageSchema, LanguageDict>,
-  setLanguages: Dispatch<SetStateAction<LanguageDict>>,
+  languagesBySchema: LanguagesBySchema,
+  setLanguages: Dispatch<SetStateAction<LanguageDictionary>>,
   languageSchema: LanguageSchema,
 ): void {
   const languages = languagesBySchema[languageSchema];

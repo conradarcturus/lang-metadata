@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LocaleData } from '../../DataTypes';
+import { LocaleData } from '../../types/DataTypes';
 import HoverableLanguageName from '../language/HoverableLanguageName';
 import HoverableTerritoryName from '../territory/HoverableTerritoryName';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';

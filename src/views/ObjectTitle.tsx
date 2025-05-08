@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ObjectData } from '../DataTypes';
+import { ObjectData } from '../types/DataTypes';
 
 import { getObjectName, getObjectSubtitle } from './common/getObjectName';
 

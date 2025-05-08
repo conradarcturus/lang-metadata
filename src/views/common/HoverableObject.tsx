@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension } from '../../controls/PageParamTypes';
-import { ObjectData } from '../../DataTypes';
+import { Dimension } from '../../types/PageParamTypes';
+import { ObjectData } from '../../types/DataTypes';
 import Hoverable from '../../generic/Hoverable';
 import LanguageCard from '../language/LanguageCard';
 import LocaleCard from '../locale/LocaleCard';

@@ -1,4 +1,4 @@
-import { ObjectData } from '../../../DataTypes';
+import { ObjectData } from '../../../types/DataTypes';
 
 import { TreeNodeData } from './TreeListNode';
 

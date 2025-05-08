@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { LocaleData } from '../../DataTypes';
 import Highlightable from '../../generic/Highlightable';
+import { LocaleData } from '../../types/DataTypes';
 
 import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 

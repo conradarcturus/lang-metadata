@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { LanguageSchema } from '../controls/PageParamTypes';
 import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
-import { LanguageData } from '../DataTypes';
+import { LanguageData, LanguageSchema } from '../types/LanguageTypes';
 
 import TreeListRoot from './common/TreeList/TreeListRoot';
 import { getLanguageTreeNodes } from './language/LanguageHierarchy';

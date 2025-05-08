@@ -2,10 +2,10 @@ import React, { Dispatch, SetStateAction, useMemo, useState } from 'react';
 
 import { getScopeFilter, getSubstringFilter } from '../../../controls/filter';
 import { usePageParams } from '../../../controls/PageParamsContext';
-import { SortBy } from '../../../controls/PageParamTypes';
 import { getSortFunction } from '../../../controls/sort';
-import { ObjectData } from '../../../DataTypes';
 import HoverableButton from '../../../generic/HoverableButton';
+import { ObjectData } from '../../../types/DataTypes';
+import { SortBy } from '../../../types/PageParamTypes';
 
 import './tableStyles.css';
 

@@ -1,4 +1,4 @@
-import { LocaleData, OfficialStatus, PopulationSourceCategory } from '../../DataTypes';
+import { LocaleData, OfficialStatus, PopulationSourceCategory } from '../../types/DataTypes';
 
 export function getLocaleName(locale: LocaleData): string {
   const languageName = locale.language?.nameDisplay ?? locale.languageCode;

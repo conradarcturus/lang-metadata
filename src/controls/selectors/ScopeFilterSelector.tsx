@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { toTitleCase } from '../../generic/stringUtils';
+import { Dimension, ScopeLevel, ViewType } from '../../types/PageParamTypes';
 import MultiSelector from '../MultiSelector';
 import { usePageParams } from '../PageParamsContext';
-import { Dimension, ScopeLevel, ViewType } from '../PageParamTypes';
 
 const ScopeFilterSelector: React.FC = () => {
   const { viewType, scopes, updatePageParams, dimension } = usePageParams();

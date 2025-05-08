@@ -2,10 +2,11 @@ import React from 'react';
 
 import { getScopeFilter } from '../../controls/filter';
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension, LanguageSchema } from '../../controls/PageParamTypes';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
-import { LanguageData, LanguageScope, ObjectData } from '../../DataTypes';
+import { ObjectData } from '../../types/DataTypes';
+import { LanguageData, LanguageSchema, LanguageScope } from '../../types/LanguageTypes';
+import { Dimension } from '../../types/PageParamTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 

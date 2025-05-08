@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import { usePageParams } from '../../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../../controls/PageParamTypes';
-import { ObjectData } from '../../../DataTypes';
+import { Dimension, ViewType } from '../../../types/PageParamTypes';
+import { ObjectData } from '../../../types/DataTypes';
 import Highlightable from '../../../generic/Highlightable';
 import { getObjectName } from '../getObjectName';
 import HoverableObject from '../HoverableObject';

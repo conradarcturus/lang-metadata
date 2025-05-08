@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { TerritoryData } from '../../DataTypes';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
+import { TerritoryData } from '../../types/DataTypes';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 import HoverableTerritoryName from './HoverableTerritoryName';

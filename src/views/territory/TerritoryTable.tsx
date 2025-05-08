@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { SortBy } from '../../controls/PageParamTypes';
 import { useDataContext } from '../../dataloading/DataContext';
-import { TerritoryData } from '../../DataTypes';
+import { TerritoryData } from '../../types/DataTypes';
+import { SortBy } from '../../types/PageParamTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
 import ObjectTable from '../common/table/ObjectTable';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
-import { TerritoryData } from '../../DataTypes';
+import { TerritoryData } from '../../types/DataTypes';
 import ObjectTitle from '../ObjectTitle';
 
 import HoverableTerritoryName from './HoverableTerritoryName';

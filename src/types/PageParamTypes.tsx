@@ -1,3 +1,5 @@
+import { LanguageSchema } from './LanguageTypes';
+
 export enum Dimension {
   Language = 'Language',
   Locale = 'Locale',
@@ -12,13 +14,6 @@ export enum ViewType {
   Hierarchy = 'Hierarchy',
   Table = 'Table',
   Warnings = 'Warnings',
-}
-
-export enum LanguageSchema {
-  Inclusive = 'Inclusive',
-  ISO = 'ISO',
-  WAL = 'WAL',
-  Glottolog = 'Glottolog',
 }
 
 export enum SortBy {

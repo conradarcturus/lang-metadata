@@ -1,4 +1,5 @@
-import { LanguageCode, ScriptCode, TerritoryCode } from '../DataTypes';
+import { ScriptCode, TerritoryCode } from './DataTypes';
+import { LanguageCode } from './LanguageTypes';
 
 export enum CLDRCoverageLevel {
   Core = 'core', // Language identification
