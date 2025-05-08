@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { Dimension } from '../../types/PageParamTypes';
-import { ObjectData } from '../../types/DataTypes';
 import Hoverable from '../../generic/Hoverable';
+import { ObjectData } from '../../types/DataTypes';
+import { Dimension } from '../../types/PageParamTypes';
 import LanguageCard from '../language/LanguageCard';
 import LocaleCard from '../locale/LocaleCard';
 import TerritoryCard from '../territory/TerritoryCard';
@@ -33,7 +33,11 @@ const HoverableObject: React.FC<Props> = ({ object, children }) => {
   return (
     <Hoverable
       hoverContent={getHoverContent()}
-      onClick={() => updatePageParams({ modalObject: object.code })}
+      onClick={() =>
+        updatePageParams({
+          modalObject: object.type === Dimension.Language ? object.codeCanonical : object.code,
+        })
+      }
     >
       {children}
     </Hoverable>

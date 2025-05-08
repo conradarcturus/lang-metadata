@@ -39,8 +39,10 @@ export function parseLanguageLine(line: string): LanguageData {
     type: Dimension.Language,
 
     code,
+    codeCanonical: code,
     scope: undefined, // Added by imports
 
+    nameCanonical: nameDisplay,
     nameDisplay,
     nameSubtitle,
     nameEndonym: parts[3],

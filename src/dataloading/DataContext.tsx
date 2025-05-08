@@ -49,10 +49,10 @@ export const DataProvider: React.FC<{
 
   useEffect(() => {
     const loadPrimaryData = async () => {
-      return await loadCoreData();
+      await loadCoreData();
+      setLoadProgress(1);
     };
     loadPrimaryData();
-    setLoadProgress(1);
   }, []); // this is called once after page load
 
   // After the main load, load additional data
@@ -60,6 +60,7 @@ export const DataProvider: React.FC<{
     if (loadProgress === 1) {
       const loadSecondaryData = async (coreData: CoreData) => {
         await loadSupplementalData(coreData);
+        setLoadProgress(2);
       };
 
       loadSecondaryData(coreData);
@@ -82,8 +83,8 @@ function updateLanguageBasedOnSchema(
   // Update language codes
   Object.values(languages).forEach((lang) => {
     const specific = lang.schemaSpecific[languageSchema];
-    lang.code = specific.code ?? lang.code;
-    lang.nameDisplay = specific.name ?? lang.nameDisplay;
+    lang.code = specific.code ?? lang.codeCanonical;
+    lang.nameDisplay = specific.name ?? lang.nameCanonical;
     lang.scope = specific.scope ?? lang.scope;
     lang.populationOfDescendents = specific.populationOfDescendents ?? undefined;
     lang.parentLanguage = specific.parentLanguage ?? undefined;

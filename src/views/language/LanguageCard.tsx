@@ -32,7 +32,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: lang.code })}>
+        <a onClick={() => updatePageParams({ modalObject: lang.codeCanonical })}>
           <strong>
             <Highlightable str={getObjectName(lang)} match="nameFilter" />
           </strong>{' '}

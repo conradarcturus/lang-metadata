@@ -42,11 +42,13 @@ export interface LanguageData extends ObjectBase {
   type: Dimension.Language;
 
   // Provided by the TSV files
-  code: LanguageCode;
+  code: LanguageCode; // Changes with different language schema
+  codeCanonical: LanguageCode; // Stays the same, especially important when swapping schema but maintaining parent/child relations
   codeISO6391?: LanguageCode;
   scope?: LanguageScope;
 
-  nameDisplay: string;
+  nameCanonical: string; // Stays the same with different language schema
+  nameDisplay: string; // May update if a language schema has a different name
   nameSubtitle?: string;
   nameEndonym?: string;
 

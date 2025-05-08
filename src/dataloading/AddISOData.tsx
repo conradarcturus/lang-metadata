@@ -226,6 +226,8 @@ export function addISOLanguageFamilyData(
       const familyEntry: LanguageData = {
         type: Dimension.Language,
         code: family.code,
+        codeCanonical: family.code,
+        nameCanonical: name,
         nameDisplay: name,
         scope: LanguageScope.Family,
         viabilityConfidence: 'No',

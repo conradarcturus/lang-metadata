@@ -118,6 +118,8 @@ export function addGlottologLanguages(
       const newLang: LanguageData = {
         type: Dimension.Language,
         code: glottoCode,
+        codeCanonical: glottoCode,
+        nameCanonical: name,
         nameDisplay: name,
         scope,
         viabilityConfidence: 'No',
