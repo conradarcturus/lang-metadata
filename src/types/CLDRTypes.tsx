@@ -1,5 +1,6 @@
 import { ScriptCode, TerritoryCode } from './DataTypes';
 import { LanguageCode } from './LanguageTypes';
+import { Dimension } from './PageParamTypes';
 
 export enum CLDRCoverageLevel {
   Core = 'core', // Language identification
@@ -7,6 +8,14 @@ export enum CLDRCoverageLevel {
   Moderate = 'moderate', // Most date/time/number formats. Timezone and currency information. Translations for common languages/scripts/regions.
   Modern = 'modern', // Translations for emoji characters, measurement units, final date/time formats and translations.
 }
+
+export type CLDRAliasImport = {
+  dimension: Dimension;
+  original: string;
+  replacement: string;
+  reason: string;
+  comment?: string;
+};
 
 export type CLDRCoverageImport = {
   languageCode: LanguageCode;
@@ -27,7 +36,7 @@ export type CLDRCoverageImport = {
   missingFeatures: string[];
 };
 
-export type CLDRData = {
+export type CLDRCoverageData = {
   countOfCLDRLocales: number;
   targetCoverageLevel: CLDRCoverageLevel;
   actualCoverageLevel: CLDRCoverageLevel;

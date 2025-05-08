@@ -7,7 +7,7 @@
 // should be formatted like ab or abc. But there are some languoids with different
 // kinds of language codes here as well. This is the main index key for languages and languoids
 
-import { CLDRData } from './CLDRTypes';
+import { CLDRCoverageData } from './CLDRTypes';
 import { LocaleData, ObjectBase, ScriptCode, WritingSystemData } from './DataTypes';
 import { Dimension } from './PageParamTypes';
 
@@ -67,8 +67,7 @@ export interface LanguageData extends ObjectBase {
   primaryScriptCode?: ScriptCode;
 
   schemaSpecific: Record<LanguageSchema, LanguageDataInSchema>;
-  cldr?: CLDRData;
-  cldrByScript?: Record<ScriptCode, CLDRData>;
+  cldrCoverage?: CLDRCoverageData;
 
   // References to other objects, filled in after loading the TSV
   locales: LocaleData[];

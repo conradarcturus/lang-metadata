@@ -35,7 +35,7 @@ const LanguageTable: React.FC = () => {
         },
         {
           label: 'Internet Technologies',
-          render: (lang) => <CLDRCoverageInfo cldr={lang.cldr} />,
+          render: (lang) => <CLDRCoverageInfo lang={lang} />,
         },
         InfoButtonColumn,
       ]}

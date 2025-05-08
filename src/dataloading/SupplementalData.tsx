@@ -8,7 +8,7 @@ export async function loadSupplementalData(coreData: CoreData): Promise<void> {
   if (Object.values(coreData.locales).length == 0) {
     return; // won't load anything while data is empty
   }
-  // TODO this appears to load multiple times -- but it should only load once.
 
+  // TODO this appears to load multiple times -- but it should only load once.
   await loadCLDRCoverage(coreData);
 }

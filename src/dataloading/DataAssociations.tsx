@@ -21,7 +21,8 @@ export function connectLanguagesToParent(languagesBySchema: LanguagesBySchema): 
     Object.values(LanguageSchema).forEach((schema) => {
       const parentCode = lang.schemaSpecific[schema].parentLanguageCode;
       if (parentCode != null) {
-        const parent = languagesBySchema[schema][parentCode];
+        const parent =
+          languagesBySchema[schema][parentCode] ?? languagesBySchema.Inclusive[parentCode];
         if (parent != null) {
           lang.schemaSpecific[schema].parentLanguage = parent;
           parent.schemaSpecific[schema].childLanguages.push(lang);

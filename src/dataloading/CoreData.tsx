@@ -33,6 +33,7 @@ import {
   loadGlottologLanguages,
   loadManualGlottocodeToISO,
 } from './GlottologData';
+import { addCLDRLanguageSchema, loadCLDRAliases } from './UnicodeData';
 
 export type CoreData = {
   languagesBySchema: LanguagesBySchema;
@@ -73,6 +74,7 @@ export function useCoreData(): {
       isoLangsToFamilies,
       glottologImport,
       manualGlottocodeToISO,
+      cldrAliases,
       territories,
       locales,
       writingSystems,
@@ -84,6 +86,7 @@ export function useCoreData(): {
       loadISOFamiliesToLanguages(),
       loadGlottologLanguages(),
       loadManualGlottocodeToISO(),
+      loadCLDRAliases(),
       loadTerritories(),
       loadLocales(),
       loadWritingSystems(),
@@ -98,6 +101,8 @@ export function useCoreData(): {
     addISOLanguageFamilyData(languagesBySchema, langFamilies || [], isoLangsToFamilies || {});
     addISOMacrolanguageData(languagesBySchema.ISO, macroLangs || []);
     addGlottologLanguages(languagesBySchema, glottologImport || [], manualGlottocodeToISO || {});
+    addCLDRLanguageSchema(languagesBySchema, cldrAliases || []);
+
     connectLanguagesToParent(languagesBySchema);
     connectTerritoriesToParent(territories);
     connectWritingSystems(languagesBySchema.Inclusive, territories, writingSystems);

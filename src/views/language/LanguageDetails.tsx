@@ -3,8 +3,9 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import CommaSeparated from '../../generic/CommaSeparated';
-import { CLDRCoverageLevel, CLDRData } from '../../types/CLDRTypes';
-import { LanguageData } from '../../types/LanguageTypes';
+import Hoverable from '../../generic/Hoverable';
+import { CLDRCoverageLevel } from '../../types/CLDRTypes';
+import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
 import TreeListRoot from '../common/TreeList/TreeListRoot';
 import { getLocaleTreeNodes } from '../locale/LocaleHierarchy';
 import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
@@ -22,12 +23,11 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
   const {
     codeISO6391,
     childLanguages,
-    cldr,
     medium,
     nameDisplay,
     populationCited,
     primaryWritingSystem,
-    schemaSpecific: { Glottolog, ISO },
+    schemaSpecific: { Glottolog, ISO, CLDR },
     vitalityEth2013,
     vitalityEth2025,
     vitalityISO,
@@ -81,6 +81,21 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             </>
           ) : (
             <span className="unsupported">Not in ISO catalog</span>
+          )}
+        </div>
+        <div>
+          <label>CLDR Code:</label>
+          {CLDR.code ? (
+            <>
+              {CLDR.code}
+              <a
+                href={`https://github.com/unicode-org/cldr/blob/main/common/main/${CLDR.code}.xml`}
+              >
+                <button className="LinkButton">Open CLDR XML</button>
+              </a>
+            </>
+          ) : (
+            <span className="unsupported">Not in CLDR</span>
           )}
         </div>
       </div>
@@ -146,7 +161,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         </div>
         <div>
           <label>Internet Technologies:</label>
-          <CLDRCoverageInfo cldr={cldr} />
+          <CLDRCoverageInfo lang={lang} />
         </div>
       </div>
       <div>
@@ -194,19 +209,46 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
   );
 };
 
-export const CLDRCoverageInfo: React.FC<{ cldr?: CLDRData }> = ({ cldr }) => {
-  if (cldr == null) {
+export const CLDRCoverageInfo: React.FC<{ lang: LanguageData }> = ({ lang }) => {
+  const {
+    cldrCoverage,
+    schemaSpecific: {
+      CLDR: { parentLanguage, scope },
+    },
+  } = lang;
+  if (cldrCoverage == null) {
+    if (
+      parentLanguage != null &&
+      parentLanguage.cldrCoverage != null &&
+      scope === LanguageScope.Macrolanguage
+    ) {
+      return (
+        <Hoverable
+          hoverContent={
+            <div>
+              {lang.nameCanonical} [{lang.code}] is not directly supported since it is a
+              macrolanguage. Rather it is supported with data from its constituent language:{' '}
+              {parentLanguage.nameCanonical} [
+              {parentLanguage.codeISO6391 ?? parentLanguage.codeCanonical}]
+            </div>
+          }
+          style={{ textDecoration: 'none', cursor: 'help' }}
+        >
+          ⚠️ <CLDRCoverageInfo lang={parentLanguage} />
+        </Hoverable>
+      );
+    }
     return <span className="unsupported">Not supported by CLDR or ICU.</span>;
   }
 
   return (
     <>
       CLDR:{' '}
-      <span style={{ color: getCLDRCoverageColor(cldr.actualCoverageLevel) }}>
-        {cldr.actualCoverageLevel}
+      <span style={{ color: getCLDRCoverageColor(cldrCoverage.actualCoverageLevel) }}>
+        {cldrCoverage.actualCoverageLevel}
       </span>{' '}
-      coverage by {cldr.countOfCLDRLocales} locale{cldr.countOfCLDRLocales > 1 && 's'}. ICU:{' '}
-      {cldr.inICU ? '✅' : '❌'}
+      coverage by {cldrCoverage.countOfCLDRLocales} locale
+      {cldrCoverage.countOfCLDRLocales > 1 && 's'}. ICU: {cldrCoverage.inICU ? '✅' : '❌'}
     </>
   );
 };
