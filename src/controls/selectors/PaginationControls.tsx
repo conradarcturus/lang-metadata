@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { ViewType } from '../../types/PageParamTypes';
 import { usePageParams } from '../PageParamsContext';
 
 type Props = {
@@ -9,8 +8,8 @@ type Props = {
 };
 
 const PaginationControls: React.FC<Props> = ({ currentPage, totalPages }) => {
-  const { viewType, updatePageParams } = usePageParams();
-  if (totalPages <= 1 || viewType != ViewType.Table) {
+  const { updatePageParams } = usePageParams();
+  if (totalPages <= 1) {
     return <></>;
   }
 
