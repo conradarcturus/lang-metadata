@@ -145,31 +145,22 @@ export async function loadISOFamiliesToLanguages(): Promise<Record<
 export function addISODataToLanguages(
   languages: LanguageDictionary,
   isoLanguages: ISOLanguage6393Data[],
-): Record<ISO6391LanguageCode, LanguageData> {
-  return isoLanguages
-    .map((isoLang) => {
-      const lang = languages[isoLang.codeISO6393];
-      if (lang == null) {
-        if (DEBUG) console.log(`${isoLang.codeISO6393} not found`);
-        return null;
-      }
+): void {
+  isoLanguages.forEach((isoLang) => {
+    const lang = languages[isoLang.codeISO6393];
+    if (lang == null) {
+      if (DEBUG) console.log(`${isoLang.codeISO6393} not found`);
+      return;
+    }
 
-      // Fill out ISO information on the language data
-      lang.codeISO6391 = isoLang.codeISO6391;
-      lang.vitalityISO = isoLang.vitality;
-      lang.scope = isoLang.scope;
-      lang.schemaSpecific.ISO.scope = isoLang.scope;
-      lang.schemaSpecific.ISO.name = isoLang.name;
-      lang.schemaSpecific.CLDR.code = isoLang.codeISO6391 ?? isoLang.codeISO6393;
-      return lang;
-    })
-    .reduce<Record<ISO6391LanguageCode, LanguageData>>((languagesByISO6391Code, lang) => {
-      // Produce a list of ISO 639-1 languages to be used when we need to import data that uses the ISO 639-1 code
-      if (lang != null && lang.codeISO6391 != null) {
-        languagesByISO6391Code[lang.codeISO6391] = lang;
-      }
-      return languagesByISO6391Code;
-    }, {});
+    // Fill out ISO information on the language data
+    lang.codeISO6391 = isoLang.codeISO6391;
+    lang.vitalityISO = isoLang.vitality;
+    lang.scope = isoLang.scope;
+    lang.schemaSpecific.ISO.scope = isoLang.scope;
+    lang.schemaSpecific.ISO.name = isoLang.name;
+    lang.schemaSpecific.CLDR.code = isoLang.codeISO6391 ?? isoLang.codeISO6393;
+  });
 }
 
 /**
@@ -213,7 +204,6 @@ export function addISOMacrolanguageData(
 
 export function addISOLanguageFamilyData(
   languagesBySchema: LanguagesBySchema,
-  iso6391Langs: Record<ISO6391LanguageCode, LanguageData>,
   families: ISOLanguageFamilyData[],
   isoLangsToFamilies: Record<ISO6395LanguageCode, LanguageCode[]>,
 ): void {
@@ -264,7 +254,8 @@ export function addISOLanguageFamilyData(
   // Iterate again to point constituent languages to the language family
   Object.entries(isoLangsToFamilies).forEach(([familyCode, constituentLanguages]) => {
     constituentLanguages.forEach((langCode) => {
-      const lang = languagesBySchema.ISO[langCode] ?? iso6391Langs[langCode];
+      // Get the language checking the 3-letter language code (or the 2-letter that is used in CLDR)
+      const lang = languagesBySchema.ISO[langCode] ?? languagesBySchema.CLDR[langCode];
       if (lang == null) {
         console.log(`${langCode} should be part of ${familyCode} but ${langCode} does not exist`);
         return;

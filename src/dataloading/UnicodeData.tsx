@@ -3,7 +3,7 @@ import { CLDRCoverageLevel, CLDRCoverageImport } from '../types/CLDRTypes';
 import { CoreData } from './CoreData';
 
 export async function loadCLDRCoverage(coreData: CoreData): Promise<void> {
-  const isoLanguages = coreData.languagesBySchema.ISO;
+  const cldrLanguages = coreData.languagesBySchema.CLDR;
 
   return await fetch('unicode/cldrCoverage.tsv')
     .then((res) => res.text())
@@ -14,12 +14,9 @@ export async function loadCLDRCoverage(coreData: CoreData): Promise<void> {
         .slice(SKIP_THREE_HEADER_ROWS)
         .map(parseCLDRCoverageLine);
       cldrCoverage.forEach((cldrCov) => {
-        const lang = isoLanguages[cldrCov.languageCode];
+        const lang = cldrLanguages[cldrCov.languageCode];
         if (lang == null) {
-          // language missing from data.
-          // TODO Temporarily not throwing an error because we don't have a mechanism to query the two-letter language
-          if (cldrCov.languageCode.length > 2)
-            console.log(cldrCov.languageCode, 'missing from languages');
+          console.log('During CLDR import ', cldrCov.languageCode, 'missing from languages');
           return;
         }
         if (cldrCov.explicitScriptCode != null) {

@@ -157,7 +157,7 @@ export function connectLocales(
 
 /**
  * Recompose the structure of languages, leaving the primary index intact but also
- * creating 3 other indices based on the definitions of languages from ISO, WAL, and Glottolog
+ * creating 4 other indices based on the definitions of languages from ISO, WAL, Glottolog, and CLDR
  */
 export function groupLanguagesBySchema(languages: LanguageDictionary): LanguagesBySchema {
   return {

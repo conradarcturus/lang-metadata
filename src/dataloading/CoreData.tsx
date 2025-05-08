@@ -93,14 +93,9 @@ export function useCoreData(): {
       return;
     }
 
+    addISODataToLanguages(initialLangs, isoLangs || []);
     const languagesBySchema = groupLanguagesBySchema(initialLangs);
-    const iso6391Langs = addISODataToLanguages(languagesBySchema.ISO, isoLangs || []);
-    addISOLanguageFamilyData(
-      languagesBySchema,
-      iso6391Langs,
-      langFamilies || [],
-      isoLangsToFamilies || {},
-    );
+    addISOLanguageFamilyData(languagesBySchema, langFamilies || [], isoLangsToFamilies || {});
     addISOMacrolanguageData(languagesBySchema.ISO, macroLangs || []);
     addGlottologLanguages(languagesBySchema, glottologImport || [], manualGlottocodeToISO || {});
     connectLanguagesToParent(languagesBySchema);
