@@ -4,7 +4,6 @@ import React, {
   SetStateAction,
   useContext,
   useEffect,
-  useMemo,
   useState,
 } from 'react';
 
@@ -56,7 +55,7 @@ export const DataProvider: React.FC<{
   }, []); // this is called once after page load
 
   // After the main load, load additional data
-  useMemo(() => {
+  useEffect(() => {
     if (loadProgress === 1) {
       const loadSecondaryData = async (coreData: CoreData) => {
         await loadSupplementalData(coreData);
@@ -69,7 +68,7 @@ export const DataProvider: React.FC<{
 
   useEffect(() => {
     updateLanguageBasedOnSchema(coreData.languagesBySchema, setLanguages, languageSchema);
-  }, [coreData.languagesBySchema, languageSchema]); // when core language data or the language schema changes
+  }, [coreData.languagesBySchema, languageSchema, loadProgress]); // when core language data or the language schema changes
 
   return <DataContext.Provider value={{ ...coreData, languages }}>{children}</DataContext.Provider>;
 };

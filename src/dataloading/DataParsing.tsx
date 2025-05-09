@@ -45,7 +45,7 @@ export function parseLanguageLine(line: string): LanguageData {
     nameCanonical: nameDisplay,
     nameDisplay,
     nameSubtitle,
-    nameEndonym: parts[3],
+    nameEndonym: parts[3] != '' ? parts[3] : undefined,
 
     vitalityISO: undefined, // Added by ISO import
     vitalityEth2013: parts[6] != '' ? parts[6] : undefined,

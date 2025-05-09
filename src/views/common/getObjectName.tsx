@@ -33,7 +33,7 @@ export function getObjectSubtitle(object: ObjectData): string | undefined {
 }
 
 function getLanguageSubtitle(lang: LanguageData): string | undefined {
-  let nameSubtitle: string | undefined = lang.nameDisplay;
+  let nameSubtitle: string | undefined = lang.nameSubtitle;
   let scope = lang.scope;
   if (nameSubtitle === 'macrolanguage') {
     nameSubtitle = undefined; // Already covered by the scope argument

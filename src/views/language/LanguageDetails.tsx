@@ -27,20 +27,20 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
     nameDisplay,
     populationCited,
     primaryWritingSystem,
-    schemaSpecific: { Glottolog, ISO, CLDR },
+    schemaSpecific,
     vitalityEth2013,
     vitalityEth2025,
     vitalityISO,
     writingSystems,
   } = lang;
+  const { Glottolog, ISO, CLDR } = schemaSpecific;
 
-  const otherNames = [];
-  if (Glottolog.name && nameDisplay !== Glottolog.name) {
-    otherNames.push(Glottolog.name);
-  }
-  if (ISO.name && nameDisplay !== ISO.name) {
-    otherNames.push(ISO.name);
-  }
+  const otherNames = Object.values(schemaSpecific).reduce<string[]>((otherNames, { name }) => {
+    if (name && nameDisplay !== name && !otherNames.includes(name)) {
+      otherNames.push(name);
+    }
+    return otherNames;
+  }, []);
 
   return (
     <div className="Details">

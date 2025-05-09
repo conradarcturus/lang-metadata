@@ -133,6 +133,8 @@ export async function loadCLDRCoverage(coreData: CoreData): Promise<void> {
           // TODO add information to locales
           return;
         }
+        lang.nameEndonym ??= cldrCov.nameEndonym;
+        lang.schemaSpecific.CLDR.name = cldrCov.nameDisplay;
         lang.cldrCoverage = {
           countOfCLDRLocales: cldrCov.countOfCLDRLocales,
           targetCoverageLevel: cldrCov.targetCoverageLevel,
