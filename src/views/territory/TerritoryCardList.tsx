@@ -6,11 +6,11 @@ import CardList from '../common/CardList';
 import TerritoryCard from './TerritoryCard';
 
 const TerritoryCardList: React.FC = () => {
-  const { territoriesByCode } = useDataContext();
+  const { territories } = useDataContext();
 
   return (
     <CardList
-      objects={Object.values(territoriesByCode)}
+      objects={Object.values(territories)}
       renderCard={(territory) => <TerritoryCard territory={territory} />}
     />
   );

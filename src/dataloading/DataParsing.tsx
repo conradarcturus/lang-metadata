@@ -80,7 +80,6 @@ export function parseTerritoryLine(line: string): TerritoryData {
     population: Number.parseInt(parts[3].replace(/,/g, '')),
     containedUNRegionCode: parts[4],
     sovereignCode: parts[5],
-    literacy: Number.parseFloat(parts[6].replace(/,/g, '')),
 
     // Reference to other objects, filled in with DataAssociations methods
     parentUNRegion: undefined,

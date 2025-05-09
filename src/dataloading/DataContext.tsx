@@ -8,31 +8,19 @@ import React, {
 } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import {
-  BCP47LocaleCode,
-  LocaleData,
-  ScriptCode,
-  TerritoryCode,
-  TerritoryData,
-  WritingSystemData,
-} from '../types/DataTypes';
 import { LanguageDictionary, LanguagesBySchema, LanguageSchema } from '../types/LanguageTypes';
 
 import { CoreData, EMPTY_LANGUAGES_BY_SCHEMA, useCoreData } from './CoreData';
 import { loadSupplementalData } from './SupplementalData';
 
-type DataContextType = {
-  languagesBySchema: LanguagesBySchema;
+type DataContextType = CoreData & {
   languages: LanguageDictionary;
-  territoriesByCode: Record<TerritoryCode, TerritoryData>;
-  locales: Record<BCP47LocaleCode, LocaleData>;
-  writingSystems: Record<ScriptCode, WritingSystemData>;
 };
 
 const DataContext = createContext<DataContextType | undefined>({
   languagesBySchema: EMPTY_LANGUAGES_BY_SCHEMA,
   languages: {},
-  territoriesByCode: {},
+  territories: {},
   locales: {},
   writingSystems: {},
 });

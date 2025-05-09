@@ -15,7 +15,7 @@ import WritingSystemDetails from './writingsystem/WritingSystemDetails';
 
 const ViewModal: React.FC = () => {
   const { modalObject, updatePageParams } = usePageParams();
-  const { languagesBySchema, territoriesByCode, writingSystems, locales } = useDataContext();
+  const { languagesBySchema, territories, writingSystems, locales } = useDataContext();
   const onClose = () => updatePageParams({ modalObject: undefined });
 
   useEffect(() => {
@@ -45,8 +45,8 @@ const ViewModal: React.FC = () => {
   } else if (languagesBySchema.Glottolog[modalObject] != null) {
     object = languagesBySchema.Glottolog[modalObject];
     modalContents = <LanguageDetails lang={object} />;
-  } else if (territoriesByCode[modalObject] != null) {
-    object = territoriesByCode[modalObject];
+  } else if (territories[modalObject] != null) {
+    object = territories[modalObject];
     modalContents = <TerritoryDetails territory={object} />;
   } else if (locales[modalObject] != null) {
     object = locales[modalObject];

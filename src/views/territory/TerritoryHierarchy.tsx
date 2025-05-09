@@ -9,12 +9,12 @@ import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
 export const TerritoryHierarchy: React.FC = () => {
-  const { territoriesByCode } = useDataContext();
+  const { territories } = useDataContext();
   const sortFunction = getSortFunction();
   const filterByScope = getScopeFilter();
 
   const rootNodes = getTerritoryTreeNodes(
-    Object.values(territoriesByCode).filter(
+    Object.values(territories).filter(
       (t) => t.parentUNRegion == null || !filterByScope(t.parentUNRegion),
     ),
     sortFunction,

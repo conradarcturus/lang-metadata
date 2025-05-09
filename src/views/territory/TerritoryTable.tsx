@@ -7,11 +7,11 @@ import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/Common
 import ObjectTable from '../common/table/ObjectTable';
 
 const TerritoryTable: React.FC = () => {
-  const { territoriesByCode } = useDataContext();
+  const { territories } = useDataContext();
 
   return (
     <ObjectTable<TerritoryData>
-      objects={Object.values(territoriesByCode)}
+      objects={Object.values(territories)}
       columns={[
         CodeColumn,
         NameColumn,
@@ -20,6 +20,12 @@ const TerritoryTable: React.FC = () => {
           render: (object) => object.population,
           isNumeric: true,
           sortParam: SortBy.Population,
+        },
+        {
+          label: 'Literacy',
+          render: (object) =>
+            object.literacyPercent != null ? object.literacyPercent.toFixed(1) + '%' : null,
+          isNumeric: true,
         },
         {
           label: 'Type',

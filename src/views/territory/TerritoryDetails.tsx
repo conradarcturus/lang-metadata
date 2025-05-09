@@ -2,6 +2,7 @@ import React from 'react';
 
 import { getSortFunction } from '../../controls/sort';
 import CommaSeparated from '../../generic/CommaSeparated';
+import { getCurrencyCompactLong } from '../../generic/numberUtils';
 import { TerritoryData } from '../../types/DataTypes';
 import HoverableLocaleName from '../locale/HoverableLocaleName';
 
@@ -15,7 +16,8 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
   const {
     code,
     dependentTerritories,
-    literacy,
+    gdp,
+    literacyPercent,
     locales,
     parentUNRegion,
     population,
@@ -37,10 +39,16 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             {population.toLocaleString()}
           </div>
         )}
-        {!Number.isNaN(literacy) && (
+        {literacyPercent && !Number.isNaN(literacyPercent) && (
           <div>
             <label>Literacy:</label>
-            {literacy.toLocaleString()}%
+            {literacyPercent.toFixed(1)}%
+          </div>
+        )}
+        {gdp && !Number.isNaN(gdp) && (
+          <div>
+            <label>Gross Domestic Product:</label>
+            {getCurrencyCompactLong(gdp)}
           </div>
         )}
       </div>

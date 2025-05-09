@@ -36,7 +36,10 @@ export interface TerritoryData extends ObjectBase {
   population: number;
   containedUNRegionCode: UNM49Code;
   sovereignCode: ISO3166Code;
-  literacy: number;
+
+  // Supplemental data
+  literacyPercent?: number;
+  gdp?: number;
 
   // References to other objects, filled in after loading the TSV
   parentUNRegion?: TerritoryData;

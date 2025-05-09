@@ -14,8 +14,8 @@ type Props = {
 
 const TerritoryDetailsPage: React.FC<Props> = ({ territory }) => {
   const { codeFilter } = usePageParams();
-  const { territoriesByCode } = useDataContext();
-  territory ??= territoriesByCode[codeFilter];
+  const { territories } = useDataContext();
+  territory ??= territories[codeFilter];
 
   if (territory == null) {
     return (
@@ -24,12 +24,8 @@ const TerritoryDetailsPage: React.FC<Props> = ({ territory }) => {
         <div className="separatedButtonList">
           {['US', 'MX', 'FR', 'DE', 'CN', 'EG'].map(
             (code) =>
-              territoriesByCode[code] != null && (
-                <HoverableTerritoryName
-                  key={code}
-                  territory={territoriesByCode[code]}
-                  format="button"
-                />
+              territories[code] != null && (
+                <HoverableTerritoryName key={code} territory={territories[code]} format="button" />
               ),
           )}
         </div>

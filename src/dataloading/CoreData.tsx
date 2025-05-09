@@ -37,7 +37,7 @@ import { addCLDRLanguageSchema, loadCLDRAliases } from './UnicodeData';
 
 export type CoreData = {
   languagesBySchema: LanguagesBySchema;
-  territoriesByCode: Record<TerritoryCode, TerritoryData>;
+  territories: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
   writingSystems: Record<ScriptCode, WritingSystemData>;
 };
@@ -59,9 +59,7 @@ export function useCoreData(): {
 } {
   const [languagesBySchema, setLanguagesBySchema] =
     useState<LanguagesBySchema>(EMPTY_LANGUAGES_BY_SCHEMA);
-  const [territoriesByCode, setTerritoriesByCode] = useState<Record<TerritoryCode, TerritoryData>>(
-    {},
-  );
+  const [territories, setTerritories] = useState<Record<TerritoryCode, TerritoryData>>({});
   const [locales, setLocales] = useState<Record<BCP47LocaleCode, LocaleData>>({});
   const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
 
@@ -110,7 +108,7 @@ export function useCoreData(): {
     computeOtherPopulationStatistics(languagesBySchema, writingSystems);
 
     setLanguagesBySchema(languagesBySchema);
-    setTerritoriesByCode(territories);
+    setTerritories(territories);
     setLocales(locales);
     setWritingSystems(writingSystems);
   }
@@ -119,7 +117,7 @@ export function useCoreData(): {
     loadCoreData,
     coreData: {
       languagesBySchema,
-      territoriesByCode,
+      territories,
       locales,
       writingSystems,
     },
