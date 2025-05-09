@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { useDataContext } from '../../dataloading/DataContext';
+import Hoverable from '../../generic/Hoverable';
 import { TerritoryData } from '../../types/DataTypes';
 import { SortBy } from '../../types/PageParamTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
 import ObjectTable from '../common/table/ObjectTable';
+import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 const TerritoryTable: React.FC = () => {
   const { territories } = useDataContext();
@@ -26,6 +28,35 @@ const TerritoryTable: React.FC = () => {
           render: (object) =>
             object.literacyPercent != null ? object.literacyPercent.toFixed(1) + '%' : null,
           isNumeric: true,
+        },
+        {
+          label: 'Languages',
+          render: (object) =>
+            object.locales.length > 0 && (
+              <Hoverable
+                style={{ textDecoration: 'none' }}
+                hoverContent={
+                  object.locales
+                    .slice(0, 20)
+                    .map((l) => l.language?.nameDisplay ?? l.nameDisplay)
+                    .join(', ') + (object.locales.length > 20 ? '...' : '')
+                }
+              >
+                {object.locales.length}
+              </Hoverable>
+            ),
+          isNumeric: true,
+        },
+        {
+          label: 'Biggest Language',
+          render: (object) =>
+            object.locales.length > 0 && (
+              <HoverableLocaleName
+                labelSource="language"
+                locale={object.locales[0]}
+                style={{ textDecoration: 'none' }}
+              />
+            ),
         },
         {
           label: 'Type',

@@ -6,8 +6,7 @@ type CommaSeparatedProps = {
   limit?: number; // Optionally will clamp the list
 };
 
-const CommaSeparated: React.FC<CommaSeparatedProps> = ({ children }) => {
-  const limit = 4;
+const CommaSeparated: React.FC<CommaSeparatedProps> = ({ children, limit = 4 }) => {
   const childArray = React.Children.toArray(children);
   const [expanded, setExpanded] = useState(false);
   const countOverLimit = childArray.length - limit;

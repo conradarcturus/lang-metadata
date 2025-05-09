@@ -49,13 +49,13 @@ function ObjectTable<T extends ObjectData>({ objects, columns }: Props<T>) {
   );
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+    <div className="ObjectTableContainer">
       <VisibleItemsMeter
         nShown={nRowsAfterFilter < limit || limit < 1 ? nRowsAfterFilter : limit}
         nFiltered={nRowsAfterFilter}
         nOverall={objects.length}
       />
-      <table style={{ textAlign: 'start' }}>
+      <table className="ObjectTable">
         <thead>
           <tr>
             {columns.map((column, i) => (
