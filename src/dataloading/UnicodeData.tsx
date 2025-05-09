@@ -7,7 +7,7 @@ import { CoreData } from './CoreData';
 const DEBUG = false;
 
 export async function loadCLDRAliases(): Promise<CLDRAliasImport[] | void> {
-  return await fetch('unicode/cldrAliases.tsv')
+  return await fetch('data/unicode/cldrAliases.tsv')
     .then((res) => res.text())
     .then((text) => {
       return text
@@ -114,7 +114,7 @@ export function addCLDRLanguageSchema(
 export async function loadCLDRCoverage(coreData: CoreData): Promise<void> {
   const cldrLanguages = coreData.languagesBySchema.CLDR;
 
-  return await fetch('unicode/cldrCoverage.tsv')
+  return await fetch('data/unicode/cldrCoverage.tsv')
     .then((res) => res.text())
     .then((text) => {
       const SKIP_THREE_HEADER_ROWS = 3;

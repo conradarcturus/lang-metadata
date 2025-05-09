@@ -20,7 +20,7 @@ import {
 } from './DataParsing';
 
 export async function loadLanguages(): Promise<LanguageDictionary | void> {
-  return await fetch('languages.tsv')
+  return await fetch('data/languages.tsv')
     .then((res) => res.text())
     .then((text) => {
       const languages = text.split('\n').slice(1).map(parseLanguageLine);
@@ -33,7 +33,7 @@ export async function loadLanguages(): Promise<LanguageDictionary | void> {
 }
 
 export async function loadTerritories(): Promise<Record<TerritoryCode, TerritoryData> | void> {
-  return await fetch('territories.tsv')
+  return await fetch('data/territories.tsv')
     .then((res) => res.text())
     .then((text) => {
       const territories = text.split('\n').slice(1).map(parseTerritoryLine);
@@ -49,7 +49,7 @@ export async function loadTerritories(): Promise<Record<TerritoryCode, Territory
 }
 
 export async function loadLocales(): Promise<Record<BCP47LocaleCode, LocaleData> | void> {
-  return await fetch('locales.tsv')
+  return await fetch('data/locales.tsv')
     .then((res) => res.text())
     .then((text) => {
       return text
@@ -65,7 +65,7 @@ export async function loadLocales(): Promise<Record<BCP47LocaleCode, LocaleData>
 }
 
 export async function loadWritingSystems(): Promise<Record<ScriptCode, WritingSystemData> | void> {
-  return await fetch('writingSystems.tsv')
+  return await fetch('data/writingSystems.tsv')
     .then((res) => res.text())
     .then((text) => {
       return text

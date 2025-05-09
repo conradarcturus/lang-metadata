@@ -47,7 +47,7 @@ function parseGlottolog(line: string): GlottologData {
 }
 
 export async function loadGlottologLanguages(): Promise<GlottologData[] | void> {
-  return await fetch('glottolog.tsv')
+  return await fetch('data/glottolog.tsv')
     .then((res) => res.text())
     .then((text) => text.split('\n').slice(1).map(parseGlottolog))
     .catch((err) => console.error('Error loading TSV:', err));
@@ -57,7 +57,7 @@ export async function loadManualGlottocodeToISO(): Promise<Record<
   Glottocode,
   LanguageCode
 > | void> {
-  return await fetch('iso/manualGlottocodeToISO.tsv')
+  return await fetch('data/iso/manualGlottocodeToISO.tsv')
     .then((res) => res.text())
     .then((text) =>
       text

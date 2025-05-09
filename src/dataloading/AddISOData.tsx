@@ -74,7 +74,7 @@ function parseISOLanguage6393Line(line: string): ISOLanguage6393Data {
 }
 
 export async function loadISOLanguages(): Promise<ISOLanguage6393Data[] | void> {
-  return await fetch('iso/languages639-3.tsv')
+  return await fetch('data/iso/languages639-3.tsv')
     .then((res) => res.text())
     .then((text) => {
       return text.split('\n').slice(1).map(parseISOLanguage6393Line);
@@ -88,7 +88,7 @@ type ISOMacrolanguageData = {
 };
 
 export async function loadISOMacrolanguages(): Promise<ISOMacrolanguageData[] | void> {
-  return await fetch('iso/macrolanguages.tsv')
+  return await fetch('data/iso/macrolanguages.tsv')
     .then((res) => res.text())
     .then((text) => {
       return text
@@ -109,7 +109,7 @@ type ISOLanguageFamilyData = {
 };
 
 export async function loadISOLanguageFamilies(): Promise<ISOLanguageFamilyData[] | void> {
-  return await fetch('iso/families639-5.tsv')
+  return await fetch('data/iso/families639-5.tsv')
     .then((res) => res.text())
     .then((text) => {
       return text
@@ -127,7 +127,7 @@ export async function loadISOFamiliesToLanguages(): Promise<Record<
   ISO6395LanguageCode,
   LanguageCode[]
 > | void> {
-  return await fetch('iso/familiesToLanguages.tsv')
+  return await fetch('data/iso/familiesToLanguages.tsv')
     .then((res) => res.text())
     .then((text) => {
       return text
