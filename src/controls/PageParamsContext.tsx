@@ -6,10 +6,10 @@ import {
   Dimension,
   PageParams,
   PageParamsOptional,
-  ScopeLevel,
   SortBy,
   ViewType,
 } from '../types/PageParamTypes';
+import { ScopeLevel } from '../types/ScopeLevel';
 
 type PageParamsContextState = PageParams & {
   updatePageParams: (newParams: PageParamsOptional) => void;

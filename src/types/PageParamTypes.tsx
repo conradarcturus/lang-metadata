@@ -1,4 +1,5 @@
 import { LanguageSchema } from './LanguageTypes';
+import { ScopeLevel } from './ScopeLevel';
 
 export enum Dimension {
   Language = 'Language',
@@ -20,13 +21,6 @@ export enum SortBy {
   Population = 'Population',
   Code = 'Code',
   Name = 'Name',
-}
-
-export enum ScopeLevel {
-  Groups = 'Groups', // Continents, Language Families
-  Individuals = 'Individuals', // Countries, Languages
-  Parts = 'Parts', // Dependencies, Dialects
-  Other = 'Other', // Control Codes, No declared scope
 }
 
 export type PageParams = {

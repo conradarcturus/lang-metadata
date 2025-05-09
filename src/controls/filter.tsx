@@ -1,15 +1,7 @@
 import { useMemo } from 'react';
 
-import {
-  LocaleData,
-  ObjectData,
-  TerritoryData,
-  TerritoryType,
-  WritingSystemData,
-  WritingSystemScope,
-} from '../types/DataTypes';
-import { LanguageData, LanguageScope } from '../types/LanguageTypes';
-import { Dimension, ScopeLevel } from '../types/PageParamTypes';
+import { ObjectData } from '../types/DataTypes';
+import { getObjectScopeLevel } from '../types/ScopeLevel';
 
 import { usePageParams } from './PageParamsContext';
 
@@ -54,65 +46,9 @@ export function getScopeFilter(): FilterFunctionType {
     if (scopes.length == 0) {
       return true;
     }
-    switch (object.type) {
-      case Dimension.Language:
-        return scopes.includes(getLanguageScopeLevel(object));
-      case Dimension.Locale:
-        return scopes.includes(getLocaleScopeLevel(object));
-      case Dimension.Territory:
-        return scopes.includes(getTerritoryScopeLevel(object));
-      case Dimension.WritingSystem:
-        return scopes.includes(getWritingSystemScopeLevel(object));
-    }
+    return scopes.includes(getObjectScopeLevel(object));
   }
   return scopeFilter;
-}
-
-function getLanguageScopeLevel(lang: LanguageData): ScopeLevel {
-  switch (lang.scope) {
-    case LanguageScope.Family:
-      return ScopeLevel.Groups;
-    case LanguageScope.Macrolanguage:
-    case LanguageScope.Language:
-      return ScopeLevel.Individuals;
-    case LanguageScope.Dialect:
-      return ScopeLevel.Parts;
-  }
-  return ScopeLevel.Other;
-}
-
-function getLocaleScopeLevel(locale: LocaleData): ScopeLevel {
-  if (locale.variantTag != null) {
-    return ScopeLevel.Parts;
-  }
-  return ScopeLevel.Individuals;
-}
-
-function getTerritoryScopeLevel(territory: TerritoryData): ScopeLevel {
-  switch (territory.territoryType) {
-    case TerritoryType.World:
-    case TerritoryType.Continent:
-    case TerritoryType.Subcontinent:
-    case TerritoryType.Region:
-      return ScopeLevel.Groups;
-    case TerritoryType.Country:
-      return ScopeLevel.Individuals;
-    case TerritoryType.Dependency:
-      return ScopeLevel.Parts;
-  }
-}
-
-function getWritingSystemScopeLevel(writingSystem: WritingSystemData): ScopeLevel {
-  switch (writingSystem.scope) {
-    case WritingSystemScope.Group:
-      return ScopeLevel.Groups;
-    case WritingSystemScope.IndividualScript:
-      return ScopeLevel.Individuals;
-    case WritingSystemScope.Variation:
-      return ScopeLevel.Parts;
-    case WritingSystemScope.SpecialCode:
-      return ScopeLevel.Other;
-  }
 }
 
 export function getSliceFunction<T>(): (arr: T[]) => T[] {
