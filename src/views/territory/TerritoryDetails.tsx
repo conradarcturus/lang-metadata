@@ -21,7 +21,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
     locales,
     parentUNRegion,
     population,
-    regionContainsTerritories,
+    containsTerritories,
     sovereign,
   } = territory;
 
@@ -72,11 +72,11 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <HoverableTerritoryName territory={parentUNRegion} />
           </div>
         )}
-        {regionContainsTerritories.length > 0 && (
+        {containsTerritories.length > 0 && (
           <div>
             <label>Contains:</label>
             <CommaSeparated>
-              {regionContainsTerritories.sort(getSortFunction()).map((territory) => (
+              {containsTerritories.sort(getSortFunction()).map((territory) => (
                 <HoverableTerritoryName key={territory.code} territory={territory} />
               ))}
             </CommaSeparated>

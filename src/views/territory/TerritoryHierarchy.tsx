@@ -53,11 +53,7 @@ function getTerritoryTreeNode(
   return {
     type: Dimension.Language,
     object: territory,
-    children: getTerritoryTreeNodes(
-      territory.regionContainsTerritories,
-      sortFunction,
-      filterByScope,
-    ),
+    children: getTerritoryTreeNodes(territory.containsTerritories, sortFunction, filterByScope),
     labelStyle: {
       fontWeight: territory.territoryType === TerritoryType.Country ? 'bold' : 'normal',
       fontStyle: territory.territoryType === TerritoryType.Dependency ? 'italic' : 'normal',

@@ -83,7 +83,7 @@ export function parseTerritoryLine(line: string): TerritoryData {
 
     // Reference to other objects, filled in with DataAssociations methods
     parentUNRegion: undefined,
-    regionContainsTerritories: [],
+    containsTerritories: [],
     sovereign: undefined,
     dependentTerritories: [],
     locales: [],

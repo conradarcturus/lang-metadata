@@ -40,7 +40,7 @@ export function connectTerritoriesToParent(
     if (territory.containedUNRegionCode != '') {
       const containedUNRegion = territoriesByCode[territory.containedUNRegionCode];
       if (containedUNRegion != null) {
-        containedUNRegion.regionContainsTerritories.push(territory);
+        containedUNRegion.containsTerritories.push(territory);
         territory.parentUNRegion = containedUNRegion;
       }
     }

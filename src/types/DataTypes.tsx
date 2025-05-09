@@ -43,7 +43,7 @@ export interface TerritoryData extends ObjectBase {
 
   // References to other objects, filled in after loading the TSV
   parentUNRegion?: TerritoryData;
-  regionContainsTerritories: TerritoryData[];
+  containsTerritories: TerritoryData[];
   sovereign?: TerritoryData;
   dependentTerritories: TerritoryData[];
   locales: LocaleData[];
