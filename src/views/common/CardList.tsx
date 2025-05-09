@@ -33,7 +33,7 @@ function CardList<T extends ObjectData>({ objects, renderCard }: Props<T>) {
       </div>
       <div className="CardList">
         {objectsVisible.map((object) => (
-          <ViewCard key={object.code}>{renderCard(object)}</ViewCard>
+          <ViewCard key={object.ID}>{renderCard(object)}</ViewCard>
         ))}
       </div>
     </div>

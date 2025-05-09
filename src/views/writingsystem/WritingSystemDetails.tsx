@@ -85,7 +85,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
               {Object.values(languages)
                 .sort(getSortFunction())
                 .map((lang) => (
-                  <HoverableLanguageName key={lang.code} lang={lang} />
+                  <HoverableLanguageName key={lang.ID} lang={lang} />
                 ))}
             </CommaSeparated>
           </div>
@@ -103,7 +103,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
             <label>Locales (where writing system is explicit):</label>
             <CommaSeparated>
               {localesWhereExplicit.sort(getSortFunction()).map((locale) => (
-                <HoverableLocaleName key={locale.code} locale={locale} />
+                <HoverableLocaleName key={locale.ID} locale={locale} />
               ))}
             </CommaSeparated>
           </div>
@@ -120,10 +120,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
             <label>Inspired:</label>
             <CommaSeparated>
               {childWritingSystems.sort(getSortFunction()).map((writingSystem) => (
-                <HoverableWritingSystemName
-                  key={writingSystem.code}
-                  writingSystem={writingSystem}
-                />
+                <HoverableWritingSystemName key={writingSystem.ID} writingSystem={writingSystem} />
               ))}
             </CommaSeparated>
           </div>
@@ -133,10 +130,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
             <label>Contains:</label>
             <CommaSeparated>
               {containsWritingSystems.sort(getSortFunction()).map((writingSystem) => (
-                <HoverableWritingSystemName
-                  key={writingSystem.code}
-                  writingSystem={writingSystem}
-                />
+                <HoverableWritingSystemName key={writingSystem.ID} writingSystem={writingSystem} />
               ))}
             </CommaSeparated>
           </div>

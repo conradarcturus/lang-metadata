@@ -53,8 +53,8 @@ export function connectWritingSystems(
 
     if (language != null) {
       writingSystem.primaryLanguage = language;
-      writingSystem.languages[language.code] = language;
-      language.writingSystems[writingSystem.code] = writingSystem;
+      writingSystem.languages[language.ID] = language;
+      language.writingSystems[writingSystem.ID] = writingSystem;
     }
     if (territory != null) {
       writingSystem.territoryOfOrigin = territory;
@@ -76,10 +76,10 @@ export function connectWritingSystems(
     if (primaryScriptCode != null) {
       const primaryWritingSystem = writingSystems[primaryScriptCode];
       if (primaryWritingSystem != null) {
-        primaryWritingSystem.languages[language.code] = language;
+        primaryWritingSystem.languages[language.ID] = language;
         primaryWritingSystem.populationUpperBound += language.populationCited || 0;
         language.primaryWritingSystem = primaryWritingSystem;
-        language.writingSystems[primaryWritingSystem.code] = primaryWritingSystem;
+        language.writingSystems[primaryWritingSystem.ID] = primaryWritingSystem;
       }
     }
   });
@@ -121,7 +121,7 @@ export function connectLocales(
       locale.writingSystem = writingSystem;
 
       if (language != null) {
-        writingSystem.languages[language.code] = language;
+        writingSystem.languages[language.ID] = language;
         if (language.primaryScriptCode != locale.explicitScriptCode) {
           writingSystem.populationUpperBound += locale.populationEstimate || 0;
         }

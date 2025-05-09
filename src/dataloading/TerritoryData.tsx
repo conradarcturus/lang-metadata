@@ -18,7 +18,7 @@ export async function loadTerritories(): Promise<Record<TerritoryCode, Territory
       const territories = text.split('\n').slice(1).map(parseTerritoryLine);
       return territories.reduce<Record<TerritoryCode, TerritoryData>>(
         (territoriesByCode, territory) => {
-          territoriesByCode[territory.code] = territory;
+          territoriesByCode[territory.ID] = territory;
           return territoriesByCode;
         },
         {},
@@ -32,7 +32,8 @@ export function parseTerritoryLine(line: string): TerritoryData {
   return {
     type: Dimension.Territory,
 
-    code: parts[0],
+    ID: parts[0],
+    codeDisplay: parts[0],
     nameDisplay: parts[1],
     territoryType: parts[2] as TerritoryType,
     population: Number.parseInt(parts[3].replace(/,/g, '')),
@@ -101,7 +102,7 @@ function createRegionalLocalesForTerritory(
         const newLocaleCode = [
           loc.languageCode,
           loc.explicitScriptCode,
-          territory.code,
+          territory.ID,
           loc.variantTag,
         ]
           .filter(Boolean)
@@ -113,8 +114,9 @@ function createRegionalLocalesForTerritory(
             ...loc, // Inherit most properties (codes, population...)
 
             // But we need to set a new locale code and territory code
-            code: newLocaleCode,
-            territoryCode: territory.code,
+            ID: newLocaleCode,
+            codeDisplay: newLocaleCode,
+            territoryCode: territory.ID,
             territory,
             scope: ScopeLevel.Groups,
 
@@ -142,7 +144,7 @@ function createRegionalLocalesForTerritory(
   territory.locales = Object.values(territoryLocales)
     .filter((loc) => loc.populationEstimate > 10) // Avoid creating too many locale objects
     .sort((a, b) => b.populationEstimate - a.populationEstimate);
-  territory.locales.forEach((loc) => (allLocales[loc.code] = loc));
+  territory.locales.forEach((loc) => (allLocales[loc.ID] = loc));
   // At the moment its not being saved to the master locale list
   // Also this should be done after locales are matched to languages
   // -- so these regional locales are not added to the language's locale list

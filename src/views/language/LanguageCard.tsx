@@ -18,7 +18,8 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   const { updatePageParams } = usePageParams();
   const {
     childLanguages,
-    code,
+    codeDisplay,
+    ID,
     locales,
     medium,
     nameDisplay,
@@ -32,12 +33,12 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: lang.codeCanonical })}>
+        <a onClick={() => updatePageParams({ modalObject: ID })}>
           <strong>
             <Highlightable str={getObjectName(lang)} match="nameFilter" />
           </strong>{' '}
           {nameDisplay != nameEndonym && nameEndonym} [
-          <Highlightable str={code ?? lang.code} match="codeFilter" />]
+          <Highlightable str={codeDisplay} match="codeFilter" />]
         </a>
         {subtitle != null && <div className="subtitle">{subtitle}</div>}
       </h3>
@@ -65,7 +66,11 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           <h4>Found in:</h4>
           <CommaSeparated>
             {Object.values(locales).map((locale) => (
-              <HoverableLocaleName key={locale.code} labelSource="territory" locale={locale} />
+              <HoverableLocaleName
+                key={locale.codeDisplay}
+                labelSource="territory"
+                locale={locale}
+              />
             ))}
           </CommaSeparated>
         </div>
@@ -83,7 +88,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           <h4>Includes:</h4>
           <CommaSeparated>
             {Object.values(childLanguages).map((childLanguage) => (
-              <HoverableLanguageName key={childLanguage.code} lang={childLanguage} />
+              <HoverableLanguageName key={childLanguage.ID} lang={childLanguage} />
             ))}
           </CommaSeparated>
         </div>

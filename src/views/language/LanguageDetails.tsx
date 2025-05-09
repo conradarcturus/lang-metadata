@@ -54,7 +54,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         )}
         <div>
           <label>Language Code:</label>
-          {lang.code}
+          {lang.ID}
         </div>
         <div>
           <label>Glottocode:</label>
@@ -127,7 +127,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
                 .sort(sortFunction)
                 .map((writingSystem) => (
                   <HoverableWritingSystemName
-                    key={writingSystem.code}
+                    key={writingSystem.ID}
                     writingSystem={writingSystem}
                   />
                 ))}
@@ -212,29 +212,27 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
 export const CLDRCoverageInfo: React.FC<{ lang: LanguageData }> = ({ lang }) => {
   const {
     cldrCoverage,
-    schemaSpecific: {
-      CLDR: { parentLanguage, scope },
-    },
+    schemaSpecific: { CLDR },
   } = lang;
   if (cldrCoverage == null) {
     if (
-      parentLanguage != null &&
-      parentLanguage.cldrCoverage != null &&
-      scope === LanguageScope.Macrolanguage
+      CLDR.parentLanguage != null &&
+      CLDR.parentLanguage.cldrCoverage != null &&
+      CLDR.scope === LanguageScope.Macrolanguage
     ) {
       return (
         <Hoverable
           hoverContent={
             <div>
-              {lang.nameCanonical} [{lang.code}] is not directly supported since it is a
+              {lang.nameCanonical} [{CLDR.code}] is not directly supported since it is a
               macrolanguage. Rather it is supported with data from its constituent language:{' '}
-              {parentLanguage.nameCanonical} [
-              {parentLanguage.codeISO6391 ?? parentLanguage.codeCanonical}]
+              {CLDR.parentLanguage.nameCanonical} [
+              {CLDR.parentLanguage.schemaSpecific.CLDR.code ?? CLDR.parentLanguage.codeDisplay}]
             </div>
           }
           style={{ textDecoration: 'none', cursor: 'help' }}
         >
-          ⚠️ <CLDRCoverageInfo lang={parentLanguage} />
+          ⚠️ <CLDRCoverageInfo lang={CLDR.parentLanguage} />
         </Hoverable>
       );
     }

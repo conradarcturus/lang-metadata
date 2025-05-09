@@ -14,8 +14,9 @@ interface Props {
 
 const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
   const {
-    code,
+    codeDisplay,
     containsWritingSystems,
+    ID,
     languages,
     nameDisplay,
     parentWritingSystem,
@@ -30,9 +31,9 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: code })}>
+        <a onClick={() => updatePageParams({ modalObject: ID })}>
           <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
-          <Highlightable str={code} match="codeFilter" />]
+          <Highlightable str={codeDisplay} match="codeFilter" />]
         </a>
       </h3>
       {rightToLeft === true && <div>Right to Left</div>}
@@ -48,7 +49,7 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
           <label>Languages:</label>
           <CommaSeparated>
             {Object.values(languages).map((lang) => (
-              <HoverableLanguageName key={lang.code} lang={lang} />
+              <HoverableLanguageName key={lang.ID} lang={lang} />
             ))}
           </CommaSeparated>
         </div>
@@ -70,7 +71,7 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
           <label>Contains:</label>
           <CommaSeparated>
             {containsWritingSystems.map((w) => (
-              <HoverableWritingSystemName key={w.code} writingSystem={w} />
+              <HoverableWritingSystemName key={w.ID} writingSystem={w} />
             ))}
           </CommaSeparated>
         </div>

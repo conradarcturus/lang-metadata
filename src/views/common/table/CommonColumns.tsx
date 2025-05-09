@@ -8,7 +8,7 @@ import { TableColumn } from './ObjectTable';
 
 export const CodeColumn: TableColumn<ObjectData> = {
   label: 'Code',
-  render: (object) => <Highlightable str={object.code} match="codeFilter" />,
+  render: (object) => <Highlightable str={object.codeDisplay} match="codeFilter" />,
   sortParam: SortBy.Code,
 };
 

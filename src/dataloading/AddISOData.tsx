@@ -185,18 +185,18 @@ export function addISOMacrolanguageData(
       return;
     }
     const parentLanguageCode = constituent.schemaSpecific.ISO.parentLanguageCode;
-    if (parentLanguageCode != macro.code) {
+    if (parentLanguageCode != macro.ID) {
       if (DEBUG)
         // As of 2025-04-30 all exceptions to this are temporary
         console.log(
-          `parent different for ${constituent.code}. Is ${parentLanguageCode} but should be ${macro.code}`,
+          `parent different for ${constituent.ID}. Is ${parentLanguageCode} but should be ${macro.ID}`,
         );
     }
     if (macro.scope !== LanguageScope.Macrolanguage) {
       if (DEBUG)
         // As of 2025-04-30 all macrolanguage are correctly labeled above
         console.log(
-          `Macrolanguage ${macro.code} should be considered a macrolanguage, instead it is a ${macro.scope}`,
+          `Macrolanguage ${macro.ID} should be considered a macrolanguage, instead it is a ${macro.scope}`,
         );
     }
   });
@@ -225,8 +225,8 @@ export function addISOLanguageFamilyData(
 
       const familyEntry: LanguageData = {
         type: Dimension.Language,
-        code: family.code,
-        codeCanonical: family.code,
+        ID: family.code,
+        codeDisplay: family.code,
         nameCanonical: name,
         nameDisplay: name,
         scope: LanguageScope.Family,

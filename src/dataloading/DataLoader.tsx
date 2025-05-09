@@ -13,7 +13,7 @@ export async function loadLanguages(): Promise<LanguageDictionary | void> {
     .then((text) => {
       const languages = text.split('\n').slice(1).map(parseLanguageLine);
       return languages.reduce<LanguageDictionary>((languagesByCode, lang) => {
-        languagesByCode[lang.code] = lang;
+        languagesByCode[lang.ID] = lang;
         return languagesByCode;
       }, {});
     })
@@ -29,7 +29,7 @@ export async function loadLocales(): Promise<Record<BCP47LocaleCode, LocaleData>
         .slice(1)
         .map(parseLocaleLine)
         .reduce<Record<BCP47LocaleCode, LocaleData>>((localesByCode, locale) => {
-          localesByCode[locale.code] = locale;
+          localesByCode[locale.ID] = locale;
           return localesByCode;
         }, {});
     })
@@ -45,7 +45,7 @@ export async function loadWritingSystems(): Promise<Record<ScriptCode, WritingSy
         .slice(1)
         .map(parseWritingSystem)
         .reduce<Record<ScriptCode, WritingSystemData>>((writingsystemsByCode, ws) => {
-          writingsystemsByCode[ws.code] = ws;
+          writingsystemsByCode[ws.ID] = ws;
           return writingsystemsByCode;
         }, {});
     })

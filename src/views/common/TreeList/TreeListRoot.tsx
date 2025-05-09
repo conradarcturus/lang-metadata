@@ -14,7 +14,7 @@ const TreeListRoot: React.FC<Props> = ({ rootNodes, suppressExpansion }) => {
     <ul className="TreeListRoot">
       {rootNodes.map((node, i) => (
         <TreeListNode
-          key={node.object.code}
+          key={node.object.ID}
           nodeData={node}
           isExpandedInitially={!suppressExpansion && i === 0}
         />

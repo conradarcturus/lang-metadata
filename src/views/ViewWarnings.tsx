@@ -107,7 +107,7 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                     {ISOonly.map((lang) => {
                       const { ISO } = lang.schemaSpecific;
                       return (
-                        <ViewCard key={lang.code}>
+                        <ViewCard key={lang.ID}>
                           {lang.nameDisplay}
                           <div>
                             <label>ISO code:</label>
@@ -132,7 +132,7 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                     {GlottologOnly.map((lang) => {
                       const { Glottolog } = lang.schemaSpecific;
                       return (
-                        <ViewCard key={lang.code}>
+                        <ViewCard key={lang.ID}>
                           {lang.nameDisplay}
                           <div>
                             <label>Glottocode:</label>
@@ -184,7 +184,7 @@ const LanguagesWithIdenticalNames: React.FC = () => {
                   {langs.map((lang) => {
                     const { ISO, Glottolog } = lang.schemaSpecific;
                     return (
-                      <ViewCard key={lang.code}>
+                      <ViewCard key={lang.ID}>
                         {lang.nameDisplay}
                         <div>
                           <label>ISO code:</label>

@@ -86,8 +86,7 @@ export function addCLDRLanguageSchema(
       // Does the macrolanguage entry (eg. zh) exist?
       if (lang != null && cldrLanguages[alias.replacement] != null) {
         // Remove the symbolic reference but mark the replacement code (eg. cmn) as the parent
-        cldrLanguages[alias.replacement].schemaSpecific.CLDR.parentLanguageCode =
-          lang.codeCanonical;
+        cldrLanguages[alias.replacement].schemaSpecific.CLDR.parentLanguageCode = lang.ID;
         cldrLanguages[alias.replacement].schemaSpecific.CLDR.scope = LanguageScope.Macrolanguage;
         delete cldrLanguages[alias.replacement];
       }

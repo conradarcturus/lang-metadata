@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { usePageParams } from '../../../controls/PageParamsContext';
-import { Dimension, ViewType } from '../../../types/PageParamTypes';
-import { ObjectData } from '../../../types/DataTypes';
 import Highlightable from '../../../generic/Highlightable';
+import { ObjectData } from '../../../types/DataTypes';
+import { Dimension, ViewType } from '../../../types/PageParamTypes';
 import { getObjectName } from '../getObjectName';
 import HoverableObject from '../HoverableObject';
 
@@ -57,7 +57,7 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
         {codeFilter != '' && viewType === ViewType.Hierarchy && (
           <>
             {' '}
-            [<Highlightable str={object.code} match="codeFilter" />]
+            [<Highlightable str={object.codeDisplay} match="codeFilter" />]
           </>
         )}
         <HoverableObject object={object}>
@@ -67,7 +67,7 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
       {expanded && children.length > 0 && (
         <ul className="TreeListBranch">
           {children.slice(0, limit > 0 && !seeAllChildren ? limit : undefined).map((child, i) => (
-            <TreeListNode key={child.object.code} nodeData={child} isExpandedInitially={i === 0} />
+            <TreeListNode key={child.object.ID} nodeData={child} isExpandedInitially={i === 0} />
           ))}
           {limit > 0 && children.length > limit && !seeAllChildren && (
             <li>

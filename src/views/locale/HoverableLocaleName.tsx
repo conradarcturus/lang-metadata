@@ -20,7 +20,7 @@ const HoverableLocaleName: React.FC<Props> = ({
   style,
 }) => {
   const { updatePageParams } = usePageParams();
-  let label = locale.code;
+  let label = locale.codeDisplay;
   switch (labelSource) {
     case 'language':
       label = locale.language?.nameDisplay ?? locale.languageCode;
@@ -35,7 +35,7 @@ const HoverableLocaleName: React.FC<Props> = ({
   return (
     <Hoverable
       hoverContent={<LocaleCard locale={locale} />}
-      onClick={() => updatePageParams({ modalObject: locale.code })}
+      onClick={() => updatePageParams({ modalObject: locale.ID })}
       style={style}
     >
       {format === 'text' ? label : <button>{label}</button>}

@@ -93,7 +93,7 @@ export function addGlottologLanguages(
     const { glottoCode, parentGlottocode, scope, name } = importedLanguage;
     const lang = languagesBySchema.Glottolog[glottoCode];
     const parentLanguageCode =
-      parentGlottocode != null ? languagesBySchema.Glottolog[parentGlottocode]?.code : undefined;
+      parentGlottocode != null ? languagesBySchema.Glottolog[parentGlottocode]?.ID : undefined;
 
     if (lang == null) {
       // Create new LanguageData
@@ -117,8 +117,8 @@ export function addGlottologLanguages(
       };
       const newLang: LanguageData = {
         type: Dimension.Language,
-        code: glottoCode,
-        codeCanonical: glottoCode,
+        ID: glottoCode,
+        codeDisplay: glottoCode,
         nameCanonical: name,
         nameDisplay: name,
         scope,

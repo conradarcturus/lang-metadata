@@ -11,11 +11,11 @@ type Props = {
 const ObjectTitle: React.FC<Props> = ({ object }) => {
   const nameDisplay = getObjectName(object);
   const subtitle = getObjectSubtitle(object);
-  const { code, nameEndonym } = object;
+  const { codeDisplay, nameEndonym } = object;
   return (
     <>
       <strong>{nameDisplay}</strong>
-      {nameEndonym && nameDisplay != nameEndonym && ' ' + nameEndonym} [{code}]
+      {nameEndonym && nameDisplay != nameEndonym && ' ' + nameEndonym} [{codeDisplay}]
       {subtitle != null && <div className="subtitle">{subtitle}</div>}
     </>
   );

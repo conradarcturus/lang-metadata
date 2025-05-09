@@ -14,7 +14,7 @@ type Props = {
 
 const TerritoryDetails: React.FC<Props> = ({ territory }) => {
   const {
-    code,
+    ID,
     dependentTerritories,
     gdp,
     literacyPercent,
@@ -30,8 +30,8 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
       <div>
         <h3>Attributes</h3>
         <div>
-          <label>Territory Code:</label>
-          {code}
+          <label>Territory ID:</label>
+          {ID}
         </div>
         {!Number.isNaN(population) && (
           <div>
@@ -60,7 +60,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <label>Languages:</label>
             <CommaSeparated>
               {Object.values(locales).map((locale) => (
-                <HoverableLocaleName key={locale.code} labelSource="language" locale={locale} />
+                <HoverableLocaleName key={locale.ID} labelSource="language" locale={locale} />
               ))}
             </CommaSeparated>
           </div>
@@ -77,7 +77,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <label>Contains:</label>
             <CommaSeparated>
               {containsTerritories.sort(getSortFunction()).map((territory) => (
-                <HoverableTerritoryName key={territory.code} territory={territory} />
+                <HoverableTerritoryName key={territory.ID} territory={territory} />
               ))}
             </CommaSeparated>
           </div>
@@ -94,7 +94,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <label>Administers:</label>
             <CommaSeparated>
               {dependentTerritories.sort(getSortFunction()).map((territory) => (
-                <HoverableTerritoryName key={territory.code} territory={territory} />
+                <HoverableTerritoryName key={territory.ID} territory={territory} />
               ))}
             </CommaSeparated>
           </div>

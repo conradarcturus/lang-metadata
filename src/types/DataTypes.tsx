@@ -7,9 +7,10 @@ import { Dimension } from './PageParamTypes';
 import { ScopeLevel } from './ScopeLevel';
 
 export interface ObjectBase {
-  type: Dimension;
-  code: string;
-  nameDisplay: string;
+  readonly type: Dimension;
+  readonly ID: string; // A stable ID to use with indexing
+  codeDisplay: string; // The code for the object -- may change, like if the language schema changes
+  nameDisplay: string; // The name for the object -- may change with data from different sources
   nameEndonym?: string;
 }
 
@@ -31,7 +32,8 @@ export enum TerritoryType {
 
 export interface TerritoryData extends ObjectBase {
   type: Dimension.Territory;
-  code: TerritoryCode;
+  ID: TerritoryCode;
+  codeDisplay: TerritoryCode;
   nameDisplay: string;
   territoryType: TerritoryType;
   population: number;
@@ -62,8 +64,10 @@ export enum WritingSystemScope {
 export interface WritingSystemData extends ObjectBase {
   type: Dimension.WritingSystem;
 
-  code: ScriptCode;
+  ID: ScriptCode;
+  codeDisplay: ScriptCode; // This should be stable
   scope: WritingSystemScope;
+
   nameDisplayOriginal: string;
   nameFull: string;
   nameEndonym: string;
@@ -117,7 +121,8 @@ export enum OfficialStatus {
 export interface LocaleData extends ObjectBase {
   type: Dimension.Locale;
 
-  code: BCP47LocaleCode;
+  ID: BCP47LocaleCode;
+  codeDisplay: BCP47LocaleCode; // Changes based on the language schema
   scope: ScopeLevel;
 
   nameDisplay: string;

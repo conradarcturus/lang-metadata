@@ -65,16 +65,16 @@ function getWritingSystemNodesForLanguage(
     .sort(sortFunction)
     .map((territory) => getLocaleNodeForTerritory(territory));
   const otherWritingSystemNodes = Object.values(lang.writingSystems)
-    .filter((ws) => ws.code != lang.primaryScriptCode)
+    .filter((ws) => ws.ID != lang.primaryScriptCode)
     .sort(sortFunction)
     .map((writingSystem) =>
-      getLocaleNodeForWritingSystem(writingSystem, lang.code, sortFunction, filterFunction),
+      getLocaleNodeForWritingSystem(writingSystem, lang.ID, sortFunction, filterFunction),
     );
 
   if (lang.primaryWritingSystem) {
     const defaultWritingSystemNode = getLocaleNodeForWritingSystem(
       lang.primaryWritingSystem,
-      lang.code,
+      lang.ID,
       sortFunction,
       filterFunction,
     );
@@ -94,7 +94,7 @@ function getWritingSystemNodesForLanguage(
 
 function getLocaleNodeForWritingSystem(
   writingSystem: WritingSystemData,
-  languageCode: LanguageCode,
+  languageID: LanguageCode,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
   filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
@@ -103,7 +103,7 @@ function getLocaleNodeForWritingSystem(
     object: writingSystem,
     children: getTerritoryNodesForWritingSystem(
       writingSystem,
-      languageCode,
+      languageID,
       sortFunction,
       filterFunction,
     ),
@@ -112,12 +112,12 @@ function getLocaleNodeForWritingSystem(
 
 function getTerritoryNodesForWritingSystem(
   writingSystem: WritingSystemData,
-  languageCode: LanguageCode,
+  languageID: LanguageCode,
   sortFunction: (a: ObjectData, b: ObjectData) => number,
   filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData[] {
   return writingSystem.localesWhereExplicit
-    .filter((locale) => locale.languageCode === languageCode)
+    .filter((locale) => locale.languageCode === languageID)
     .filter(filterFunction)
     .sort(sortFunction)
     .map((locale) => getLocaleNodeForTerritory(locale));

@@ -18,7 +18,7 @@ export function getSubstringFilter(): FilterFunctionType | undefined {
     if (lowercaseCodeFilter == '') {
       return () => true;
     }
-    return (a: ObjectData) => a.code.toLowerCase().includes(lowercaseCodeFilter);
+    return (a: ObjectData) => a.codeDisplay.toLowerCase().includes(lowercaseCodeFilter);
   }, [lowercaseCodeFilter]);
 
   const substringFilterFunction = useMemo(() => {

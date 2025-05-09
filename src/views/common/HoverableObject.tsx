@@ -33,11 +33,7 @@ const HoverableObject: React.FC<Props> = ({ object, children }) => {
   return (
     <Hoverable
       hoverContent={getHoverContent()}
-      onClick={() =>
-        updatePageParams({
-          modalObject: object.type === Dimension.Language ? object.codeCanonical : object.code,
-        })
-      }
+      onClick={() => updatePageParams({ modalObject: object.ID })}
     >
       {children}
     </Hoverable>

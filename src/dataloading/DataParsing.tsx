@@ -37,8 +37,8 @@ export function parseLanguageLine(line: string): LanguageData {
   return {
     type: Dimension.Language,
 
-    code,
-    codeCanonical: code,
+    ID: code,
+    codeDisplay: code,
     scope: undefined, // Added by imports
 
     nameCanonical: nameDisplay,
@@ -74,7 +74,8 @@ export function parseLocaleLine(line: string): LocaleData {
 
   return {
     type: Dimension.Locale,
-    code: parts[0],
+    ID: parts[0],
+    codeDisplay: parts[0],
     // All locales from the locale input file should be at the country or smaller level
     scope: variantTag ? ScopeLevel.Parts : ScopeLevel.Individuals,
 
@@ -95,7 +96,8 @@ export function parseWritingSystem(line: string): WritingSystemData {
   return {
     type: Dimension.WritingSystem,
 
-    code: parts[0],
+    ID: parts[0],
+    codeDisplay: parts[0],
     scope: parts[11] as WritingSystemScope,
     nameDisplay: parts[1],
     nameDisplayOriginal: parts[1],

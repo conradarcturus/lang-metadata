@@ -13,8 +13,8 @@ export function getSortFunction(languageSchema?: LanguageSchema): SortByFunction
   switch (sortBy) {
     case SortBy.Code:
       return (a: ObjectData, b: ObjectData) => {
-        if (a.code > b.code) return 1;
-        if (b.code > a.code) return -1;
+        if (a.codeDisplay > b.codeDisplay) return 1;
+        if (b.codeDisplay > a.codeDisplay) return -1;
         return 0;
       };
     case SortBy.Name:

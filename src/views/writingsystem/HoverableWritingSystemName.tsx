@@ -18,7 +18,7 @@ const HoverableWritingSystemName: React.FC<Props> = ({ writingSystem, format = '
   return (
     <Hoverable
       hoverContent={<WritingSystemCard writingSystem={writingSystem} />}
-      onClick={() => updatePageParams({ modalObject: writingSystem.code })}
+      onClick={() => updatePageParams({ modalObject: writingSystem.ID })}
       style={style}
     >
       {format === 'text' ? writingSystem.nameDisplay : <button>{writingSystem.nameDisplay}</button>}

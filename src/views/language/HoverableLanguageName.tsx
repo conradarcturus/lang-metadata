@@ -18,7 +18,7 @@ const HoverableLanguageName: React.FC<Props> = ({ lang, format = 'text', style }
   return (
     <Hoverable
       hoverContent={<LanguageCard lang={lang} />}
-      onClick={() => updatePageParams({ modalObject: lang.codeCanonical })}
+      onClick={() => updatePageParams({ modalObject: lang.ID })}
       style={style}
     >
       {format === 'text' ? lang.nameDisplay : <button>{lang.nameDisplay}</button>}

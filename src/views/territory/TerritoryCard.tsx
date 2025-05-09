@@ -13,15 +13,15 @@ interface Props {
 }
 
 const TerritoryCard: React.FC<Props> = ({ territory }) => {
-  const { nameDisplay, population, code, sovereign, territoryType, locales } = territory;
+  const { nameDisplay, population, ID, codeDisplay, sovereign, territoryType, locales } = territory;
   const { updatePageParams } = usePageParams();
 
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: code })}>
+        <a onClick={() => updatePageParams({ modalObject: ID })}>
           <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
-          <Highlightable str={code} match="codeFilter" />]
+          <Highlightable str={codeDisplay} match="codeFilter" />]
           <div className="subtitle">{territoryType}</div>
         </a>
       </h3>
@@ -35,7 +35,7 @@ const TerritoryCard: React.FC<Props> = ({ territory }) => {
           <h4>Languages:</h4>
           <CommaSeparated>
             {Object.values(locales).map((locale) => (
-              <HoverableLocaleName key={locale.code} labelSource="language" locale={locale} />
+              <HoverableLocaleName key={locale.ID} labelSource="language" locale={locale} />
             ))}
           </CommaSeparated>
         </div>

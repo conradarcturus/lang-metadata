@@ -18,7 +18,7 @@ const HoverableTerritoryName: React.FC<Props> = ({ territory, format = 'text', s
   return (
     <Hoverable
       hoverContent={<TerritoryCard territory={territory} />}
-      onClick={() => updatePageParams({ modalObject: territory.code })}
+      onClick={() => updatePageParams({ modalObject: territory.ID })}
       style={style}
     >
       {format === 'text' ? territory.nameDisplay : <button>{territory.nameDisplay}</button>}

@@ -10,18 +10,24 @@ interface Props {
   locale: LocaleData;
 }
 const LocaleCard: React.FC<Props> = ({ locale }) => {
-  const { code, populationEstimate, officialStatus, populationPercentOfTerritory, territory } =
-    locale;
+  const {
+    ID,
+    codeDisplay,
+    populationEstimate,
+    officialStatus,
+    populationPercentOfTerritory,
+    territory,
+  } = locale;
   const { updatePageParams } = usePageParams();
 
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: code })}>
+        <a onClick={() => updatePageParams({ modalObject: ID })}>
           <strong>
             <Highlightable str={getLocaleName(locale)} match="nameFilter" />
           </strong>{' '}
-          [<Highlightable str={code} match="codeFilter" />]
+          [<Highlightable str={codeDisplay} match="codeFilter" />]
         </a>
       </h3>
       <div>

@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { LanguageDictionary, LanguagesBySchema, LanguageSchema } from '../types/LanguageTypes';
+import { LanguageDictionary, LanguageSchema } from '../types/LanguageTypes';
 
 import { CoreData, EMPTY_LANGUAGES_BY_SCHEMA, useCoreData } from './CoreData';
 import { loadSupplementalData } from './SupplementalData';
@@ -55,27 +55,39 @@ export const DataProvider: React.FC<{
   }, [coreData, loadProgress]); // this is called once after page load
 
   useEffect(() => {
-    updateLanguageBasedOnSchema(coreData.languagesBySchema, setLanguages, languageSchema);
-  }, [coreData.languagesBySchema, languageSchema, loadProgress]); // when core language data or the language schema changes
+    updateLanguageBasedOnSchema(coreData, setLanguages, languageSchema);
+  }, [coreData, languageSchema, loadProgress]); // when core language data or the language schema changes
 
   return <DataContext.Provider value={{ ...coreData, languages }}>{children}</DataContext.Provider>;
 };
 
 function updateLanguageBasedOnSchema(
-  languagesBySchema: LanguagesBySchema,
+  coreData: CoreData,
   setLanguages: Dispatch<SetStateAction<LanguageDictionary>>,
   languageSchema: LanguageSchema,
 ): void {
-  const languages = languagesBySchema[languageSchema];
-  // Update language codes
+  const languages = coreData.languagesBySchema[languageSchema];
+  // Update language codes and other values used for filtering
   Object.values(languages).forEach((lang) => {
     const specific = lang.schemaSpecific[languageSchema];
-    lang.code = specific.code ?? lang.codeCanonical;
+    lang.codeDisplay = specific.code ?? lang.ID;
     lang.nameDisplay = specific.name ?? lang.nameCanonical;
     lang.scope = specific.scope ?? lang.scope;
     lang.populationOfDescendents = specific.populationOfDescendents ?? undefined;
     lang.parentLanguage = specific.parentLanguage ?? undefined;
     lang.childLanguages = specific.childLanguages ?? [];
+  });
+
+  // Update locale codes too
+  Object.values(coreData.locales).forEach((loc) => {
+    loc.codeDisplay = [
+      loc.language?.codeDisplay ?? loc.languageCode,
+      loc.explicitScriptCode,
+      loc.territoryCode,
+      loc.variantTag,
+    ]
+      .filter(Boolean)
+      .join('_');
   });
 
   setLanguages(languages);
