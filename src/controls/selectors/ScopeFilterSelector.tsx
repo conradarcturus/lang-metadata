@@ -11,10 +11,6 @@ const ScopeFilterSelector: React.FC = () => {
   if ([ViewType.Details].includes(viewType)) {
     return <></>;
   }
-  if ([Dimension.Locale].includes(dimension)) {
-    // Not well defined yet for locales
-    return <></>;
-  }
 
   return (
     <MultiSelector
@@ -48,7 +44,7 @@ export function getScopeLevelDescription(dimension: Dimension, scope: ScopeLevel
     case Dimension.Locale:
       switch (scope) {
         case ScopeLevel.Groups:
-          return '';
+          return 'regional locales';
         case ScopeLevel.Individuals:
           return 'regular locales';
         case ScopeLevel.Parts:

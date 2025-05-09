@@ -10,7 +10,8 @@ interface Props {
   locale: LocaleData;
 }
 const LocaleCard: React.FC<Props> = ({ locale }) => {
-  const { code, populationEstimate, officialStatus, populationPercentOfTerritory } = locale;
+  const { code, populationEstimate, officialStatus, populationPercentOfTerritory, territory } =
+    locale;
   const { updatePageParams } = usePageParams();
 
   return (
@@ -30,7 +31,9 @@ const LocaleCard: React.FC<Props> = ({ locale }) => {
         {getPopulationCitation(locale)}
         {']'}
         {populationPercentOfTerritory != null && (
-          <div>{populationPercentOfTerritory.toFixed(1)}% of territory</div>
+          <div>
+            {populationPercentOfTerritory.toFixed(1)}% of {territory?.territoryType ?? 'territory'}
+          </div>
         )}
       </div>
       {officialStatus && (

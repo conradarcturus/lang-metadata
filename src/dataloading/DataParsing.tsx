@@ -8,6 +8,7 @@ import {
 } from '../types/DataTypes';
 import { LanguageData } from '../types/LanguageTypes';
 import { Dimension } from '../types/PageParamTypes';
+import { ScopeLevel } from '../types/ScopeLevel';
 
 export function parseLanguageLine(line: string): LanguageData {
   const parts = line.split('\t');
@@ -69,16 +70,20 @@ export function parseLanguageLine(line: string): LanguageData {
 
 export function parseLocaleLine(line: string): LocaleData {
   const parts = line.split('\t');
+  const variantTag = parts[6] != '' ? parts[6] : undefined;
+
   return {
     type: Dimension.Locale,
-
     code: parts[0],
+    // All locales from the locale input file should be at the country or smaller level
+    scope: variantTag ? ScopeLevel.Parts : ScopeLevel.Individuals,
+
     nameDisplay: parts[1],
     nameEndonym: parts[2] != '' ? parts[2] : undefined,
     languageCode: parts[3],
     territoryCode: parts[4],
     explicitScriptCode: parts[5] != '' ? parts[5] : undefined,
-    variantTag: parts[6] != '' ? parts[6] : undefined,
+    variantTag,
     populationSource: parts[7] as PopulationSourceCategory,
     populationEstimate: Number.parseInt(parts[8]?.replace(/,/g, '')),
     officialStatus: parts[9] != '' ? (parts[9] as OfficialStatus) : undefined,

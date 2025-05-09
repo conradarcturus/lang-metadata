@@ -82,7 +82,7 @@ const LocaleDetails: React.FC<Props> = ({ locale }) => {
 
         {populationPercentOfTerritory != null && (
           <div>
-            <label>Percent of Country:</label>
+            <label>Percent of {territory?.territoryType ?? 'territory'}:</label>
             {populationPercentOfTerritory.toFixed(1)}%
           </div>
         )}

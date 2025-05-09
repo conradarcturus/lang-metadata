@@ -1,5 +1,4 @@
 import {
-  LocaleData,
   ObjectData,
   TerritoryData,
   TerritoryType,
@@ -21,7 +20,7 @@ export function getObjectScopeLevel(object: ObjectData): ScopeLevel {
     case Dimension.Language:
       return getLanguageScopeLevel(object);
     case Dimension.Locale:
-      return getLocaleScopeLevel(object);
+      return object.scope;
     case Dimension.Territory:
       return getTerritoryScopeLevel(object);
     case Dimension.WritingSystem:
@@ -40,13 +39,6 @@ function getLanguageScopeLevel(lang: LanguageData): ScopeLevel {
       return ScopeLevel.Parts;
   }
   return ScopeLevel.Other;
-}
-
-function getLocaleScopeLevel(locale: LocaleData): ScopeLevel {
-  if (locale.variantTag != null) {
-    return ScopeLevel.Parts;
-  }
-  return ScopeLevel.Individuals;
 }
 
 function getTerritoryScopeLevel(territory: TerritoryData): ScopeLevel {

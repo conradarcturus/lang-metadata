@@ -1,9 +1,5 @@
 import { CoreData } from './CoreData';
-import {
-  computeContainedTerritoryStats,
-  createRegionalLocales,
-  loadTerritoryGDPLiteracy,
-} from './TerritoryData';
+import { computeContainedTerritoryStats, loadTerritoryGDPLiteracy } from './TerritoryData';
 import { loadCLDRCoverage } from './UnicodeData';
 
 /**
@@ -19,5 +15,4 @@ export async function loadSupplementalData(coreData: CoreData): Promise<void> {
 
   // 001 is the UN code for the World
   computeContainedTerritoryStats(coreData.territories['001']);
-  createRegionalLocales(coreData);
 }

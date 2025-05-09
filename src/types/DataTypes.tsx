@@ -4,6 +4,7 @@
 
 import { LanguageCode, LanguageData } from './LanguageTypes';
 import { Dimension } from './PageParamTypes';
+import { ScopeLevel } from './ScopeLevel';
 
 export interface ObjectBase {
   type: Dimension;
@@ -117,6 +118,8 @@ export interface LocaleData extends ObjectBase {
   type: Dimension.Locale;
 
   code: BCP47LocaleCode;
+  scope: ScopeLevel;
+
   nameDisplay: string;
   nameEndonym?: string;
   languageCode: LanguageCode;

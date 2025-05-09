@@ -94,14 +94,14 @@ export function connectWritingSystems(
  * @returns - The updated array of LocaleData objects -- with some locales removed, if they were missing a match to a territory or language.
  */
 export function connectLocales(
-  languagesByCode: LanguageDictionary,
-  territoriesByCode: Record<TerritoryCode, TerritoryData>,
+  languages: LanguageDictionary,
+  territories: Record<TerritoryCode, TerritoryData>,
   writingSystems: Record<ScriptCode, WritingSystemData>,
   locales: Record<BCP47LocaleCode, LocaleData>,
 ): void {
   Object.values(locales).forEach((locale) => {
-    const territory = territoriesByCode[locale.territoryCode];
-    const language = languagesByCode[locale.languageCode];
+    const territory = territories[locale.territoryCode];
+    const language = languages[locale.languageCode];
     const writingSystem = locale.explicitScriptCode
       ? writingSystems[locale.explicitScriptCode]
       : null;

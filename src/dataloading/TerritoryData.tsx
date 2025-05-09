@@ -1,4 +1,5 @@
 import {
+  BCP47LocaleCode,
   LocaleData,
   PopulationSourceCategory,
   TerritoryCode,
@@ -7,8 +8,6 @@ import {
 } from '../types/DataTypes';
 import { Dimension } from '../types/PageParamTypes';
 import { getObjectScopeLevel, ScopeLevel } from '../types/ScopeLevel';
-
-import { CoreData } from './CoreData';
 
 const DEBUG = false;
 
@@ -76,63 +75,74 @@ export function connectTerritoriesToParent(
  * Locale input data is contained to countries and dependencies -- this adds up data from
  * the smaller territories to create regional locales.
  */
-export function createRegionalLocales(coreData: CoreData): void {
+export function createRegionalLocales(
+  territories: Record<TerritoryCode, TerritoryData>,
+  locales: Record<BCP47LocaleCode, LocaleData>,
+): void {
   // Start with the world and recursively create locales for all territory groups
-  createRegionalLocalesForTerritory(coreData.territories['001']);
+  createRegionalLocalesForTerritory(territories['001'], locales);
 }
 
-function createRegionalLocalesForTerritory(territory: TerritoryData): void {
+function createRegionalLocalesForTerritory(
+  territory: TerritoryData,
+  allLocales: Record<BCP47LocaleCode, LocaleData>,
+): void {
   // Make sure that territories within are processed first
   const { containsTerritories } = territory;
-  containsTerritories.forEach(createRegionalLocalesForTerritory);
+  containsTerritories.forEach((t) => createRegionalLocalesForTerritory(t, allLocales));
 
   if (getObjectScopeLevel(territory) !== ScopeLevel.Groups) {
     return; // Only going this for regions/continents
   }
 
-  const locales = containsTerritories.reduce<Record<string, LocaleData>>((locs, childTerritory) => {
-    childTerritory.locales.forEach((loc) => {
-      const newLocaleCode = [
-        loc.languageCode,
-        loc.explicitScriptCode,
-        territory.code,
-        loc.variantTag,
-      ]
-        .filter(Boolean)
-        .join('_');
-      const newLocale = locs[newLocaleCode];
-      if (newLocale == null) {
-        // It isn't found yet, create it
-        locs[newLocaleCode] = {
-          ...loc, // Inherit most properties (codes, population...)
+  const territoryLocales = containsTerritories.reduce<Record<BCP47LocaleCode, LocaleData>>(
+    (locs, childTerritory) => {
+      childTerritory.locales.forEach((loc) => {
+        const newLocaleCode = [
+          loc.languageCode,
+          loc.explicitScriptCode,
+          territory.code,
+          loc.variantTag,
+        ]
+          .filter(Boolean)
+          .join('_');
+        const newLocale = locs[newLocaleCode];
+        if (newLocale == null) {
+          // It isn't found yet, create it
+          locs[newLocaleCode] = {
+            ...loc, // Inherit most properties (codes, population...)
 
-          // But we need to set a new locale code and territory code
-          code: newLocaleCode,
-          territoryCode: territory.code,
-          territory,
+            // But we need to set a new locale code and territory code
+            code: newLocaleCode,
+            territoryCode: territory.code,
+            territory,
+            scope: ScopeLevel.Groups,
 
-          // Update the population
-          populationEstimate: loc.populationEstimate || 0,
-          populationPercentOfTerritory: (loc.populationEstimate * 100) / territory.population,
-          populationSource: PopulationSourceCategory.Aggregated,
+            // Update the population
+            populationEstimate: loc.populationEstimate || 0,
+            populationPercentOfTerritory: (loc.populationEstimate * 100) / territory.population,
+            populationSource: PopulationSourceCategory.Aggregated,
 
-          // Clear attributes that cannot be easily aggregated
-          nameEndonym: undefined,
-          officialStatus: undefined,
-        };
-      } else {
-        newLocale.populationEstimate += loc.populationEstimate || 0;
-        newLocale.populationPercentOfTerritory =
-          (newLocale.populationEstimate * 100) / territory.population;
-      }
-    });
-    return locs;
-  }, {});
+            // Clear attributes that cannot be easily aggregated
+            nameEndonym: undefined,
+            officialStatus: undefined,
+          };
+        } else {
+          newLocale.populationEstimate += loc.populationEstimate || 0;
+          newLocale.populationPercentOfTerritory =
+            (newLocale.populationEstimate * 100) / territory.population;
+        }
+      });
+      return locs;
+    },
+    {},
+  );
 
   // Save it to the territory
-  territory.locales = Object.values(locales)
+  territory.locales = Object.values(territoryLocales)
     .filter((loc) => loc.populationEstimate > 10) // Avoid creating too many locale objects
     .sort((a, b) => b.populationEstimate - a.populationEstimate);
+  territory.locales.forEach((loc) => (allLocales[loc.code] = loc));
   // At the moment its not being saved to the master locale list
   // Also this should be done after locales are matched to languages
   // -- so these regional locales are not added to the language's locale list

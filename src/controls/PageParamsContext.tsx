@@ -99,7 +99,7 @@ function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams 
     nameFilter: '',
     page: 1,
     scopes:
-      viewType === ViewType.Hierarchy
+      viewType === ViewType.Hierarchy && dimension !== Dimension.Locale
         ? [ScopeLevel.Groups, ScopeLevel.Individuals]
         : [ScopeLevel.Individuals],
     sortBy: SortBy.Population,

@@ -32,7 +32,11 @@ import {
   loadGlottologLanguages,
   loadManualGlottocodeToISO,
 } from './GlottologData';
-import { connectTerritoriesToParent, loadTerritories } from './TerritoryData';
+import {
+  connectTerritoriesToParent,
+  createRegionalLocales,
+  loadTerritories,
+} from './TerritoryData';
 import { addCLDRLanguageSchema, loadCLDRAliases } from './UnicodeData';
 
 export type CoreData = {
@@ -105,6 +109,7 @@ export function useCoreData(): {
     connectTerritoriesToParent(territories);
     connectWritingSystems(languagesBySchema.Inclusive, territories, writingSystems);
     connectLocales(languagesBySchema.Inclusive, territories, writingSystems, locales);
+    createRegionalLocales(territories, locales); // create them after connecting them
     computeOtherPopulationStatistics(languagesBySchema, writingSystems);
 
     setLanguagesBySchema(languagesBySchema);

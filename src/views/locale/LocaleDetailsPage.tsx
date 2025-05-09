@@ -17,7 +17,7 @@ const LocaleDetailsPage: React.FC = () => {
       <div className="Details" style={{ textAlign: 'center' }}>
         No locale selected. Enter a locale code in the search bar. See common locales:
         <div className="separatedButtonList">
-          {['eng_US', 'spa_MX', 'fra_FR', 'deu_DE', 'zho_Hans_CN', 'ara_EG'].map(
+          {['eng_US', 'spa_419', 'fra_FR', 'deu_DE', 'zho_Hans_CN', 'ara_EG'].map(
             (code) =>
               locales[code] != null && (
                 <HoverableLocaleName key={code} locale={locales[code]} format="button" />
