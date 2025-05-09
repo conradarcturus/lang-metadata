@@ -23,16 +23,16 @@ import {
   computeOtherPopulationStatistics,
   connectLanguagesToParent,
   connectLocales,
-  connectTerritoriesToParent,
   connectWritingSystems,
   groupLanguagesBySchema,
 } from './DataAssociations';
-import { loadLanguages, loadLocales, loadTerritories, loadWritingSystems } from './DataLoader';
+import { loadLanguages, loadLocales, loadWritingSystems } from './DataLoader';
 import {
   addGlottologLanguages,
   loadGlottologLanguages,
   loadManualGlottocodeToISO,
 } from './GlottologData';
+import { connectTerritoriesToParent, loadTerritories } from './TerritoryData';
 import { addCLDRLanguageSchema, loadCLDRAliases } from './UnicodeData';
 
 export type CoreData = {

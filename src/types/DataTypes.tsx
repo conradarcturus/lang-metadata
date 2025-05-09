@@ -102,6 +102,7 @@ export enum PopulationSourceCategory {
   GeneralizedData = '6 Generalized Data',
   Fallback = '7 Fallback',
   NoSource = '',
+  Aggregated = 'Aggregated',
 }
 
 export enum OfficialStatus {
@@ -110,7 +111,6 @@ export enum OfficialStatus {
   Recognized = 'recognized',
   OfficialRegionally = 'official_regional',
   RecognizedRegionally = 'recognized_regional',
-  None = '',
 }
 
 export interface LocaleData extends ObjectBase {
@@ -118,14 +118,14 @@ export interface LocaleData extends ObjectBase {
 
   code: BCP47LocaleCode;
   nameDisplay: string;
-  nameEndonym: string;
+  nameEndonym?: string;
   languageCode: LanguageCode;
   territoryCode: TerritoryCode;
-  explicitScriptCode: ScriptCode | null;
-  variantTag: VariantIANATag | null;
+  explicitScriptCode?: ScriptCode;
+  variantTag?: VariantIANATag;
   populationSource: PopulationSourceCategory;
   populationEstimate: number;
-  officialStatus: OfficialStatus;
+  officialStatus?: OfficialStatus;
 
   // References to other objects, filled in after loading the TSV
   language?: LanguageData;

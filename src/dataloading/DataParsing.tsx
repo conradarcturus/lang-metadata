@@ -3,8 +3,6 @@ import {
   LocaleData,
   OfficialStatus,
   PopulationSourceCategory,
-  TerritoryData,
-  TerritoryType,
   WritingSystemData,
   WritingSystemScope,
 } from '../types/DataTypes';
@@ -69,27 +67,6 @@ export function parseLanguageLine(line: string): LanguageData {
   };
 }
 
-export function parseTerritoryLine(line: string): TerritoryData {
-  const parts = line.split('\t');
-  return {
-    type: Dimension.Territory,
-
-    code: parts[0],
-    nameDisplay: parts[1],
-    territoryType: parts[2] as TerritoryType,
-    population: Number.parseInt(parts[3].replace(/,/g, '')),
-    containedUNRegionCode: parts[4],
-    sovereignCode: parts[5],
-
-    // Reference to other objects, filled in with DataAssociations methods
-    parentUNRegion: undefined,
-    containsTerritories: [],
-    sovereign: undefined,
-    dependentTerritories: [],
-    locales: [],
-  };
-}
-
 export function parseLocaleLine(line: string): LocaleData {
   const parts = line.split('\t');
   return {
@@ -97,14 +74,14 @@ export function parseLocaleLine(line: string): LocaleData {
 
     code: parts[0],
     nameDisplay: parts[1],
-    nameEndonym: parts[2],
+    nameEndonym: parts[2] != '' ? parts[2] : undefined,
     languageCode: parts[3],
     territoryCode: parts[4],
-    explicitScriptCode: parts[5] != '' ? parts[5] : null,
-    variantTag: parts[6] != '' ? parts[6] : null,
+    explicitScriptCode: parts[5] != '' ? parts[5] : undefined,
+    variantTag: parts[6] != '' ? parts[6] : undefined,
     populationSource: parts[7] as PopulationSourceCategory,
     populationEstimate: Number.parseInt(parts[8]?.replace(/,/g, '')),
-    officialStatus: parts[9] as OfficialStatus,
+    officialStatus: parts[9] != '' ? (parts[9] as OfficialStatus) : undefined,
   };
 }
 

@@ -25,6 +25,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] Continents & other regions
   - [x] Locales (languages + territories + potentially other specificity)
     - [x] Basic data
+    - [x] Computed regional locales
     - [ ] Population estimate sources
   - [x] Writing Systems
     - [x] Basic data

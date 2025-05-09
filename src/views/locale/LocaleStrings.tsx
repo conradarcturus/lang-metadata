@@ -30,6 +30,8 @@ export function getPopulationCitation(locale: LocaleData): string {
       return 'upper bound based on language / country populations';
     case PopulationSourceCategory.NoSource:
       return 'no source';
+    case PopulationSourceCategory.Aggregated:
+      return 'aggregated from other sources';
   }
 }
 

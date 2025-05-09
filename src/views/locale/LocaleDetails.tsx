@@ -86,10 +86,12 @@ const LocaleDetails: React.FC<Props> = ({ locale }) => {
             {populationPercentOfTerritory.toFixed(1)}%
           </div>
         )}
-        <div>
-          <label>Government status:</label>
-          {getOfficialLabel(officialStatus)}
-        </div>
+        {officialStatus && (
+          <div>
+            <label>Government status:</label>
+            {getOfficialLabel(officialStatus)}
+          </div>
+        )}
       </div>
     </div>
   );

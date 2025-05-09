@@ -33,10 +33,12 @@ const LocaleCard: React.FC<Props> = ({ locale }) => {
           <div>{populationPercentOfTerritory.toFixed(1)}% of territory</div>
         )}
       </div>
-      <div>
-        <h4>Government status</h4>
-        {getOfficialLabel(officialStatus)}
-      </div>
+      {officialStatus && (
+        <div>
+          <h4>Government status</h4>
+          {getOfficialLabel(officialStatus)}
+        </div>
+      )}
     </div>
   );
 };
