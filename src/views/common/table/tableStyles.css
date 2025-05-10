@@ -1,6 +1,6 @@
 .ObjectTableContainer {
     display: flex; 
-    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -16,7 +16,6 @@
 
     /* equalize the character width */
     font-family: Avenir, 'Courier New', monospace;
-    /* font-family: 'Noto Sans Mono', 'Courier New', Courier, 'Lucida Console', monospace; */
 }
 
 .sort {
