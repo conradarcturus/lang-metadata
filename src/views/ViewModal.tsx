@@ -1,22 +1,17 @@
 import React, { useEffect } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
-import { useDataContext } from '../dataloading/DataContext';
 import Hoverable from '../generic/Hoverable';
 import { ViewType } from '../types/PageParamTypes';
 
 import './modal.css';
 
-import LanguageDetails from './language/LanguageDetails';
-import LocaleDetails from './locale/LocaleDetails';
-import ObjectTitle from './ObjectTitle';
-import TerritoryDetails from './territory/TerritoryDetails';
-import WritingSystemDetails from './writingsystem/WritingSystemDetails';
+import ObjectDetails, { getObjectFromID } from './common/ObjectDetails';
+import ObjectTitle from './common/ObjectTitle';
 
 const ViewModal: React.FC = () => {
-  const { modalObject, updatePageParams } = usePageParams();
-  const { languagesBySchema, territories, writingSystems, locales } = useDataContext();
-  const onClose = () => updatePageParams({ modalObject: undefined });
+  const { objectID, viewType, updatePageParams } = usePageParams();
+  const onClose = () => updatePageParams({ objectID: undefined });
 
   useEffect(() => {
     // TODO there is a problem with this changing the page parameters beyond the modal object
@@ -33,32 +28,11 @@ const ViewModal: React.FC = () => {
     };
   }, []);
 
-  if (modalObject == null) {
+  if (objectID == null || viewType === ViewType.Details) {
     return <></>;
   }
-
-  let object = null;
-  let modalContents = null;
-  if (languagesBySchema.Inclusive[modalObject] != null) {
-    object = languagesBySchema.Inclusive[modalObject];
-    modalContents = <LanguageDetails lang={object} />;
-  } else if (languagesBySchema.Glottolog[modalObject] != null) {
-    object = languagesBySchema.Glottolog[modalObject];
-    modalContents = <LanguageDetails lang={object} />;
-  } else if (territories[modalObject] != null) {
-    object = territories[modalObject];
-    modalContents = <TerritoryDetails territory={object} />;
-  } else if (locales[modalObject] != null) {
-    object = locales[modalObject];
-    modalContents = <LocaleDetails locale={object} />;
-  } else if (writingSystems[modalObject] != null) {
-    object = writingSystems[modalObject];
-    modalContents = <WritingSystemDetails writingSystem={object} />;
-  }
-
-  if (object == null || modalContents == null) {
-    return <></>;
-  }
+  const object = getObjectFromID(objectID);
+  if (object == null) return <></>;
 
   return (
     <div className="ModalOverlay">
@@ -73,9 +47,6 @@ const ViewModal: React.FC = () => {
               <button
                 onClick={() =>
                   updatePageParams({
-                    modalObject: undefined,
-                    codeFilter: object.ID,
-                    dimension: object.type,
                     viewType: ViewType.Details,
                   })
                 }
@@ -88,7 +59,9 @@ const ViewModal: React.FC = () => {
             </Hoverable>
           </div>
         </div>
-        <div className="ModalBody">{modalContents}</div>
+        <div className="ModalBody">
+          <ObjectDetails object={object} />
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ type Props = {
 };
 
 const HoverableObject: React.FC<Props> = ({ object, children }) => {
-  const { updatePageParams } = usePageParams();
+  const { viewType, updatePageParams } = usePageParams();
 
   const getHoverContent = () => {
     switch (object.type) {
@@ -32,8 +32,16 @@ const HoverableObject: React.FC<Props> = ({ object, children }) => {
 
   return (
     <Hoverable
-      hoverContent={getHoverContent()}
-      onClick={() => updatePageParams({ modalObject: object.ID })}
+      hoverContent={
+        <>
+          Click to{' '}
+          {viewType == 'Details'
+            ? 'change page to see the details for:'
+            : 'open modal with more information for:'}
+          {getHoverContent()}
+        </>
+      }
+      onClick={() => updatePageParams({ objectID: object.ID })}
     >
       {children}
     </Hoverable>

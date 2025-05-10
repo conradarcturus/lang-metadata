@@ -31,7 +31,7 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: ID })}>
+        <a onClick={() => updatePageParams({ objectID: ID })}>
           <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
           <Highlightable str={codeDisplay} match="codeFilter" />]
         </a>

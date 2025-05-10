@@ -23,7 +23,7 @@ const LocaleCard: React.FC<Props> = ({ locale }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: ID })}>
+        <a onClick={() => updatePageParams({ objectID: ID })}>
           <strong>
             <Highlightable str={getLocaleName(locale)} match="nameFilter" />
           </strong>{' '}

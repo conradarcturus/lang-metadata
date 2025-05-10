@@ -73,8 +73,8 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       languageSchema: getParam('languageSchema', defaults.languageSchema) as LanguageSchema,
       limit: parseInt(getParam('limit', defaults.limit.toString())),
       localeSeparator: getParam('localeSeparator', '') === '-' ? '-' : '_',
-      modalObject: getParam('modalObject', undefined),
       nameFilter: getParam('nameFilter', defaults.nameFilter),
+      objectID: getParam('objectID', undefined),
       page: parseInt(getParam('page', defaults.page.toString())),
       scopes: getParam('scopes', defaults.scopes.join(','))
         .split(',')
@@ -97,7 +97,7 @@ function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams 
     languageSchema: LanguageSchema.ISO,
     limit: viewType === ViewType.Table ? 200 : 8,
     localeSeparator: '_',
-    modalObject: null,
+    objectID: null,
     nameFilter: '',
     page: 1,
     scopes:

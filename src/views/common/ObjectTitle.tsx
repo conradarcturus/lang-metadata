@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ObjectData } from '../types/DataTypes';
+import { ObjectData } from '../../types/DataTypes';
 
-import { getObjectName, getObjectSubtitle } from './common/getObjectName';
+import { getObjectName, getObjectSubtitle } from './getObjectName';
 
 type Props = {
   object: ObjectData;

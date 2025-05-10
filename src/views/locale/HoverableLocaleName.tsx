@@ -35,7 +35,7 @@ const HoverableLocaleName: React.FC<Props> = ({
   return (
     <Hoverable
       hoverContent={<LocaleCard locale={locale} />}
-      onClick={() => updatePageParams({ modalObject: locale.ID })}
+      onClick={() => updatePageParams({ objectID: locale.ID })}
       style={style}
     >
       {format === 'text' ? label : <button>{label}</button>}

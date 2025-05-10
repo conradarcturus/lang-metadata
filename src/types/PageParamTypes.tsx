@@ -31,8 +31,8 @@ export type PageParams = {
   languageSchema: LanguageSchema;
   limit: number; // < 1 means show all
   localeSeparator: LocaleSeparator;
-  modalObject: string | null;
   nameFilter: string;
+  objectID: string | null;
   page: number; // 0 indexed
   scopes: ScopeLevel[];
   sortBy: SortBy;
@@ -45,8 +45,8 @@ export type PageParamsOptional = {
   languageSchema?: LanguageSchema;
   limit?: number;
   localeSeparator?: string;
-  modalObject?: string;
   nameFilter?: string;
+  objectID?: string;
   page?: number;
   scopes?: ScopeLevel[];
   sortBy?: SortBy;

@@ -12,11 +12,5 @@ export function getCurrencyCompactLong(num: number): string {
     currency: 'USD',
     maximumFractionDigits: 0,
   }).format(10);
-  console.log(
-    num,
-    numCompactLong,
-    currencyFormat,
-    currencyFormat.replace(/\p{Decimal_Number}+/u, numCompactLong),
-  );
   return currencyFormat.replace(/\p{Decimal_Number}+/u, numCompactLong);
 }

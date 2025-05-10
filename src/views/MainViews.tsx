@@ -1,21 +1,18 @@
 import { usePageParams } from '../controls/PageParamsContext';
 import { Dimension, ViewType } from '../types/PageParamTypes';
 
+import ObjectDetailsPage from './common/ObjectDetailsPage';
 import LanguageCardList from './language/LanguageCardList';
-import LanguageDetailsPage from './language/LanguageDetailsPage';
 import { LanguageHierarchy } from './language/LanguageHierarchy';
 import LanguageTable from './language/LanguageTable';
 import LocaleCardList from './locale/LocaleCardList';
-import LocaleDetailsPage from './locale/LocaleDetailsPage';
 import { LocaleHierarchy } from './locale/LocaleHierarchy';
 import LocaleTable from './locale/LocaleTable';
 import TerritoryCardList from './territory/TerritoryCardList';
-import TerritoryDetailsPage from './territory/TerritoryDetailsPage';
 import { TerritoryHierarchy } from './territory/TerritoryHierarchy';
 import TerritoryTable from './territory/TerritoryTable';
 import ViewWarnings from './ViewWarnings';
 import WritingSystemCardList from './writingsystem/WritingSystemCardList';
-import WritingSystemDetailsPage from './writingsystem/WritingSystemDetailsPage';
 import { WritingSystemHierarchy } from './writingsystem/WritingSystemHierarchy';
 import WritingSystemTable from './writingsystem/WritingSystemTable';
 import './styles.css';
@@ -37,17 +34,7 @@ function MainViews() {
       }
     // eslint-disable-next-line no-fallthrough
     case ViewType.Details:
-      switch (dimension) {
-        case Dimension.Language:
-          return <LanguageDetailsPage />;
-        case Dimension.Locale:
-          return <LocaleDetailsPage />;
-        case Dimension.Territory:
-          return <TerritoryDetailsPage />;
-        case Dimension.WritingSystem:
-          return <WritingSystemDetailsPage />;
-      }
-    // eslint-disable-next-line no-fallthrough
+      return <ObjectDetailsPage />;
     case ViewType.Hierarchy:
       switch (dimension) {
         case Dimension.Language:

@@ -19,7 +19,7 @@ const TerritoryCard: React.FC<Props> = ({ territory }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ modalObject: ID })}>
+        <a onClick={() => updatePageParams({ objectID: ID })}>
           <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
           <Highlightable str={codeDisplay} match="codeFilter" />]
           <div className="subtitle">{territoryType}</div>
