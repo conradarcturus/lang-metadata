@@ -21,11 +21,24 @@ const ViewSelector: React.FC = () => {
       getOptionDescription={() => (
         <>
           Decide how you want to view the data.
-          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
+            }}
+          >
             <div>
               <label>Card List:</label>
               <div>
                 <img src="cardlist.png" width={180} />
+              </div>
+            </div>
+            <div>
+              <label>Details:</label>
+              <div>
+                <img src="details.png" width={180} />
               </div>
             </div>
             <div>

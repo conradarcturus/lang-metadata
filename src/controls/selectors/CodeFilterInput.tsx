@@ -7,7 +7,7 @@ import TextInput from '../TextInput';
 
 const CodeFilterInput: React.FC = () => {
   const { codeFilter, dimension, updatePageParams, viewType } = usePageParams();
-  if (viewType === ViewType.Warnings) {
+  if ([ViewType.Warnings, ViewType.Details].includes(viewType)) {
     // Not supported for this view
     return <></>;
   }

@@ -19,16 +19,33 @@ const ObjectDetailsPage: React.FC = () => {
   }, [object?.type]);
 
   if (object == null) {
-    switch (dimension) {
-      case Dimension.Language:
-        return <LanguageSuggestions />;
-      case Dimension.Locale:
-        return <LocaleSuggestions />;
-      case Dimension.Territory:
-        return <TerritorySuggestions />;
-      case Dimension.WritingSystem:
-        return <WritingSystemSuggestions />;
-    }
+    const suggestionsByDimension = {
+      [Dimension.Language]: <LanguageSuggestions />,
+      [Dimension.Locale]: <LocaleSuggestions />,
+      [Dimension.Territory]: <TerritorySuggestions />,
+      [Dimension.WritingSystem]: <WritingSystemSuggestions />,
+    };
+
+    return (
+      <div className="DetailsPage">
+        This view shows details about a particular object -- but no object has been specified. Use
+        another view (Card List, Hierarchy, Table) to find one or click on one of the suggestions
+        below:
+        <div style={{ marginBottom: '2em' }}>
+          <label>{dimension}</label>
+          {suggestionsByDimension[dimension]}
+        </div>
+        Or try another object type:
+        {Object.entries(suggestionsByDimension)
+          .filter(([dim]) => dim !== dimension)
+          .map(([dim, suggestions]) => (
+            <div key={dim} style={{ marginBottom: '1em' }}>
+              <label>{dim}</label>
+              {suggestions}
+            </div>
+          ))}
+      </div>
+    );
   }
 
   return (

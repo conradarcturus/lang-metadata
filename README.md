@@ -2,8 +2,12 @@
 
 This repository will contain a dataset of metadata about the world's languages and language-like objects as well as a website framework to visualize the information.
 
-
 ![Preview of the website](/public/preview.png)
+
+There are multiple ways to visualize the data
+|Card List|Details|Hierarchy|Table|Warnings|
+|--|--|--|--|--|
+|<img src="public/cardlist.png" alt="Card List" style="max-width: 200px;" />|<img src="public/details.png" alt="Details" style="max-width: 200px;" />|<img src="public/hierarchy.png" alt="Hierarchy" style="max-width: 200px;" />|<img src="public/table.png" alt="Table" style="max-width: 200px;" />|<img src="public/warnings.png" alt="Warnings" style="max-width: 200px;" />
 
 ## Data
 
@@ -37,6 +41,10 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [x] Hierarchy
   - [x] Table
   - [ ] Map
+  - [x] Warnings
+    - [x] Language name overlap
+    - [ ] Invalid languages
+    - [ ] Locales that should be added
 - [x] Interactivity
   - [x] Filter
     - [x] By Code
@@ -60,7 +68,7 @@ Here's a list of planned functionality. Completed functions are checked off.
 - [ ] Future ideas
   - [ ] Database-powered backend
   - [ ] Feedback mechanisms
-  - [ ] Validation & warnings 
+  - [ ] Metrics
 
 # How to use
 
