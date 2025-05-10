@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { useDataContext } from '../../dataloading/DataContext';
-
-import HoverableLanguageName from './HoverableLanguageName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 const LanguageSuggestions: React.FC = () => {
   const { languagesBySchema } = useDataContext();
@@ -14,9 +13,9 @@ const LanguageSuggestions: React.FC = () => {
         {['eng', 'spa', 'fra', 'deu', 'zho', 'ara'].map(
           (code) =>
             languagesBySchema.ISO[code] != null && (
-              <HoverableLanguageName
+              <HoverableObjectName
                 key={code}
-                lang={languagesBySchema.ISO[code]}
+                object={languagesBySchema.ISO[code]}
                 format="button"
               />
             ),

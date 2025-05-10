@@ -4,9 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
 import { TerritoryData } from '../../types/DataTypes';
-import HoverableLocaleName from '../locale/HoverableLocaleName';
-
-import HoverableTerritoryName from './HoverableTerritoryName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 interface Props {
   territory: TerritoryData;
@@ -35,7 +33,7 @@ const TerritoryCard: React.FC<Props> = ({ territory }) => {
           <h4>Languages:</h4>
           <CommaSeparated>
             {Object.values(locales).map((locale) => (
-              <HoverableLocaleName key={locale.ID} labelSource="language" locale={locale} />
+              <HoverableObjectName key={locale.ID} labelSource="language" object={locale} />
             ))}
           </CommaSeparated>
         </div>
@@ -44,7 +42,7 @@ const TerritoryCard: React.FC<Props> = ({ territory }) => {
       {sovereign != null && (
         <div>
           <h4>Part of:</h4>
-          <HoverableTerritoryName territory={sovereign} />
+          <HoverableObjectName object={sovereign} />
         </div>
       )}
     </div>

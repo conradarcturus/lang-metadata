@@ -5,9 +5,7 @@ import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
 import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
 import { getObjectName, getObjectSubtitle } from '../common/getObjectName';
-import HoverableLocaleName from '../locale/HoverableLocaleName';
-
-import HoverableLanguageName from './HoverableLanguageName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 interface Props {
   lang: LanguageData;
@@ -66,11 +64,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           <h4>Found in:</h4>
           <CommaSeparated>
             {Object.values(locales).map((locale) => (
-              <HoverableLocaleName
-                key={locale.codeDisplay}
-                labelSource="territory"
-                locale={locale}
-              />
+              <HoverableObjectName key={locale.ID} labelSource="territory" object={locale} />
             ))}
           </CommaSeparated>
         </div>
@@ -80,7 +74,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
         parentLanguage.scope != LanguageScope.Family && (
           <div>
             <h4>Group:</h4>
-            <HoverableLanguageName lang={parentLanguage} />
+            <HoverableObjectName object={parentLanguage} />
           </div>
         )}
       {includeRelations && Object.keys(childLanguages).length > 0 && (
@@ -88,7 +82,7 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           <h4>Includes:</h4>
           <CommaSeparated>
             {Object.values(childLanguages).map((childLanguage) => (
-              <HoverableLanguageName key={childLanguage.ID} lang={childLanguage} />
+              <HoverableObjectName key={childLanguage.ID} object={childLanguage} />
             ))}
           </CommaSeparated>
         </div>

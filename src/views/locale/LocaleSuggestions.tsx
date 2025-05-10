@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { useDataContext } from '../../dataloading/DataContext';
-
-import HoverableLocaleName from './HoverableLocaleName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 const LocaleSuggestions: React.FC = () => {
   const { locales } = useDataContext();
@@ -14,7 +13,7 @@ const LocaleSuggestions: React.FC = () => {
         {['eng_US', 'spa_419', 'fra_FR', 'deu_DE', 'zho_Hans_CN', 'cmn_CN', 'arb_001'].map(
           (code) =>
             locales[code] != null && (
-              <HoverableLocaleName key={code} locale={locales[code]} format="button" />
+              <HoverableObjectName key={code} object={locales[code]} format="button" />
             ),
         )}
       </div>

@@ -14,6 +14,10 @@ const ObjectDetailsPage: React.FC = () => {
   const { dimension, updatePageParams } = usePageParams();
   const object = getObjectFromID();
 
+  useEffect(() => {
+    if (object?.type != null) updatePageParams({ dimension: object?.type });
+  }, [object?.type]);
+
   if (object == null) {
     switch (dimension) {
       case Dimension.Language:
@@ -26,8 +30,6 @@ const ObjectDetailsPage: React.FC = () => {
         return <WritingSystemSuggestions />;
     }
   }
-
-  useEffect(() => updatePageParams({ dimension: object.type }), [object.type]);
 
   return (
     <div className="DetailsPage">

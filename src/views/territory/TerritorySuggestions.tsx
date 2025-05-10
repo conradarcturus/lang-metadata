@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { useDataContext } from '../../dataloading/DataContext';
-
-import HoverableTerritoryName from './HoverableTerritoryName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 const TerritorySuggestions: React.FC = () => {
   const { territories } = useDataContext();
@@ -14,7 +13,7 @@ const TerritorySuggestions: React.FC = () => {
         {['US', 'MX', 'FR', 'DE', 'CN', 'EG'].map(
           (code) =>
             territories[code] != null && (
-              <HoverableTerritoryName key={code} territory={territories[code]} format="button" />
+              <HoverableObjectName key={code} object={territories[code]} format="button" />
             ),
         )}
       </div>

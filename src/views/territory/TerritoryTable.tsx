@@ -4,9 +4,9 @@ import { useDataContext } from '../../dataloading/DataContext';
 import Hoverable from '../../generic/Hoverable';
 import { TerritoryData } from '../../types/DataTypes';
 import { SortBy } from '../../types/PageParamTypes';
+import HoverableObjectName from '../common/HoverableObjectName';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';
 import ObjectTable from '../common/table/ObjectTable';
-import HoverableLocaleName from '../locale/HoverableLocaleName';
 
 const TerritoryTable: React.FC = () => {
   const { territories } = useDataContext();
@@ -51,9 +51,9 @@ const TerritoryTable: React.FC = () => {
           label: 'Biggest Language',
           render: (object) =>
             object.locales.length > 0 && (
-              <HoverableLocaleName
+              <HoverableObjectName
                 labelSource="language"
-                locale={object.locales[0]}
+                object={object.locales[0]}
                 style={{ textDecoration: 'none' }}
               />
             ),

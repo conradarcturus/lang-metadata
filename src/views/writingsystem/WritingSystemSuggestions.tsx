@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { useDataContext } from '../../dataloading/DataContext';
-
-import HoverableWritingSystemName from './HoverableWritingSystemName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 const WritingSystemSuggestions: React.FC = () => {
   const { writingSystems } = useDataContext();
@@ -15,11 +14,7 @@ const WritingSystemSuggestions: React.FC = () => {
         {['Latn', 'Hans', 'Hant', 'Arab'].map(
           (code) =>
             writingSystems[code] != null && (
-              <HoverableWritingSystemName
-                key={code}
-                writingSystem={writingSystems[code]}
-                format="button"
-              />
+              <HoverableObjectName key={code} object={writingSystems[code]} format="button" />
             ),
         )}
       </div>

@@ -3,11 +3,7 @@ import React from 'react';
 import { getSortFunction } from '../../controls/sort';
 import CommaSeparated from '../../generic/CommaSeparated';
 import { WritingSystemData } from '../../types/DataTypes';
-import HoverableLanguageName from '../language/HoverableLanguageName';
-import HoverableLocaleName from '../locale/HoverableLocaleName';
-import HoverableTerritoryName from '../territory/HoverableTerritoryName';
-
-import HoverableWritingSystemName from './HoverableWritingSystemName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 type Props = {
   writingSystem: WritingSystemData;
@@ -72,7 +68,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
           <div>
             <label>Primary language:</label>
             {primaryLanguage != null ? (
-              <HoverableLanguageName lang={primaryLanguage} />
+              <HoverableObjectName object={primaryLanguage} />
             ) : (
               primaryLanguageCode
             )}
@@ -85,7 +81,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
               {Object.values(languages)
                 .sort(getSortFunction())
                 .map((lang) => (
-                  <HoverableLanguageName key={lang.ID} lang={lang} />
+                  <HoverableObjectName key={lang.ID} object={lang} />
                 ))}
             </CommaSeparated>
           </div>
@@ -94,7 +90,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
         {territoryOfOrigin && (
           <div>
             <label>Territory of Origin:</label>
-            <HoverableTerritoryName territory={territoryOfOrigin} />
+            <HoverableObjectName object={territoryOfOrigin} />
           </div>
         )}
 
@@ -103,7 +99,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
             <label>Locales (where writing system is explicit):</label>
             <CommaSeparated>
               {localesWhereExplicit.sort(getSortFunction()).map((locale) => (
-                <HoverableLocaleName key={locale.ID} locale={locale} />
+                <HoverableObjectName key={locale.ID} object={locale} />
               ))}
             </CommaSeparated>
           </div>
@@ -112,7 +108,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
         {parentWritingSystem && (
           <div>
             <label>Originated from:</label>
-            <HoverableWritingSystemName writingSystem={parentWritingSystem} />
+            <HoverableObjectName object={parentWritingSystem} />
           </div>
         )}
         {childWritingSystems.length > 0 && (
@@ -120,7 +116,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
             <label>Inspired:</label>
             <CommaSeparated>
               {childWritingSystems.sort(getSortFunction()).map((writingSystem) => (
-                <HoverableWritingSystemName key={writingSystem.ID} writingSystem={writingSystem} />
+                <HoverableObjectName key={writingSystem.ID} object={writingSystem} />
               ))}
             </CommaSeparated>
           </div>
@@ -130,7 +126,7 @@ const WritingSystemDetails: React.FC<Props> = ({ writingSystem }) => {
             <label>Contains:</label>
             <CommaSeparated>
               {containsWritingSystems.sort(getSortFunction()).map((writingSystem) => (
-                <HoverableWritingSystemName key={writingSystem.ID} writingSystem={writingSystem} />
+                <HoverableObjectName key={writingSystem.ID} object={writingSystem} />
               ))}
             </CommaSeparated>
           </div>

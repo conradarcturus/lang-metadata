@@ -6,11 +6,10 @@ import CommaSeparated from '../../generic/CommaSeparated';
 import Hoverable from '../../generic/Hoverable';
 import { CLDRCoverageLevel } from '../../types/CLDRTypes';
 import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
+import HoverableObjectName from '../common/HoverableObjectName';
 import TreeListRoot from '../common/TreeList/TreeListRoot';
 import { getLocaleTreeNodes } from '../locale/LocaleHierarchy';
-import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
 
-import HoverableLanguageName from './HoverableLanguageName';
 import { getLanguageTreeNodes } from './LanguageHierarchy';
 
 type Props = {
@@ -116,7 +115,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         {primaryWritingSystem && (
           <div>
             <label>Primary Writing System:</label>
-            <HoverableWritingSystemName writingSystem={primaryWritingSystem} />
+            <HoverableObjectName object={primaryWritingSystem} />
           </div>
         )}
         {Object.values(writingSystems).length > 0 && (
@@ -126,10 +125,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
               {Object.values(writingSystems)
                 .sort(sortFunction)
                 .map((writingSystem) => (
-                  <HoverableWritingSystemName
-                    key={writingSystem.ID}
-                    writingSystem={writingSystem}
-                  />
+                  <HoverableObjectName key={writingSystem.ID} object={writingSystem} />
                 ))}
             </CommaSeparated>
           </div>
@@ -169,13 +165,13 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
         {ISO.parentLanguage && (
           <div>
             <label>ISO group:</label>
-            <HoverableLanguageName lang={ISO.parentLanguage} />
+            <HoverableObjectName object={ISO.parentLanguage} />
           </div>
         )}
         {Glottolog.parentLanguage && (
           <div>
             <label>Glottolog group:</label>
-            <HoverableLanguageName lang={Glottolog.parentLanguage} />
+            <HoverableObjectName object={Glottolog.parentLanguage} />
           </div>
         )}
         <div style={{ display: 'flex' }}>

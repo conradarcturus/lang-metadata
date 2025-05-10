@@ -9,7 +9,13 @@ const ViewSelector: React.FC = () => {
 
   return (
     <ButtonGroupSingleChoice<ViewType>
-      options={[ViewType.CardList, ViewType.Hierarchy, ViewType.Table, ViewType.Warnings]}
+      options={[
+        ViewType.CardList,
+        ViewType.Details,
+        ViewType.Hierarchy,
+        ViewType.Table,
+        ViewType.Warnings,
+      ]}
       onChange={(viewType: ViewType) => updatePageParams({ viewType, objectID: undefined })}
       selected={viewType}
       getOptionDescription={() => (

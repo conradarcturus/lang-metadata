@@ -4,9 +4,7 @@ import { getSortFunction } from '../../controls/sort';
 import CommaSeparated from '../../generic/CommaSeparated';
 import { getCurrencyCompactLong } from '../../generic/numberUtils';
 import { TerritoryData } from '../../types/DataTypes';
-import HoverableLocaleName from '../locale/HoverableLocaleName';
-
-import HoverableTerritoryName from './HoverableTerritoryName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 type Props = {
   territory: TerritoryData;
@@ -60,7 +58,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <label>Languages:</label>
             <CommaSeparated>
               {Object.values(locales).map((locale) => (
-                <HoverableLocaleName key={locale.ID} labelSource="language" locale={locale} />
+                <HoverableObjectName key={locale.ID} labelSource="language" object={locale} />
               ))}
             </CommaSeparated>
           </div>
@@ -69,7 +67,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
         {parentUNRegion != null && (
           <div>
             <label>In UN region:</label>
-            <HoverableTerritoryName territory={parentUNRegion} />
+            <HoverableObjectName object={parentUNRegion} />
           </div>
         )}
         {containsTerritories.length > 0 && (
@@ -77,7 +75,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <label>Contains:</label>
             <CommaSeparated>
               {containsTerritories.sort(getSortFunction()).map((territory) => (
-                <HoverableTerritoryName key={territory.ID} territory={territory} />
+                <HoverableObjectName key={territory.ID} object={territory} />
               ))}
             </CommaSeparated>
           </div>
@@ -86,7 +84,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
         {sovereign != null && (
           <div>
             <label>Administered by:</label>
-            <HoverableTerritoryName territory={sovereign} />
+            <HoverableObjectName object={sovereign} />
           </div>
         )}
         {dependentTerritories.length > 0 && (
@@ -94,7 +92,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <label>Administers:</label>
             <CommaSeparated>
               {dependentTerritories.sort(getSortFunction()).map((territory) => (
-                <HoverableTerritoryName key={territory.ID} territory={territory} />
+                <HoverableObjectName key={territory.ID} object={territory} />
               ))}
             </CommaSeparated>
           </div>

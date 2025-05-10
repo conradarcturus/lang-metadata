@@ -1,9 +1,7 @@
 import React from 'react';
 
 import { LocaleData } from '../../types/DataTypes';
-import HoverableLanguageName from '../language/HoverableLanguageName';
-import HoverableTerritoryName from '../territory/HoverableTerritoryName';
-import HoverableWritingSystemName from '../writingsystem/HoverableWritingSystemName';
+import HoverableObjectName from '../common/HoverableObjectName';
 
 import { getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
@@ -32,7 +30,7 @@ const LocaleDetails: React.FC<Props> = ({ locale }) => {
         <div>
           <label>Language:</label>
           {language ? (
-            <HoverableLanguageName lang={language} />
+            <HoverableObjectName object={language} />
           ) : (
             <span>
               {languageCode} <em>[language not in database]</em>
@@ -42,7 +40,7 @@ const LocaleDetails: React.FC<Props> = ({ locale }) => {
         <div>
           <label>Territory:</label>
           {territory ? (
-            <HoverableTerritoryName territory={territory} />
+            <HoverableObjectName object={territory} />
           ) : (
             <span>
               {territoryCode} <em>[territory not in database]</em>
@@ -54,7 +52,7 @@ const LocaleDetails: React.FC<Props> = ({ locale }) => {
           <div>
             <label>Writing System:</label>
             {writingSystem ? (
-              <HoverableWritingSystemName writingSystem={writingSystem} />
+              <HoverableObjectName object={writingSystem} />
             ) : (
               <span>
                 {explicitScriptCode} <em>[writing system not in database]</em>
