@@ -74,7 +74,7 @@ const ViewModal: React.FC = () => {
                 onClick={() =>
                   updatePageParams({
                     modalObject: undefined,
-                    codeFilter: object.codeDisplay,
+                    codeFilter: object.ID,
                     dimension: object.type,
                     viewType: ViewType.Details,
                   })

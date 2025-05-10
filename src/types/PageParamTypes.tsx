@@ -23,11 +23,14 @@ export enum SortBy {
   Name = 'Name',
 }
 
+export type LocaleSeparator = '-' | '_';
+
 export type PageParams = {
   codeFilter: string;
   dimension: Dimension;
   languageSchema: LanguageSchema;
   limit: number; // < 1 means show all
+  localeSeparator: LocaleSeparator;
   modalObject: string | null;
   nameFilter: string;
   page: number; // 0 indexed
@@ -41,6 +44,7 @@ export type PageParamsOptional = {
   dimension?: Dimension;
   languageSchema?: LanguageSchema;
   limit?: number;
+  localeSeparator?: string;
   modalObject?: string;
   nameFilter?: string;
   page?: number;

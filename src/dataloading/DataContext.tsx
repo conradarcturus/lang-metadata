@@ -9,6 +9,7 @@ import React, {
 
 import { usePageParams } from '../controls/PageParamsContext';
 import { LanguageDictionary, LanguageSchema } from '../types/LanguageTypes';
+import { LocaleSeparator } from '../types/PageParamTypes';
 
 import { CoreData, EMPTY_LANGUAGES_BY_SCHEMA, useCoreData } from './CoreData';
 import { loadSupplementalData } from './SupplementalData';
@@ -29,7 +30,7 @@ const DataContext = createContext<DataContextType | undefined>({
 export const DataProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const { languageSchema } = usePageParams();
+  const { languageSchema, localeSeparator } = usePageParams();
   const { coreData, loadCoreData } = useCoreData();
   const [loadProgress, setLoadProgress] = useState(0);
   const [languages, setLanguages] = useState<LanguageDictionary>({});
@@ -48,6 +49,7 @@ export const DataProvider: React.FC<{
       const loadSecondaryData = async (coreData: CoreData) => {
         await loadSupplementalData(coreData);
         setLoadProgress(2);
+        // updateLanguageBasedOnSchema(coreData, setLanguages, languageSchema, localeSeparator);
       };
 
       loadSecondaryData(coreData);
@@ -55,8 +57,8 @@ export const DataProvider: React.FC<{
   }, [coreData, loadProgress]); // this is called once after page load
 
   useEffect(() => {
-    updateLanguageBasedOnSchema(coreData, setLanguages, languageSchema);
-  }, [coreData, languageSchema, loadProgress]); // when core language data or the language schema changes
+    updateLanguageBasedOnSchema(coreData, setLanguages, languageSchema, localeSeparator);
+  }, [languageSchema, loadProgress, localeSeparator]); // when core language data or the language schema changes
 
   return <DataContext.Provider value={{ ...coreData, languages }}>{children}</DataContext.Provider>;
 };
@@ -65,6 +67,7 @@ function updateLanguageBasedOnSchema(
   coreData: CoreData,
   setLanguages: Dispatch<SetStateAction<LanguageDictionary>>,
   languageSchema: LanguageSchema,
+  localeSeparator: LocaleSeparator,
 ): void {
   const languages = coreData.languagesBySchema[languageSchema];
   // Update language codes and other values used for filtering
@@ -87,10 +90,10 @@ function updateLanguageBasedOnSchema(
       loc.variantTag,
     ]
       .filter(Boolean)
-      .join('_');
+      .join(localeSeparator);
   });
 
-  setLanguages(languages);
+  setLanguages({ ...languages });
 }
 
 // Custom hook for easier usage

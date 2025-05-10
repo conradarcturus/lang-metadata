@@ -4,6 +4,7 @@ import CodeFilterInput from './selectors/CodeFilterInput';
 import DimensionSelector from './selectors/DimensionSelector';
 import LanguageSchemaSelector from './selectors/LanguageSchemaSelector';
 import LimitInput from './selectors/LimitInput';
+import LocaleSeparatorSelector from './selectors/LocaleSeparatorSelector';
 import NameFilterInput from './selectors/NameFilterInput';
 import ScopeFilterSelector from './selectors/ScopeFilterSelector';
 import SortBySelector from './selectors/SortBySelector';
@@ -32,6 +33,7 @@ const ControlsBar: React.FC = () => {
           <LimitInput />
           <SortBySelector />
           <ScopeFilterSelector />
+          <LocaleSeparatorSelector />
         </>
       )}
     </div>
