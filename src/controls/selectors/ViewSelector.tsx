@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { ViewType } from '../../types/PageParamTypes';
-import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
+import SingleSelector from '../SingleSelector';
 
 const ViewSelector: React.FC = () => {
   const { viewType, updatePageParams } = usePageParams();
 
   return (
-    <ButtonGroupSingleChoice<ViewType>
+    <SingleSelector<ViewType>
       options={[
         ViewType.CardList,
         ViewType.Details,
@@ -16,54 +16,29 @@ const ViewSelector: React.FC = () => {
         ViewType.Table,
         ViewType.Warnings,
       ]}
+      groupLabel="View:"
       onChange={(viewType: ViewType) => updatePageParams({ viewType, objectID: undefined })}
       selected={viewType}
-      getOptionDescription={() => (
-        <>
-          Decide how you want to view the data.
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div>
-              <label>Card List:</label>
-              <div>
-                <img src="cardlist.png" width={180} />
-              </div>
-            </div>
-            <div>
-              <label>Details:</label>
-              <div>
-                <img src="details.png" width={180} />
-              </div>
-            </div>
-            <div>
-              <label>Hierarchy:</label>
-              <div>
-                <img src="hierarchy.png" width={180} />
-              </div>
-            </div>
-            <div>
-              <label>Table:</label>
-              <div>
-                <img src="table.png" width={180} />
-              </div>
-            </div>
-            <div>
-              <label>Warnings:</label>
-              <div>
-                <img src="warnings.png" width={180} />
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      getOptionDescription={(option) => {
+        return <img src={getImageSrc(option)} width={180} />;
+      }}
     />
   );
 };
+
+function getImageSrc(viewType: ViewType): string {
+  switch (viewType) {
+    case ViewType.CardList:
+      return 'cardlist.png';
+    case ViewType.Details:
+      return 'details.png';
+    case ViewType.Hierarchy:
+      return 'hierarchy.png';
+    case ViewType.Table:
+      return 'table.png';
+    case ViewType.Warnings:
+      return 'warnings.png';
+  }
+}
 
 export default ViewSelector;

@@ -3,7 +3,7 @@
     margin-left: 0.125em;
     margin-right: 1em;
     display: inline-flex;
-    align-items: center;
+    align-items: end;
     margin-bottom: 1rem;
 }
 
@@ -14,6 +14,7 @@
     line-height: 1.5;
     padding: .5rem 1rem;
     font-size: 1.2em;
+    white-space: nowrap;
 }
 
 .selector button {
@@ -54,7 +55,7 @@
     border-top-left-radius: 2em;
 }
 
-.selector :last-child {
+.selector :last-child, .selector .LastChild {
     border-bottom-right-radius: 2em;
     border-top-right-radius: 2em;
 }
@@ -78,4 +79,39 @@
 .selector button:disabled, .selector button:disabled:hover {
     color: var(--color-text-secondary);
     pointer-events: none;
+}
+
+.SelectorPopupAnchor {
+    position: relative;
+}
+
+.SelectorPopup {
+    background: var(--color-background);
+    border: 0.125em solid var(--color-button-primary);
+    align-items: end;
+    position: absolute;
+    display: flex;
+    right: 0px;
+    flex-direction: column;
+    border-radius: 1.15em !important;
+    width: fit-content;
+    z-index: 10;
+}
+
+.SelectorPopup button {
+    border: none;
+    border-radius: 0px;
+    width: 100%;
+    line-height: 1;
+    font-size: 1em;
+    text-align: end;
+    margin: 0px;
+}
+
+.SelectorPopup :first-child {
+    border-radius: 1em 1em 0em 0em;
+}
+
+.SelectorPopup :last-child {
+    border-radius: 0em 0em 1em 1em;
 }

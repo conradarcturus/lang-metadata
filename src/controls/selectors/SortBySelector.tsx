@@ -2,8 +2,8 @@ import React from 'react';
 
 import Hoverable from '../../generic/Hoverable';
 import { SortBy, ViewType } from '../../types/PageParamTypes';
-import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
+import SingleSelector from '../SingleSelector';
 
 const SortBySelector: React.FC = () => {
   const { sortBy, updatePageParams, viewType } = usePageParams();
@@ -14,7 +14,7 @@ const SortBySelector: React.FC = () => {
 
   return (
     <Hoverable hoverContent={`Choose the order of items in the view.`}>
-      <ButtonGroupSingleChoice<SortBy>
+      <SingleSelector<SortBy>
         options={Object.values(SortBy)}
         onChange={(sortBy: SortBy) => updatePageParams({ sortBy })}
         selected={sortBy}

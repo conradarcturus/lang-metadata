@@ -1,18 +1,19 @@
 import React from 'react';
 
 import { Dimension } from '../../types/PageParamTypes';
-import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
+import SingleSelector from '../SingleSelector';
 
 const DimensionSelector: React.FC = () => {
   const { dimension, updatePageParams } = usePageParams();
 
   return (
-    <ButtonGroupSingleChoice<Dimension>
+    <SingleSelector<Dimension>
       options={Object.values(Dimension)}
       onChange={(dimension: Dimension) =>
         updatePageParams({ dimension, codeFilter: '', nameFilter: '' })
       }
+      mode="flat"
       selected={dimension}
       getOptionDescription={(dimension) => (
         <>

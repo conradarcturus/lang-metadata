@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { LanguageSchema } from '../../types/LanguageTypes';
-import ButtonGroupSingleChoice from '../ButtonGroupSingleChoice';
 import { usePageParams } from '../PageParamsContext';
+import SingleSelector from '../SingleSelector';
 
 const LanguageSchemaSelector: React.FC = () => {
   const { languageSchema, updatePageParams } = usePageParams();
 
   return (
-    <ButtonGroupSingleChoice<LanguageSchema>
+    <SingleSelector<LanguageSchema>
       options={Object.values(LanguageSchema)}
       onChange={(languageSchema: LanguageSchema) => updatePageParams({ languageSchema })}
       selected={languageSchema}
