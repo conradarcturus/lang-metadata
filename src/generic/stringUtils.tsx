@@ -11,6 +11,10 @@ export function toTitleCase(str: string): string {
   return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+export function toSentenceCase(str: string): string {
+  return str.replace(/\b\w/, (char) => char.toUpperCase());
+}
+
 export function joinOxfordComma(strs: string[]): string {
   if (strs.length === 0) {
     return '';

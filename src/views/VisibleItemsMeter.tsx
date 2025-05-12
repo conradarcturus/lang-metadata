@@ -5,6 +5,8 @@ import PaginationControls from '../controls/selectors/PaginationControls';
 import { LanguageSchema } from '../types/LanguageTypes';
 import { Dimension } from '../types/PageParamTypes';
 
+import { getDimensionLabelPlural } from './common/getObjectName';
+
 interface Props {
   nShown: number;
   nFiltered: number;
@@ -62,27 +64,20 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
 const ObjectTypeLabel: React.FC = () => {
   const { languageSchema, dimension } = usePageParams();
 
-  switch (dimension) {
-    case Dimension.Language:
-      switch (languageSchema) {
-        case LanguageSchema.Glottolog:
-          return 'glottolog languages';
-        case LanguageSchema.Inclusive:
-          return 'languages and language-like entities';
-        case LanguageSchema.ISO:
-          return 'ISO languages';
-        case LanguageSchema.WAL:
-        case LanguageSchema.CLDR:
-          return 'languages';
-      }
-    // eslint-disable-next-line no-fallthrough
-    case Dimension.Locale:
-      return 'locales';
-    case Dimension.Territory:
-      return 'territories';
-    case Dimension.WritingSystem:
-      return 'writing systems';
+  if (dimension === Dimension.Language) {
+    switch (languageSchema) {
+      case LanguageSchema.Glottolog:
+        return 'glottolog languages';
+      case LanguageSchema.Inclusive:
+        return 'languages and language-like entities';
+      case LanguageSchema.ISO:
+        return 'ISO languages';
+      case LanguageSchema.WAL:
+      case LanguageSchema.CLDR:
+        break; // fall back to the regular plural (languages)
+    }
   }
+  return getDimensionLabelPlural(dimension);
 };
 
 export default VisibleItemsMeter;

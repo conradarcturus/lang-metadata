@@ -44,3 +44,16 @@ function getLanguageSubtitle(lang: LanguageData): string | undefined {
   const composite = [scope, nameSubtitle].filter(Boolean).join(', ');
   return composite !== '' ? composite : undefined;
 }
+
+export function getDimensionLabelPlural(dimension: Dimension) {
+  switch (dimension) {
+    case Dimension.Language:
+      return 'languages';
+    case Dimension.Locale:
+      return 'locales';
+    case Dimension.Territory:
+      return 'territories';
+    case Dimension.WritingSystem:
+      return 'writing systems';
+  }
+}
