@@ -12,11 +12,12 @@ import ObjectTitle from './common/ObjectTitle';
 const ViewModal: React.FC = () => {
   const { objectID, viewType, updatePageParams } = usePageParams();
   const onClose = () => updatePageParams({ objectID: undefined });
+  const object = getObjectFromID(objectID);
 
   useEffect(() => {
     // TODO there is a problem with this changing the page parameters beyond the modal object
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && viewType != ViewType.Details) {
         onClose();
       }
     };
@@ -26,12 +27,11 @@ const ViewModal: React.FC = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [onClose, viewType]);
 
   if (objectID == null || viewType === ViewType.Details) {
     return <></>;
   }
-  const object = getObjectFromID(objectID);
   if (object == null) return <></>;
 
   return (

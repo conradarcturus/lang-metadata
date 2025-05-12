@@ -100,7 +100,7 @@ function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams 
     languageSchema: LanguageSchema.WAL,
     limit: viewType === ViewType.Table ? 200 : 8,
     localeSeparator: '_',
-    objectID: null,
+    objectID: undefined,
     page: 1,
     scopes:
       viewType === ViewType.Hierarchy && dimension !== Dimension.Locale

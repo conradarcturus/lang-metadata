@@ -48,7 +48,7 @@ export type PageParams = {
   languageSchema: LanguageSchema;
   limit: number; // < 1 means show all
   localeSeparator: LocaleSeparator;
-  objectID: string | null;
+  objectID?: string;
   page: number; // 0 indexed
   scopes: ScopeLevel[];
   searchBy: SearchBy;
