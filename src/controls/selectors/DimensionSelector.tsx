@@ -15,14 +15,8 @@ const DimensionSelector: React.FC = () => {
       }
       mode="flat"
       selected={dimension}
-      getOptionDescription={(dimension) => (
-        <>
-          Decide which dimension you want to view
-          <p>
-            <OptionDescription dimension={dimension} />
-          </p>
-        </>
-      )}
+      selectorDescription="Decide which kind of object you want to view."
+      getOptionDescription={(dimension) => <OptionDescription dimension={dimension} />}
     />
   );
 };

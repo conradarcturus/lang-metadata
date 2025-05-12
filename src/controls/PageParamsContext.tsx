@@ -94,7 +94,7 @@ function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams 
   return {
     codeFilter: '',
     dimension,
-    languageSchema: LanguageSchema.ISO,
+    languageSchema: LanguageSchema.WAL,
     limit: viewType === ViewType.Table ? 200 : 8,
     localeSeparator: '_',
     objectID: null,

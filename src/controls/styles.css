@@ -95,7 +95,7 @@
     flex-direction: column;
     border-radius: 1.15em !important;
     width: fit-content;
-    z-index: 10;
+    z-index: 100;
 }
 
 .SelectorPopup button {

@@ -12,14 +12,10 @@ const LanguageSchemaSelector: React.FC = () => {
       options={Object.values(LanguageSchema)}
       onChange={(languageSchema: LanguageSchema) => updatePageParams({ languageSchema })}
       selected={languageSchema}
+      selectorLabel="Language Definition"
+      selectorDescription="Languages have fuzzy boundaries and different authorities categorize potential languages differently. For example, what's a dialect versus a language, or if a language is even attested. Use this option to change what languages appear and what they are considered (family / individual / dialect). This may also change the language code & language name shown"
       getOptionDescription={(languageSchema) => (
-        <>
-          Different groups identify what a language is. Use this option to control the schema of
-          language you want to follow.
-          <p>
-            <LanguageSchemaDescription languageSchema={languageSchema} />
-          </p>
-        </>
+        <LanguageSchemaDescription languageSchema={languageSchema} />
       )}
     />
   );

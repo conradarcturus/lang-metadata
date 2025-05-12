@@ -9,6 +9,7 @@ const ViewSelector: React.FC = () => {
 
   return (
     <SingleSelector<ViewType>
+      getOptionDescription={(option) => <img src={getImageSrc(option)} width={180} />}
       options={[
         ViewType.CardList,
         ViewType.Details,
@@ -16,12 +17,9 @@ const ViewSelector: React.FC = () => {
         ViewType.Table,
         ViewType.Warnings,
       ]}
-      groupLabel="View:"
       onChange={(viewType: ViewType) => updatePageParams({ viewType, objectID: undefined })}
       selected={viewType}
-      getOptionDescription={(option) => {
-        return <img src={getImageSrc(option)} width={180} />;
-      }}
+      selectorLabel="View:"
     />
   );
 };

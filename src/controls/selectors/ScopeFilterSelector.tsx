@@ -28,7 +28,7 @@ const ScopeFilterSelector: React.FC = () => {
           : updatePageParams({ scopes: [...scopes, scope] })
       }
       selected={scopes}
-      groupLabel="Scope:"
+      selectorLabel="Scope:"
       selectorDescription={`Filter the ${getDimensionLabelPlural(dimension)} shown by the granularity of the code -- eg. grouped objects, individual objects, or parts of objects.`}
       getOptionLabel={getOptionLabel}
       getOptionDescription={getOptionDescription}

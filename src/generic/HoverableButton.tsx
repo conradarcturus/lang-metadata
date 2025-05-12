@@ -20,16 +20,18 @@ const HoverableButton: React.FC<HoverableProps> = ({
   const { showHoverCard, hideHoverCard } = useHoverCard();
 
   if (hoverContent == null) {
-    <button
-      className={className}
-      onClick={onClick}
-      style={{
-        cursor: onClick ? 'pointer' : 'auto',
-        ...style,
-      }}
-    >
-      {children}
-    </button>;
+    return (
+      <button
+        className={className}
+        onClick={onClick}
+        style={{
+          cursor: onClick ? 'pointer' : 'auto',
+          ...style,
+        }}
+      >
+        {children}
+      </button>
+    );
   }
 
   const handleMouseEnter = (e: React.MouseEvent) => {
