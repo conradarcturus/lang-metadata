@@ -69,7 +69,7 @@ function MultiSelector<T extends React.Key>({
           >
             {selected.length === 0 && 'None selected'}
             {selected.length === 1 && getOptionLabel(selected[0])}
-            {selected.length > 1 && 'Multiple selected'} ▼
+            {selected.length > 1 && 'Multiple selected'} {expanded ? `▼` : `▶`}
           </HoverableButton>
           {expanded && (
             <div className="SelectorPopupAnchor">

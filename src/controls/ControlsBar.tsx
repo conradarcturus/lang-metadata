@@ -26,7 +26,7 @@ const ControlsBar: React.FC = () => {
         </button>
       </div>
       {showFilters && (
-        <>
+        <div>
           <LanguageSchemaSelector />
           <CodeFilterInput />
           <NameFilterInput />
@@ -34,7 +34,7 @@ const ControlsBar: React.FC = () => {
           <SortBySelector />
           <ScopeFilterSelector />
           <LocaleSeparatorSelector />
-        </>
+        </div>
       )}
     </div>
   );

@@ -70,7 +70,7 @@ function SingleSelector<T extends React.Key>({
             className="selected LastChild"
             onClick={() => setExpanded((prev) => !prev)}
           >
-            {getOptionLabel(selected)} ▼
+            {getOptionLabel(selected)} {expanded ? `▼` : `▶`}
           </HoverableButton>
           {expanded && (
             <div className="SelectorPopupAnchor">
