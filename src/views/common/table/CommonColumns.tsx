@@ -1,20 +1,19 @@
 import Highlightable from '../../../generic/Highlightable';
 import { ObjectData } from '../../../types/DataTypes';
-import { SortBy } from '../../../types/PageParamTypes';
-import { getObjectName } from '../getObjectName';
+import { SearchBy, SortBy } from '../../../types/PageParamTypes';
 import HoverableObject from '../HoverableObject';
 
 import { TableColumn } from './ObjectTable';
 
 export const CodeColumn: TableColumn<ObjectData> = {
   label: 'Code',
-  render: (object) => <Highlightable str={object.codeDisplay} match="codeFilter" />,
+  render: (object) => <Highlightable object={object} field={SearchBy.Code} />,
   sortParam: SortBy.Code,
 };
 
 export const NameColumn: TableColumn<ObjectData> = {
   label: 'Name',
-  render: (object) => <Highlightable str={getObjectName(object)} match="nameFilter" />,
+  render: (object) => <Highlightable object={object} field={SearchBy.Name} />,
   sortParam: SortBy.Name,
 };
 

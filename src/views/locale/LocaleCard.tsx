@@ -3,21 +3,16 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import Highlightable from '../../generic/Highlightable';
 import { LocaleData } from '../../types/DataTypes';
+import { SearchBy } from '../../types/PageParamTypes';
 
-import { getLocaleName, getOfficialLabel, getPopulationCitation } from './LocaleStrings';
+import { getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
 interface Props {
   locale: LocaleData;
 }
 const LocaleCard: React.FC<Props> = ({ locale }) => {
-  const {
-    ID,
-    codeDisplay,
-    populationEstimate,
-    officialStatus,
-    populationPercentOfTerritory,
-    territory,
-  } = locale;
+  const { ID, populationEstimate, officialStatus, populationPercentOfTerritory, territory } =
+    locale;
   const { updatePageParams } = usePageParams();
 
   return (
@@ -25,9 +20,9 @@ const LocaleCard: React.FC<Props> = ({ locale }) => {
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
           <strong>
-            <Highlightable str={getLocaleName(locale)} match="nameFilter" />
+            <Highlightable object={locale} field={SearchBy.Name} />
           </strong>{' '}
-          [<Highlightable str={codeDisplay} match="codeFilter" />]
+          [<Highlightable object={locale} field={SearchBy.Code} />]
         </a>
       </h3>
       <div>

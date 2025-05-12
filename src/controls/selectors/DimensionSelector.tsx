@@ -12,9 +12,7 @@ const DimensionSelector: React.FC = () => {
     <Selector>
       <SingleChoiceOptions<Dimension>
         options={Object.values(Dimension)}
-        onChange={(dimension: Dimension) =>
-          updatePageParams({ dimension, codeFilter: '', nameFilter: '' })
-        }
+        onChange={(dimension: Dimension) => updatePageParams({ dimension })}
         mode="flat"
         selected={dimension}
         getOptionDescription={(dimension) => (

@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
 import { WritingSystemData, WritingSystemScope } from '../../types/DataTypes';
+import { SearchBy } from '../../types/PageParamTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
 
 interface Props {
@@ -12,11 +13,9 @@ interface Props {
 
 const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
   const {
-    codeDisplay,
     containsWritingSystems,
     ID,
     languages,
-    nameDisplay,
     parentWritingSystem,
     populationUpperBound,
     rightToLeft,
@@ -30,8 +29,8 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
     <div>
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
-          <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
-          <Highlightable str={codeDisplay} match="codeFilter" />]
+          <strong>{<Highlightable object={writingSystem} field={SearchBy.Name} />}</strong> [
+          <Highlightable object={writingSystem} field={SearchBy.Code} />]
         </a>
       </h3>
       {rightToLeft === true && <div>Right to Left</div>}

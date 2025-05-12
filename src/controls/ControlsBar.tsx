@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import CodeFilterInput from './selectors/CodeFilterInput';
 import DimensionSelector from './selectors/DimensionSelector';
 import LanguageSchemaSelector from './selectors/LanguageSchemaSelector';
 import LimitInput from './selectors/LimitInput';
 import LocaleSeparatorSelector from './selectors/LocaleSeparatorSelector';
-import NameFilterInput from './selectors/NameFilterInput';
 import ScopeFilterSelector from './selectors/ScopeFilterSelector';
+import SearchBar from './selectors/SearchBar';
 import SortBySelector from './selectors/SortBySelector';
 import ViewSelector from './selectors/ViewSelector';
 
@@ -19,19 +18,18 @@ const ControlsBar: React.FC = () => {
     <div className="controlsBar">
       <DimensionSelector />
       <ViewSelector />
+      <SearchBar />
       <div className="selector">
         <button
           className={showFilters ? 'selected' : ''}
           onClick={() => setShowFilters((prev) => !prev)}
         >
-          Filters {showFilters ? `▼` : `▶`}
+          Options {showFilters ? `▼` : `▶`}
         </button>
       </div>
       {showFilters && (
         <div>
           <LanguageSchemaSelector />
-          <CodeFilterInput />
-          <NameFilterInput />
           <LimitInput />
           <SortBySelector />
           <ScopeFilterSelector />

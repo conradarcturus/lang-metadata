@@ -4,8 +4,10 @@ import { useSearchParams } from 'react-router-dom';
 import { LanguageSchema } from '../types/LanguageTypes';
 import {
   Dimension,
+  PageParamKey,
   PageParams,
   PageParamsOptional,
+  SearchBy,
   SortBy,
   ViewType,
 } from '../types/PageParamTypes';
@@ -18,6 +20,7 @@ type PageParamsContextState = PageParams & {
 const PageParamsContext = createContext<PageParamsContextState | undefined>(undefined);
 const DEFAULT_DIMENSION = Dimension.Language;
 const DEFAULT_VIEWTYPE = ViewType.CardList;
+const PARAMS_THAT_CLEAR: PageParamKey[] = ['limit', 'page', 'searchString', 'searchBy'];
 
 export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [pageParams, setPageParams] = useSearchParams({});
@@ -25,42 +28,43 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const getParam = (key: string, fallback: string = '') => pageParams.get(key) ?? fallback;
 
   const updatePageParams = (newParams: PageParamsOptional) => {
-    const next = new URLSearchParams(pageParams);
-    Object.entries(newParams).forEach(([key, value]) => {
-      if (['limit', 'page'].includes(key)) {
-        // Handle as number
-        const valueAsNumber = parseInt(value as string);
-        if (isNaN(valueAsNumber) || valueAsNumber < 1) {
-          next.set(key, '0');
-        } else {
-          next.set(key, valueAsNumber.toString());
-        }
-      } else if (Array.isArray(value)) {
-        // Handle as array
-        if (value.length === 0) {
+    setPageParams((prev) => {
+      const next = new URLSearchParams(prev);
+      Object.entries(newParams).forEach(([key, value]) => {
+        if (['limit', 'page'].includes(key)) {
+          // Handle as number
+          const valueAsNumber = parseInt(value as string);
+          if (isNaN(valueAsNumber) || valueAsNumber < 1) {
+            next.set(key, '0');
+          } else {
+            next.set(key, valueAsNumber.toString());
+          }
+        } else if (Array.isArray(value)) {
+          // Handle as array
+          if (value.length === 0) {
+            next.delete(key);
+          } else {
+            next.set(key, value.join(','));
+          }
+        } else if (value == null || value == '') {
+          // Handle as string
           next.delete(key);
         } else {
-          next.set(key, value.join(','));
+          next.set(key, value.toString());
         }
-      } else if (value == null || value == '') {
-        // Handle as string
-        next.delete(key);
-      } else {
-        next.set(key, value.toString());
-      }
+      });
+      // Clear the some parameters if they match the default
+      const defaults = getDefaultParams(
+        (next.get('dimension') as Dimension) ?? DEFAULT_DIMENSION,
+        (next.get('viewType') as ViewType) ?? DEFAULT_VIEWTYPE,
+      );
+      PARAMS_THAT_CLEAR.forEach((param: PageParamKey) => {
+        if (next.get(param) == defaults[param]?.toString()) {
+          next.delete(param);
+        }
+      });
+      return next;
     });
-    // Clear the some parameters if they match the default
-    const defaults = getDefaultParams(
-      (next.get('dimension') as Dimension) ?? DEFAULT_DIMENSION,
-      (next.get('viewType') as ViewType) ?? DEFAULT_VIEWTYPE,
-    );
-    if (next.get('limit') == defaults.limit.toString()) {
-      next.delete('limit');
-    }
-    if (next.get('page') == defaults.page.toString()) {
-      next.delete('page');
-    }
-    setPageParams(next);
   };
 
   const providerValue: PageParamsContextState = useMemo(() => {
@@ -68,18 +72,18 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const viewType = getParam('viewType', DEFAULT_VIEWTYPE) as ViewType;
     const defaults = getDefaultParams(dimension, viewType);
     return {
-      codeFilter: getParam('codeFilter', defaults.codeFilter),
       dimension,
       languageSchema: getParam('languageSchema', defaults.languageSchema) as LanguageSchema,
       limit: parseInt(getParam('limit', defaults.limit.toString())),
       localeSeparator: getParam('localeSeparator', '') === '-' ? '-' : '_',
-      nameFilter: getParam('nameFilter', defaults.nameFilter),
       objectID: getParam('objectID', undefined),
       page: parseInt(getParam('page', defaults.page.toString())),
       scopes: getParam('scopes', defaults.scopes.join(','))
         .split(',')
         .map((s) => s as ScopeLevel)
         .filter(Boolean),
+      searchBy: getParam('searchBy', defaults.searchBy) as SearchBy,
+      searchString: getParam('searchString', defaults.searchString),
       sortBy: getParam('sortBy', defaults.sortBy) as SortBy,
       viewType,
       updatePageParams,
@@ -92,18 +96,18 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 // If there is nothing in the URL string, then use this instead
 function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams {
   return {
-    codeFilter: '',
     dimension,
     languageSchema: LanguageSchema.WAL,
     limit: viewType === ViewType.Table ? 200 : 8,
     localeSeparator: '_',
     objectID: null,
-    nameFilter: '',
     page: 1,
     scopes:
       viewType === ViewType.Hierarchy && dimension !== Dimension.Locale
         ? [ScopeLevel.Groups, ScopeLevel.Individuals]
         : [ScopeLevel.Individuals],
+    searchBy: SearchBy.Name,
+    searchString: '',
     sortBy: SortBy.Population,
     viewType,
   };

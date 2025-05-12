@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
 import { TerritoryData } from '../../types/DataTypes';
+import { SearchBy } from '../../types/PageParamTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
 
 interface Props {
@@ -11,15 +12,15 @@ interface Props {
 }
 
 const TerritoryCard: React.FC<Props> = ({ territory }) => {
-  const { nameDisplay, population, ID, codeDisplay, sovereign, territoryType, locales } = territory;
+  const { population, ID, sovereign, territoryType, locales } = territory;
   const { updatePageParams } = usePageParams();
 
   return (
     <div>
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
-          <strong>{<Highlightable str={nameDisplay} match="nameFilter" />}</strong> [
-          <Highlightable str={codeDisplay} match="codeFilter" />]
+          <strong>{<Highlightable object={territory} field={SearchBy.Name} />}</strong> [
+          <Highlightable object={territory} field={SearchBy.Code} />]
           <div className="subtitle">{territoryType}</div>
         </a>
       </h3>

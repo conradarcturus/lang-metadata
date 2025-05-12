@@ -2,20 +2,23 @@ import React from 'react';
 import './styles.css';
 
 import { usePageParams } from '../controls/PageParamsContext';
+import { ObjectData } from '../types/DataTypes';
+import { SearchBy } from '../types/PageParamTypes';
 
 interface Props {
-  str: string;
-  match: 'codeFilter' | 'nameFilter';
+  object: ObjectData;
+  field: SearchBy;
 }
 
-const Highlightable: React.FC<Props> = ({ str, match }) => {
-  const { codeFilter, nameFilter } = usePageParams();
-  const filter = match == 'codeFilter' ? codeFilter : nameFilter;
-  if (filter === '') {
+const Highlightable: React.FC<Props> = ({ object, field }) => {
+  const { searchBy, searchString } = usePageParams();
+  const str = field === SearchBy.Code ? object.codeDisplay : object.nameDisplay;
+
+  if (field !== searchBy || searchString === '') {
     return str;
   }
 
-  const result = str.match(new RegExp(`(.*)(${filter})(.*)`, 'i'));
+  const result = str.match(new RegExp(`(.*)(${searchString})(.*)`, 'i'));
 
   return result ? (
     <>

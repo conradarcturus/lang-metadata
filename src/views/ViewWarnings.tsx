@@ -4,6 +4,7 @@ import { usePageParams } from '../controls/PageParamsContext';
 import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
 import { LanguageData, LanguageSchema } from '../types/LanguageTypes';
+import { SearchBy } from '../types/PageParamTypes';
 
 import TreeListRoot from './common/TreeList/TreeListRoot';
 import { getLanguageTreeNodes } from './language/LanguageHierarchy';
@@ -25,8 +26,8 @@ const LanguagesWithIdenticalNames: React.FC = () => {
   const {
     languagesBySchema: { Inclusive },
   } = useDataContext();
-  const { nameFilter } = usePageParams();
-  const lowercaseNameFilter = nameFilter.toLowerCase();
+  const { searchBy, searchString } = usePageParams();
+  const lowercaseNameFilter = searchBy == SearchBy.Name ? searchString.toLowerCase() : '';
   const sortFunction = getSortFunction();
   const languagesByName = Object.values(Inclusive).reduce<Record<string, LanguageData[]>>(
     (languagesByName, lang) => {

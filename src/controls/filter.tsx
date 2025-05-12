@@ -1,6 +1,5 @@
-import { useMemo } from 'react';
-
 import { ObjectData } from '../types/DataTypes';
+import { SearchBy } from '../types/PageParamTypes';
 import { getObjectScopeLevel } from '../types/ScopeLevel';
 
 import { usePageParams } from './PageParamsContext';
@@ -11,29 +10,18 @@ export type FilterFunctionType = (a: ObjectData) => boolean;
  * Provide a function that returns true for items that match filters based on substrings of their code or name.
  */
 export function getSubstringFilter(): FilterFunctionType | undefined {
-  const { nameFilter, codeFilter } = usePageParams();
-  const lowercaseNameFilter = nameFilter.toLowerCase();
-  const lowercaseCodeFilter = codeFilter.toLowerCase();
-  const codeFilterFunction = useMemo(() => {
-    if (lowercaseCodeFilter == '') {
-      return () => true;
-    }
-    return (a: ObjectData) => a.codeDisplay.toLowerCase().includes(lowercaseCodeFilter);
-  }, [lowercaseCodeFilter]);
-
-  const substringFilterFunction = useMemo(() => {
-    if (lowercaseNameFilter == '') {
-      return codeFilterFunction;
-    }
-
-    return (a: ObjectData) =>
-      codeFilterFunction(a) && a.nameDisplay.toLowerCase().includes(lowercaseNameFilter);
-  }, [codeFilterFunction, lowercaseNameFilter]);
-
-  if (nameFilter === '' && codeFilter === '') {
+  const { searchBy, searchString } = usePageParams();
+  if (searchString == '') {
     return undefined;
   }
-  return substringFilterFunction;
+  const lowercaseSearchString = searchString.toLowerCase();
+
+  switch (searchBy) {
+    case SearchBy.Name:
+      return (a: ObjectData) => a.nameDisplay.toLowerCase().includes(lowercaseSearchString);
+    case SearchBy.Code:
+      return (a: ObjectData) => a.codeDisplay.toLowerCase().includes(lowercaseSearchString);
+  }
 }
 
 /**

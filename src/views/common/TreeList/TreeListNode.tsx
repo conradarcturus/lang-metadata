@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { usePageParams } from '../../../controls/PageParamsContext';
 import Highlightable from '../../../generic/Highlightable';
 import { ObjectData } from '../../../types/DataTypes';
-import { Dimension, ViewType } from '../../../types/PageParamTypes';
-import { getObjectName } from '../getObjectName';
+import { Dimension, SearchBy, ViewType } from '../../../types/PageParamTypes';
 import HoverableObject from '../HoverableObject';
 
 import './treelist.css';
@@ -24,7 +23,7 @@ type Props = {
 
 const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }) => {
   const { children, object, labelStyle, descendentsPassFilter } = nodeData;
-  const { codeFilter, viewType } = usePageParams();
+  const { viewType, searchBy, searchString } = usePageParams();
   const [expanded, setExpanded] = useState(isExpandedInitially || descendentsPassFilter);
   const [seeAllChildren, setSeeAllChildren] = useState(false);
   const { limit } = usePageParams();
@@ -52,12 +51,12 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
       )}
       <>
         <span style={labelStyle}>
-          <Highlightable str={getObjectName(object)} match="nameFilter" />
+          <Highlightable object={object} field={SearchBy.Name} />
         </span>
-        {codeFilter != '' && viewType === ViewType.Hierarchy && (
+        {searchString != '' && searchBy === SearchBy.Code && viewType === ViewType.Hierarchy && (
           <>
             {' '}
-            [<Highlightable str={object.codeDisplay} match="codeFilter" />]
+            [<Highlightable object={object} field={SearchBy.Code} />]
           </>
         )}
         <HoverableObject object={object}>

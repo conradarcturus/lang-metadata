@@ -4,7 +4,8 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
 import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
-import { getObjectName, getObjectSubtitle } from '../common/getObjectName';
+import { SearchBy } from '../../types/PageParamTypes';
+import { getObjectSubtitle } from '../common/getObjectName';
 import HoverableObjectName from '../common/HoverableObjectName';
 
 interface Props {
@@ -16,7 +17,6 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   const { updatePageParams } = usePageParams();
   const {
     childLanguages,
-    codeDisplay,
     ID,
     locales,
     medium,
@@ -33,10 +33,10 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
           <strong>
-            <Highlightable str={getObjectName(lang)} match="nameFilter" />
+            <Highlightable object={lang} field={SearchBy.Name} />
           </strong>{' '}
           {nameDisplay != nameEndonym && nameEndonym} [
-          <Highlightable str={codeDisplay} match="codeFilter" />]
+          <Highlightable object={lang} field={SearchBy.Code} />]
         </a>
         {subtitle != null && <div className="subtitle">{subtitle}</div>}
       </h3>

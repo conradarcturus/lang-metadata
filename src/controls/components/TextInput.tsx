@@ -19,7 +19,7 @@ const TextInput: React.FC<Props> = ({ value, onChange, inputStyle, placeholder }
         style={inputStyle}
         placeholder={placeholder}
       />
-      <button className="clear" type="button" onClick={() => onChange('')}>
+      <button className="NoLeftBorder" type="button" onClick={() => onChange('')}>
         &#x2716;
       </button>
     </>
