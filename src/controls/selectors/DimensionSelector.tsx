@@ -1,23 +1,30 @@
 import React from 'react';
 
 import { Dimension } from '../../types/PageParamTypes';
+import Selector from '../components/Selector';
+import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
-import SingleSelector from '../SingleSelector';
 
 const DimensionSelector: React.FC = () => {
   const { dimension, updatePageParams } = usePageParams();
 
   return (
-    <SingleSelector<Dimension>
-      options={Object.values(Dimension)}
-      onChange={(dimension: Dimension) =>
-        updatePageParams({ dimension, codeFilter: '', nameFilter: '' })
-      }
-      mode="flat"
-      selected={dimension}
-      selectorDescription="Decide which kind of object you want to view."
-      getOptionDescription={(dimension) => <OptionDescription dimension={dimension} />}
-    />
+    <Selector>
+      <SingleChoiceOptions<Dimension>
+        options={Object.values(Dimension)}
+        onChange={(dimension: Dimension) =>
+          updatePageParams({ dimension, codeFilter: '', nameFilter: '' })
+        }
+        mode="flat"
+        selected={dimension}
+        getOptionDescription={(dimension) => (
+          <>
+            <div style={{ marginBottom: 8 }}>Decide which kind of object you want to view.</div>
+            <OptionDescription dimension={dimension} />
+          </>
+        )}
+      />
+    </Selector>
   );
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Hoverable from '../../generic/Hoverable';
 import { ViewType } from '../../types/PageParamTypes';
+import Selector from '../components/Selector';
+import TextInput from '../components/TextInput';
 import { usePageParams } from '../PageParamsContext';
-import TextInput from '../TextInput';
 
 const LimitInput: React.FC = () => {
   const { limit, dimension, updatePageParams, viewType } = usePageParams();
@@ -13,17 +13,17 @@ const LimitInput: React.FC = () => {
   }
 
   return (
-    <Hoverable
-      hoverContent={`Limit how many ${dimension.toLowerCase()} ${getLimitableObjectName(viewType)} are shown.`}
+    <Selector
+      selectorLabel="Limit:"
+      selectorDescription={`Limit how many ${dimension.toLowerCase()} ${getLimitableObjectName(viewType)} are shown.`}
     >
       <TextInput
-        label="Limit:"
         value={limit < 1 || Number.isNaN(limit) ? '' : limit.toString()}
         onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
         inputStyle={{ width: '3em' }}
         placeholder="∞"
       />
-    </Hoverable>
+    </Selector>
   );
 };
 

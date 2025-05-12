@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Hoverable from '../../generic/Hoverable';
 import { ViewType } from '../../types/PageParamTypes';
+import Selector from '../components/Selector';
+import TextInput from '../components/TextInput';
 import { usePageParams } from '../PageParamsContext';
-import TextInput from '../TextInput';
 
 const CodeFilterInput: React.FC = () => {
   const { codeFilter, dimension, updatePageParams, viewType } = usePageParams();
@@ -13,21 +13,21 @@ const CodeFilterInput: React.FC = () => {
   }
 
   return (
-    <Hoverable
-      hoverContent={
+    <Selector
+      selectorLabel="Code:"
+      selectorDescription={
         viewType == ViewType.CardList
           ? `Filter the ${dimension.toLowerCase()} by its ${dimension.toLowerCase()} code.`
           : `Pick a ${dimension.toLowerCase()} to view.`
       }
     >
       <TextInput
-        label="Code:"
         value={codeFilter}
         onChange={(codeFilter: string) => updatePageParams({ codeFilter })}
         inputStyle={{ width: '3em' }}
         placeholder="filter by"
       />
-    </Hoverable>
+    </Selector>
   );
 };
 

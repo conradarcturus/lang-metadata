@@ -1,0 +1,56 @@
+import React, { useState } from 'react';
+
+import HoverableButton from '../../generic/HoverableButton';
+
+type Props<T extends React.Key> = {
+  getOptionDescription?: (value: T | T[]) => React.ReactNode;
+  getOptionLabel?: (value: T) => React.ReactNode; // optional label renderer
+  mode?: 'flat' | 'dropdown';
+  onToggleOption: (value: T) => void;
+  options: readonly T[];
+  selected: T[];
+};
+
+function MultiChoiceOptions<T extends React.Key>({
+  getOptionDescription = () => undefined,
+  getOptionLabel = (val) => val as string,
+  mode,
+  onToggleOption,
+  options,
+  selected,
+}: Props<T>) {
+  const contents = options.map((option) => (
+    <HoverableButton
+      key={option}
+      className={selected.includes(option) ? 'selected' : ''}
+      hoverContent={getOptionDescription(option)}
+      onClick={() => onToggleOption(option)}
+    >
+      {getOptionLabel(option)}
+    </HoverableButton>
+  ));
+  const [expanded, setExpanded] = useState(false);
+
+  return mode == 'flat' ? (
+    contents
+  ) : (
+    <>
+      <HoverableButton
+        hoverContent={getOptionDescription(selected)}
+        className={`${selected.length > 0 && 'selected '}LastChild`}
+        onClick={() => setExpanded((prev) => !prev)}
+      >
+        {selected.length === 0 && 'None selected'}
+        {selected.length === 1 && getOptionLabel(selected[0])}
+        {selected.length > 1 && 'Multiple selected'} {expanded ? `▼` : `▶`}
+      </HoverableButton>
+      {expanded && (
+        <div className="SelectorPopupAnchor">
+          <div className="SelectorPopup">{contents}</div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default MultiChoiceOptions;

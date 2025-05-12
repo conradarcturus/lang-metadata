@@ -1,23 +1,29 @@
 import React from 'react';
 
 import { LanguageSchema } from '../../types/LanguageTypes';
+import Selector from '../components/Selector';
+import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
-import SingleSelector from '../SingleSelector';
 
 const LanguageSchemaSelector: React.FC = () => {
   const { languageSchema, updatePageParams } = usePageParams();
+  const selectorDescription =
+    "Languages have fuzzy boundaries and different authorities categorize potential languages differently. For example, what's a dialect versus a language, or if a language is even attested. Use this option to change what languages appear and what they are considered (family / individual / dialect). This may also change the language code & language name shown.";
 
   return (
-    <SingleSelector<LanguageSchema>
-      options={Object.values(LanguageSchema)}
-      onChange={(languageSchema: LanguageSchema) => updatePageParams({ languageSchema })}
-      selected={languageSchema}
-      selectorLabel="Language Definition"
-      selectorDescription="Languages have fuzzy boundaries and different authorities categorize potential languages differently. For example, what's a dialect versus a language, or if a language is even attested. Use this option to change what languages appear and what they are considered (family / individual / dialect). This may also change the language code & language name shown"
-      getOptionDescription={(languageSchema) => (
-        <LanguageSchemaDescription languageSchema={languageSchema} />
-      )}
-    />
+    <Selector selectorLabel="Language Definition" selectorDescription={selectorDescription}>
+      <SingleChoiceOptions<LanguageSchema>
+        options={Object.values(LanguageSchema)}
+        onChange={(languageSchema: LanguageSchema) => updatePageParams({ languageSchema })}
+        selected={languageSchema}
+        getOptionDescription={(languageSchema) => (
+          <>
+            <div style={{ marginBottom: 8 }}>{selectorDescription}</div>
+            <LanguageSchemaDescription languageSchema={languageSchema} />
+          </>
+        )}
+      />
+    </Selector>
   );
 };
 

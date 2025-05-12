@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Hoverable from '../../generic/Hoverable';
 import { ViewType } from '../../types/PageParamTypes';
+import Selector from '../components/Selector';
+import TextInput from '../components/TextInput';
 import { usePageParams } from '../PageParamsContext';
-import TextInput from '../TextInput';
 
 const NameFilterInput: React.FC = () => {
   const { nameFilter, dimension, updatePageParams, viewType } = usePageParams();
@@ -13,17 +13,17 @@ const NameFilterInput: React.FC = () => {
   }
 
   return (
-    <Hoverable
-      hoverContent={`Filter the ${dimension.toLowerCase()} by its name. Caution: if you have too many items visible then this may jitter, so type slowly.`}
+    <Selector
+      selectorLabel="Name:"
+      selectorDescription={`Filter the ${dimension.toLowerCase()} by its name. Caution: if you have too many items visible then this may jitter, so type slowly.`}
     >
       <TextInput
-        label="Name:"
         value={nameFilter}
         onChange={(nameFilter: string) => updatePageParams({ nameFilter })}
         inputStyle={{ width: '10em' }}
         placeholder="filter by"
       />
-    </Hoverable>
+    </Selector>
   );
 };
 

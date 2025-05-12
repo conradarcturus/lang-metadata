@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { toSentenceCase } from '../../generic/stringUtils';
+import { joinOxfordComma, toSentenceCase } from '../../generic/stringUtils';
 import { Dimension, ViewType } from '../../types/PageParamTypes';
 import { ScopeLevel } from '../../types/ScopeLevel';
 import { getDimensionLabelPlural } from '../../views/common/getObjectName';
-import MultiSelector from '../MultiSelector';
+import MultiChoiceOptions from '../components/MultiChoiceOptions';
+import Selector from '../components/Selector';
 import { usePageParams } from '../PageParamsContext';
 
 const ScopeFilterSelector: React.FC = () => {
@@ -12,27 +13,33 @@ const ScopeFilterSelector: React.FC = () => {
   if ([ViewType.Details].includes(viewType)) {
     return <></>;
   }
-  function getOptionDescription(scope: ScopeLevel): string {
+  function getOptionDescription(scope: ScopeLevel | ScopeLevel[]): string {
+    if (Array.isArray(scope)) {
+      return toSentenceCase(
+        joinOxfordComma(scope.map((s) => getScopeLevelDescription(dimension, s, 'long'))),
+      );
+    }
     return toSentenceCase(getScopeLevelDescription(dimension, scope, 'long'));
   }
   function getOptionLabel(scope: ScopeLevel): string {
     return toSentenceCase(getScopeLevelDescription(dimension, scope, 'short'));
   }
+  const selectorDescription = `Filter the ${getDimensionLabelPlural(dimension)} shown by the granularity of the code -- eg. grouped objects, individual objects, or parts of objects.`;
 
   return (
-    <MultiSelector
-      options={Object.values(ScopeLevel)}
-      onToggleOption={(scope: ScopeLevel) =>
-        scopes.includes(scope)
-          ? updatePageParams({ scopes: scopes.filter((s) => s != scope) })
-          : updatePageParams({ scopes: [...scopes, scope] })
-      }
-      selected={scopes}
-      selectorLabel="Scope:"
-      selectorDescription={`Filter the ${getDimensionLabelPlural(dimension)} shown by the granularity of the code -- eg. grouped objects, individual objects, or parts of objects.`}
-      getOptionLabel={getOptionLabel}
-      getOptionDescription={getOptionDescription}
-    />
+    <Selector selectorLabel="Scope:" selectorDescription={selectorDescription}>
+      <MultiChoiceOptions
+        options={Object.values(ScopeLevel)}
+        onToggleOption={(scope: ScopeLevel) =>
+          scopes.includes(scope)
+            ? updatePageParams({ scopes: scopes.filter((s) => s != scope) })
+            : updatePageParams({ scopes: [...scopes, scope] })
+        }
+        selected={scopes}
+        getOptionLabel={getOptionLabel}
+        getOptionDescription={getOptionDescription}
+      />
+    </Selector>
   );
 };
 

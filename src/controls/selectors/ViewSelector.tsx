@@ -1,26 +1,28 @@
 import React from 'react';
 
 import { ViewType } from '../../types/PageParamTypes';
+import Selector from '../components/Selector';
+import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
-import SingleSelector from '../SingleSelector';
 
 const ViewSelector: React.FC = () => {
   const { viewType, updatePageParams } = usePageParams();
 
   return (
-    <SingleSelector<ViewType>
-      getOptionDescription={(option) => <img src={getImageSrc(option)} width={180} />}
-      options={[
-        ViewType.CardList,
-        ViewType.Details,
-        ViewType.Hierarchy,
-        ViewType.Table,
-        ViewType.Warnings,
-      ]}
-      onChange={(viewType: ViewType) => updatePageParams({ viewType, objectID: undefined })}
-      selected={viewType}
-      selectorLabel="View:"
-    />
+    <Selector selectorLabel="View:">
+      <SingleChoiceOptions<ViewType>
+        getOptionDescription={(option) => <img src={getImageSrc(option)} width={180} />}
+        options={[
+          ViewType.CardList,
+          ViewType.Details,
+          ViewType.Hierarchy,
+          ViewType.Table,
+          ViewType.Warnings,
+        ]}
+        onChange={(viewType: ViewType) => updatePageParams({ viewType, objectID: undefined })}
+        selected={viewType}
+      />
+    </Selector>
   );
 };
 

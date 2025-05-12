@@ -10,6 +10,8 @@ import ScopeFilterSelector from './selectors/ScopeFilterSelector';
 import SortBySelector from './selectors/SortBySelector';
 import ViewSelector from './selectors/ViewSelector';
 
+import './styles.css';
+
 const ControlsBar: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
 
