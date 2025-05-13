@@ -7,24 +7,39 @@ type Props = {
   value: string;
 };
 
-// TODO: needs debouncing
-const TextInput: React.FC<Props> = ({ value, onChange, inputStyle, placeholder }) => {
+const TextInput: React.FC<Props> = ({ inputStyle, onChange, placeholder, value }) => {
   const spanRef = useRef<HTMLSpanElement>(null);
   const [inputWidth, setInputWidth] = useState(50);
 
+  // Used to calculate the width of the input box
   useEffect(() => {
     if (spanRef.current) {
       setInputWidth(spanRef.current.offsetWidth + 10); // add some buffer
     }
   }, [value]);
 
+  // Using a new variable immediateValue to allow users to edit the input box without causing computational
+  // changes that could slow down rendering and cause a bad UX.
+  const [immediateValue, setImmediateValue] = useState(value);
+  useEffect(() => {
+    // If the passed-in value of the text input changes (eg. on page nav) then update the immediate value
+    // TODO: This does not always work
+    setImmediateValue(value);
+  }, [value, setImmediateValue]);
+
+  // When the immediate value changes, it starts a timeout and after enough time it triggers onChange
+  useEffect(() => {
+    const timer = setTimeout(() => onChange(immediateValue), 300 /* ms */);
+    return () => clearTimeout(timer);
+  }, [immediateValue]);
+
   return (
     <>
       <input
         type="text"
-        className={value === '' ? 'empty' : ''}
-        value={value}
-        onChange={(ev) => onChange(ev.target.value)}
+        className={immediateValue === '' ? 'empty' : ''}
+        value={immediateValue}
+        onChange={(ev) => setImmediateValue(ev.target.value)}
         style={{ ...inputStyle, width: inputWidth + 5 }}
         placeholder={placeholder}
       />
