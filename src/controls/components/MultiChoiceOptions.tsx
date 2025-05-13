@@ -22,7 +22,7 @@ function MultiChoiceOptions<T extends React.Key>({
   const contents = options.map((option) => (
     <HoverableButton
       key={option}
-      className={selected.includes(option) ? 'selected' : ''}
+      className={selected.includes(option) ? 'selected' : 'notselected'}
       hoverContent={getOptionDescription(option)}
       onClick={() => onToggleOption(option)}
     >
@@ -37,7 +37,7 @@ function MultiChoiceOptions<T extends React.Key>({
     <>
       <HoverableButton
         hoverContent={getOptionDescription(selected)}
-        className={`${selected.length > 0 && 'selected '}LastChild`}
+        className={`${selected.length > 0 ? 'selected' : 'notselected'} LastChild`}
         onClick={() => setExpanded((prev) => !prev)}
       >
         {selected.length === 0 && 'None selected'}

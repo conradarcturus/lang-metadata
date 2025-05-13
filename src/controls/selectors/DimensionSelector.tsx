@@ -1,14 +1,16 @@
 import React from 'react';
 
+import { toTitleCase } from '../../generic/stringUtils';
 import { useMediaQuery } from '../../generic/useMediaQuery';
 import { Dimension } from '../../types/PageParamTypes';
+import { getDimensionLabelPlural } from '../../views/common/getObjectName';
 import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
 
 const DimensionSelector: React.FC = () => {
   const { dimension, updatePageParams } = usePageParams();
-  const isCompact = useMediaQuery('(max-width: 900px)');
+  const isCompact = useMediaQuery('(max-width: 935px)');
 
   return (
     <Selector selectorLabel={isCompact ? 'Data:' : undefined} appearance="tabs">
@@ -17,6 +19,7 @@ const DimensionSelector: React.FC = () => {
         onChange={(dimension: Dimension) => updatePageParams({ dimension })}
         mode={isCompact ? 'dropdown' : 'flat'}
         selected={dimension}
+        getOptionLabel={(d) => toTitleCase(getDimensionLabelPlural(d))}
         getOptionDescription={(dimension) => (
           <>
             <div style={{ marginBottom: 8 }}>Decide which kind of object you want to view.</div>

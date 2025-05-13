@@ -3,6 +3,9 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 0.25em;
+    border-bottom: 0.125em solid var(--color-button-primary) ;
+    margin-bottom: 0.5em;
+    width: 100%;
 }
 
 .NavBar h1 {
@@ -18,7 +21,7 @@
 
 .NavBar .selector,
 .NavBar h1 {
-    margin: 0 0.5em 0.5em 0.5em;
+    margin: 0.25em 0.5em 0em 0.5em;
 }
 
 .Options {
@@ -29,7 +32,12 @@
     border: none;
     border-bottom: 0.125em solid var(--color-button-primary) ;
     border-radius: 0px ;
+    margin-bottom: -0.1em;
 } 
+
+.tabs .notselected {
+    background-color: transparent;
+}
 
 .selector {
     margin-left: 0.125em;
@@ -53,8 +61,9 @@
 .selector input {
     color: var(--color-background);
     background: var(--color-button-primary);
-    padding: 0.4rem;
+    padding: 0.375rem;
     line-height: 1.5em;
+    border-width: 0.15em;
 }
 
 .selector button {
@@ -135,8 +144,11 @@
     z-index: 100;
 }
 
-.rounded .SelectorPopup{
+.rounded .SelectorPopup {
     border-radius: 1.15em !important;
+}
+.tabs .SelectorPopup {
+    border-radius: 0em 0em .6em .6em;
 }
 
 .SelectorPopup button {
@@ -155,4 +167,8 @@
 
 .rounded .SelectorPopup :last-child {
     border-radius: 0em 0em 1em 1em;
+}
+
+.tabs .SelectorPopup :last-child {
+    border-radius: 0em 0em .5em .5em;
 }

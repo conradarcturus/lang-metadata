@@ -23,7 +23,7 @@ function SingleChoiceOptions<T extends React.Key>({
   const contents = options.map((option) => (
     <HoverableButton
       key={option}
-      className={selected === option ? 'selected' : ''}
+      className={selected === option ? 'selected' : 'notselected'}
       hoverContent={getOptionDescription(option)}
       onClick={() => {
         setExpanded(false);

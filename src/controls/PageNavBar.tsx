@@ -12,7 +12,9 @@ const PageNavBar: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       <div className="NavBar">
-        <h1>World Language Catalog</h1>
+        <h1>
+          <a href="/">World Language Catalog</a>
+        </h1>
         <DimensionSelector />
         <ViewSelector />
       </div>

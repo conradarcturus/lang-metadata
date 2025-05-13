@@ -17,7 +17,7 @@ const SearchBar: React.FC = () => {
   return (
     <Selector selectorLabel="🔎">
       <TextInput
-        inputStyle={{ width: 'fit-content', minWidth: '2em' }}
+        inputStyle={{ minWidth: '8em' }}
         onChange={(searchString: string) => updatePageParams({ searchString })}
         placeholder="search"
         value={searchString}
