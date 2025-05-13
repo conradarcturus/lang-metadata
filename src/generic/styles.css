@@ -26,5 +26,5 @@
 }
 
 .highlighted {
-    background: #ffffa1;
+    background: var(--color-text-highlight);
 }

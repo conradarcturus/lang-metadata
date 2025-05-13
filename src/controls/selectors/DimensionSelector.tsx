@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useMediaQuery } from '../../generic/useMediaQuery';
 import { Dimension } from '../../types/PageParamTypes';
 import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
@@ -7,13 +8,14 @@ import { usePageParams } from '../PageParamsContext';
 
 const DimensionSelector: React.FC = () => {
   const { dimension, updatePageParams } = usePageParams();
+  const isCompact = useMediaQuery('(max-width: 900px)');
 
   return (
-    <Selector>
+    <Selector selectorLabel={isCompact ? 'Data:' : undefined} appearance="tabs">
       <SingleChoiceOptions<Dimension>
         options={Object.values(Dimension)}
         onChange={(dimension: Dimension) => updatePageParams({ dimension })}
-        mode="flat"
+        mode={isCompact ? 'dropdown' : 'flat'}
         selected={dimension}
         getOptionDescription={(dimension) => (
           <>

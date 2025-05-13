@@ -8,6 +8,7 @@ import { usePageParams } from '../PageParamsContext';
 
 const SearchBar: React.FC = () => {
   const { searchBy, searchString, updatePageParams, viewType } = usePageParams();
+
   if (viewType === ViewType.Details) {
     // Not supported for this view
     return <></>;
@@ -18,7 +19,7 @@ const SearchBar: React.FC = () => {
       <TextInput
         inputStyle={{ width: 'fit-content', minWidth: '2em' }}
         onChange={(searchString: string) => updatePageParams({ searchString })}
-        placeholder="filter by"
+        placeholder="search"
         value={searchString}
       />
       <label className="NoLeftBorder">on</label>

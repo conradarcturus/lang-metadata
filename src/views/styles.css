@@ -88,6 +88,7 @@ a:hover {
     line-height: 1.5;
     padding: 0em 0.25em;
     font-size: 1em;
+    font-weight: normal;
 }
 
 @media (min-width: 0px) {

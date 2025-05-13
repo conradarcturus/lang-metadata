@@ -35,9 +35,15 @@ a {
 
 body {
   margin: 0;
-  display: flex;
   min-width: 320px;
   min-height: 100vh;
+}
+
+.Body {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    text-align: center;
 }
 
 h1 {
@@ -71,12 +77,12 @@ button {
   color: var(--color-text-secondary);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --color-text: #f1f1f1;
     --color-text-secondary: #aaaaaa;
     --color-background: #121212;
-    --color-text-highlight: #ffffa1;
+    --color-text-highlight: #717149;
     --color-shadow: rgba(255, 255, 255, 0.5);
 
     --color-button-border: #444;

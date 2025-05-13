@@ -17,7 +17,7 @@ const PaginationControls: React.FC<Props> = ({ currentPage, totalPages }) => {
     <>
       {' '}
       Page:{' '}
-      <div className="selector compact">
+      <div className="selector compact rounded">
         <button onClick={() => updatePageParams({ page: 1 })} disabled={currentPage === 1}>
           ⏮
         </button>
