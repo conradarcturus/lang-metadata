@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { getSortFunction } from '../../controls/sort';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Highlightable from '../../generic/Highlightable';
-import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
+import { uniqueBy } from '../../generic/setUtils';
+import { TerritoryType } from '../../types/DataTypes';
+import { LanguageData } from '../../types/LanguageTypes';
 import { SearchBy } from '../../types/PageParamTypes';
 import { getObjectSubtitle } from '../common/getObjectName';
 import HoverableObjectName from '../common/HoverableObjectName';
@@ -15,18 +18,13 @@ interface Props {
 
 const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   const { updatePageParams } = usePageParams();
-  const {
-    childLanguages,
-    ID,
-    locales,
-    medium,
-    nameDisplay,
-    nameEndonym,
-    parentLanguage,
-    populationCited,
-    vitalityEth2013,
-  } = lang;
+  const sortFunction = getSortFunction();
+  const { ID, locales, medium, nameDisplay, nameEndonym, populationCited, vitalityEth2013 } = lang;
   const subtitle = getObjectSubtitle(lang);
+  const countryLocales = uniqueBy(
+    locales.filter((l) => l.territory?.territoryType == TerritoryType.Country).sort(sortFunction),
+    (l) => l.territoryCode,
+  );
 
   return (
     <div>
@@ -59,30 +57,12 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
         </div>
       )}
 
-      {includeRelations && locales.length > 0 && (
+      {includeRelations && countryLocales.length > 0 && (
         <div>
-          <h4>Found in:</h4>
+          <h4>Countries:</h4>
           <CommaSeparated>
-            {Object.values(locales).map((locale) => (
+            {countryLocales.map((locale) => (
               <HoverableObjectName key={locale.ID} labelSource="territory" object={locale} />
-            ))}
-          </CommaSeparated>
-        </div>
-      )}
-      {includeRelations &&
-        parentLanguage != null &&
-        parentLanguage.scope != LanguageScope.Family && (
-          <div>
-            <h4>Group:</h4>
-            <HoverableObjectName object={parentLanguage} />
-          </div>
-        )}
-      {includeRelations && Object.keys(childLanguages).length > 0 && (
-        <div>
-          <h4>Includes:</h4>
-          <CommaSeparated>
-            {Object.values(childLanguages).map((childLanguage) => (
-              <HoverableObjectName key={childLanguage.ID} object={childLanguage} />
             ))}
           </CommaSeparated>
         </div>
