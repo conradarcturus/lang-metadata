@@ -11,6 +11,13 @@
   --color-button-hover: #3399ff; /* selector hovered over or active*/
   
   --color-shadow: rgba(0, 0, 0, 0.1);        /* Subtle shadow for depth */
+  
+  --color-text-red: #df7e7c;   
+  --color-text-orange: #fb8c00;
+  --color-text-yellow: #fbc02d;
+  --color-text-green: #43a047; 
+  --color-text-blue: #1e88e5;  
+  --color-text-purple: #8e24aa;
 }
 
 :root {
@@ -83,11 +90,19 @@ button {
     --color-text-secondary: #aaaaaa;
     --color-background: #121212;
     --color-text-highlight: #717149;
-    --color-shadow: rgba(255, 255, 255, 0.5);
 
     --color-button-border: #444;
     --color-button-primary: #3399ff;
     --color-button-secondary: #444;
-    --color-button-hover: #1976d2;
+    --color-button-hover: #0061c3;
+
+    --color-shadow: rgba(255, 255, 255, 0.5);
+
+    --color-text-red: #ff6e6e;  
+    --color-text-orange: #ffb74d;  
+    --color-text-yellow: #ffeb3b;  
+    --color-text-green: #66bb6a;   
+    --color-text-blue: #42a5f5;  
+    --color-text-purple: #ce93d8;  
   }
 }

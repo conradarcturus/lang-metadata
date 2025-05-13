@@ -10,7 +10,7 @@ import { usePageParams } from '../PageParamsContext';
 
 const DimensionSelector: React.FC = () => {
   const { dimension, updatePageParams } = usePageParams();
-  const isCompact = useMediaQuery('(max-width: 935px)');
+  const isCompact = useMediaQuery('(max-width: 1015px)');
 
   return (
     <Selector selectorLabel={isCompact ? 'Data:' : undefined} appearance="tabs">

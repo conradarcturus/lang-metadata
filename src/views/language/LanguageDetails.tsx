@@ -252,11 +252,11 @@ function getCLDRCoverageColor(coverageLevel: CLDRCoverageLevel): string {
     case CLDRCoverageLevel.Core:
       return 'var(--color-text-secondary)';
     case CLDRCoverageLevel.Basic:
-      return 'gold';
+      return 'var(--color-text-yellow)';
     case CLDRCoverageLevel.Moderate:
-      return 'green';
+      return 'var(--color-text-green)';
     case CLDRCoverageLevel.Modern:
-      return 'blue';
+      return 'var(--color-text-blue)';
   }
 }
 
