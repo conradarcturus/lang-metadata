@@ -10,6 +10,7 @@ import React, {
 import { usePageParams } from '../controls/PageParamsContext';
 import { LanguageDictionary, LanguageSchema } from '../types/LanguageTypes';
 import { LocaleSeparator } from '../types/PageParamTypes';
+import { getLocaleName } from '../views/locale/LocaleStrings';
 
 import { CoreData, EMPTY_LANGUAGES_BY_SCHEMA, useCoreData } from './CoreData';
 import { loadSupplementalData } from './SupplementalData';
@@ -81,7 +82,7 @@ function updateLanguageBasedOnSchema(
     lang.childLanguages = specific.childLanguages ?? [];
   });
 
-  // Update locale codes too
+  // Update locales too, their codes and their names
   Object.values(coreData.locales).forEach((loc) => {
     loc.codeDisplay = [
       loc.language?.codeDisplay ?? loc.languageCode,
@@ -91,6 +92,7 @@ function updateLanguageBasedOnSchema(
     ]
       .filter(Boolean)
       .join(localeSeparator);
+    loc.nameDisplay = getLocaleName(loc);
   });
 
   setLanguages({ ...languages });
