@@ -106,7 +106,7 @@ function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams 
       viewType === ViewType.Hierarchy && dimension !== Dimension.Locale
         ? [ScopeLevel.Groups, ScopeLevel.Individuals]
         : [ScopeLevel.Individuals],
-    searchBy: SearchBy.Name,
+    searchBy: SearchBy.AllNames,
     searchString: '',
     sortBy: SortBy.Population,
     viewType,

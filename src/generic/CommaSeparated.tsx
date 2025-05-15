@@ -3,13 +3,13 @@ import './styles.css';
 
 type CommaSeparatedProps = {
   children: React.ReactNode;
-  limit?: number; // Optionally will clamp the list
+  limit?: number | null; // Optionally will clamp the list
 };
 
 const CommaSeparated: React.FC<CommaSeparatedProps> = ({ children, limit = 4 }) => {
   const childArray = React.Children.toArray(children);
   const [expanded, setExpanded] = useState(false);
-  const countOverLimit = childArray.length - limit;
+  const countOverLimit = childArray.length - (limit ?? 0);
 
   return (
     <span>

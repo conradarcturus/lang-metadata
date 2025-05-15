@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
+import { uniqueBy } from '../generic/setUtils';
 import { LanguageDictionary, LanguageSchema } from '../types/LanguageTypes';
 import { LocaleSeparator } from '../types/PageParamTypes';
 import { getLocaleName } from '../views/locale/LocaleStrings';
@@ -76,6 +77,14 @@ function updateLanguageBasedOnSchema(
     const specific = lang.schemaSpecific[languageSchema];
     lang.codeDisplay = specific.code ?? lang.ID;
     lang.nameDisplay = specific.name ?? lang.nameCanonical;
+    lang.names = uniqueBy(
+      [
+        lang.nameCanonical,
+        lang.nameEndonym,
+        ...Object.values(lang.schemaSpecific).map((l) => l.name),
+      ].filter((s) => s != null),
+      (s) => s,
+    );
     lang.scope = specific.scope ?? lang.scope;
     lang.populationOfDescendents = specific.populationOfDescendents ?? undefined;
     lang.parentLanguage = specific.parentLanguage ?? undefined;

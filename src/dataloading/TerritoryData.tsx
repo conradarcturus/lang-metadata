@@ -35,6 +35,7 @@ export function parseTerritoryLine(line: string): TerritoryData {
     ID: parts[0],
     codeDisplay: parts[0],
     nameDisplay: parts[1],
+    names: [parts[1]],
     territoryType: parts[2] as TerritoryType,
     population: Number.parseInt(parts[3].replace(/,/g, '')),
     containedUNRegionCode: parts[4],

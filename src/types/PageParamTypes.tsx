@@ -25,7 +25,9 @@ export enum SortBy {
 
 export enum SearchBy {
   Code = 'Code',
-  Name = 'Name',
+  EngName = 'English Name',
+  Endonym = 'Endonym',
+  AllNames = 'All Names',
 }
 
 export type LocaleSeparator = '-' | '_';

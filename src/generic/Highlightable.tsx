@@ -1,33 +1,26 @@
 import React from 'react';
 import './styles.css';
 
-import { usePageParams } from '../controls/PageParamsContext';
-import { ObjectData } from '../types/DataTypes';
-import { SearchBy } from '../types/PageParamTypes';
-
 interface Props {
-  object: ObjectData;
-  field: SearchBy;
+  text: string;
+  searchPattern: string;
 }
 
-const Highlightable: React.FC<Props> = ({ object, field }) => {
-  const { searchBy, searchString } = usePageParams();
-  const str = field === SearchBy.Code ? object.codeDisplay : object.nameDisplay;
-
-  if (field !== searchBy || searchString === '') {
-    return str;
+const Highlightable: React.FC<Props> = ({ text, searchPattern }) => {
+  if (searchPattern === '') {
+    return text;
   }
 
-  const result = str.match(new RegExp(`(.*)(${searchString})(.*)`, 'i'));
+  const searchResult = text.match(new RegExp(`(.*)(${searchPattern})(.*)`, 'i'));
 
-  return result ? (
+  return searchResult ? (
     <>
-      {result[1]}
-      <span className="highlighted">{result[2]}</span>
-      {result[3]}
+      {searchResult[1]}
+      <span className="highlighted">{searchResult[2]}</span>
+      {searchResult[3]}
     </>
   ) : (
-    str
+    text
   );
 };
 

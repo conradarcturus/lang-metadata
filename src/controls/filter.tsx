@@ -17,10 +17,18 @@ export function getSubstringFilter(): FilterFunctionType | undefined {
   const lowercaseSearchString = searchString.toLowerCase();
 
   switch (searchBy) {
-    case SearchBy.Name:
+    case SearchBy.EngName:
       return (a: ObjectData) => a.nameDisplay.toLowerCase().includes(lowercaseSearchString);
     case SearchBy.Code:
       return (a: ObjectData) => a.codeDisplay.toLowerCase().includes(lowercaseSearchString);
+    case SearchBy.Endonym:
+      return (a: ObjectData) =>
+        a.nameEndonym?.toLowerCase().includes(lowercaseSearchString) ?? false;
+    case SearchBy.AllNames:
+      return (a: ObjectData) =>
+        a.names
+          .map((name) => name.toLowerCase().includes(lowercaseSearchString))
+          .reduce((anyPasses, thisPasses) => anyPasses || thisPasses, false);
   }
 }
 

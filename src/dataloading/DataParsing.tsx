@@ -33,6 +33,7 @@ export function parseLanguageLine(line: string): LanguageData {
     },
     CLDR: { childLanguages: [] }, // Empty for now
   };
+  const nameEndonym = parts[3] != '' ? parts[3] : undefined;
 
   return {
     type: Dimension.Language,
@@ -44,7 +45,8 @@ export function parseLanguageLine(line: string): LanguageData {
     nameCanonical: nameDisplay,
     nameDisplay,
     nameSubtitle,
-    nameEndonym: parts[3] != '' ? parts[3] : undefined,
+    nameEndonym,
+    names: [nameDisplay, nameSubtitle, nameEndonym].filter((s) => s != null),
 
     vitalityISO: undefined, // Added by ISO import
     vitalityEth2013: parts[6] != '' ? parts[6] : undefined,
@@ -70,6 +72,7 @@ export function parseLanguageLine(line: string): LanguageData {
 
 export function parseLocaleLine(line: string): LocaleData {
   const parts = line.split('\t');
+  const nameEndonym = parts[2] != '' ? parts[2] : undefined;
   const variantTag = parts[6] != '' ? parts[6] : undefined;
 
   return {
@@ -81,6 +84,7 @@ export function parseLocaleLine(line: string): LocaleData {
 
     nameDisplay: parts[1],
     nameEndonym: parts[2] != '' ? parts[2] : undefined,
+    names: [parts[1], nameEndonym].filter((s) => s != null),
     languageCode: parts[3],
     territoryCode: parts[4],
     explicitScriptCode: parts[5] != '' ? parts[5] : undefined,
@@ -103,6 +107,7 @@ export function parseWritingSystem(line: string): WritingSystemData {
     nameDisplayOriginal: parts[1],
     nameFull: parts[2],
     nameEndonym: parts[3],
+    names: [parts[1], parts[2], parts[3]],
     unicodeVersion: parts[4] != '' ? parseFloat(parts[4]) : null,
     sample: parts[5] != '' ? parts[5] : null,
     rightToLeft: parts[6] === 'Yes' ? true : parts[6] === 'no' ? false : null,

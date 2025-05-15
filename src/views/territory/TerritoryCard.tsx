@@ -2,26 +2,23 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../generic/CommaSeparated';
-import Highlightable from '../../generic/Highlightable';
 import { TerritoryData } from '../../types/DataTypes';
-import { SearchBy } from '../../types/PageParamTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
+import ObjectTitle from '../common/ObjectTitle';
 
 interface Props {
   territory: TerritoryData;
 }
 
 const TerritoryCard: React.FC<Props> = ({ territory }) => {
-  const { population, ID, sovereign, territoryType, locales } = territory;
+  const { population, ID, sovereign, locales } = territory;
   const { updatePageParams } = usePageParams();
 
   return (
     <div>
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
-          <strong>{<Highlightable object={territory} field={SearchBy.Name} />}</strong> [
-          <Highlightable object={territory} field={SearchBy.Code} />]
-          <div className="subtitle">{territoryType}</div>
+          <ObjectTitle object={territory} highlightSearchMatches={true} />
         </a>
       </h3>
       <div>

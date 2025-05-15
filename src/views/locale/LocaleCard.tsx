@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import Highlightable from '../../generic/Highlightable';
 import { LocaleData } from '../../types/DataTypes';
-import { SearchBy } from '../../types/PageParamTypes';
+import ObjectTitle from '../common/ObjectTitle';
 
 import { getOfficialLabel, getPopulationCitation } from './LocaleStrings';
 
@@ -19,10 +18,7 @@ const LocaleCard: React.FC<Props> = ({ locale }) => {
     <div>
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
-          <strong>
-            <Highlightable object={locale} field={SearchBy.Name} />
-          </strong>{' '}
-          [<Highlightable object={locale} field={SearchBy.Code} />]
+          <ObjectTitle object={locale} highlightSearchMatches={true} />
         </a>
       </h3>
       <div>

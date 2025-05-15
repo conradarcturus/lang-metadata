@@ -3,13 +3,11 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import CommaSeparated from '../../generic/CommaSeparated';
-import Highlightable from '../../generic/Highlightable';
 import { uniqueBy } from '../../generic/setUtils';
 import { TerritoryType } from '../../types/DataTypes';
 import { LanguageData } from '../../types/LanguageTypes';
-import { SearchBy } from '../../types/PageParamTypes';
-import { getObjectSubtitle } from '../common/getObjectName';
 import HoverableObjectName from '../common/HoverableObjectName';
+import ObjectTitle from '../common/ObjectTitle';
 
 interface Props {
   lang: LanguageData;
@@ -19,8 +17,7 @@ interface Props {
 const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   const { updatePageParams } = usePageParams();
   const sortFunction = getSortFunction();
-  const { ID, locales, medium, nameDisplay, nameEndonym, populationCited, vitalityEth2013 } = lang;
-  const subtitle = getObjectSubtitle(lang);
+  const { ID, locales, medium, populationCited, vitalityEth2013 } = lang;
   const countryLocales = uniqueBy(
     locales.filter((l) => l.territory?.territoryType == TerritoryType.Country).sort(sortFunction),
     (l) => l.territoryCode,
@@ -30,13 +27,8 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
     <div>
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
-          <strong>
-            <Highlightable object={lang} field={SearchBy.Name} />
-          </strong>{' '}
-          {nameDisplay != nameEndonym && nameEndonym} [
-          <Highlightable object={lang} field={SearchBy.Code} />]
+          <ObjectTitle object={lang} highlightSearchMatches={true} />
         </a>
-        {subtitle != null && <div className="subtitle">{subtitle}</div>}
       </h3>
       {populationCited != null && (
         <div>

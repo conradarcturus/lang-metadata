@@ -2,10 +2,9 @@ import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../generic/CommaSeparated';
-import Highlightable from '../../generic/Highlightable';
 import { WritingSystemData, WritingSystemScope } from '../../types/DataTypes';
-import { SearchBy } from '../../types/PageParamTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
+import ObjectTitle from '../common/ObjectTitle';
 
 interface Props {
   writingSystem: WritingSystemData;
@@ -29,8 +28,7 @@ const WritingSystemCard: React.FC<Props> = ({ writingSystem }) => {
     <div>
       <h3>
         <a onClick={() => updatePageParams({ objectID: ID })}>
-          <strong>{<Highlightable object={writingSystem} field={SearchBy.Name} />}</strong> [
-          <Highlightable object={writingSystem} field={SearchBy.Code} />]
+          <ObjectTitle object={writingSystem} highlightSearchMatches={true} />
         </a>
       </h3>
       {rightToLeft === true && <div>Right to Left</div>}

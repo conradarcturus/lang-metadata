@@ -12,6 +12,7 @@ export interface ObjectBase {
   codeDisplay: string; // The code for the object -- may change, like if the language schema changes
   nameDisplay: string; // The name for the object -- may change with data from different sources
   nameEndonym?: string;
+  names: string[];
 }
 
 export type ObjectData = LanguageData | WritingSystemData | TerritoryData | LocaleData;
