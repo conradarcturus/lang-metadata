@@ -1,6 +1,6 @@
-# Language Metadata
+# **Lang**uage **Nav**igator
 
-This repository will contain a dataset of metadata about the world's languages and language-like objects as well as a website framework to visualize the information.
+This repository contain a dataset of metadata about the world's languages and language-like objects as well as a website framework to visualize the information.
 
 ![Preview of the website](/public/preview.png)
 
@@ -9,9 +9,58 @@ There are multiple ways to visualize the data
 |--|--|--|--|--|
 |<img src="public/cardlist.png" alt="Card List" style="max-width: 200px;" />|<img src="public/details.png" alt="Details" style="max-width: 200px;" />|<img src="public/hierarchy.png" alt="Hierarchy" style="max-width: 200px;" />|<img src="public/table.png" alt="Table" style="max-width: 200px;" />|<img src="public/warnings.png" alt="Warnings" style="max-width: 200px;" />
 
+## Project Overview
+
+### Motivation
+
+This website was put together to give an overview of the world's languages and language-related concepts. Similar to Ethnologue & Glottolog, the main differences of this are to:
+* **Free** & open to all consumers.
+* Show **all data**, even contested language definitions. Making sure to put contested data in context.
+* Provide **actionable insights** -- make sure the data is clear enough that consumers can come to this page to get answers.
+
+### Tech Stack
+
+* **Frontend**: The website is rendered in Javascript, particularly React using Typescript.
+* **Backend**: The framework of the website is written in Node and Vite.
+* **Data**: Data files are written in Tab-separated-value format (tsv).
+
+### Partners
+
+We've partnered with various organizations to get data and to provide data to. UNESCO's [World Atlas of Languages](https://en.wal.unesco.org/), [https://hlt.bme.hu/en/dld/](https://hlt.bme.hu/en/dld/)
+
 ## Data
 
 The data comes from multiple sources, primarily [CLDR](https://github.com/unicode-org/cldr/), [Ethnologue](https://www.ethnologue.com/), and [Glottolog](https://glottolog.org/).
+
+## Deployment Instructions
+
+In order to generate the website on an internal server, follow these instructions.
+
+1. Install Node Project Manager, see [the official Node documentation for install](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+2. Download the repository to your computer -- go to that folder when you are done
+3. Run `npm install` to install relevant Node and Vite packageas
+4. Run `npm run dev` to start the server with some dev options
+  1. or `npm run build`
+
+### Initialization
+
+This is how we created the project originally -- you should not need to run these, but its for background.
+
+2. Initalize the project using vite `npm create vite@latest`
+  1. Choose `lang-nav` as project name. Then React + TypeScript
+3. Change into the `lang-nav` directory and run `npm install`
+4. Setup the linter
+  1. Initialize `npx eslint --init`
+  2. Choose options: what: javascript, use: problems, modules: esm, framework: react, typescript: yes, runs on: browser
+  3. `npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier`
+  4. More magic to get it to run... I had to install ESLint on my IDE (VSCode)
+  5. Some plugins were added after the this library was started like `eslint-plugin-import`
+5. Import other lirbaries
+   1. `npm install react-router-dom`
+6. Start `npm run dev`
+
+
+## How to contribute
 
 ## Functionality
 
@@ -69,29 +118,3 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Database-powered backend
   - [ ] Feedback mechanisms
   - [ ] Metrics
-
-# How to use
-
-The website runs on React + Typescript.
-
-## Instructions
-
-Start the server using `npm run dev`
-
-## Initialize
-
-This project was created using Node and Vite. ChatGPT helped a lot when starting out the project. Let me know if I over-initialized anything.
-
-1. Install npm
-2. Initalize the project using vite `npm create vite@latest`
-  1. Choose `lang-metadata` as project name. Then React + TypeScript
-3. Change into the `lang-metadata` directory and run `npm install`
-4. Setup the linter
-  1. Initialize `npx eslint --init`
-  2. Choose options: what: javascript, use: problems, modules: esm, framework: react, typescript: yes, runs on: browser
-  3. `npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier`
-  4. More magic to get it to run... I had to install ESLint on my IDE (VSCode)
-  5. Some plugins were added after the this library was started like `eslint-plugin-import`
-5. Import other lirbaries
-   1. `npm install react-router-dom`
-6. Start `npm run dev`
