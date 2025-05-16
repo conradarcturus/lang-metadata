@@ -1,4 +1,4 @@
-# **Lang**uage **Nav**igator
+# *Lang*uage *Nav*igator
 
 This repository contain a dataset of metadata about the world's languages and language-like objects as well as a website framework to visualize the information.
 
@@ -18,10 +18,15 @@ This website was put together to give an overview of the world's languages and l
 * Show **all data**, even contested language definitions. Making sure to put contested data in context.
 * Provide **actionable insights** -- make sure the data is clear enough that consumers can come to this page to get answers.
 
+Common questions people will come to this resource for are:
+* What's the language code for XXXX?
+* What languages are used in country YYYY?
+* What are the top languages in the world *given some criteria*.
+
 ### Tech Stack
 
 * **Frontend**: The website is rendered in Javascript, particularly React using Typescript.
-* **Backend**: The framework of the website is written in Node and Vite.
+* **Backend**: The framework of the website Node and Vite.
 * **Data**: Data files are written in Tab-separated-value format (tsv).
 
 ### Partners
@@ -59,8 +64,19 @@ This is how we created the project originally -- you should not need to run thes
    1. `npm install react-router-dom`
 6. Start `npm run dev`
 
-
 ## How to contribute
+
+### Adding or update Data
+
+There's a lot of data shown here but there always could be more. The main way to add or update data is to go to the Tab-separated files directly. They are all in the [public/data](public/data) directory.
+
+If you want to add entries or update values, you can just edit the existing TSVs. 
+
+However, if you want to add a lot more data or add contested data it may be better to make new TSVs and then update the website to use those instead.
+
+### Adding a Feature
+
+TODO add a guide
 
 ## Functionality
 
@@ -95,25 +111,32 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] Invalid languages
     - [ ] Locales that should be added
 - [x] Interactivity
-  - [x] Filter
+  - [x] Search
     - [x] By Code
-    - [x] By Name
+    - [x] By Name, Endonym
     - [x] Highlight search
     - [x] For Hierarchy
-    - [x] By Scope
     - [ ] Using typeahead
+    - [ ] When few results are shown, suggest alternatives
+  - [x] Filter
+    - [x] By Scope
+    - [ ] By Country
+    - [ ] Integrate in search bar
   - [x] Hovercard & Tooltips
     - [x] Related objects
     - [x] Field explanations
   - [x] Sort By: Population, Name, Code
   - [x] Limit
+    - [x] Pagination
+  - [x] Visual options
+    - [x] Change locale separator (_ or -)
   - [ ] Selection
   - [ ] Export
 - [ ] Manage data sources
-  - [x] Load different subsets of data
   - [x] Show results based on different definitions of what a language is
     - [x] ISO, Glottolog, Inclusive
-    - [x] Highlight codes in each
+    - [x] Highlight language codes in each
+  - [ ] Add a better guide for different kinds of users
 - [ ] Future ideas
   - [ ] Database-powered backend
   - [ ] Feedback mechanisms
