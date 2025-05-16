@@ -27,7 +27,7 @@ const LanguagesWithIdenticalNames: React.FC = () => {
     languagesBySchema: { Inclusive },
   } = useDataContext();
   const { searchBy, searchString } = usePageParams();
-  const lowercaseNameFilter = searchBy == SearchBy.Name ? searchString.toLowerCase() : '';
+  const lowercaseNameFilter = searchBy == SearchBy.EngName ? searchString.toLowerCase() : '';
   const sortFunction = getSortFunction();
   const languagesByName = Object.values(Inclusive).reduce<Record<string, LanguageData[]>>(
     (languagesByName, lang) => {

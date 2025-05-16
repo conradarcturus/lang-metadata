@@ -48,6 +48,9 @@ const SearchHighlighted: React.FC<Props> = ({ object, field }) => {
           searchPattern={searchString}
         />
       );
+    case SearchBy.Territory:
+      // Not used
+      return object.nameDisplay;
   }
 };
 

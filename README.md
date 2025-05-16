@@ -120,7 +120,7 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [ ] When few results are shown, suggest alternatives
   - [x] Filter
     - [x] By Scope
-    - [ ] By Country
+    - [x] By Country
     - [ ] Integrate in search bar
   - [x] Hovercard & Tooltips
     - [x] Related objects
@@ -137,7 +137,11 @@ Here's a list of planned functionality. Completed functions are checked off.
     - [x] ISO, Glottolog, Inclusive
     - [x] Highlight language codes in each
   - [ ] Add a better guide for different kinds of users
+- [ ] Pages
+  - [ ] Introduction, how to use
+  - [ ] Acknowledgements
 - [ ] Future ideas
   - [ ] Database-powered backend
   - [ ] Feedback mechanisms
   - [ ] Metrics
+- [ ] clarify what that vitality levels mean

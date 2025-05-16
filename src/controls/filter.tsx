@@ -1,5 +1,5 @@
 import { ObjectData } from '../types/DataTypes';
-import { SearchBy } from '../types/PageParamTypes';
+import { Dimension, SearchBy } from '../types/PageParamTypes';
 import { getObjectScopeLevel } from '../types/ScopeLevel';
 
 import { usePageParams } from './PageParamsContext';
@@ -21,6 +21,26 @@ export function getSubstringFilter(): FilterFunctionType | undefined {
       return (a: ObjectData) => a.nameDisplay.toLowerCase().includes(lowercaseSearchString);
     case SearchBy.Code:
       return (a: ObjectData) => a.codeDisplay.toLowerCase().includes(lowercaseSearchString);
+    case SearchBy.Territory:
+      return (a: ObjectData) => {
+        switch (a.type) {
+          case Dimension.Territory:
+            return (
+              a.ID.toLowerCase() === lowercaseSearchString ||
+              a.containedUNRegionCode.toLowerCase() === lowercaseSearchString ||
+              a.sovereignCode.toLowerCase() === lowercaseSearchString
+            );
+          case Dimension.Locale:
+            return a.territoryCode.toLowerCase() === lowercaseSearchString;
+          case Dimension.Language:
+            return (
+              a.locales?.some((l) => l.territoryCode.toLowerCase() === lowercaseSearchString) ??
+              false
+            );
+          case Dimension.WritingSystem:
+            return a.territoryOfOriginCode?.toLowerCase() === lowercaseSearchString;
+        }
+      };
     case SearchBy.Endonym:
       return (a: ObjectData) =>
         a.nameEndonym?.toLowerCase().includes(lowercaseSearchString) ?? false;
