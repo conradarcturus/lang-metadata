@@ -1,13 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+export type Suggestion = {
+  id: string;
+  label: React.ReactNode;
+};
+
 type Props = {
   inputStyle?: React.CSSProperties;
+  getSuggestions?: (query: string) => Promise<Suggestion[]>;
   onChange: (value: string) => void;
   placeholder?: string;
   value: string;
 };
 
-const TextInput: React.FC<Props> = ({ inputStyle, onChange, placeholder, value }) => {
+const TextInput: React.FC<Props> = ({
+  inputStyle,
+  getSuggestions = () => [],
+  onChange,
+  placeholder,
+  value,
+}) => {
   const spanRef = useRef<HTMLSpanElement>(null);
   const [inputWidth, setInputWidth] = useState(50);
 
@@ -33,15 +45,35 @@ const TextInput: React.FC<Props> = ({ inputStyle, onChange, placeholder, value }
     return () => clearTimeout(timer);
   }, [immediateValue]);
 
+  // Handle suggestions
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [showSuggestion, setShowSuggestions] = useState(false);
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      const result = await getSuggestions(immediateValue);
+      if (active) setSuggestions(result.slice(0, 10));
+    })();
+    return () => {
+      active = false;
+    };
+  }, [getSuggestions, immediateValue]);
+
   return (
     <>
       <input
         type="text"
         className={immediateValue === '' ? 'empty' : ''}
         value={immediateValue}
-        onChange={(ev) => setImmediateValue(ev.target.value)}
-        style={{ ...inputStyle, width: inputWidth + 5 }}
+        onChange={(ev) => {
+          setImmediateValue(ev.target.value);
+          setShowSuggestions(true);
+        }}
+        // onBlur={() => setTimeout(() => setShowSuggestions(false), 0)}
+        onBlur={() => setShowSuggestions(false)}
+        onFocus={() => setShowSuggestions(true)}
         placeholder={placeholder}
+        style={{ ...inputStyle, width: inputWidth + 5 }}
       />
       <span
         ref={spanRef}
@@ -54,7 +86,34 @@ const TextInput: React.FC<Props> = ({ inputStyle, onChange, placeholder, value }
       >
         {value || ' '}
       </span>
-      <button className="NoLeftBorder" type="button" onClick={() => onChange('')}>
+      {suggestions.length > 0 && (
+        <div
+          className="SelectorPopupAnchor"
+          style={{ visibility: showSuggestion ? 'visible' : 'hidden' }}
+        >
+          <div className="SelectorPopup">
+            {suggestions.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => {
+                  onChange(s.id);
+                  setShowSuggestions(false);
+                }}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      <button
+        className="NoLeftBorder"
+        type="button"
+        onClick={() => {
+          onChange('');
+          setShowSuggestions(false);
+        }}
+      >
         &#x2716;
       </button>
     </>

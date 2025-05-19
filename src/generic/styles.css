@@ -28,3 +28,7 @@
 .highlighted {
     background: var(--color-text-highlight);
 }
+
+button:hover .highlighted {
+    color: var(--color-text);
+}

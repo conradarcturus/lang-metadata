@@ -3,10 +3,10 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import CommaSeparated from '../../generic/CommaSeparated';
 import { ObjectData } from '../../types/DataTypes';
-import { SearchBy } from '../../types/PageParamTypes';
+import { SearchableField } from '../../types/PageParamTypes';
 
 import { getObjectSubtitle } from './getObjectName';
-import SearchHighlighted from './SearchHighlighted';
+import { ObjectFieldHighlightedByPageSearch } from './ObjectField';
 
 type Props = {
   object: ObjectData;
@@ -30,7 +30,7 @@ const ObjectTitle: React.FC<Props> = ({ object, highlightSearchMatches = false }
 
   // Add to the subtitle are if we are searching by all names and we have to find the value by searching a new name
   let searchNamesSubtitle = null;
-  if (searchBy === SearchBy.AllNames) {
+  if (searchBy === SearchableField.AllNames) {
     const lowercaseSearchString = searchString.toLowerCase();
     if (
       !object.nameDisplay.toLowerCase().includes(lowercaseSearchString) &&
@@ -38,7 +38,8 @@ const ObjectTitle: React.FC<Props> = ({ object, highlightSearchMatches = false }
     ) {
       searchNamesSubtitle = (
         <>
-          aka <SearchHighlighted object={object} field={SearchBy.AllNames} />
+          aka{' '}
+          <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.AllNames} />
         </>
       );
     }
@@ -48,11 +49,13 @@ const ObjectTitle: React.FC<Props> = ({ object, highlightSearchMatches = false }
   return (
     <>
       <strong>
-        <SearchHighlighted object={object} field={SearchBy.EngName} />
+        <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.EngName} />
       </strong>{' '}
-      {nameDisplay != nameEndonym && <SearchHighlighted object={object} field={SearchBy.Endonym} />}{' '}
+      {nameDisplay != nameEndonym && (
+        <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Endonym} />
+      )}{' '}
       [
-      <SearchHighlighted object={object} field={SearchBy.Code} />]
+      <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />]
       {subtitles.length > 0 && (
         <div className="subtitle">
           <CommaSeparated limit={null}>{subtitles}</CommaSeparated>

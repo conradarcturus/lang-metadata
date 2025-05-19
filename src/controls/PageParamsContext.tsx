@@ -7,7 +7,7 @@ import {
   PageParamKey,
   PageParams,
   PageParamsOptional,
-  SearchBy,
+  SearchableField,
   SortBy,
   ViewType,
 } from '../types/PageParamTypes';
@@ -82,7 +82,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         .split(',')
         .map((s) => s as ScopeLevel)
         .filter(Boolean),
-      searchBy: getParam('searchBy', defaults.searchBy) as SearchBy,
+      searchBy: getParam('searchBy', defaults.searchBy) as SearchableField,
       searchString: getParam('searchString', defaults.searchString),
       sortBy: getParam('sortBy', defaults.sortBy) as SortBy,
       viewType,
@@ -106,7 +106,7 @@ function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams 
       viewType === ViewType.Hierarchy && dimension !== Dimension.Locale
         ? [ScopeLevel.Groups, ScopeLevel.Individuals]
         : [ScopeLevel.Individuals],
-    searchBy: SearchBy.AllNames,
+    searchBy: SearchableField.AllNames,
     searchString: '',
     sortBy: SortBy.Population,
     viewType,

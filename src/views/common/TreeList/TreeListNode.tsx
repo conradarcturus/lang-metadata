@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { usePageParams } from '../../../controls/PageParamsContext';
 import { ObjectData } from '../../../types/DataTypes';
-import { Dimension, SearchBy, ViewType } from '../../../types/PageParamTypes';
+import { Dimension, SearchableField, ViewType } from '../../../types/PageParamTypes';
 import HoverableObject from '../HoverableObject';
-import SearchHighlighted from '../SearchHighlighted';
+import { ObjectFieldHighlightedByPageSearch } from '../ObjectField';
 
 import './treelist.css';
 
@@ -51,14 +51,16 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
       )}
       <>
         <span style={labelStyle}>
-          <SearchHighlighted object={object} field={SearchBy.EngName} />
+          <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.EngName} />
         </span>
-        {searchString != '' && searchBy === SearchBy.Code && viewType === ViewType.Hierarchy && (
-          <>
-            {' '}
-            [<SearchHighlighted object={object} field={SearchBy.Code} />]
-          </>
-        )}
+        {searchString != '' &&
+          searchBy === SearchableField.Code &&
+          viewType === ViewType.Hierarchy && (
+            <>
+              {' '}
+              [<ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />]
+            </>
+          )}
         <HoverableObject object={object}>
           <button className="InfoButton">&#x24D8;</button>
         </HoverableObject>

@@ -107,13 +107,13 @@
     background: var(--color-button-hover);
 }
 
-.selector.rounded :first-child {
+.selector.rounded button:first-child, .selector.rounded label:first-child {
     border-bottom-left-radius: 2em;
     border-top-left-radius: 2em;
 }
 
-.selector.rounded :last-child,
-.selector.rounded .LastChild {
+.selector.rounded button:last-child,
+.selector.rounded button.LastChild {
     border-bottom-right-radius: 2em;
     border-top-right-radius: 2em;
 }
@@ -173,15 +173,20 @@
     margin: 0px;
 }
 
-.rounded .SelectorPopup :first-child {
+
+.rounded .SelectorPopup button:first-child {
     border-radius: 1em 1em 0em 0em;
 }
 
-.rounded .SelectorPopup :last-child {
+.rounded .SelectorPopup button:last-child {
     border-radius: 0em 0em 1em 1em;
 }
 
-.tabs .SelectorPopup :last-child {
+.rounded .SelectorPopup button:first-child:last-child {
+    border-radius: 1em 1em 1em 1em;
+}
+
+.tabs .SelectorPopup button:last-child {
     border-radius: 0em 0em .5em .5em;
 }
 

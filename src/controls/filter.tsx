@@ -1,6 +1,8 @@
-import { ObjectData } from '../types/DataTypes';
-import { Dimension, SearchBy } from '../types/PageParamTypes';
+import { anyWordStartsWith } from '../generic/stringUtils';
+import { ObjectData, TerritoryData } from '../types/DataTypes';
+import { Dimension, SearchableField } from '../types/PageParamTypes';
 import { getObjectScopeLevel } from '../types/ScopeLevel';
+import { getSearchableField } from '../views/common/ObjectField';
 
 import { usePageParams } from './PageParamsContext';
 
@@ -14,41 +16,44 @@ export function getSubstringFilter(): FilterFunctionType | undefined {
   if (searchString == '') {
     return undefined;
   }
-  const lowercaseSearchString = searchString.toLowerCase();
+  return getSubstringFilterOnQuery(searchString.toLowerCase(), searchBy);
+}
 
+export function getSubstringFilterOnQuery(
+  query: string,
+  searchBy: SearchableField,
+): FilterFunctionType {
+  const queryLowerCase = query;
   switch (searchBy) {
-    case SearchBy.EngName:
-      return (a: ObjectData) => a.nameDisplay.toLowerCase().includes(lowercaseSearchString);
-    case SearchBy.Code:
-      return (a: ObjectData) => a.codeDisplay.toLowerCase().includes(lowercaseSearchString);
-    case SearchBy.Territory:
+    case SearchableField.Code:
+    case SearchableField.Endonym:
+    case SearchableField.EngName:
+    case SearchableField.NameOrCode:
+      return (a: ObjectData) => anyWordStartsWith(getSearchableField(a, searchBy), queryLowerCase);
+    case SearchableField.Territory:
       return (a: ObjectData) => {
-        switch (a.type) {
-          case Dimension.Territory:
-            return (
-              a.ID.toLowerCase() === lowercaseSearchString ||
-              a.containedUNRegionCode.toLowerCase() === lowercaseSearchString ||
-              a.sovereignCode.toLowerCase() === lowercaseSearchString
-            );
-          case Dimension.Locale:
-            return a.territoryCode.toLowerCase() === lowercaseSearchString;
-          case Dimension.Language:
-            return (
-              a.locales?.some((l) => l.territoryCode.toLowerCase() === lowercaseSearchString) ??
-              false
-            );
-          case Dimension.WritingSystem:
-            return a.territoryOfOriginCode?.toLowerCase() === lowercaseSearchString;
-        }
+        return getTerritoriesRelevantToObject(a)
+          .map((t) => getSearchableField(t, searchBy))
+          .some((t) => anyWordStartsWith(t, queryLowerCase));
       };
-    case SearchBy.Endonym:
-      return (a: ObjectData) =>
-        a.nameEndonym?.toLowerCase().includes(lowercaseSearchString) ?? false;
-    case SearchBy.AllNames:
+    case SearchableField.AllNames:
       return (a: ObjectData) =>
         a.names
-          .map((name) => name.toLowerCase().includes(lowercaseSearchString))
+          .map((name) => anyWordStartsWith(name, queryLowerCase))
           .reduce((anyPasses, thisPasses) => anyPasses || thisPasses, false);
+  }
+}
+
+function getTerritoriesRelevantToObject(object: ObjectData): TerritoryData[] {
+  switch (object.type) {
+    case Dimension.Territory:
+      return [object, object.parentUNRegion, object.sovereign].filter((t) => t != null);
+    case Dimension.Locale:
+      return [object.territory].filter((t) => t != null);
+    case Dimension.Language:
+      return object.locales.map((l) => l.territory).filter((t) => t != null);
+    case Dimension.WritingSystem:
+      return [object.territoryOfOrigin].filter((t) => t != null);
   }
 }
 
