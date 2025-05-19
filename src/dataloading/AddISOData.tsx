@@ -229,6 +229,7 @@ export function addISOLanguageFamilyData(
         codeDisplay: family.code,
         nameCanonical: name,
         nameDisplay: name,
+        names: [name, family.name],
         scope: LanguageScope.Family,
         viabilityConfidence: 'No',
         viabilityExplanation: 'Language family',

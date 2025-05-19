@@ -121,6 +121,7 @@ export function addGlottologLanguages(
         codeDisplay: glottoCode,
         nameCanonical: name,
         nameDisplay: name,
+        names: [name],
         scope,
         viabilityConfidence: 'No',
         viabilityExplanation: 'Glottolog entry not found in ISO',
