@@ -11,8 +11,9 @@ const Highlightable: React.FC<Props> = ({ text, searchPattern }) => {
     return text;
   }
 
+  // \P{L} = non-letter character. Preferred over \s because it works better for unicode characters
   const searchResult = text.match(
-    new RegExp(`(^|.*\\W)(${searchPattern})(?:(.*\\W)(${searchPattern}))*(.*)`, 'i'),
+    new RegExp(`(^|.*\\P{L})(${searchPattern})(?:(.*\\P{L})(${searchPattern}))*(.*)`, 'iu'),
   );
 
   return searchResult ? (

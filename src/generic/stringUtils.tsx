@@ -27,14 +27,14 @@ export function joinOxfordComma(strs: string[]): string {
 }
 
 /**
- * Split the input string by whitespace (\s) and see if any word matches the inputted query.
+ * Split the input string non-letter characters (\P{L}) and see if any word matches the inputted query.
  * Sometimes inputted queries may contain whitespace -- for that cause we check if the general
  * input also matches.
  */
 export function anyWordStartsWith(str: string, lowercaseQuery: string) {
   const strLowercase = str.toLowerCase();
   return (
-    strLowercase.split(/\W/).some((s) => s.startsWith(lowercaseQuery)) ||
+    strLowercase.split(/\P{L}/u).some((s) => s.startsWith(lowercaseQuery)) ||
     strLowercase.startsWith(lowercaseQuery)
   );
 }
