@@ -18,10 +18,16 @@ const LimitInput: React.FC = () => {
       selectorDescription={`Limit how many ${dimension.toLowerCase()} ${getLimitableObjectName(viewType)} are shown.`}
     >
       <TextInput
-        value={limit < 1 || Number.isNaN(limit) ? '' : limit.toString()}
-        onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
         inputStyle={{ width: '3em' }}
+        getSuggestions={async () => [
+          { id: '8', label: '8' },
+          { id: '20', label: '20' },
+          { id: '100', label: '100' },
+          { id: '200', label: '200' },
+        ]}
+        onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
         placeholder="∞"
+        value={limit < 1 || Number.isNaN(limit) ? '' : limit.toString()}
       />
     </Selector>
   );

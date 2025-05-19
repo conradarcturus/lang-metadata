@@ -11,7 +11,7 @@ const Highlightable: React.FC<Props> = ({ text, searchPattern }) => {
     return text;
   }
 
-  const searchResult = text.match(new RegExp(`(.*)(${searchPattern})(.*)`, 'i'));
+  const searchResult = text.match(new RegExp(`(^|.*\\s)(${searchPattern})(.*)`, 'i'));
 
   return searchResult ? (
     <>

@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { usePageParams } from '../controls/PageParamsContext';
 import { getSortFunction } from '../controls/sort';
 import { useDataContext } from '../dataloading/DataContext';
+import { anyWordStartsWith } from '../generic/stringUtils';
 import { LanguageData, LanguageSchema } from '../types/LanguageTypes';
-import { SearchBy } from '../types/PageParamTypes';
+import { SearchableField } from '../types/PageParamTypes';
 
 import TreeListRoot from './common/TreeList/TreeListRoot';
 import { getLanguageTreeNodes } from './language/LanguageHierarchy';
@@ -27,12 +28,12 @@ const LanguagesWithIdenticalNames: React.FC = () => {
     languagesBySchema: { Inclusive },
   } = useDataContext();
   const { searchBy, searchString } = usePageParams();
-  const lowercaseNameFilter = searchBy == SearchBy.EngName ? searchString.toLowerCase() : '';
+  const lowercaseNameFilter = searchBy == SearchableField.EngName ? searchString.toLowerCase() : '';
   const sortFunction = getSortFunction();
   const languagesByName = Object.values(Inclusive).reduce<Record<string, LanguageData[]>>(
     (languagesByName, lang) => {
       const name = lang.nameDisplay + (lang.nameSubtitle ?? '');
-      if (name.toLowerCase().includes(lowercaseNameFilter)) {
+      if (anyWordStartsWith(name, lowercaseNameFilter)) {
         if (languagesByName[name] == null) {
           languagesByName[name] = [lang];
         } else {

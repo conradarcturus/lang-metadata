@@ -1,13 +1,16 @@
 import React from 'react';
 
-import { SearchBy, ViewType } from '../../types/PageParamTypes';
+import { SearchableField, ViewType } from '../../types/PageParamTypes';
 import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import TextInput from '../components/TextInput';
 import { usePageParams } from '../PageParamsContext';
 
+import { useSearchSuggestions } from './useSearchSuggestions';
+
 const SearchBar: React.FC = () => {
   const { searchBy, searchString, updatePageParams, viewType } = usePageParams();
+  const getSearchSuggestions = useSearchSuggestions();
 
   if (viewType === ViewType.Details) {
     // Not supported for this view
@@ -17,15 +20,16 @@ const SearchBar: React.FC = () => {
   return (
     <Selector selectorLabel="🔎">
       <TextInput
-        inputStyle={{ minWidth: '8em' }}
+        inputStyle={{ minWidth: '20em' }}
+        getSuggestions={getSearchSuggestions}
         onChange={(searchString: string) => updatePageParams({ searchString })}
         placeholder="search"
         value={searchString}
       />
       <label className="NoLeftBorder">on</label>
-      <SingleChoiceOptions<SearchBy>
-        onChange={(searchBy: SearchBy) => updatePageParams({ searchBy })}
-        options={Object.values(SearchBy)}
+      <SingleChoiceOptions<SearchableField>
+        onChange={(searchBy: SearchableField) => updatePageParams({ searchBy })}
+        options={Object.values(SearchableField)}
         selected={searchBy}
       />
     </Selector>

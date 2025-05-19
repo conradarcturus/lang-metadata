@@ -23,12 +23,13 @@ export enum SortBy {
   Name = 'Name',
 }
 
-export enum SearchBy {
-  AllNames = 'All Names',
-  Code = 'Code',
+export enum SearchableField {
+  Code = 'ID',
+  NameOrCode = 'English Name or ID',
   EngName = 'English Name',
   Endonym = 'Endonym',
-  Territory = 'Territory Code',
+  AllNames = 'All Names',
+  Territory = 'Territory',
 }
 
 export type LocaleSeparator = '-' | '_';
@@ -54,7 +55,7 @@ export type PageParams = {
   objectID?: string;
   page: number; // 0 indexed
   scopes: ScopeLevel[];
-  searchBy: SearchBy;
+  searchBy: SearchableField;
   searchString: string;
   sortBy: SortBy;
   viewType: ViewType;
@@ -68,7 +69,7 @@ export type PageParamsOptional = {
   objectID?: string;
   page?: number;
   scopes?: ScopeLevel[];
-  searchBy?: SearchBy;
+  searchBy?: SearchableField;
   searchString?: string;
   sortBy?: SortBy;
   viewType?: ViewType;

@@ -25,3 +25,10 @@ export function joinOxfordComma(strs: string[]): string {
   }
   return strs.slice(0, strs.length - 1).join(', ') + ', and ' + strs[strs.length - 1];
 }
+
+export function anyWordStartsWith(str: string, lowercaseQuery: string) {
+  return str
+    .toLowerCase()
+    .split(/\s/)
+    .some((s) => s.startsWith(lowercaseQuery));
+}

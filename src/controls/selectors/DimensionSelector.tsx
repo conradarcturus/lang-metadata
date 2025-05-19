@@ -22,7 +22,7 @@ const DimensionSelector: React.FC = () => {
         getOptionLabel={(d) => toTitleCase(getDimensionLabelPlural(d))}
         getOptionDescription={(dimension) => (
           <>
-            <div style={{ marginBottom: 8 }}>Decide which kind of object you want to view.</div>
+            <div style={{ marginBottom: 8 }}>Click here to change the kind of entity viewed.</div>
             <OptionDescription dimension={dimension} />
           </>
         )}
