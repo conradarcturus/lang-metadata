@@ -26,9 +26,15 @@ export function joinOxfordComma(strs: string[]): string {
   return strs.slice(0, strs.length - 1).join(', ') + ', and ' + strs[strs.length - 1];
 }
 
+/**
+ * Split the input string by whitespace (\s) and see if any word matches the inputted query.
+ * Sometimes inputted queries may contain whitespace -- for that cause we check if the general
+ * input also matches.
+ */
 export function anyWordStartsWith(str: string, lowercaseQuery: string) {
-  return str
-    .toLowerCase()
-    .split(/\s/)
-    .some((s) => s.startsWith(lowercaseQuery));
+  const strLowercase = str.toLowerCase();
+  return (
+    strLowercase.split(/\W/).some((s) => s.startsWith(lowercaseQuery)) ||
+    strLowercase.startsWith(lowercaseQuery)
+  );
 }

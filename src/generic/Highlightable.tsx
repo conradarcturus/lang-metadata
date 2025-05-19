@@ -11,13 +11,21 @@ const Highlightable: React.FC<Props> = ({ text, searchPattern }) => {
     return text;
   }
 
-  const searchResult = text.match(new RegExp(`(^|.*\\s)(${searchPattern})(.*)`, 'i'));
+  const searchResult = text.match(
+    new RegExp(`(^|.*\\W)(${searchPattern})(?:(.*\\W)(${searchPattern}))*(.*)`, 'i'),
+  );
 
   return searchResult ? (
     <>
-      {searchResult[1]}
-      <span className="highlighted">{searchResult[2]}</span>
-      {searchResult[3]}
+      {searchResult.slice(1).map((part, i) =>
+        i % 2 === 0 ? (
+          part
+        ) : (
+          <span key={i} className="highlighted">
+            {part}
+          </span>
+        ),
+      )}
     </>
   ) : (
     text

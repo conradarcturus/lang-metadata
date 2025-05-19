@@ -23,7 +23,7 @@ export function getSubstringFilterOnQuery(
   query: string,
   searchBy: SearchableField,
 ): FilterFunctionType {
-  const queryLowerCase = query;
+  const queryLowerCase = query.toLowerCase();
   switch (searchBy) {
     case SearchableField.Code:
     case SearchableField.Endonym:
