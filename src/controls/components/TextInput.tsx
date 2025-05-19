@@ -47,7 +47,7 @@ const TextInput: React.FC<Props> = ({
 
   // Handle suggestions
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-  const [showSuggestion, setShowSuggestions] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   useEffect(() => {
     let active = true;
     (async () => {
@@ -69,8 +69,7 @@ const TextInput: React.FC<Props> = ({
           setImmediateValue(ev.target.value);
           setShowSuggestions(true);
         }}
-        // onBlur={() => setTimeout(() => setShowSuggestions(false), 0)}
-        onBlur={() => setShowSuggestions(false)}
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 500)}
         onFocus={() => setShowSuggestions(true)}
         placeholder={placeholder}
         style={{ ...inputStyle, width: inputWidth + 5 }}
@@ -86,17 +85,14 @@ const TextInput: React.FC<Props> = ({
       >
         {value || ' '}
       </span>
-      {suggestions.length > 0 && (
-        <div
-          className="SelectorPopupAnchor"
-          style={{ visibility: showSuggestion ? 'visible' : 'hidden' }}
-        >
+      {showSuggestions && suggestions.length > 0 && (
+        <div className="SelectorPopupAnchor">
           <div className="SelectorPopup">
             {suggestions.map((s) => (
               <button
                 key={s.id}
                 onClick={() => {
-                  onChange(s.id);
+                  setImmediateValue(s.id);
                   setShowSuggestions(false);
                 }}
               >
@@ -110,7 +106,7 @@ const TextInput: React.FC<Props> = ({
         className="NoLeftBorder"
         type="button"
         onClick={() => {
-          onChange('');
+          setImmediateValue('');
           setShowSuggestions(false);
         }}
       >
