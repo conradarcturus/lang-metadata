@@ -5,7 +5,7 @@ import { LanguageSchema } from '../types/LanguageTypes';
 
 const AboutPage: React.FC = () => {
   return (
-    <div style={{ textAlign: 'left', padding: 20 }}>
+    <div style={{ textAlign: 'left' }}>
       <h1>About</h1>
       <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
         <a href="#contributors">
