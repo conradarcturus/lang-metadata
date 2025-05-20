@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import HoverableButton from '../../generic/HoverableButton';
+import { View } from '../../types/PageParamTypes';
+import { usePageParams } from '../PageParamsContext';
+
 export type Suggestion = {
   id: string;
+  searchString: string;
   label: React.ReactNode;
 };
 
@@ -9,6 +14,8 @@ type Props = {
   inputStyle?: React.CSSProperties;
   getSuggestions?: (query: string) => Promise<Suggestion[]>;
   onChange: (value: string) => void;
+  showFilterButton?: boolean;
+  showGoToDetailsButton?: boolean;
   placeholder?: string;
   value: string;
 };
@@ -17,6 +24,8 @@ const TextInput: React.FC<Props> = ({
   inputStyle,
   getSuggestions = () => [],
   onChange,
+  showFilterButton = true,
+  showGoToDetailsButton = false,
   placeholder,
   value,
 }) => {
@@ -89,15 +98,14 @@ const TextInput: React.FC<Props> = ({
         <div className="SelectorPopupAnchor">
           <div className="SelectorPopup">
             {suggestions.map((s) => (
-              <button
+              <SuggestionRow
                 key={s.id}
-                onClick={() => {
-                  setImmediateValue(s.id);
-                  setShowSuggestions(false);
-                }}
-              >
-                {s.label}
-              </button>
+                setImmediateValue={setImmediateValue}
+                setShowSuggestions={setShowSuggestions}
+                showFilterButton={showFilterButton}
+                showGoToDetailsButton={showGoToDetailsButton}
+                suggestion={s}
+              />
             ))}
           </div>
         </div>
@@ -113,6 +121,64 @@ const TextInput: React.FC<Props> = ({
         &#x2716;
       </button>
     </>
+  );
+};
+
+type SuggestionRowProps = {
+  setImmediateValue: (value: string) => void;
+  setShowSuggestions: (show: boolean) => void;
+  showFilterButton?: boolean;
+  showGoToDetailsButton?: boolean;
+  suggestion: Suggestion;
+};
+
+const SuggestionRow: React.FC<SuggestionRowProps> = ({
+  setImmediateValue,
+  showFilterButton,
+  showGoToDetailsButton,
+  suggestion,
+}) => {
+  const { id, searchString, label } = suggestion;
+  const { updatePageParams } = usePageParams();
+
+  const setFilter = () => {
+    setImmediateValue(searchString);
+  };
+  const goToDetails = () => {
+    updatePageParams({ objectID: id, view: View.Details, searchString });
+  };
+
+  if (!showFilterButton) {
+    return (
+      <HoverableButton
+        hoverContent={<>Go to the details page for {searchString}</>}
+        onClick={goToDetails}
+      >
+        {label}
+      </HoverableButton>
+    );
+  }
+  if (!showGoToDetailsButton) {
+    return (
+      <button key={id} onClick={setFilter}>
+        {label}
+      </button>
+    );
+  }
+
+  return (
+    <div key={id} className="SuggestionRowWithMultipleInteractions">
+      <div>{label}</div>
+      <HoverableButton hoverContent={<>Filter by &quot;{searchString}&quot;</>} onClick={setFilter}>
+        &#x1F50E;
+      </HoverableButton>
+      <HoverableButton
+        hoverContent={<>Go to the details page for {searchString}</>}
+        onClick={goToDetails}
+      >
+        &#x2197;
+      </HoverableButton>
+    </div>
   );
 };
 

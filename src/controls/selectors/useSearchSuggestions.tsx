@@ -45,7 +45,7 @@ export function useSearchSuggestions(): (query: string) => Promise<Suggestion[]>
           .slice(0, SEARCH_RESULTS_LIMIT)
           .map((object) => {
             let label = <HighlightedObjectField object={object} field={searchBy} query={query} />;
-            let id = getSearchableField(object, searchBy);
+            let searchString = getSearchableField(object, searchBy);
             if (searchBy === SearchableField.Code) {
               label = (
                 <>
@@ -53,9 +53,9 @@ export function useSearchSuggestions(): (query: string) => Promise<Suggestion[]>
                 </>
               );
             } else if (searchBy === SearchableField.Territory) {
-              id = object.nameDisplay;
+              searchString = object.nameDisplay;
             }
-            return { id, label };
+            return { id: object.ID, searchString, label };
           }),
         (item) => item.id,
       );

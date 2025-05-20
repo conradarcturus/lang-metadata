@@ -5,6 +5,7 @@ import Hoverable from '../../generic/Hoverable';
 type Props = {
   appearance?: 'rounded' | 'tabs';
   children: React.ReactNode;
+  className?: string;
   selectorLabel?: string;
   selectorDescription?: React.ReactNode;
   size?: 'regular' | 'compact';
@@ -13,12 +14,13 @@ type Props = {
 const Selector: React.FC<Props> = ({
   appearance = 'rounded',
   children,
+  className = '',
   selectorLabel,
   selectorDescription,
   size = 'regular',
 }) => {
   return (
-    <div className={'selector ' + size + ' ' + appearance}>
+    <div className={className + ' selector ' + size + ' ' + appearance}>
       {selectorLabel != null && (
         <label>
           <Hoverable hoverContent={selectorDescription} style={{ textDecoration: 'none' }}>

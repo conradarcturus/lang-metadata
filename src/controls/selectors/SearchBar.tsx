@@ -12,18 +12,15 @@ const SearchBar: React.FC = () => {
   const { searchBy, searchString, updatePageParams, view } = usePageParams();
   const getSearchSuggestions = useSearchSuggestions();
 
-  if (view === View.Details) {
-    // Not supported for this view
-    return <></>;
-  }
-
   return (
-    <Selector selectorLabel="🔎">
+    <Selector className="SearchBar" selectorLabel="🔎">
       <TextInput
         inputStyle={{ minWidth: '20em' }}
         getSuggestions={getSearchSuggestions}
         onChange={(searchString: string) => updatePageParams({ searchString })}
         placeholder="search"
+        showFilterButton={view !== View.Details}
+        showGoToDetailsButton={true}
         value={searchString}
       />
       <label className="NoLeftBorder">on</label>
