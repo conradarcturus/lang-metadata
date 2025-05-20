@@ -91,6 +91,15 @@ a:hover {
     font-weight: normal;
 }
 
+div h1:first-child, div h2:first-child, div h3:first-child {
+    margin-top: 0px;
+}
+
+div.section {
+    margin-bottom: 1em;
+}
+
+
 @media (min-width: 0px) {
     .CardList {
         grid-template-columns: repeat(1, 1fr);

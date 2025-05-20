@@ -7,19 +7,17 @@ import ViewModal from './views/ViewModal';
 
 function App() {
   return (
-    <>
-      <PageParamsProvider>
-        <DataProvider>
-          <HoverCardProvider>
-            <PageNavBar />
-            <div className="Body">
-              <MainViews />
-            </div>
-            <ViewModal />
-          </HoverCardProvider>
-        </DataProvider>
-      </PageParamsProvider>
-    </>
+    <PageParamsProvider>
+      <DataProvider>
+        <HoverCardProvider>
+          <PageNavBar />
+          <div className="Body">
+            <MainViews />
+          </div>
+          <ViewModal />
+        </HoverCardProvider>
+      </DataProvider>
+    </PageParamsProvider>
   );
 }
 

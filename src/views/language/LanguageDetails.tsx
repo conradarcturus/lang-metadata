@@ -43,7 +43,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
 
   return (
     <div className="Details">
-      <div>
+      <div className="section">
         <h3>Identification</h3>
         {otherNames.length > 0 && (
           <div>
@@ -98,7 +98,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           )}
         </div>
       </div>
-      <div>
+      <div className="section">
         <h3>Attributes</h3>
         {populationCited && (
           <div>
@@ -131,7 +131,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           </div>
         )}
       </div>
-      <div>
+      <div className="section">
         <h3>Vitality & Viability</h3>
         {vitalityISO && (
           <div>
@@ -160,7 +160,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           <CLDRCoverageInfo lang={lang} />
         </div>
       </div>
-      <div>
+      <div className="section">
         <h3>Connections</h3>
         {ISO.parentLanguage && (
           <div>
