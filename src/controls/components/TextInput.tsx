@@ -14,8 +14,8 @@ type Props = {
   inputStyle?: React.CSSProperties;
   getSuggestions?: (query: string) => Promise<Suggestion[]>;
   onChange: (value: string) => void;
-  showFilterButton?: boolean;
   showGoToDetailsButton?: boolean;
+  showTextInputButton?: boolean;
   placeholder?: string;
   value: string;
 };
@@ -24,8 +24,8 @@ const TextInput: React.FC<Props> = ({
   inputStyle,
   getSuggestions = () => [],
   onChange,
-  showFilterButton = true,
   showGoToDetailsButton = false,
+  showTextInputButton = true,
   placeholder,
   value,
 }) => {
@@ -102,7 +102,7 @@ const TextInput: React.FC<Props> = ({
                 key={s.searchString}
                 setImmediateValue={setImmediateValue}
                 setShowSuggestions={setShowSuggestions}
-                showFilterButton={showFilterButton}
+                showTextInputButton={showTextInputButton}
                 showGoToDetailsButton={showGoToDetailsButton}
                 suggestion={s}
               />
@@ -127,15 +127,15 @@ const TextInput: React.FC<Props> = ({
 type SuggestionRowProps = {
   setImmediateValue: (value: string) => void;
   setShowSuggestions: (show: boolean) => void;
-  showFilterButton?: boolean;
   showGoToDetailsButton?: boolean;
+  showTextInputButton?: boolean;
   suggestion: Suggestion;
 };
 
 const SuggestionRow: React.FC<SuggestionRowProps> = ({
   setImmediateValue,
-  showFilterButton,
   showGoToDetailsButton,
+  showTextInputButton,
   suggestion,
 }) => {
   const { objectID, searchString, label } = suggestion;
@@ -148,7 +148,14 @@ const SuggestionRow: React.FC<SuggestionRowProps> = ({
     updatePageParams({ objectID, view: View.Details, searchString });
   };
 
-  if (!showFilterButton) {
+  // Some simplier states if we have 1 button
+  if (!showGoToDetailsButton) {
+    if (!showTextInputButton) {
+      return label;
+    }
+    return <button onClick={setFilter}>{label}</button>;
+  }
+  if (!showTextInputButton) {
     return (
       <HoverableButton
         hoverContent={<>Go to the details page for {searchString}</>}
@@ -158,10 +165,8 @@ const SuggestionRow: React.FC<SuggestionRowProps> = ({
       </HoverableButton>
     );
   }
-  if (!showGoToDetailsButton) {
-    return <button onClick={setFilter}>{label}</button>;
-  }
 
+  // The more complex case, where we have 2 buttons
   return (
     <div className="SuggestionRowWithMultipleInteractions">
       <div>{label}</div>

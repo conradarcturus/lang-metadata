@@ -13,14 +13,14 @@ const SearchBar: React.FC = () => {
   const getSearchSuggestions = useSearchSuggestions();
 
   return (
-    <Selector className="SearchBar" selectorLabel="🔎">
+    <Selector selectorLabel="🔎">
       <TextInput
         inputStyle={{ minWidth: '20em' }}
         getSuggestions={getSearchSuggestions}
         onChange={(searchString: string) => updatePageParams({ searchString })}
         placeholder="search"
-        showFilterButton={view !== View.Details}
         showGoToDetailsButton={true}
+        showTextInputButton={view !== View.Details}
         value={searchString}
       />
       <label className="NoLeftBorder">on</label>
