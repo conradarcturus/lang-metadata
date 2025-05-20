@@ -20,10 +20,10 @@ const LimitInput: React.FC = () => {
       <TextInput
         inputStyle={{ width: '3em' }}
         getSuggestions={async () => [
-          { id: '8', label: '8' },
-          { id: '20', label: '20' },
-          { id: '100', label: '100' },
-          { id: '200', label: '200' },
+          { searchString: '8', label: '8' },
+          { searchString: '20', label: '20' },
+          { searchString: '100', label: '100' },
+          { searchString: '200', label: '200' },
         ]}
         onChange={(limit: string) => updatePageParams({ limit: parseInt(limit) })}
         placeholder="∞"

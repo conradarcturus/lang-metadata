@@ -5,7 +5,7 @@ import { View } from '../../types/PageParamTypes';
 import { usePageParams } from '../PageParamsContext';
 
 export type Suggestion = {
-  id: string;
+  objectID?: string;
   searchString: string;
   label: React.ReactNode;
 };
@@ -99,7 +99,7 @@ const TextInput: React.FC<Props> = ({
           <div className="SelectorPopup">
             {suggestions.map((s) => (
               <SuggestionRow
-                key={s.id}
+                key={s.searchString}
                 setImmediateValue={setImmediateValue}
                 setShowSuggestions={setShowSuggestions}
                 showFilterButton={showFilterButton}
@@ -138,14 +138,14 @@ const SuggestionRow: React.FC<SuggestionRowProps> = ({
   showGoToDetailsButton,
   suggestion,
 }) => {
-  const { id, searchString, label } = suggestion;
+  const { objectID, searchString, label } = suggestion;
   const { updatePageParams } = usePageParams();
 
   const setFilter = () => {
     setImmediateValue(searchString);
   };
   const goToDetails = () => {
-    updatePageParams({ objectID: id, view: View.Details, searchString });
+    updatePageParams({ objectID, view: View.Details, searchString });
   };
 
   if (!showFilterButton) {
@@ -159,15 +159,11 @@ const SuggestionRow: React.FC<SuggestionRowProps> = ({
     );
   }
   if (!showGoToDetailsButton) {
-    return (
-      <button key={id} onClick={setFilter}>
-        {label}
-      </button>
-    );
+    return <button onClick={setFilter}>{label}</button>;
   }
 
   return (
-    <div key={id} className="SuggestionRowWithMultipleInteractions">
+    <div className="SuggestionRowWithMultipleInteractions">
       <div>{label}</div>
       <HoverableButton hoverContent={<>Filter by &quot;{searchString}&quot;</>} onClick={setFilter}>
         &#x1F50E;
