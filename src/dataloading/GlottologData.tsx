@@ -105,7 +105,7 @@ export function addGlottologLanguages(
           childLanguages: [],
         },
         ISO: { childLanguages: [] },
-        WAL: { childLanguages: [] },
+        UNESCO: { childLanguages: [] },
         Glottolog: {
           code: glottoCode,
           name,

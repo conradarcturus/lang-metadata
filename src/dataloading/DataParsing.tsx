@@ -25,7 +25,7 @@ export function parseLanguageLine(line: string): LanguageData {
   const schemaSpecific = {
     Inclusive: { code, name: nameDisplay, parentLanguageCode, childLanguages: [] },
     ISO: { code, parentLanguageCode: parentISOCode, childLanguages: [] },
-    WAL: { code, name: nameDisplay, parentLanguageCode: parentISOCode, childLanguages: [] },
+    UNESCO: { code, name: nameDisplay, parentLanguageCode: parentISOCode, childLanguages: [] },
     Glottolog: {
       code: parts[1] != '' ? parts[1] : undefined,
       parentLanguageCode: parentGlottocode,

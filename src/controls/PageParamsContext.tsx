@@ -97,7 +97,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 function getDefaultParams(dimension: Dimension, view: View): PageParams {
   return {
     dimension,
-    languageSchema: LanguageSchema.WAL,
+    languageSchema: LanguageSchema.Inclusive,
     limit: view === View.Table ? 200 : 8,
     localeSeparator: '_',
     objectID: undefined,

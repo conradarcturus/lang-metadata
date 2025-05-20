@@ -72,7 +72,7 @@ const ObjectTypeLabel: React.FC = () => {
         return 'languages and language-like entities';
       case LanguageSchema.ISO:
         return 'ISO languages';
-      case LanguageSchema.WAL:
+      case LanguageSchema.UNESCO:
       case LanguageSchema.CLDR:
         break; // fall back to the regular plural (languages)
     }

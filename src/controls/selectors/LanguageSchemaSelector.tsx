@@ -48,12 +48,12 @@ const LanguageSchemaDescription: React.FC<{ languageSchema: LanguageSchema }> = 
           languages and macrolanguages or the ISO 639-5 standard for language families.
         </>
       );
-    case LanguageSchema.WAL:
+    case LanguageSchema.UNESCO:
       return (
         <>
-          <label>World Atlas of Languages (WAL):</label>The languages that have been agreed by the
-          UNESCO authorities and representatives of UN member states to show in the World Atlas of
-          Languages.
+          <label>UNESCO&apos;s World Atlas of Languages (WAL):</label>The languages that have been
+          agreed by the UNESCO authorities and representatives of UN member states to show in the
+          World Atlas of Languages.
         </>
       );
     case LanguageSchema.Glottolog:

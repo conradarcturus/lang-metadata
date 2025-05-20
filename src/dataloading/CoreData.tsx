@@ -50,7 +50,7 @@ export const EMPTY_LANGUAGES_BY_SCHEMA: LanguagesBySchema = {
   Inclusive: {},
   ISO: {},
   Glottolog: {},
-  WAL: {},
+  UNESCO: {},
   CLDR: {},
 };
 

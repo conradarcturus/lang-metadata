@@ -218,7 +218,7 @@ export function addISOLanguageFamilyData(
       const schemaSpecific = {
         Inclusive: { code: family.code, parentLanguageCode: family.parent, childLanguages: [] },
         ISO: { code: family.code, name, parentLanguageCode: family.parent, childLanguages: [] },
-        WAL: { childLanguages: [] }, // Not including lang families in WAL
+        UNESCO: { childLanguages: [] }, // Not including lang families in UNESCO's WAL
         Glottolog: { childLanguages: [] }, // No glottolog data
         CLDR: { childLanguages: [] }, // CLDR does not include language families
       };

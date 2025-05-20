@@ -17,7 +17,7 @@ export type LanguagesBySchema = Record<LanguageSchema, LanguageDictionary>;
 export enum LanguageSchema {
   Inclusive = 'Inclusive',
   ISO = 'ISO',
-  WAL = 'WAL',
+  UNESCO = 'UNESCO',
   Glottolog = 'Glottolog',
   CLDR = 'CLDR',
 }

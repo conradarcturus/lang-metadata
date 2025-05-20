@@ -135,7 +135,7 @@ export function connectLocales(
 
 /**
  * Recompose the structure of languages, leaving the primary index intact but also
- * creating 4 other indices based on the definitions of languages from ISO, WAL, Glottolog, and CLDR
+ * creating 4 other indices based on the definitions of languages from ISO, UNESCO, Glottolog, and CLDR
  */
 export function groupLanguagesBySchema(languages: LanguageDictionary): LanguagesBySchema {
   return {
@@ -147,12 +147,12 @@ export function groupLanguagesBySchema(languages: LanguageDictionary): Languages
       }
       return isoLangs;
     }, {}),
-    WAL: Object.values(languages).reduce<LanguageDictionary>((walLangs, lang) => {
-      const code = lang.schemaSpecific.WAL.code;
+    UNESCO: Object.values(languages).reduce<LanguageDictionary>((unescoLangs, lang) => {
+      const code = lang.schemaSpecific.UNESCO.code;
       if (code != null && lang.viabilityConfidence != null && lang.viabilityConfidence != 'No') {
-        walLangs[code] = lang;
+        unescoLangs[code] = lang;
       }
-      return walLangs;
+      return unescoLangs;
     }, {}),
     Glottolog: Object.values(languages).reduce<LanguageDictionary>((glottoLangs, lang) => {
       const code = lang.schemaSpecific.Glottolog.code;
