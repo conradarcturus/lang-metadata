@@ -9,7 +9,7 @@
 
 import { CLDRCoverageData } from './CLDRTypes';
 import { LocaleData, ObjectBase, ScriptCode, WritingSystemData } from './DataTypes';
-import { Dimension } from './PageParamTypes';
+import { ObjectType } from './PageParamTypes';
 
 export type LanguageDictionary = Record<LanguageCode, LanguageData>;
 export type LanguagesBySchema = Record<LanguageSchema, LanguageDictionary>;
@@ -39,7 +39,7 @@ export enum LanguageScope {
 }
 
 export interface LanguageData extends ObjectBase {
-  type: Dimension.Language;
+  type: ObjectType.Language;
 
   // Provided by the TSV files
   ID: LanguageCode; // Stable ID, favors ISO

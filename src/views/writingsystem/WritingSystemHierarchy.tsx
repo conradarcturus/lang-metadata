@@ -4,7 +4,7 @@ import { getScopeFilter } from '../../controls/filter';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import { ObjectData, WritingSystemData } from '../../types/DataTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
@@ -53,7 +53,7 @@ function getWritingSystemTreeNode(
   filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
-    type: Dimension.WritingSystem,
+    type: ObjectType.WritingSystem,
     object: writingSystem,
     children: getWritingSystemTreeNodes(
       writingSystem.childWritingSystems,

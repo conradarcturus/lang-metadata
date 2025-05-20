@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ObjectData } from '../../types/DataTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import HoverableObject from '../common/HoverableObject';
 
 type Props = {
@@ -18,7 +18,7 @@ const HoverableObjectName: React.FC<Props> = ({
   style,
 }) => {
   let label = labelSource == 'code' ? object.codeDisplay : object.nameDisplay;
-  if (object.type === Dimension.Locale) {
+  if (object.type === ObjectType.Locale) {
     if (labelSource == 'language') {
       label = object.language?.nameDisplay ?? object.languageCode;
     } else if (labelSource == 'territory') {

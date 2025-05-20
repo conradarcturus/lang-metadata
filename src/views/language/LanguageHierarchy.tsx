@@ -6,7 +6,7 @@ import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import { ObjectData } from '../../types/DataTypes';
 import { LanguageData, LanguageSchema, LanguageScope } from '../../types/LanguageTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
@@ -58,7 +58,7 @@ function getLanguageTreeNode(
   filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
-    type: Dimension.Language,
+    type: ObjectType.Language,
     object: lang,
     children: getLanguageTreeNodes(
       lang.schemaSpecific[languageSchema].childLanguages,

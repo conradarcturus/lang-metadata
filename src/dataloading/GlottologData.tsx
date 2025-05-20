@@ -5,7 +5,7 @@ import {
   LanguagesBySchema,
   LanguageScope,
 } from '../types/LanguageTypes';
-import { Dimension } from '../types/PageParamTypes';
+import { ObjectType } from '../types/PageParamTypes';
 
 const DEBUG = false;
 
@@ -116,7 +116,7 @@ export function addGlottologLanguages(
         CLDR: { childLanguages: [] },
       };
       const newLang: LanguageData = {
-        type: Dimension.Language,
+        type: ObjectType.Language,
         ID: glottoCode,
         codeDisplay: glottoCode,
         nameCanonical: name,

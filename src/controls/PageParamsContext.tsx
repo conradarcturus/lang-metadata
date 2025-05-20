@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { LanguageSchema } from '../types/LanguageTypes';
 import {
-  Dimension,
+  ObjectType,
   PageParamKey,
   PageParams,
   PageParamsOptional,
@@ -18,7 +18,7 @@ type PageParamsContextState = PageParams & {
 };
 
 const PageParamsContext = createContext<PageParamsContextState | undefined>(undefined);
-const DEFAULT_DIMENSION = Dimension.Language;
+const DEFAULT_OBJECT_TYPE = ObjectType.Language;
 const DEFAULT_VIEW = View.CardList;
 const PARAMS_THAT_CLEAR: PageParamKey[] = ['limit', 'page', 'searchString', 'searchBy'];
 
@@ -55,7 +55,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       });
       // Clear the some parameters if they match the default
       const defaults = getDefaultParams(
-        (next.get('dimension') as Dimension) ?? DEFAULT_DIMENSION,
+        (next.get('objectType') as ObjectType) ?? DEFAULT_OBJECT_TYPE,
         (next.get('view') as View) ?? DEFAULT_VIEW,
       );
       PARAMS_THAT_CLEAR.forEach((param: PageParamKey) => {
@@ -68,15 +68,15 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   };
 
   const providerValue: PageParamsContextState = useMemo(() => {
-    const dimension = getParam('dimension', DEFAULT_DIMENSION) as Dimension;
+    const objectType = getParam('objectType', DEFAULT_OBJECT_TYPE) as ObjectType;
     const view = getParam('view', DEFAULT_VIEW) as View;
-    const defaults = getDefaultParams(dimension, view);
+    const defaults = getDefaultParams(objectType, view);
     return {
-      dimension,
       languageSchema: getParam('languageSchema', defaults.languageSchema) as LanguageSchema,
       limit: parseInt(getParam('limit', defaults.limit.toString())),
       localeSeparator: getParam('localeSeparator', '') === '-' ? '-' : '_',
       objectID: getParam('objectID', undefined),
+      objectType,
       page: parseInt(getParam('page', defaults.page.toString())),
       scopes: getParam('scopes', defaults.scopes.join(','))
         .split(',')
@@ -94,16 +94,16 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 };
 
 // If there is nothing in the URL string, then use this instead
-function getDefaultParams(dimension: Dimension, view: View): PageParams {
+function getDefaultParams(objectType: ObjectType, view: View): PageParams {
   return {
-    dimension,
     languageSchema: LanguageSchema.Inclusive,
     limit: view === View.Table ? 200 : 8,
     localeSeparator: '_',
     objectID: undefined,
+    objectType,
     page: 1,
     scopes:
-      view === View.Hierarchy && dimension !== Dimension.Locale
+      view === View.Hierarchy && objectType !== ObjectType.Locale
         ? [ScopeLevel.Groups, ScopeLevel.Individuals]
         : [ScopeLevel.Individuals],
     searchBy: SearchableField.AllNames,

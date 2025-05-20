@@ -3,7 +3,7 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../dataloading/DataContext';
 import { ObjectData } from '../../types/DataTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import LanguageDetails from '../language/LanguageDetails';
 import LocaleDetails from '../locale/LocaleDetails';
 import TerritoryDetails from '../territory/TerritoryDetails';
@@ -21,13 +21,13 @@ const ObjectDetails: React.FC<Props> = ({ object, objectID }) => {
   }
 
   switch (object.type) {
-    case Dimension.Language:
+    case ObjectType.Language:
       return <LanguageDetails lang={object} />;
-    case Dimension.Locale:
+    case ObjectType.Locale:
       return <LocaleDetails locale={object} />;
-    case Dimension.Territory:
+    case ObjectType.Territory:
       return <TerritoryDetails territory={object} />;
-    case Dimension.WritingSystem:
+    case ObjectType.WritingSystem:
       return <WritingSystemDetails writingSystem={object} />;
   }
 };

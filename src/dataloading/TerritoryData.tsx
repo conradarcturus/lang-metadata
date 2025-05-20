@@ -6,7 +6,7 @@ import {
   TerritoryData,
   TerritoryType,
 } from '../types/DataTypes';
-import { Dimension } from '../types/PageParamTypes';
+import { ObjectType } from '../types/PageParamTypes';
 import { getObjectScopeLevel, ScopeLevel } from '../types/ScopeLevel';
 
 const DEBUG = false;
@@ -30,7 +30,7 @@ export async function loadTerritories(): Promise<Record<TerritoryCode, Territory
 export function parseTerritoryLine(line: string): TerritoryData {
   const parts = line.split('\t');
   return {
-    type: Dimension.Territory,
+    type: ObjectType.Territory,
 
     ID: parts[0],
     codeDisplay: parts[0],

@@ -1,6 +1,6 @@
 import { anyWordStartsWith } from '../generic/stringUtils';
 import { ObjectData, TerritoryData } from '../types/DataTypes';
-import { Dimension, SearchableField } from '../types/PageParamTypes';
+import { ObjectType, SearchableField } from '../types/PageParamTypes';
 import { getObjectScopeLevel } from '../types/ScopeLevel';
 import { getSearchableField } from '../views/common/ObjectField';
 
@@ -46,13 +46,13 @@ export function getSubstringFilterOnQuery(
 
 function getTerritoriesRelevantToObject(object: ObjectData): TerritoryData[] {
   switch (object.type) {
-    case Dimension.Territory:
+    case ObjectType.Territory:
       return [object, object.parentUNRegion, object.sovereign].filter((t) => t != null);
-    case Dimension.Locale:
+    case ObjectType.Locale:
       return [object.territory].filter((t) => t != null);
-    case Dimension.Language:
+    case ObjectType.Language:
       return object.locales.map((l) => l.territory).filter((t) => t != null);
-    case Dimension.WritingSystem:
+    case ObjectType.WritingSystem:
       return [object.territoryOfOrigin].filter((t) => t != null);
   }
 }

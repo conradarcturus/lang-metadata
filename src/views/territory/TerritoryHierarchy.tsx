@@ -4,7 +4,7 @@ import { getScopeFilter } from '../../controls/filter';
 import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import { ObjectData, TerritoryData, TerritoryType } from '../../types/DataTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
@@ -51,7 +51,7 @@ function getTerritoryTreeNode(
   filterByScope: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
-    type: Dimension.Language,
+    type: ObjectType.Language,
     object: territory,
     children: getTerritoryTreeNodes(territory.containsTerritories, sortFunction, filterByScope),
     labelStyle: {

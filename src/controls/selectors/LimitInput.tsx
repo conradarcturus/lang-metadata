@@ -6,7 +6,7 @@ import TextInput from '../components/TextInput';
 import { usePageParams } from '../PageParamsContext';
 
 const LimitInput: React.FC = () => {
-  const { limit, dimension, updatePageParams, view } = usePageParams();
+  const { limit, objectType, updatePageParams, view } = usePageParams();
   if ([View.Details, View.Notices].includes(view)) {
     // Not supported for this view
     return <></>;
@@ -15,7 +15,7 @@ const LimitInput: React.FC = () => {
   return (
     <Selector
       selectorLabel="Limit:"
-      selectorDescription={`Limit how many ${dimension.toLowerCase()} ${getLimitableObjectName(view)} are shown.`}
+      selectorDescription={`Limit how many ${objectType.toLowerCase()} ${getLimitableObjectName(view)} are shown.`}
     >
       <TextInput
         inputStyle={{ width: '3em' }}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { usePageParams } from '../../../controls/PageParamsContext';
 import { ObjectData } from '../../../types/DataTypes';
-import { Dimension, SearchableField, View } from '../../../types/PageParamTypes';
+import { ObjectType, SearchableField, View } from '../../../types/PageParamTypes';
 import HoverableObject from '../HoverableObject';
 import { ObjectFieldHighlightedByPageSearch } from '../ObjectField';
 
@@ -11,7 +11,7 @@ import './treelist.css';
 export type TreeNodeData = {
   children: TreeNodeData[];
   object: ObjectData;
-  type: Dimension;
+  type: ObjectType;
   labelStyle?: React.CSSProperties;
   descendentsPassFilter?: boolean;
 };

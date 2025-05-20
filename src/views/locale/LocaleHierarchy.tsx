@@ -5,7 +5,7 @@ import { getSortFunction } from '../../controls/sort';
 import { useDataContext } from '../../dataloading/DataContext';
 import { LocaleData, ObjectData, WritingSystemData } from '../../types/DataTypes';
 import { LanguageCode, LanguageData } from '../../types/LanguageTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';
 import TreeListPageBody from '../common/TreeList/TreeListPageBody';
 
@@ -48,7 +48,7 @@ function getLanguageTreeNode(
   filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
-    type: Dimension.Locale,
+    type: ObjectType.Locale,
     object: lang,
     children: getWritingSystemNodesForLanguage(lang, sortFunction, filterFunction),
   };
@@ -99,7 +99,7 @@ function getLocaleNodeForWritingSystem(
   filterFunction: (a: ObjectData) => boolean,
 ): TreeNodeData {
   return {
-    type: Dimension.Locale,
+    type: ObjectType.Locale,
     object: writingSystem,
     children: getTerritoryNodesForWritingSystem(
       writingSystem,
@@ -125,7 +125,7 @@ function getTerritoryNodesForWritingSystem(
 
 function getLocaleNodeForTerritory(locale: LocaleData): TreeNodeData {
   return {
-    type: Dimension.Locale,
+    type: ObjectType.Locale,
     object: locale,
     children: [],
   };

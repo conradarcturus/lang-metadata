@@ -7,7 +7,7 @@ import {
   WritingSystemScope,
 } from '../types/DataTypes';
 import { LanguageData } from '../types/LanguageTypes';
-import { Dimension } from '../types/PageParamTypes';
+import { ObjectType } from '../types/PageParamTypes';
 import { ScopeLevel } from '../types/ScopeLevel';
 
 export function parseLanguageLine(line: string): LanguageData {
@@ -36,7 +36,7 @@ export function parseLanguageLine(line: string): LanguageData {
   const nameEndonym = parts[3] != '' ? parts[3] : undefined;
 
   return {
-    type: Dimension.Language,
+    type: ObjectType.Language,
 
     ID: code,
     codeDisplay: code,
@@ -76,7 +76,7 @@ export function parseLocaleLine(line: string): LocaleData {
   const variantTag = parts[6] != '' ? parts[6] : undefined;
 
   return {
-    type: Dimension.Locale,
+    type: ObjectType.Locale,
     ID: parts[0],
     codeDisplay: parts[0],
     // All locales from the locale input file should be at the country or smaller level
@@ -98,7 +98,7 @@ export function parseLocaleLine(line: string): LocaleData {
 export function parseWritingSystem(line: string): WritingSystemData {
   const parts = line.split('\t');
   return {
-    type: Dimension.WritingSystem,
+    type: ObjectType.WritingSystem,
 
     ID: parts[0],
     codeDisplay: parts[0],

@@ -1,6 +1,6 @@
 import { ObjectData } from '../types/DataTypes';
 import { LanguageSchema } from '../types/LanguageTypes';
-import { Dimension, SortBy, View } from '../types/PageParamTypes';
+import { ObjectType, SortBy, View } from '../types/PageParamTypes';
 
 import { usePageParams } from './PageParamsContext';
 
@@ -26,8 +26,8 @@ export function getSortFunction(languageSchema?: LanguageSchema): SortByFunction
     case SortBy.Population:
       return (a: ObjectData, b: ObjectData) => {
         switch (a.type) {
-          case Dimension.Language:
-            return b.type === Dimension.Language
+          case ObjectType.Language:
+            return b.type === ObjectType.Language
               ? (b.populationCited ?? 0) -
                   (a.populationCited ?? 0) +
                   (view === View.Hierarchy
@@ -35,18 +35,18 @@ export function getSortFunction(languageSchema?: LanguageSchema): SortByFunction
                       (a.schemaSpecific[effectiveLanguageSchema].populationOfDescendents ?? 0)
                     : 0)
               : -1;
-          case Dimension.WritingSystem:
-            return b.type === Dimension.WritingSystem
+          case ObjectType.WritingSystem:
+            return b.type === ObjectType.WritingSystem
               ? b.populationUpperBound -
                   a.populationUpperBound +
                   (view === View.Hierarchy
                     ? b.populationOfDescendents - a.populationOfDescendents
                     : 0)
               : -1;
-          case Dimension.Territory:
-            return b.type === Dimension.Territory ? b.population - a.population : -1;
-          case Dimension.Locale:
-            return b.type === Dimension.Locale ? b.populationEstimate - a.populationEstimate : -1;
+          case ObjectType.Territory:
+            return b.type === ObjectType.Territory ? b.population - a.population : -1;
+          case ObjectType.Locale:
+            return b.type === ObjectType.Locale ? b.populationEstimate - a.populationEstimate : -1;
         }
       };
   }

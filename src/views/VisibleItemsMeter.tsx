@@ -3,9 +3,9 @@ import React from 'react';
 import { usePageParams } from '../controls/PageParamsContext';
 import PaginationControls from '../controls/selectors/PaginationControls';
 import { LanguageSchema } from '../types/LanguageTypes';
-import { Dimension } from '../types/PageParamTypes';
+import { ObjectType } from '../types/PageParamTypes';
 
-import { getDimensionLabelPlural } from './common/getObjectName';
+import { getObjectTypeLabelPlural } from './common/getObjectName';
 
 interface Props {
   nShown: number;
@@ -62,9 +62,9 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
 };
 
 const ObjectTypeLabel: React.FC = () => {
-  const { languageSchema, dimension } = usePageParams();
+  const { languageSchema, objectType } = usePageParams();
 
-  if (dimension === Dimension.Language) {
+  if (objectType === ObjectType.Language) {
     switch (languageSchema) {
       case LanguageSchema.Glottolog:
         return 'glottolog languages';
@@ -77,7 +77,7 @@ const ObjectTypeLabel: React.FC = () => {
         break; // fall back to the regular plural (languages)
     }
   }
-  return getDimensionLabelPlural(dimension);
+  return getObjectTypeLabelPlural(objectType);
 };
 
 export default VisibleItemsMeter;

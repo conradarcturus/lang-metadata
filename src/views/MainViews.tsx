@@ -1,5 +1,5 @@
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, View } from '../types/PageParamTypes';
+import { ObjectType, View } from '../types/PageParamTypes';
 
 import ObjectDetailsPage from './common/ObjectDetailsPage';
 import LanguageCardList from './language/LanguageCardList';
@@ -18,44 +18,44 @@ import WritingSystemTable from './writingsystem/WritingSystemTable';
 import './styles.css';
 
 function MainViews() {
-  const { view, dimension } = usePageParams();
+  const { view, objectType } = usePageParams();
 
   switch (view) {
     case View.CardList:
-      switch (dimension) {
-        case Dimension.Language:
+      switch (objectType) {
+        case ObjectType.Language:
           return <LanguageCardList />;
-        case Dimension.Locale:
+        case ObjectType.Locale:
           return <LocaleCardList />;
-        case Dimension.Territory:
+        case ObjectType.Territory:
           return <TerritoryCardList />;
-        case Dimension.WritingSystem:
+        case ObjectType.WritingSystem:
           return <WritingSystemCardList />;
       }
     // eslint-disable-next-line no-fallthrough
     case View.Details:
       return <ObjectDetailsPage />;
     case View.Hierarchy:
-      switch (dimension) {
-        case Dimension.Language:
+      switch (objectType) {
+        case ObjectType.Language:
           return <LanguageHierarchy />;
-        case Dimension.Locale:
+        case ObjectType.Locale:
           return <LocaleHierarchy />;
-        case Dimension.Territory:
+        case ObjectType.Territory:
           return <TerritoryHierarchy />;
-        case Dimension.WritingSystem:
+        case ObjectType.WritingSystem:
           return <WritingSystemHierarchy />;
       }
     // eslint-disable-next-line no-fallthrough
     case View.Table:
-      switch (dimension) {
-        case Dimension.Language:
+      switch (objectType) {
+        case ObjectType.Language:
           return <LanguageTable />;
-        case Dimension.Locale:
+        case ObjectType.Locale:
           return <LocaleTable />;
-        case Dimension.Territory:
+        case ObjectType.Territory:
           return <TerritoryTable />;
-        case Dimension.WritingSystem:
+        case ObjectType.WritingSystem:
           return <WritingSystemTable />;
       }
     // eslint-disable-next-line no-fallthrough

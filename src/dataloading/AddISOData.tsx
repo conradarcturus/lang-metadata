@@ -8,7 +8,7 @@ import {
   LanguagesBySchema,
   LanguageScope,
 } from '../types/LanguageTypes';
-import { Dimension } from '../types/PageParamTypes';
+import { ObjectType } from '../types/PageParamTypes';
 
 export enum ISOLanguageVitality {
   Living = 'Living',
@@ -224,7 +224,7 @@ export function addISOLanguageFamilyData(
       };
 
       const familyEntry: LanguageData = {
-        type: Dimension.Language,
+        type: ObjectType.Language,
         ID: family.code,
         codeDisplay: family.code,
         nameCanonical: name,

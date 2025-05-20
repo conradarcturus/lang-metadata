@@ -6,7 +6,7 @@ import {
   WritingSystemScope,
 } from './DataTypes';
 import { LanguageData, LanguageScope } from './LanguageTypes';
-import { Dimension } from './PageParamTypes';
+import { ObjectType } from './PageParamTypes';
 
 export enum ScopeLevel {
   Groups = 'Groups', // Continents, Language Families
@@ -17,13 +17,13 @@ export enum ScopeLevel {
 
 export function getObjectScopeLevel(object: ObjectData): ScopeLevel {
   switch (object.type) {
-    case Dimension.Language:
+    case ObjectType.Language:
       return getLanguageScopeLevel(object);
-    case Dimension.Locale:
+    case ObjectType.Locale:
       return object.scope;
-    case Dimension.Territory:
+    case ObjectType.Territory:
       return getTerritoryScopeLevel(object);
-    case Dimension.WritingSystem:
+    case ObjectType.WritingSystem:
       return getWritingSystemScopeLevel(object);
   }
 }

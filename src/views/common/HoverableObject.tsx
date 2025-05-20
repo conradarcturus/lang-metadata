@@ -3,7 +3,7 @@ import React from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import Hoverable from '../../generic/Hoverable';
 import { ObjectData } from '../../types/DataTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import LanguageCard from '../language/LanguageCard';
 import LocaleCard from '../locale/LocaleCard';
 import TerritoryCard from '../territory/TerritoryCard';
@@ -19,13 +19,13 @@ const HoverableObject: React.FC<Props> = ({ object, children }) => {
 
   const getHoverContent = () => {
     switch (object.type) {
-      case Dimension.Language:
+      case ObjectType.Language:
         return <LanguageCard lang={object} />;
-      case Dimension.Locale:
+      case ObjectType.Locale:
         return <LocaleCard locale={object} />;
-      case Dimension.Territory:
+      case ObjectType.Territory:
         return <TerritoryCard territory={object} />;
-      case Dimension.WritingSystem:
+      case ObjectType.WritingSystem:
         return <WritingSystemCard writingSystem={object} />;
     }
   };

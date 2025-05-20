@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useDataContext } from '../../dataloading/DataContext';
 import { uniqueBy } from '../../generic/setUtils';
-import { Dimension, SearchableField } from '../../types/PageParamTypes';
+import { ObjectType, SearchableField } from '../../types/PageParamTypes';
 import { getSearchableField, HighlightedObjectField } from '../../views/common/ObjectField';
 import { Suggestion } from '../components/TextInput';
 import { getScopeFilter, getSubstringFilterOnQuery } from '../filter';
@@ -11,7 +11,7 @@ import { usePageParams } from '../PageParamsContext';
 const SEARCH_RESULTS_LIMIT = 10; // even though it is filtered again later, this seems to prevent render lag.
 
 export function useSearchSuggestions(): (query: string) => Promise<Suggestion[]> {
-  const { searchBy, dimension } = usePageParams();
+  const { searchBy, objectType } = usePageParams();
   const { languages, locales, territories, writingSystems } = useDataContext();
   const scopeFilter = getScopeFilter();
 
@@ -19,18 +19,18 @@ export function useSearchSuggestions(): (query: string) => Promise<Suggestion[]>
     if (searchBy === SearchableField.Territory) {
       return Object.values(territories);
     } else {
-      switch (dimension) {
-        case Dimension.Language:
+      switch (objectType) {
+        case ObjectType.Language:
           return Object.values(languages);
-        case Dimension.Locale:
+        case ObjectType.Locale:
           return Object.values(locales);
-        case Dimension.Territory:
+        case ObjectType.Territory:
           return Object.values(territories);
-        case Dimension.WritingSystem:
+        case ObjectType.WritingSystem:
           return Object.values(writingSystems);
       }
     }
-  }, [dimension, languages, locales, territories, writingSystems, searchBy]);
+  }, [objectType, languages, locales, territories, writingSystems, searchBy]);
 
   const getSuggestions = useMemo(() => {
     return async (query: string) => {

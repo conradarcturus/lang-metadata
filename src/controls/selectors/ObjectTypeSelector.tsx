@@ -2,28 +2,28 @@ import React from 'react';
 
 import { toTitleCase } from '../../generic/stringUtils';
 import { useMediaQuery } from '../../generic/useMediaQuery';
-import { Dimension } from '../../types/PageParamTypes';
-import { getDimensionLabelPlural } from '../../views/common/getObjectName';
+import { ObjectType } from '../../types/PageParamTypes';
+import { getObjectTypeLabelPlural } from '../../views/common/getObjectName';
 import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
 
-const DimensionSelector: React.FC = () => {
-  const { dimension, updatePageParams } = usePageParams();
+const ObjectTypeSelector: React.FC = () => {
+  const { objectType, updatePageParams } = usePageParams();
   const isCompact = useMediaQuery('(max-width: 1015px)');
 
   return (
     <Selector selectorLabel={isCompact ? 'Data:' : undefined} appearance="tabs">
-      <SingleChoiceOptions<Dimension>
-        options={Object.values(Dimension)}
-        onChange={(dimension: Dimension) => updatePageParams({ dimension })}
+      <SingleChoiceOptions<ObjectType>
+        options={Object.values(ObjectType)}
+        onChange={(objectType: ObjectType) => updatePageParams({ objectType })}
         mode={isCompact ? 'dropdown' : 'flat'}
-        selected={dimension}
-        getOptionLabel={(d) => toTitleCase(getDimensionLabelPlural(d))}
-        getOptionDescription={(dimension) => (
+        selected={objectType}
+        getOptionLabel={(d) => toTitleCase(getObjectTypeLabelPlural(d))}
+        getOptionDescription={(objectType) => (
           <>
             <div style={{ marginBottom: 8 }}>Click here to change the kind of entity viewed.</div>
-            <OptionDescription dimension={dimension} />
+            <OptionDescription objectType={objectType} />
           </>
         )}
       />
@@ -31,9 +31,9 @@ const DimensionSelector: React.FC = () => {
   );
 };
 
-const OptionDescription: React.FC<{ dimension: Dimension }> = ({ dimension }) => {
-  switch (dimension) {
-    case Dimension.Language:
+const OptionDescription: React.FC<{ objectType: ObjectType }> = ({ objectType }) => {
+  switch (objectType) {
+    case ObjectType.Language:
       return (
         <>
           <label>Language (Languoid):</label>A verbal communication system used by multiple people.
@@ -43,7 +43,7 @@ const OptionDescription: React.FC<{ dimension: Dimension }> = ({ dimension }) =>
           &quot;Languoids&quot;.
         </>
       );
-    case Dimension.Locale:
+    case ObjectType.Locale:
       return (
         <>
           <label>Locale:</label>The combination of a language and territory -- used to express how
@@ -52,7 +52,7 @@ const OptionDescription: React.FC<{ dimension: Dimension }> = ({ dimension }) =>
           orthography...).
         </>
       );
-    case Dimension.Territory:
+    case ObjectType.Territory:
       return (
         <>
           <label>Territory:</label>A geographical unit. Some may not have universal recognition.
@@ -60,7 +60,7 @@ const OptionDescription: React.FC<{ dimension: Dimension }> = ({ dimension }) =>
           separate ISO codes.
         </>
       );
-    case Dimension.WritingSystem:
+    case ObjectType.WritingSystem:
       return (
         <>
           <label>Writing System:</label>A system for writing a language to a persistent visual
@@ -71,4 +71,4 @@ const OptionDescription: React.FC<{ dimension: Dimension }> = ({ dimension }) =>
   }
 };
 
-export default DimensionSelector;
+export default ObjectTypeSelector;

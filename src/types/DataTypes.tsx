@@ -3,11 +3,11 @@
  */
 
 import { LanguageCode, LanguageData } from './LanguageTypes';
-import { Dimension } from './PageParamTypes';
+import { ObjectType } from './PageParamTypes';
 import { ScopeLevel } from './ScopeLevel';
 
 export interface ObjectBase {
-  readonly type: Dimension;
+  readonly type: ObjectType;
   readonly ID: string; // A stable ID to use with indexing
   codeDisplay: string; // The code for the object -- may change, like if the language schema changes
   nameDisplay: string; // The name for the object -- may change with data from different sources
@@ -32,7 +32,7 @@ export enum TerritoryType {
 }
 
 export interface TerritoryData extends ObjectBase {
-  type: Dimension.Territory;
+  type: ObjectType.Territory;
   ID: TerritoryCode;
   codeDisplay: TerritoryCode;
   nameDisplay: string;
@@ -63,7 +63,7 @@ export enum WritingSystemScope {
 }
 
 export interface WritingSystemData extends ObjectBase {
-  type: Dimension.WritingSystem;
+  type: ObjectType.WritingSystem;
 
   ID: ScriptCode;
   codeDisplay: ScriptCode; // This should be stable
@@ -120,7 +120,7 @@ export enum OfficialStatus {
 }
 
 export interface LocaleData extends ObjectBase {
-  type: Dimension.Locale;
+  type: ObjectType.Locale;
 
   ID: BCP47LocaleCode;
   codeDisplay: BCP47LocaleCode; // Changes based on the language schema

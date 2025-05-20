@@ -1,16 +1,16 @@
 import { ObjectData } from '../../types/DataTypes';
 import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
-import { Dimension } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 
 export function getObjectSubtitle(object: ObjectData): string | undefined {
   switch (object.type) {
-    case Dimension.Language:
+    case ObjectType.Language:
       return getLanguageSubtitle(object);
-    case Dimension.Locale:
+    case ObjectType.Locale:
       return undefined;
-    case Dimension.Territory:
+    case ObjectType.Territory:
       return object.territoryType;
-    case Dimension.WritingSystem:
+    case ObjectType.WritingSystem:
       return object.nameDisplay != object.nameFull ? object.nameFull : undefined;
   }
 }
@@ -28,15 +28,15 @@ function getLanguageSubtitle(lang: LanguageData): string | undefined {
   return composite !== '' ? composite : undefined;
 }
 
-export function getDimensionLabelPlural(dimension: Dimension) {
-  switch (dimension) {
-    case Dimension.Language:
+export function getObjectTypeLabelPlural(objectType: ObjectType) {
+  switch (objectType) {
+    case ObjectType.Language:
       return 'languages';
-    case Dimension.Locale:
+    case ObjectType.Locale:
       return 'locales';
-    case Dimension.Territory:
+    case ObjectType.Territory:
       return 'territories';
-    case Dimension.WritingSystem:
+    case ObjectType.WritingSystem:
       return 'writing systems';
   }
 }

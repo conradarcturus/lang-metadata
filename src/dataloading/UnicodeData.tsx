@@ -1,6 +1,6 @@
 import { CLDRAliasImport, CLDRCoverageLevel, CLDRCoverageImport } from '../types/CLDRTypes';
 import { LanguagesBySchema, LanguageScope } from '../types/LanguageTypes';
-import { Dimension } from '../types/PageParamTypes';
+import { ObjectType } from '../types/PageParamTypes';
 
 import { CoreData } from './CoreData';
 
@@ -26,20 +26,20 @@ function parseCLDRAliasLine(line: string): CLDRAliasImport | undefined {
     // Drop rows that are comments
     return undefined;
   }
-  let dimension = null;
+  let objectType = null;
   if (parts[1] === 'language') {
-    dimension = Dimension.Language;
+    objectType = ObjectType.Language;
   } else if (parts[1] === 'script') {
-    dimension = Dimension.WritingSystem;
+    objectType = ObjectType.WritingSystem;
   } else if (parts[1] === 'territory') {
-    dimension = Dimension.Territory;
+    objectType = ObjectType.Territory;
   }
-  if (dimension == null) {
+  if (objectType == null) {
     return undefined;
   }
 
   return {
-    dimension,
+    objectType,
     original: parts[2],
     replacement: parts[3],
     reason: parts[4],
@@ -53,7 +53,7 @@ export function addCLDRLanguageSchema(
 ): void {
   const cldrLanguages = languagesBySchema.CLDR;
   // const langCodesToReplacement = cldrAliases
-  //   .filter((alias) => alias.dimension === Dimension.Language)
+  //   .filter((alias) => alias.objectType === ObjectType.Language)
   //   .reduce<Record<LanguageCode, CLDRAliasRow>>((langCodesToReplacement, alias) => {
   //     langCodesToReplacement[alias.original] = alias;
   //     return langCodesToReplacement;
@@ -63,7 +63,7 @@ export function addCLDRLanguageSchema(
   // Go through all "overlong" aliases. We already handled most of them by using ISO 639-1 two-letter codes but a few
   // more exist, in particular eg. swc -> sw_CD and prs -> fa_AF
   cldrAliases
-    .filter((alias) => alias.reason === 'overlong' && alias.dimension === Dimension.Language)
+    .filter((alias) => alias.reason === 'overlong' && alias.objectType === ObjectType.Language)
     .forEach((alias) => {
       const lang = cldrLanguages[alias.original];
       if (DEBUG && lang != null) {
@@ -78,7 +78,7 @@ export function addCLDRLanguageSchema(
   // This is because the macrolanguage tag is better known and of the macrolanguage's consistuents, Mandarin Chinese
   // is the most dominant. Thereby, the canonical entry for "cmn" in the langauge data is functionally "zh" in CLDR.
   cldrAliases
-    .filter((alias) => alias.reason === 'macrolanguage' && alias.dimension === Dimension.Language)
+    .filter((alias) => alias.reason === 'macrolanguage' && alias.objectType === ObjectType.Language)
     .forEach((alias) => {
       // Does the dominant language for the macrolanguage (eg. cmn) exist?
       const lang = cldrLanguages[alias.original];

@@ -1,30 +1,30 @@
 import React from 'react';
 
 import { joinOxfordComma, toSentenceCase } from '../../generic/stringUtils';
-import { Dimension, View } from '../../types/PageParamTypes';
+import { ObjectType, View } from '../../types/PageParamTypes';
 import { ScopeLevel } from '../../types/ScopeLevel';
-import { getDimensionLabelPlural } from '../../views/common/getObjectName';
+import { getObjectTypeLabelPlural } from '../../views/common/getObjectName';
 import MultiChoiceOptions from '../components/MultiChoiceOptions';
 import Selector from '../components/Selector';
 import { usePageParams } from '../PageParamsContext';
 
 const ScopeFilterSelector: React.FC = () => {
-  const { view, scopes, updatePageParams, dimension } = usePageParams();
+  const { view, scopes, updatePageParams, objectType } = usePageParams();
   if ([View.Details].includes(view)) {
     return <></>;
   }
   function getOptionDescription(scope: ScopeLevel | ScopeLevel[]): string {
     if (Array.isArray(scope)) {
       return toSentenceCase(
-        joinOxfordComma(scope.map((s) => getScopeLevelDescription(dimension, s, 'long'))),
+        joinOxfordComma(scope.map((s) => getScopeLevelDescription(objectType, s, 'long'))),
       );
     }
-    return toSentenceCase(getScopeLevelDescription(dimension, scope, 'long'));
+    return toSentenceCase(getScopeLevelDescription(objectType, scope, 'long'));
   }
   function getOptionLabel(scope: ScopeLevel): string {
-    return toSentenceCase(getScopeLevelDescription(dimension, scope, 'short'));
+    return toSentenceCase(getScopeLevelDescription(objectType, scope, 'short'));
   }
-  const selectorDescription = `Filter the ${getDimensionLabelPlural(dimension)} shown by the granularity of the code -- eg. grouped objects, individual objects, or parts of objects.`;
+  const selectorDescription = `Filter the ${getObjectTypeLabelPlural(objectType)} shown by the granularity of the code -- eg. grouped objects, individual objects, or parts of objects.`;
 
   return (
     <Selector selectorLabel="Scope:" selectorDescription={selectorDescription}>
@@ -44,12 +44,12 @@ const ScopeFilterSelector: React.FC = () => {
 };
 
 export function getScopeLevelDescription(
-  dimension: Dimension,
+  objectType: ObjectType,
   scope: ScopeLevel,
   length: 'long' | 'short',
 ): string {
-  switch (dimension) {
-    case Dimension.Language:
+  switch (objectType) {
+    case ObjectType.Language:
       switch (scope) {
         case ScopeLevel.Groups:
           return 'language families';
@@ -61,7 +61,7 @@ export function getScopeLevelDescription(
           return length === 'long' ? 'special codes or unlabeled languages' : 'special codes';
       }
     // eslint-disable-next-line no-fallthrough
-    case Dimension.Locale:
+    case ObjectType.Locale:
       switch (scope) {
         case ScopeLevel.Groups:
           return 'regional locales';
@@ -73,7 +73,7 @@ export function getScopeLevelDescription(
           return length === 'long' ? 'special codes or unlabeled locales' : 'special codes';
       }
     // eslint-disable-next-line no-fallthrough
-    case Dimension.Territory:
+    case ObjectType.Territory:
       switch (scope) {
         case ScopeLevel.Groups:
           return length === 'long' ? 'continents, regions' : 'continents';
@@ -85,7 +85,7 @@ export function getScopeLevelDescription(
           return length === 'long' ? 'special codes or unlabeled territories' : 'special codes';
       }
     // eslint-disable-next-line no-fallthrough
-    case Dimension.WritingSystem:
+    case ObjectType.WritingSystem:
       switch (scope) {
         case ScopeLevel.Groups:
           return length === 'long'
