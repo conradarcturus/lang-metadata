@@ -55,9 +55,9 @@ export function useSearchSuggestions(): (query: string) => Promise<Suggestion[]>
             } else if (searchBy === SearchableField.Territory) {
               searchString = object.nameDisplay;
             }
-            return { id: object.ID, searchString, label };
+            return { objectID: object.ID, searchString, label };
           }),
-        (item) => item.id,
+        (item) => item.objectID,
       );
     };
   }, [objects, scopeFilter, searchBy]);
