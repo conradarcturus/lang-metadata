@@ -1,45 +1,39 @@
 import React from 'react';
 
 import { useMediaQuery } from '../../generic/useMediaQuery';
-import { ViewType } from '../../types/PageParamTypes';
+import { View } from '../../types/PageParamTypes';
 import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
 
 const ViewSelector: React.FC = () => {
-  const { viewType, updatePageParams } = usePageParams();
+  const { view, updatePageParams } = usePageParams();
   const isCompact = useMediaQuery('(max-width: 1360px)');
 
   return (
     <Selector selectorLabel="View:" appearance="tabs">
-      <SingleChoiceOptions<ViewType>
+      <SingleChoiceOptions<View>
         getOptionDescription={(option) => <img src={getImageSrc(option)} width={180} />}
         mode={isCompact ? 'dropdown' : 'flat'}
-        options={[
-          ViewType.CardList,
-          ViewType.Details,
-          ViewType.Hierarchy,
-          ViewType.Table,
-          ViewType.Warnings,
-        ]}
-        onChange={(viewType: ViewType) => updatePageParams({ viewType, objectID: undefined })}
-        selected={viewType}
+        options={Object.values(View)}
+        onChange={(view: View) => updatePageParams({ view, objectID: undefined })}
+        selected={view}
       />
     </Selector>
   );
 };
 
-function getImageSrc(viewType: ViewType): string {
-  switch (viewType) {
-    case ViewType.CardList:
+function getImageSrc(view: View): string {
+  switch (view) {
+    case View.CardList:
       return 'cardlist.png';
-    case ViewType.Details:
+    case View.Details:
       return 'details.png';
-    case ViewType.Hierarchy:
+    case View.Hierarchy:
       return 'hierarchy.png';
-    case ViewType.Table:
+    case View.Table:
       return 'table.png';
-    case ViewType.Warnings:
+    case View.Notices:
       return 'warnings.png';
   }
 }

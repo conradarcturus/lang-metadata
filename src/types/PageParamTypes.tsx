@@ -9,12 +9,12 @@ export enum Dimension {
   // VariantTag = 'Variant Tag',
 }
 
-export enum ViewType {
+export enum View {
   CardList = 'Card List',
   Details = 'Details',
   Hierarchy = 'Hierarchy',
   Table = 'Table',
-  Warnings = 'Warnings',
+  Notices = 'Notices',
 }
 
 export enum SortBy {
@@ -45,7 +45,7 @@ export type PageParamKey =
   | 'searchString'
   | 'searchBy'
   | 'sortBy'
-  | 'viewType';
+  | 'view';
 
 export type PageParams = {
   dimension: Dimension;
@@ -58,7 +58,7 @@ export type PageParams = {
   searchBy: SearchableField;
   searchString: string;
   sortBy: SortBy;
-  viewType: ViewType;
+  view: View;
 };
 
 export type PageParamsOptional = {
@@ -72,5 +72,5 @@ export type PageParamsOptional = {
   searchBy?: SearchableField;
   searchString?: string;
   sortBy?: SortBy;
-  viewType?: ViewType;
+  view?: View;
 };

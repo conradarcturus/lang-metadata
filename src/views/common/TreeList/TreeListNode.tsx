@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { usePageParams } from '../../../controls/PageParamsContext';
 import { ObjectData } from '../../../types/DataTypes';
-import { Dimension, SearchableField, ViewType } from '../../../types/PageParamTypes';
+import { Dimension, SearchableField, View } from '../../../types/PageParamTypes';
 import HoverableObject from '../HoverableObject';
 import { ObjectFieldHighlightedByPageSearch } from '../ObjectField';
 
@@ -23,7 +23,7 @@ type Props = {
 
 const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }) => {
   const { children, object, labelStyle, descendentsPassFilter } = nodeData;
-  const { viewType, searchBy, searchString } = usePageParams();
+  const { view, searchBy, searchString } = usePageParams();
   const [expanded, setExpanded] = useState(isExpandedInitially || descendentsPassFilter);
   const [seeAllChildren, setSeeAllChildren] = useState(false);
   const { limit } = usePageParams();
@@ -53,14 +53,12 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
         <span style={labelStyle}>
           <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.EngName} />
         </span>
-        {searchString != '' &&
-          searchBy === SearchableField.Code &&
-          viewType === ViewType.Hierarchy && (
-            <>
-              {' '}
-              [<ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />]
-            </>
-          )}
+        {searchString != '' && searchBy === SearchableField.Code && view === View.Hierarchy && (
+          <>
+            {' '}
+            [<ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />]
+          </>
+        )}
         <HoverableObject object={object}>
           <button className="InfoButton">&#x24D8;</button>
         </HoverableObject>

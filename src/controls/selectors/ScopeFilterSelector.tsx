@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { joinOxfordComma, toSentenceCase } from '../../generic/stringUtils';
-import { Dimension, ViewType } from '../../types/PageParamTypes';
+import { Dimension, View } from '../../types/PageParamTypes';
 import { ScopeLevel } from '../../types/ScopeLevel';
 import { getDimensionLabelPlural } from '../../views/common/getObjectName';
 import MultiChoiceOptions from '../components/MultiChoiceOptions';
@@ -9,8 +9,8 @@ import Selector from '../components/Selector';
 import { usePageParams } from '../PageParamsContext';
 
 const ScopeFilterSelector: React.FC = () => {
-  const { viewType, scopes, updatePageParams, dimension } = usePageParams();
-  if ([ViewType.Details].includes(viewType)) {
+  const { view, scopes, updatePageParams, dimension } = usePageParams();
+  if ([View.Details].includes(view)) {
     return <></>;
   }
   function getOptionDescription(scope: ScopeLevel | ScopeLevel[]): string {

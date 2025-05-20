@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
 import Hoverable from '../generic/Hoverable';
-import { ViewType } from '../types/PageParamTypes';
+import { View } from '../types/PageParamTypes';
 
 import './modal.css';
 
@@ -10,14 +10,14 @@ import ObjectDetails, { getObjectFromID } from './common/ObjectDetails';
 import ObjectTitle from './common/ObjectTitle';
 
 const ViewModal: React.FC = () => {
-  const { objectID, viewType, updatePageParams } = usePageParams();
+  const { objectID, view, updatePageParams } = usePageParams();
   const onClose = () => updatePageParams({ objectID: undefined });
   const object = getObjectFromID(objectID);
 
   useEffect(() => {
     // TODO there is a problem with this changing the page parameters beyond the modal object
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && viewType != ViewType.Details) {
+      if (event.key === 'Escape' && view != View.Details) {
         onClose();
       }
     };
@@ -27,9 +27,9 @@ const ViewModal: React.FC = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose, viewType]);
+  }, [onClose, view]);
 
-  if (objectID == null || viewType === ViewType.Details) {
+  if (objectID == null || view === View.Details) {
     return <></>;
   }
   if (object == null) return <></>;
@@ -47,7 +47,7 @@ const ViewModal: React.FC = () => {
               <button
                 onClick={() =>
                   updatePageParams({
-                    viewType: ViewType.Details,
+                    view: View.Details,
                   })
                 }
               >

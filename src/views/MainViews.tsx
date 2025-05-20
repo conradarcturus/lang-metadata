@@ -1,5 +1,5 @@
 import { usePageParams } from '../controls/PageParamsContext';
-import { Dimension, ViewType } from '../types/PageParamTypes';
+import { Dimension, View } from '../types/PageParamTypes';
 
 import ObjectDetailsPage from './common/ObjectDetailsPage';
 import LanguageCardList from './language/LanguageCardList';
@@ -18,10 +18,10 @@ import WritingSystemTable from './writingsystem/WritingSystemTable';
 import './styles.css';
 
 function MainViews() {
-  const { viewType, dimension } = usePageParams();
+  const { view, dimension } = usePageParams();
 
-  switch (viewType) {
-    case ViewType.CardList:
+  switch (view) {
+    case View.CardList:
       switch (dimension) {
         case Dimension.Language:
           return <LanguageCardList />;
@@ -33,9 +33,9 @@ function MainViews() {
           return <WritingSystemCardList />;
       }
     // eslint-disable-next-line no-fallthrough
-    case ViewType.Details:
+    case View.Details:
       return <ObjectDetailsPage />;
-    case ViewType.Hierarchy:
+    case View.Hierarchy:
       switch (dimension) {
         case Dimension.Language:
           return <LanguageHierarchy />;
@@ -47,7 +47,7 @@ function MainViews() {
           return <WritingSystemHierarchy />;
       }
     // eslint-disable-next-line no-fallthrough
-    case ViewType.Table:
+    case View.Table:
       switch (dimension) {
         case Dimension.Language:
           return <LanguageTable />;
@@ -59,7 +59,7 @@ function MainViews() {
           return <WritingSystemTable />;
       }
     // eslint-disable-next-line no-fallthrough
-    case ViewType.Warnings:
+    case View.Notices:
       return <ViewWarnings />;
   }
 }

@@ -9,7 +9,7 @@ import {
   PageParamsOptional,
   SearchableField,
   SortBy,
-  ViewType,
+  View,
 } from '../types/PageParamTypes';
 import { ScopeLevel } from '../types/ScopeLevel';
 
@@ -19,7 +19,7 @@ type PageParamsContextState = PageParams & {
 
 const PageParamsContext = createContext<PageParamsContextState | undefined>(undefined);
 const DEFAULT_DIMENSION = Dimension.Language;
-const DEFAULT_VIEWTYPE = ViewType.CardList;
+const DEFAULT_VIEW = View.CardList;
 const PARAMS_THAT_CLEAR: PageParamKey[] = ['limit', 'page', 'searchString', 'searchBy'];
 
 export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -56,7 +56,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       // Clear the some parameters if they match the default
       const defaults = getDefaultParams(
         (next.get('dimension') as Dimension) ?? DEFAULT_DIMENSION,
-        (next.get('viewType') as ViewType) ?? DEFAULT_VIEWTYPE,
+        (next.get('view') as View) ?? DEFAULT_VIEW,
       );
       PARAMS_THAT_CLEAR.forEach((param: PageParamKey) => {
         if (next.get(param) == defaults[param]?.toString()) {
@@ -69,8 +69,8 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const providerValue: PageParamsContextState = useMemo(() => {
     const dimension = getParam('dimension', DEFAULT_DIMENSION) as Dimension;
-    const viewType = getParam('viewType', DEFAULT_VIEWTYPE) as ViewType;
-    const defaults = getDefaultParams(dimension, viewType);
+    const view = getParam('view', DEFAULT_VIEW) as View;
+    const defaults = getDefaultParams(dimension, view);
     return {
       dimension,
       languageSchema: getParam('languageSchema', defaults.languageSchema) as LanguageSchema,
@@ -85,7 +85,7 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       searchBy: getParam('searchBy', defaults.searchBy) as SearchableField,
       searchString: getParam('searchString', defaults.searchString),
       sortBy: getParam('sortBy', defaults.sortBy) as SortBy,
-      viewType,
+      view,
       updatePageParams,
     };
   }, [pageParams]);
@@ -94,22 +94,22 @@ export const PageParamsProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 };
 
 // If there is nothing in the URL string, then use this instead
-function getDefaultParams(dimension: Dimension, viewType: ViewType): PageParams {
+function getDefaultParams(dimension: Dimension, view: View): PageParams {
   return {
     dimension,
     languageSchema: LanguageSchema.WAL,
-    limit: viewType === ViewType.Table ? 200 : 8,
+    limit: view === View.Table ? 200 : 8,
     localeSeparator: '_',
     objectID: undefined,
     page: 1,
     scopes:
-      viewType === ViewType.Hierarchy && dimension !== Dimension.Locale
+      view === View.Hierarchy && dimension !== Dimension.Locale
         ? [ScopeLevel.Groups, ScopeLevel.Individuals]
         : [ScopeLevel.Individuals],
     searchBy: SearchableField.AllNames,
     searchString: '',
     sortBy: SortBy.Population,
-    viewType,
+    view,
   };
 }
 

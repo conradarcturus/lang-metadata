@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { ViewType } from '../../types/PageParamTypes';
+import { View } from '../../types/PageParamTypes';
 import Selector from '../components/Selector';
 import TextInput from '../components/TextInput';
 import { usePageParams } from '../PageParamsContext';
 
 const LimitInput: React.FC = () => {
-  const { limit, dimension, updatePageParams, viewType } = usePageParams();
-  if ([ViewType.Details, ViewType.Warnings].includes(viewType)) {
+  const { limit, dimension, updatePageParams, view } = usePageParams();
+  if ([View.Details, View.Notices].includes(view)) {
     // Not supported for this view
     return <></>;
   }
@@ -15,7 +15,7 @@ const LimitInput: React.FC = () => {
   return (
     <Selector
       selectorLabel="Limit:"
-      selectorDescription={`Limit how many ${dimension.toLowerCase()} ${getLimitableObjectName(viewType)} are shown.`}
+      selectorDescription={`Limit how many ${dimension.toLowerCase()} ${getLimitableObjectName(view)} are shown.`}
     >
       <TextInput
         inputStyle={{ width: '3em' }}
@@ -33,18 +33,18 @@ const LimitInput: React.FC = () => {
   );
 };
 
-function getLimitableObjectName(viewType: ViewType) {
-  switch (viewType) {
-    case ViewType.CardList:
+function getLimitableObjectName(view: View) {
+  switch (view) {
+    case View.CardList:
       return 'cards';
-    case ViewType.Hierarchy:
+    case View.Hierarchy:
       return 'root nodes';
-    case ViewType.Details:
+    case View.Details:
       return '???';
-    case ViewType.Table:
+    case View.Table:
       return 'rows';
-    case ViewType.Warnings:
-      return 'warnings';
+    case View.Notices:
+      return 'notices';
   }
 }
 

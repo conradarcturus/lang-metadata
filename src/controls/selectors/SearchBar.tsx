@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SearchableField, ViewType } from '../../types/PageParamTypes';
+import { SearchableField, View } from '../../types/PageParamTypes';
 import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import TextInput from '../components/TextInput';
@@ -9,10 +9,10 @@ import { usePageParams } from '../PageParamsContext';
 import { useSearchSuggestions } from './useSearchSuggestions';
 
 const SearchBar: React.FC = () => {
-  const { searchBy, searchString, updatePageParams, viewType } = usePageParams();
+  const { searchBy, searchString, updatePageParams, view } = usePageParams();
   const getSearchSuggestions = useSearchSuggestions();
 
-  if (viewType === ViewType.Details) {
+  if (view === View.Details) {
     // Not supported for this view
     return <></>;
   }
