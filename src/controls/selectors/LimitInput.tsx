@@ -41,7 +41,7 @@ function getLimitableObjectName(view: View) {
       return 'root nodes';
     case View.Details:
     case View.About:
-      return '???';
+      return 'not applicable';
     case View.Table:
       return 'rows';
     case View.Notices:
