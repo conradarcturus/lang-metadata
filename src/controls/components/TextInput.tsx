@@ -97,9 +97,9 @@ const TextInput: React.FC<Props> = ({
       {showSuggestions && suggestions.length > 0 && (
         <div className="SelectorPopupAnchor">
           <div className="SelectorPopup">
-            {suggestions.map((s) => (
+            {suggestions.map((s, i) => (
               <SuggestionRow
-                key={s.searchString}
+                key={i}
                 setImmediateValue={setImmediateValue}
                 setShowSuggestions={setShowSuggestions}
                 showTextInputButton={showTextInputButton}

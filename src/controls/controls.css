@@ -213,18 +213,18 @@
     border-radius: 0px;
 }
 
-.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:first-child :first-child {
+.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:first-child > :first-child {
     border-top-left-radius: 1em;
 }
 
-.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:last-child :first-child {
+.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:last-child > :first-child {
     border-bottom-left-radius: 1em;
 }
 
-.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:first-child :last-child {
+.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:first-child > :last-child {
     border-top-right-radius: 1em;
 }
 
-.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:last-child :last-child {
+.selector .SelectorPopup .SuggestionRowWithMultipleInteractions:last-child > :last-child {
     border-bottom-right-radius: 1em;
 }
