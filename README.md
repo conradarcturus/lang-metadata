@@ -47,6 +47,12 @@ In order to generate the website on an internal server, follow these instruction
 4. Run `npm run dev` to start the server with some dev options
   1. or `npm run build`
 
+In order to push the changes to the deployed website (github pages site), follow these instructions.
+
+1. Run `npm run deploy` to deploy the changes. This will
+    1. Build the app into the dist/ folder.
+    2. Push the dist/ contents to the gh-pages branch.
+
 ### Initialization
 
 This is how we created the project originally -- you should not need to run these, but its for background.
