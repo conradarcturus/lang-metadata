@@ -13,7 +13,7 @@ const PageNavBar: React.FC = () => {
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       <div className="NavBar">
         <h1>
-          <a href="/">
+          <a href="/lang-nav/">
             <strong>Lang</strong>uage <strong>Nav</strong>igator
           </a>
         </h1>
