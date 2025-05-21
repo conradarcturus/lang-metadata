@@ -26,15 +26,15 @@ const ViewSelector: React.FC = () => {
 function getImageSrc(view: View): string {
   switch (view) {
     case View.CardList:
-      return 'cardlist.png';
+      return '/lang-nav/cardlist.png';
     case View.Details:
-      return 'details.png';
+      return '/lang-nav/details.png';
     case View.Hierarchy:
-      return 'hierarchy.png';
+      return '/lang-nav/hierarchy.png';
     case View.Table:
-      return 'table.png';
+      return '/lang-nav/table.png';
     case View.Notices:
-      return 'warnings.png';
+      return '/lang-nav/warnings.png';
   }
 }
 
