@@ -1,10 +1,6 @@
 import { useEffect } from 'react';
 
-/**
- * Calls the callback when a mousedown occurs outside the referenced element.
- * @param ref React ref to the element
- * @param callback Function to call on outside click
- */
+
 export function useClickOutside(
   ref: React.RefObject<HTMLDivElement | null>,
   callback: () => void
