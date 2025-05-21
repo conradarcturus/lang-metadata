@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 
 import HoverableButton from '../../generic/HoverableButton';
+import { useClickOutside } from '../../generic/useClickOutside';
 
 type Props<T extends React.Key> = {
   getOptionDescription?: (value: T | T[]) => React.ReactNode;
@@ -30,6 +31,11 @@ function MultiChoiceOptions<T extends React.Key>({
     </HoverableButton>
   ));
   const [expanded, setExpanded] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
+  const closeDropdown = useCallback(() => setExpanded(false), []);
+  useClickOutside(popupRef, () => {
+    if (expanded) closeDropdown();
+  });
 
   return mode == 'flat' ? (
     contents
@@ -45,7 +51,7 @@ function MultiChoiceOptions<T extends React.Key>({
         {selected.length > 1 && 'Multiple selected'} {expanded ? `▼` : `▶`}
       </HoverableButton>
       {expanded && (
-        <div className="SelectorPopupAnchor">
+        <div className="SelectorPopupAnchor" ref={popupRef}>
           <div className="SelectorPopup">{contents}</div>
         </div>
       )}
