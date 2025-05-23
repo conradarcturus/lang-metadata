@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import HoverableButton from '../../generic/HoverableButton';
+import { useClickOutside } from '../../generic/useClickOutside';
 
 type Props<T extends React.Key> = {
   getOptionDescription?: (value: T) => React.ReactNode;
@@ -20,6 +21,7 @@ function SingleChoiceOptions<T extends React.Key>({
   selected,
 }: Props<T>) {
   const [expanded, setExpanded] = useState(false);
+  const popupRef = useClickOutside(() => setExpanded(false));
   const contents = options.map((option) => (
     <HoverableButton
       key={option}
@@ -48,7 +50,7 @@ function SingleChoiceOptions<T extends React.Key>({
         {getOptionLabel(selected)} {expanded ? `▼` : `▶`}
       </HoverableButton>
       {expanded && (
-        <div className="SelectorPopupAnchor">
+        <div className="SelectorPopupAnchor" ref={popupRef}>
           <div className="SelectorPopup">{contents}</div>
         </div>
       )}
