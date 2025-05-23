@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 
 import HoverableButton from '../../generic/HoverableButton';
 import { useClickOutside } from '../../generic/useClickOutside';
@@ -31,11 +31,7 @@ function MultiChoiceOptions<T extends React.Key>({
     </HoverableButton>
   ));
   const [expanded, setExpanded] = useState(false);
-  const popupRef = useRef<HTMLDivElement>(null);
-  const closeDropdown = useCallback(() => setExpanded(false), []);
-  useClickOutside(popupRef, () => {
-    if (expanded) closeDropdown();
-  });
+  const popupRef = useClickOutside(() => setExpanded(false));
 
   return mode == 'flat' ? (
     contents

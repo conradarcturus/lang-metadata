@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
+// Custom hook that returns a ref and calls the callback when a mousedown occurs outside the referenced element.
 
-export function useClickOutside(
-  ref: React.RefObject<HTMLDivElement | null>,
-  callback: () => void
-) {
+export function useClickOutside(callback: () => void) {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function handleEvent(event: MouseEvent) {
       if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -15,5 +14,6 @@ export function useClickOutside(
     return () => {
       document.removeEventListener('mousedown', handleEvent);
     };
-  }, [ref, callback]);
+  }, [callback]);
+  return ref;
 } 
