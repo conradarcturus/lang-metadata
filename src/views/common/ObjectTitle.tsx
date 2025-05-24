@@ -52,7 +52,10 @@ const ObjectTitle: React.FC<Props> = ({ object, highlightSearchMatches = false }
         <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.EngName} />
       </strong>{' '}
       {nameDisplay != nameEndonym && (
-        <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Endonym} />
+        <div style={{ display: 'inline-block' }}>
+          {/* placed in its own div to prevent right-to-left names from breaking */}
+          <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Endonym} />
+        </div>
       )}{' '}
       [
       <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />]
