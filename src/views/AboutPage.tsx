@@ -8,11 +8,20 @@ const AboutPage: React.FC = () => {
     <div style={{ textAlign: 'left' }}>
       <h1>About</h1>
       <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
+        <a href="#motivation">
+          <button>Motivation</button>
+        </a>
         <a href="#contributors">
           <button>Contributors</button>
         </a>
-        <a href="#motivation">
-          <button>Motivation</button>
+        <a href="#acknowledgments">
+          <button>Acknowledgments</button>
+        </a>
+        <a href="#contact">
+          <button>Contact</button>
+        </a>
+        <a href="#license">
+          <button>License</button>
         </a>
         <a href="#data-sources">
           <button>Data Sources</button>
@@ -25,6 +34,43 @@ const AboutPage: React.FC = () => {
         features and how they are situated across the globe.
       </p>
 
+      <div className="section" id="motivation">
+        <h2>Motivation</h2>
+        <dl>
+          <dt>Free and Open</dt>
+          <dd>
+            The Language Navigator is built on the belief that language data should be accessible to
+            everyone. We aim to provide a free and open-source tool that allows users to explore and
+            understand the world&apos;s languages without barriers. We want to empower people to
+            learn about languages, their relationships, and their relevance in today&apos;s digital
+            world.
+          </dd>
+          <dt>Actionable Insights</dt>
+          <dd>
+            The Language Navigator is designed to provide actionable insights into the world of
+            languages. We aim to help people make informed decisions about language use in both
+            spoken context as well as written or internet contexts. We also acknowledge that many of
+            the languages represented here are endangered, or while thriving in spoken form, remain
+            unsupported on digital platforms. Depending on your goals, this insight might inspire
+            support efforts—or influence strategic prioritization.
+          </dd>
+          <dt>Inclusive</dt>
+          <dd>
+            The Language Navigator highlights not only widely spoken languages but also those
+            recognized by specific communities, even if they lack global consensus. Where data is
+            disputed or incomplete, we aim for transparency. Users can see{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.Inclusive })}>
+              all attested languages
+            </a>{' '}
+            or choose to follow specific standards like{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.ISO })}>ISO 639-3/5</a>,{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.Glottolog })}>Glottolog</a>,{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.UNESCO })}>UNESCO</a>, or{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.CLDR })}>CLDR</a>.
+          </dd>
+        </dl>
+      </div>
+
       <div className="section" id="contributors">
         <h2>Contributors</h2>
         <p>
@@ -34,54 +80,75 @@ const AboutPage: React.FC = () => {
           It is developed and maintained by a group of dedicated volunteers who are passionate about
           language and technology.
         </p>
+      </div>
+      <div className="section" id="acknowledgments">
+        <h2>Acknowledgments</h2>
         <p>
-          This project is open-source and welcomes contributions from the community. If you have any
-          questions or suggestions, feel free to reach out! The source code is available on Github
-          at{' '}
-          <a href="https://github.com/Translation-Commons/lang-nav">
-            https://github.com/Translation-Commons/lang-nav
+          We would like to thank the following organizations for their contributions to this
+          project:
+        </p>
+        <dl>
+          <dt>
+            <a href="https://www.unesco.org/en/our-work/languages">UNESCO</a>
+          </dt>
+          <dd>
+            For their collaboration and support in building the next version of the{' '}
+            <a href="https://en.wal.unesco.org/">World Atlas of Languages (WAL)</a>.
+          </dd>
+          <dt>
+            <a href="https://home.unicode.org/">The Unicode Consortium</a>
+          </dt>
+          <dd>
+            For providing the Unicode standard and the Common Locale Data Repository (CLDR), which
+            serves as a foundation for the language data used in this application.
+          </dd>
+          <dt>
+            <a href="https://hlt.bme.hu/en/projects/lingvit">Digital Language Vitality Project</a>
+          </dt>
+          <dd>
+            For their work cataloging language vitality and providing great insights on which data
+            to use for this website.
+          </dd>
+          <dt>You, the viewer</dt>
+          <dd>
+            For exploring and using this tool. Your curiosity and interest in languages is what
+            drives this project forward.
+          </dd>
+        </dl>
+      </div>
+      <div className="section" id="contact">
+        <h2>Contact</h2>
+        <p>
+          If you have any questions, suggestions, or feedback about the Language Navigator, please{' '}
+          <a href="https://github.com/Translation-Commons/lang-nav/issues">
+            file an issue on Github
           </a>
-          . Feel free to file new issues there, or if you are confident in directly filing pull
-          requests to update the Typescript code or the data files.
+          . We are always looking for ways to improve the tool and improve the quality of the
+          language data we provide.
         </p>
       </div>
 
-      <div className="section" id="motivation">
-        <h2>Motivations</h2>
-        <dl>
-          <dt>Free and Open</dt>
-          <dd>
-            The Language Navigator is a free and open-source project. We believe that language data
-            should be accessible to everyone, and we are committed to making this tool available to
-            all.
-          </dd>
-          <dt>Actionable Insights</dt>
-          <dd>
-            The Language Navigator is designed to provide actionable insights into the world of
-            languages. We aim to help people make informed decisions about language use in both
-            spoken context as well as written or internet contexts. Unfortunately, this acknowledges
-            that many languages shown here are dying or even if they are thriving in person, they
-            are not used in computing devices. Depending on the aim of the reader that could
-            motivate them to improve support or to wait and focus efforts on other languages that
-            are more likely to be used.
-          </dd>
-          <dt>Inclusive</dt>
-          <dd>
-            The Language Navigator aims to show the diversity of languages and dialects around the
-            world -- including not just languages that are spoken by small communities, but also
-            ones that are not univesally recognized. When information is contested -- we will try to
-            show transparent information about the limitations of the data. When viewing data you
-            can toggle which Definition of Language to follow:{' '}
-            <a href={getNewURL({ languageSchema: LanguageSchema.Inclusive })}>
-              allow any attested languages
-            </a>
-            , or follow the perspective of{' '}
-            <a href={getNewURL({ languageSchema: LanguageSchema.ISO })}>ISO 639-3/5</a>,{' '}
-            <a href={getNewURL({ languageSchema: LanguageSchema.Glottolog })}>Glottolog</a>,{' '}
-            <a href={getNewURL({ languageSchema: LanguageSchema.UNESCO })}>UNESCO</a>, or{' '}
-            <a href={getNewURL({ languageSchema: LanguageSchema.CLDR })}>CLDR</a>.
-          </dd>
-        </dl>
+      <div className="section" id="license">
+        <h2>License</h2>
+        <p>
+          The Language Navigator is licensed under the{' '}
+          <a href="https://opensource.org/license/mit/">MIT License</a>. This means you are free to
+          use, modify, and distribute the code, provided that you include the original copyright
+          notice and license in any copies or substantial portions of the software.
+        </p>
+        <p>
+          The source code is available on{' '}
+          <a href="https://github.com/Translation-Commons/lang-nav">
+            https://github.com/Translation-Commons/lang-nav
+          </a>
+          . The data files are available in the{' '}
+          <a href="https://github.com/Translation-Commons/lang-nav/tree/master/public/data">
+            https://github.com/Translation-Commons/lang-nav/tree/master/public/data
+          </a>
+          . The data files may have different licenses, so please check the specific sources below
+          for specific licensing information. Best practice is to cite both this website as well as
+          the major sources for the data.
+        </p>
       </div>
 
       <div className="section" id="data-sources">
@@ -97,6 +164,7 @@ const AboutPage: React.FC = () => {
           can understand languages in context and make informed decisions about languages across the
           world.
         </p>
+        <h3>Source Databases</h3>
         <dl>
           <dt>Unicode & CLDR</dt>
           <dd>
@@ -141,6 +209,39 @@ const AboutPage: React.FC = () => {
             <a href="https://unstats.un.org/unsd/demographic-social/census/">UNStats</a> and{' '}
             <a href="https://data.un.org/Default.aspx">UNData</a> provide census data like
             population and literacy.
+          </dd>
+        </dl>
+
+        <h3>Data</h3>
+        <dl>
+          <dt>IDs</dt>
+          <dd>
+            The various language IDs (eg. ISO 3166 territory codes or language glottcodes) come from
+            their respective original database (ISO, Glottolog, CLDR). When an object has multiple
+            identities, it has been manually matched by the Language Navigator team to a single
+            entity. For instance, English is represented in CLDR by the ISO 639-1 code{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.CLDR, objectID: 'eng' })}>en</a>,
+            the ISO 639-3 code{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.ISO, objectID: 'eng' })}>eng</a>,
+            and the Glottocode{' '}
+            <a href={getNewURL({ languageSchema: LanguageSchema.Glottolog, objectID: 'eng' })}>
+              stan1293
+            </a>
+            .
+          </dd>
+          <dt>Names</dt>
+          <dd>
+            The names are sourced from the original databases, with some manual adjustments to
+            ensure consistency and clarity. When swapping between different language definitions the
+            language names will update to match the one provide by the source for that definition.
+            For example, Chinese as a macrolanguage is called &quot;Classical-Middle-Modern
+            Sinitic&quot; in Glottolog.
+          </dd>
+          <dt>Population Data</dt>
+          <dd>
+            The population data is comes from many sources, some directly pull from government
+            censuses or academic papers, some come from secondary sources like Ethnologue or CLDR,
+            and some are approximations based on the related data.
           </dd>
         </dl>
       </div>

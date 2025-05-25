@@ -10,7 +10,7 @@ export enum ObjectType {
 }
 
 export enum View {
-  CardList = 'Card List',
+  CardList = 'Cards',
   Details = 'Details',
   Hierarchy = 'Hierarchy',
   Table = 'Table',
