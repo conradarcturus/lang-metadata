@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { toTitleCase } from '../../generic/stringUtils';
 import { useMediaQuery } from '../../generic/useMediaQuery';
-import { ObjectType } from '../../types/PageParamTypes';
+import { ObjectType, View } from '../../types/PageParamTypes';
 import { getObjectTypeLabelPlural } from '../../views/common/getObjectName';
 import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
 
 const ObjectTypeSelector: React.FC = () => {
-  const { objectType, updatePageParams } = usePageParams();
+  const { objectType, updatePageParams, view } = usePageParams();
   const isCompact = useMediaQuery('(max-width: 1015px)');
+  const goToObjectType = useCallback(
+    (objectType: ObjectType) => {
+      updatePageParams({ objectType, view: view === View.About ? View.CardList : view });
+    },
+    [updatePageParams, view],
+  );
 
   return (
     <Selector selectorLabel={isCompact ? 'Data:' : undefined} appearance="tabs">
       <SingleChoiceOptions<ObjectType>
         options={Object.values(ObjectType)}
-        onChange={(objectType: ObjectType) => updatePageParams({ objectType })}
+        onChange={goToObjectType}
         mode={isCompact ? 'dropdown' : 'flat'}
         selected={objectType}
         getOptionLabel={(d) => toTitleCase(getObjectTypeLabelPlural(d))}
