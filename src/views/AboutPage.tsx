@@ -48,11 +48,11 @@ const AboutPage: React.FC = () => {
           <dt>Actionable Insights</dt>
           <dd>
             The Language Navigator is designed to provide actionable insights into the world of
-            languages. We aim to help people make informed decisions about language use in both
-            spoken context as well as written or internet contexts. We also acknowledge that many of
-            the languages represented here are endangered, or while thriving in spoken form, remain
-            unsupported on digital platforms. Depending on your goals, this insight might inspire
-            support efforts—or influence strategic prioritization.
+            languages. We aim to help people make informed decisions about language use--whether in
+            spoken context or digital communication. We also acknowledge that many of the languages
+            represented here are endangered, or while thriving in spoken form, remain unsupported on
+            digital platforms. Depending on your goals, this insight might inspire support
+            efforts—or influence strategic prioritization.
           </dd>
           <dt>Inclusive</dt>
           <dd>
@@ -123,7 +123,7 @@ const AboutPage: React.FC = () => {
           <a href="https://github.com/Translation-Commons/lang-nav/issues">
             file an issue on Github
           </a>
-          . We are always looking for ways to improve the tool and improve the quality of the
+          . We are always looking for ways to improve the tool and enhance the quality of the
           language data we provide.
         </p>
       </div>
@@ -137,13 +137,11 @@ const AboutPage: React.FC = () => {
           notice and license in any copies or substantial portions of the software.
         </p>
         <p>
-          The source code is available on{' '}
-          <a href="https://github.com/Translation-Commons/lang-nav">
-            https://github.com/Translation-Commons/lang-nav
-          </a>
-          . The data files are available in the{' '}
+          The source code is available in a{' '}
+          <a href="https://github.com/Translation-Commons/lang-nav">Github repository</a>. The data
+          files are available in the{' '}
           <a href="https://github.com/Translation-Commons/lang-nav/tree/master/public/data">
-            https://github.com/Translation-Commons/lang-nav/tree/master/public/data
+            public/data directory of the repository
           </a>
           . The data files may have different licenses, so please check the specific sources below
           for specific licensing information. Best practice is to cite both this website as well as
@@ -155,14 +153,9 @@ const AboutPage: React.FC = () => {
         <h2>Data Sources</h2>
         <p>
           The data used in this application is sourced from various linguistic databases, including
-          Glottolog, Ethnologue, and CLDR. The raw input data is saved in files in the github
-          repository{' '}
-          <a href="https://github.com/Translation-Commons/lang-nav/tree/master/public/data">
-            https://github.com/Translation-Commons/lang-nav/tree/master/public/data
-          </a>
-          . This data is meant to be as public and freely available as possible so that all people
-          can understand languages in context and make informed decisions about languages across the
-          world.
+          Glottolog, Ethnologue, and CLDR. This data is meant to be as public and freely available
+          as possible so that all people can understand languages in context and make informed
+          decisions about languages across the world.
         </p>
         <h3>Source Databases</h3>
         <dl>
@@ -170,10 +163,11 @@ const AboutPage: React.FC = () => {
           <dd>
             <a href="https://home.unicode.org/">The Unicode Consortium</a> provides the Unicode
             standard for how writing systems are encoded for use on electronic devices and{' '}
-            <a href="https://cldr.unicode.org/">the Common Locale Data Repository (CLDR)</a>. Much
-            of the initial data was bootstraped from CLDR - which itself catalogs much of the worlds
-            languages in order to provide keyboard and user-interface support. It also provides much
-            of the data for the ISO standards <a href="https://iso639-3.sil.org/">ISO 639-3</a>.
+            <a href="https://cldr.unicode.org/">the Common Locale Data Repository (CLDR)</a>.We
+            initially bootstrapped much of the data from CLDR - which itself catalogs much of the
+            worlds languages in order to provide keyboard and user-interface support. It also
+            provides much of the data for the ISO standards{' '}
+            <a href="https://iso639-3.sil.org/">ISO 639-3</a>.
           </dd>
           <dt>Glottolog</dt>
           <dd>
@@ -239,9 +233,12 @@ const AboutPage: React.FC = () => {
           </dd>
           <dt>Population Data</dt>
           <dd>
-            The population data is comes from many sources, some directly pull from government
-            censuses or academic papers, some come from secondary sources like Ethnologue or CLDR,
-            and some are approximations based on the related data.
+            The population data comes from many sources. Some estimates are directly imported from
+            government censuses or academic papers -- sometimes we needed to interpret the language
+            the value meant (eg. is &quot;Malay&quot; referring to standard Malay, vernacular Malay,
+            or Malay as a macrolanguage). Some come from secondary sources like Ethnologue or CLDR.
+            A few estimates, especially for regional locales, are approximations based on the
+            related data.
           </dd>
         </dl>
       </div>

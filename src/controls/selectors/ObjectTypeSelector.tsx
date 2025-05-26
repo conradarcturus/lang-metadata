@@ -8,12 +8,17 @@ import Selector from '../components/Selector';
 import SingleChoiceOptions from '../components/SingleChoiceOptions';
 import { usePageParams } from '../PageParamsContext';
 
+const objectAmbiguousViews = [View.About, View.Details];
+
 const ObjectTypeSelector: React.FC = () => {
   const { objectType, updatePageParams, view } = usePageParams();
   const isCompact = useMediaQuery('(max-width: 1015px)');
   const goToObjectType = useCallback(
     (objectType: ObjectType) => {
-      updatePageParams({ objectType, view: view === View.About ? View.CardList : view });
+      updatePageParams({
+        objectType,
+        view: objectAmbiguousViews.includes(view) ? View.CardList : view,
+      });
     },
     [updatePageParams, view],
   );
