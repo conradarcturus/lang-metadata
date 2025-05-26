@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { getNewURL } from '../controls/PageParamsContext';
+import CreativeCommonsLicense from '../CreativeCommonsLicense';
 import { LanguageSchema } from '../types/LanguageTypes';
 
 const AboutPage: React.FC = () => {
@@ -147,6 +148,7 @@ const AboutPage: React.FC = () => {
           for specific licensing information. Best practice is to cite both this website as well as
           the major sources for the data.
         </p>
+        <CreativeCommonsLicense />
       </div>
 
       <div className="section" id="data-sources">

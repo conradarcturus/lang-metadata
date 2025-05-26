@@ -84,6 +84,18 @@ button {
   color: var(--color-text-secondary);
 }
 
+footer {
+  background-color: var(--color-button-secondary);
+  border: 1px solid var(--color-text-secondary);
+  color: var(--color-text-secondary);
+  font-size: 0.8em;
+  margin-top: 2em;
+  padding: 1em;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-text: #f1f1f1;
