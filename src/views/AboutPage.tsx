@@ -183,7 +183,7 @@ const AboutPage: React.FC = () => {
             standard for how writing systems are encoded for use on electronic devices and{' '}
             <a href="https://cldr.unicode.org/">the Common Locale Data Repository (CLDR)</a>.We
             initially bootstrapped much of the data from CLDR - which itself catalogs much of the
-            worlds languages in order to provide keyboard and user-interface support. It also
+            world&apos;s languages in order to provide keyboard and user-interface support. It also
             provides much of the data for the ISO standards{' '}
             <a href="https://iso639-3.sil.org/">ISO 639-3</a>.
           </dd>
@@ -245,18 +245,18 @@ const AboutPage: React.FC = () => {
           <dd>
             The names are sourced from the original databases, with some manual adjustments to
             ensure consistency and clarity. When swapping between different language definitions the
-            language names will update to match the one provide by the source for that definition.
+            language names will update to match the one provided by the source for that definition.
             For example, Chinese as a macrolanguage is called &quot;Classical-Middle-Modern
             Sinitic&quot; in Glottolog.
           </dd>
           <dt>Population</dt>
           <dd>
             The population data comes from many sources. Some estimates are directly imported from
-            government censuses or academic papers -- sometimes we needed to interpret the language
-            the value meant (eg. is &quot;Malay&quot; referring to standard Malay, vernacular Malay,
-            or Malay as a macrolanguage). Some come from secondary sources like Ethnologue or CLDR.
-            A few estimates, especially for regional locales, are approximations based on the
-            related data.
+            government censuses or academic papers -- sometimes we had to interpret the intended
+            language (eg. is &quot;Malay&quot; referring to standard Malay, vernacular Malay, or
+            Malay as a macrolanguage). Some come from secondary sources like Ethnologue or CLDR. A
+            few estimates, especially for regional locales, are approximations based on the related
+            data.
           </dd>
         </dl>
       </div>

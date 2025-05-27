@@ -9,7 +9,7 @@ const Footer: React.FC = () => (
     <div>{/* Empty right side for alignment */}</div>
     <p>
       © {new Date().getFullYear()} <a href="https://translationcommons.org">Translation Commons</a>
-      . See more on <a href={getNewURL({ view: View.About })}>about page</a>.
+      . See license, contact info in the <a href={getNewURL({ view: View.About })}>about page</a>.
     </p>
     <CreativeCommonsLicense />
   </footer>
