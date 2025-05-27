@@ -6,7 +6,7 @@ import { LanguageSchema } from '../types/LanguageTypes';
 
 const AboutPage: React.FC = () => {
   return (
-    <div style={{ textAlign: 'left' }}>
+    <div className="AboutPage">
       <h1>About</h1>
       <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
         <a href="#motivation">
@@ -132,11 +132,21 @@ const AboutPage: React.FC = () => {
       <div className="section" id="license">
         <h2>License</h2>
         <p>
-          The Language Navigator is licensed under the{' '}
+          The code for the Language Navigator is licensed under the{' '}
           <a href="https://opensource.org/license/mit/">MIT License</a>. This means you are free to
           use, modify, and distribute the code, provided that you include the original copyright
           notice and license in any copies or substantial portions of the software.
         </p>
+        <p>
+          The proprietary language data, visualizations, and other content are licensed under{' '}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            Creative Commons Attribution-ShareAlike 4.0
+          </a>
+          . This means you are free to share and adapt the content, even for commercial purposes, as
+          long as you give appropriate credit, provide a link to the license, and indicate if
+          changes were made.
+        </p>
+        <CreativeCommonsLicense />
         <p>
           The source code is available in a{' '}
           <a href="https://github.com/Translation-Commons/lang-nav">Github repository</a>. The data
@@ -144,11 +154,10 @@ const AboutPage: React.FC = () => {
           <a href="https://github.com/Translation-Commons/lang-nav/tree/master/public/data">
             public/data directory of the repository
           </a>
-          . The data files may have different licenses, so please check the specific sources below
-          for specific licensing information. Best practice is to cite both this website as well as
-          the major sources for the data.
+          . Some data files are imported from other places which may have different licenses, so
+          please check the specific sources below for specific licensing information. Best practice
+          is to cite both this website as well as the major sources for the data.
         </p>
-        <CreativeCommonsLicense />
       </div>
 
       <div className="section" id="data-sources">
@@ -159,8 +168,15 @@ const AboutPage: React.FC = () => {
           as possible so that all people can understand languages in context and make informed
           decisions about languages across the world.
         </p>
-        <h3>Source Databases</h3>
+        <h3>Input databases</h3>
         <dl>
+          <dt>Manually collected from Censuses and Academic Papers</dt>
+          <dd>
+            The Language Navigator team has manually collected population and recognition data from
+            various government censuses and academic papers. Sometimes, source websites were no
+            longer accessible but data was retrieved using the internet archive&apos;s{' '}
+            <a href="https://web.archive.org/">Wayback Machine</a>.
+          </dd>
           <dt>Unicode & CLDR</dt>
           <dd>
             <a href="https://home.unicode.org/">The Unicode Consortium</a> provides the Unicode
@@ -208,7 +224,7 @@ const AboutPage: React.FC = () => {
           </dd>
         </dl>
 
-        <h3>Data</h3>
+        <h3>Data Fields</h3>
         <dl>
           <dt>IDs</dt>
           <dd>
@@ -233,7 +249,7 @@ const AboutPage: React.FC = () => {
             For example, Chinese as a macrolanguage is called &quot;Classical-Middle-Modern
             Sinitic&quot; in Glottolog.
           </dd>
-          <dt>Population Data</dt>
+          <dt>Population</dt>
           <dd>
             The population data comes from many sources. Some estimates are directly imported from
             government censuses or academic papers -- sometimes we needed to interpret the language

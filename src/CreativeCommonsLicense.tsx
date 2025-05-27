@@ -8,11 +8,7 @@ const CreativeCommonsLicense: React.FC = () => {
       hoverContent={
         <span>
           This work is licensed under a{' '}
-          <a
-            href="https://creativecommons.org/licenses/by-sa/4.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
             Creative Commons Attribution-ShareAlike 4.0 International License
           </a>
           .

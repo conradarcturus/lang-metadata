@@ -85,15 +85,14 @@ button {
 }
 
 footer {
+  align-items: center;
   background-color: var(--color-button-secondary);
   border: 1px solid var(--color-text-secondary);
   color: var(--color-text-secondary);
-  font-size: 0.8em;
-  margin-top: 2em;
-  padding: 1em;
-  text-align: center;
   display: flex;
+  font-size: 0.8em;
   justify-content: space-between;
+  margin-top: 2em;
 }
 
 @media (prefers-color-scheme: dark) {

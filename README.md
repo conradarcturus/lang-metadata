@@ -152,3 +152,8 @@ Here's a list of planned functionality. Completed functions are checked off.
   - [ ] Feedback mechanisms
   - [ ] Metrics
 - [ ] clarify what that vitality levels mean
+
+## License
+
+- The code in this repository is licensed under the [MIT License](LICENSE).
+- The language data, visualizations, and other content are licensed under [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/).
