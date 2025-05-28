@@ -38,12 +38,11 @@ export const HoverCardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     if (!cardRef.current || !hoverCard.visible) return;
 
     const card = cardRef.current;
-    
+
     const { offsetWidth, offsetHeight } = card;
-    
+
     let newX = hoverCard.x + 10;
     let newY = hoverCard.y + 10;
-    
 
     if (newX + offsetWidth > window.innerWidth) {
       newX = window.innerWidth - offsetWidth - 10;
@@ -63,7 +62,7 @@ export const HoverCardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       {children}
       {hoverCard.visible && (
         <div
-         ref={cardRef}
+          ref={cardRef}
           className="HoverCard"
           style={{
             top: hoverCard.y + 10,
