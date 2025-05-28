@@ -27,7 +27,14 @@ export const ObjectFieldHighlightedByPageSearch: React.FC<Props> = ({ object, fi
   ) {
     // If searching on all names, also highlight fields for English Name or Endonym
     return <HighlightedObjectField object={object} query={searchString} field={field} />;
+  } else if (
+    pageSearchBy === SearchableField.NameOrCode &&
+    [SearchableField.EngName, SearchableField.Code].includes(field)
+  ) {
+    // If searching on name or code, also highlight fields for English Name or Code
+    return <HighlightedObjectField object={object} query={searchString} field={field} />;
   }
+  // Otherwise don't highlight, just return the field value
   return getSearchableField(object, field, lowercaseSearchString);
 };
 

@@ -17,7 +17,6 @@ import ViewCard from './ViewCard';
 const ViewWarnings: React.FC = () => {
   return (
     <>
-      {' '}
       <LanguagesWithIdenticalNames />
     </>
   );
