@@ -25,6 +25,7 @@ const DataContext = createContext<DataContextType | undefined>({
   languages: {},
   territories: {},
   locales: {},
+  populationCollections: {},
   writingSystems: {},
 });
 

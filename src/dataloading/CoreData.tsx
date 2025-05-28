@@ -9,6 +9,7 @@ import {
   WritingSystemData,
 } from '../types/DataTypes';
 import { LanguagesBySchema } from '../types/LanguageTypes';
+import { PopulationCollectionID, PopulationCollectionMetadata } from '../types/PopulationTypes';
 
 import {
   addISODataToLanguages,
@@ -44,6 +45,7 @@ export type CoreData = {
   territories: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
   writingSystems: Record<ScriptCode, WritingSystemData>;
+  populationCollections: Record<PopulationCollectionID, PopulationCollectionMetadata>;
 };
 
 export const EMPTY_LANGUAGES_BY_SCHEMA: LanguagesBySchema = {
@@ -124,6 +126,7 @@ export function useCoreData(): {
       languagesBySchema,
       territories,
       locales,
+      populationCollections: {}, // This will be populated later
       writingSystems,
     },
   };

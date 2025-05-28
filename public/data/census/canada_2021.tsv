@@ -1,0 +1,563 @@
+#collectionKey		Canada1 2021	Canada2 2021 @Home	Canada3 2021 L1 Sampled	Canada4 2021 L1
+#citation		Statistics Canada. Table 98-10-0294-01  Knowledge of Indigenous languages by single and multiple knowledge of languages responses and Indigenous language acquisition: Canada, provinces and territories	Statistics Canada. Table 98-10-0299-01  Indigenous language spoken at home by single and multiple responses of language spoken at home: Canada, provinces and territories	Statistics Canada. Table 98-10-0298-01  Indigenous mother tongue by single and multiple mother tongue responses and Indigenous identity: Canada, provinces and territories, census divisions and census subdivisions	Statistics Canada. Table 98-10-0201-01  Language spoken at home by single and multiple responses of language spoken at home and mother tongue: Canada, provinces and territories, census metropolitan areas and census agglomerations with parts
+#tableName		Knowledge of languages by age and gender: Canada, provinces and territories, census divisions and census subdivisions	Indigenous language spoken at home by single and multiple responses of language spoken at home: Canada, provinces and territories	Indigenous mother tongue by single and multiple mother tongue responses and Indigenous identity: Canada, provinces and territories, census divisions and census subdivisions	Language spoken at home by single and multiple responses of language spoken at home and mother tongue
+#columnName		Total - Single and multiple responses of knowledge of languages	Total - Single and multiple responses of language spoken at home	Total - Single and multiple mother tongue responses	Total - Single and multiple responses of language spoken at home6, 7
+#datePublished		2022-08-17	2025-02-19	2024-10-23	2022-08-17
+#dateCollected		2021	2021	2021	2021
+#URL		https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810021601	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810029901	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810029801	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810020101
+#isoRegionCode		CA	CA	CA	CA
+#geographicScope		Whole Country	Whole Country	Whole Country	Whole Country
+#age		0+	0+	0+	0+
+#gender		Any	Any	Any	Any
+#modality		Spoken	Spoken	Spoken	Spoken
+#proficiency		Conversant or Learning	Conversant or Learning	Conversant or Learning	Conversant or Learning
+#acquisitionOrder		Any	Any	L1	L1
+#domain		Any	Home	Home	Home
+#sampleRate		0.25	0.25	0.25	1
+#responsesPerIndividual		1+	1+	1+	1+
+#denominator	Total - Knowledge of languages	36,328,480	36,328,475	36,328,475	36,620,955
+Language Code	Language Name from Source	Canada1 2021	Canada2 2021 @Home	Canada3 2021 L1 Sampled	Canada4 2021 L1
+zxx	None		0	0	
+mul	Official languages	35,644,660	33,712,255	28,437,185	34,018,455
+eng	English	31,628,570	26,947,850	21,226,110	27,166,170
+fra	French	10,563,235	8,143,045	7,546,925	8,261,800
+mul	Non-official languages	10,724,700	8,197,070	8,968,265	8,289,395
+mul	Indigenous languages	243,155	180,775	185,510	182,925
+algo1256	Algonquian languages	163,815	119,635	123,135	121,275
+bla	Blackfoot	6,680	4,970	4,945	4,915
+cree1271	Cree-Innu languages	105,850	79,770	82,630	81,175
+atj	Atikamekw	6,815	6,110	6,305	6,055
+cre	Cree languages	87,875	63,655	66,210	65,045
+crm	Ililimowin (Moose Cree)	420	220	185	255
+crj	Inu Ayimun (Southern East Cree)	890	730	700	740
+crl	Iyiyiw-Ayimiwin (Northern East Cree)	4,880	4,080	3,850	4,075
+csw	Nehinawewin (Swampy Cree)	4,675	3,290	3,135	3,220
+crk	Nehiyawewin (Plains Cree)	12,005	7,570	6,730	7,410
+cwd	Nihithawiwin (Woods Cree)	5,110	3,510	3,755	3,425
+und	Cree, n.o.s.	61,000	44,395	47,855	46,040
+moe	Innu (Montagnais)	10,745	9,430	9,435	9,530
+nsk	Naskapi	1,035	780	735	750
+east2700	Eastern Algonquian languages	10,035	7,455	6,930	7,515
+mic	Mi'kmaq	9,245	7,040	6,490	7,060
+pqm	Wolastoqewi (Malecite)	820	430	440	475
+ojib1240	Ojibway-Potawatomi languages	42,865	28,175	28,885	28,385
+alq	Anicinabemowin (Algonquin)	1,950	1,050	1,080	1,145
+ojs	Oji-Cree	15,305	12,425	11,935	12,650
+oji	Ojibway languages	26,165	14,860	15,890	14,705
+ciw	Anishinaabemowin (Chippewa)	2,035	1,370	760	1,310
+otw	Daawaamwin (Odawa)	220	155	130	105
+ojw	Saulteau (Western Ojibway)	3,630	2,135	2,585	2,085
+und	Ojibway, n.o.s.	20,720	11,390	12,500	11,390
+und	Algonquian languages, n.i.e.	165	60	25	50
+atha1245	Athabaskan languages	20,390	15,140	16,375	15,730
+ath	Northern Athabaskan languages	20,135	15,010	16,230	15,565
+crx	Dakelh (Carrier)	1,550	1,020	1,005	960
+bea	Dane-zaa (Beaver)	270	100	220	130
+chp	Dene, n.o.s.	11,555	9,215	9,810	9,770
+gwi	Gwich'in	295	145	230	165
+den	Slavey-Hare languages	2,330	1,575	1,850	1,625
+xsl	Deh Gah Ghotie Zhatie (South Slavey)	775	415	475	450
+scs	Satuotine Yati (North Slavey)	415	255	345	245
+und	Slavey, n.o.s.	1,205	915	1,035	930
+tahl1238	Tahltan languages	480	250	290	265
+kkz	Kaska (Nahani)	245	105	110	115
+tht	Tahltan	235	150	180	155
+dgr	Tlicho (Dogrib)	2,140	1,715	1,790	1,695
+sek	Tse'khene (Sekani)	135	45	65	45
+clc	Tsilhqot'in (Chilcotin)	870	550	630	585
+srs	Tsuu T'ina (Sarsi)	175	160	90	65
+tutc1236	Tutchone languages	320	170	180	180
+ttm	Northern Tutchone	135	65	75	75
+tce	Southern Tutchone	140	70	65	70
+und	Tutchone, n.o.s.	50	40	40	30
+bcr	Wetsuwet'en-Babine	290	170	185	200
+tli	Tlingit	150	75	75	105
+und	Athabaskan languages, n.i.e.	110	55	65	70
+hai	Haida	245	160	105	130
+iku	Inuktut (Inuit) languages	42,795	38,665	38,350	38,640
+ikt	Inuinnaqtun (Inuvialuktun)	1,140	705	800	720
+und	Inuinnaqtun	795	530	500	545
+und	Inuvialuktun	350	170	305	180
+ike	Inuktitut	41,680	37,955	37,520	37,910
+und	Inuktut (Inuit) languages, n.i.e.	70	40	40	35
+iro	Iroquoian languages	2,055	1,090	695	995
+cay	Cayuga	230	165	115	110
+moh	Mohawk	1,605	795	500	725
+one	Oneida	210	150	85	155
+und	Iroquoian languages, n.i.e.	65	30	10	35
+kut	Ktunaxa (Kutenai)	215	125	60	130
+crg	Michif	1,905	1,075	1,010	1,015
+sal	Salish languages	5,305	1,905	1,720	2,065
+hur	Halkomelem	1,415	610	415	540
+lil	Lillooet	600	155	130	195
+thp	Ntlakapamux (Thompson)	510	65	230	110
+shs	Secwepemctsin (Shuswap)	1,090	520	420	600
+squ	Squamish	355	125	45	150
+str	Straits	325	90	180	125
+oka	Syilx (Okanagan)	705	245	240	285
+und	Salish languages, n.i.e.	360	100	80	95
+sio	Siouan languages	2,960	1,630	1,750	1,680
+asb	Assiniboine	370	200	215	180
+dak	Dakota	1,530	775	915	880
+sto	Stoney	925	525	545	555
+und	Siouan languages, n.i.e.	325	240	180	200
+tsim1258	Tsimshian languages	2,665	1,430	1,595	1,490
+git	Gitxsan (Gitksan)	1,135	600	775	695
+ncg	Nisga'a	1,110	640	610	650
+tsi	Tsimshian	465	215	210	185
+wak	Wakashan languages	2,205	915	1,025	910
+has	Haisla	295	105	210	105
+hei	Heiltsuk	340	135	195	125
+kwk	Kwak'wala (Kwakiutl)	820	295	255	300
+nuk	Nuu-chah-nulth (Nootka)	700	345	325	350
+und	Wakashan languages, n.i.e.	50	35	35	25
+und	Indigenous languages, n.i.e.	645	95	90	100
+und	Indigenous languages, n.o.s.	855	340	385	320
+mul	Non-Indigenous languages	10,485,595	8,017,955	8,782,955	8,108,170
+ady	Adyghe				75
+afa	Afro-Asiatic languages	1,100,035			858,060
+ber	Berber languages	42,835			32,550
+kab	Kabyle	37,415			29,000
+shi	Tachelhit				110
+taq	Tamasheq				75
+tzm	Tamazight	4,735			2,950
+rif	Tarifit				60
+mzb	Tumzabt				150
+und	Berber languages, n.i.e.	1,330			580
+cdc	Chadic languages	7,090			3,175
+hau	Hausa	5,080			2,275
+gej	Mina	2,015			900
+cop	Coptic	3,685			3,610
+cus	Cushitic languages	71,930			60,385
+aar	Afar				520
+byn	Bilen	2,745			2,605
+orm	Oromo	9,640			7,640
+ssy	Saho				325
+sid	Sidamo				45
+som	Somali	59,005			49,555
+und	Cushitic languages, n.i.e.	1,400			115
+sem	Semitic languages	1,015,480			776,240
+amh	Amharic	48,305			35,235
+ara	Arabic	838,045			652,605
+aram1259	Aramaic languages	39,655			34,275
+aii	Assyrian Neo-Aramaic	23,865			20,765
+cld	Chaldean Neo-Aramaic	13,285			11,640
+und	Aramaic, n.o.s.	3,195			2,350
+har	Harari	2,005			1,600
+mey	Hassaniyya				140
+heb	Hebrew	83,205			37,095
+mlt	Maltese	6,535			3,060
+tig	Tigré				745
+tir	Tigrigna	45,970			38,725
+und	Semitic languages, n.i.e.	1,760			70
+aav	Austro-Asiatic languages	260,030			214,680
+khm	Khmer (Cambodian)	28,390			20,980
+mnw	Mon				160
+pac	Pacoh				30
+vie	Vietnamese	232,800			194,185
+und	Austro-Asiatic languages, n.i.e	910			375
+map	Austronesian languages	793,275			667,480
+ace	Aceh				100
+akl	Aklanon				415
+ifa	Amganad Ifugao				150
+bik	Bikol	4,260			2,615
+und	Bisaya, n.o.s.	10,990			11,065
+smk	Bolinao				45
+bnc	Bontok				50
+bsb	Brunei Bisaya				260
+ceb	Cebuano	33,045			24,400
+fij	Fijian	1,765			900
+aek	Haeke				65
+hil	Hiligaynon	16,385			12,170
+ibl	Ibaloi				485
+ibg	Ibanag				540
+ilo	Ilocano	61,680			48,375
+ind	Indonesian	19,815			11,995
+itv	Itawit				285
+ivv	Ivatan				50
+jra	Jarai				225
+jav	Javanese				210
+kali1311	Kalinga				65
+kne	Kankanaey	1,950			1,560
+krj	Kinaray-a	860			790
+mlg	Malagasy languages	3,885			2,175
+plt	Merina	2,355			1,120
+und	Malagasy, n.o.s.	1,570			1,065
+zlm	Malay	10,770			3,765
+mdr	Mandar				115
+mri	Maori				95
+msb	Masbatenyo				50
+pam	Pampangan (Kapampangan, Pampango)	10,555			7,775
+pag	Pangasinan	4,455			2,850
+rmm	Roma				120
+bsy	Sabah Bisaya				990
+smo	Samoan				70
+sgd	Surigaonon				85
+rob	Tae'				80
+fil	Tagalog (Pilipino, Filipino)	737,565			616,065
+tmy	Tami				180
+tsg	Tausug				40
+ton	Tongan				70
+ifk	Tuwali Ifugao				125
+war	Waray-Waray	4,520			4,170
+yog	Yogad				45
+und	Austronesian languages, n.i.e.	20,140			1,515
+bsk	Burushaski				55
+cari1283	Cariban languages				125
+crp	Creole languages	184,840			108,035
+cbk	Chavacano				520
+gpe	Ghanaian Pidgin English				405
+gyn	Guyanese English Creole				385
+hat	Haitian Creole	134,895			69,880
+jam	Jamaican English Creole	4,875			1,465
+kri	Krio	1,955			1,205
+mfe	Morisyen	15,345			8,910
+pap	Papiamentu				215
+rcf	Réunion French Creole				550
+acf	Saint Lucian French Creole				345
+sag	Sango	1,535			910
+crs	Seychelles French Creole				440
+und	Creole, n.o.s.	31,220			22,075
+und	Creole languages, n.i.e.	9,585			850
+dra	Dravidian languages	359,485			317,060
+kan	Kannada	18,420			12,325
+kfa	Kodava				95
+kru	Kurux				310
+mal	Malayalam	77,910			67,610
+tam	Tamil	237,890			206,000
+tel	Telugu	54,685			44,285
+tcy	Tulu	1,765			1,145
+und	Dravidian languages, n.i.e.	970			155
+kat	Georgian	3,010			2,315
+hmx	Hmong-Mien languages	720			615
+ium	Iu Mien				40
+hmz	Sinicized Miao				570
+ine	Indo-European languages	5,849,775			4,210,825
+sqi	Albanian	38,345			30,700
+hye	Armenian	44,500			37,525
+balt1263	Balto-Slavic languages	820,305			587,015
+bat	Baltic languages	13,890			7,635
+lav	Latvian	6,025			3,135
+lit	Lithuanian	7,895			4,510
+sla	Slavic languages	809,985			580,700
+bel	Belarusian	2,825			1,035
+bul	Bulgarian	24,210			18,175
+ces	Czech	28,625			15,530
+csb	Kashubian				70
+mkd	Macedonian	23,015			15,160
+pol	Polish	204,460			139,375
+rus	Russian	309,235			225,875
+rue	Rusyn	680			585
+hbs	Serbo-Croatian	155,775			110,960
+bos	Bosnian	25,380			15,760
+hrv	Croatian	73,845			41,830
+cnr	Montenegrin				580
+srp	Serbian	83,735			61,075
+und	Serbo-Croatian, n.i.e.	3,085			1,125
+slk	Slovak	20,905			12,215
+slv	Slovene (Slovenian)	10,655			4,970
+ukr	Ukrainian	131,655			73,500
+und	Slavic languages, n.i.e.	770			280
+cel	Celtic languages	10,485			3,885
+bre	Breton				45
+gle	Irish	5,360			1,775
+gla	Scottish Gaelic	2,170			910
+cym	Welsh	2,165			850
+und	Gaelic, n.o.s.				330
+und	Celtic languages, n.i.e.	910			
+gem	Germanic languages	658,705			330,025
+fris1239	Frisian languages				1,140
+fry	Frisian	2,835			1,095
+stq	Saterfriesisch				50
+high1289	High German languages	453,995			232,300
+deu	German	419,195			207,865
+geh	Hutterisch				265
+ltz	Luxemburgish				155
+pdc	Pennsylvania German	10,565			8,395
+swg	Swabian				70
+gsw	Swiss German	10,465			5,545
+und	Tyrolian, n.o.s.				445
+yid	Yiddish	20,155			11,105
+macr1270	Low Saxon-Low Franconian languages	191,840			88,245
+afr	Afrikaans	29,670			14,665
+nld	Dutch	107,985			40,305
+und	Low German, n.o.s.	10,560			7,350
+nds	Low Saxon	1,310			1,020
+pdt	Plautdietsch	41,160			24,190
+vls	Vlaams (Flemish)	3,985			1,260
+gmq	Scandinavian languages	37,500			14,780
+dan	Danish	14,700			5,340
+isl	Icelandic	1,475			695
+nor	Norwegian	8,860			2,830
+swe	Swedish	14,620			6,250
+sco	Scots				210
+und	Germanic languages, n.i.e.	1,275			80
+ell	Greek	145,060			98,830
+iir	Indo-Iranian languages	2,263,825			1,977,035
+inc	Indo-Aryan languages	1,918,570			1,665,480
+asm	Assamese	1,155			755
+ben	Bengali	120,605			105,040
+bho	Bhojpuri				350
+bpy	Bishnupuriya				55
+ccp	Chakma				175
+dgo	Dogri				215
+hif	Fiji Hindi				580
+gbm	Garhwali				190
+guj	Gujarati	209,415			173,800
+bgc	Haryanvi				540
+hin	Hindi	761,425			439,135
+hind1271	Hindko				945
+kfr	Kacchi	15,085			10,005
+kas	Kashmiri	1,830			1,340
+khw	Khowar				60
+kok	Konkani	8,950			5,060
+mai	Maithili				370
+mar	Marathi	35,230			23,705
+mwr	Marwari				600
+mby	Memoni				405
+nep	Nepali	30,660			27,200
+odk	Oadki				75
+ori	Oriya languages	3,235			2,385
+ory	Odia	1,710			1,440
+und	Oriya, n.o.s.	1,550			960
+phj	Pahari				350
+phr	Pahari-Potwari				250
+pash1270	Pashai				380
+pan	Punjabi (Panjabi)	942,170			827,150
+raj	Rajasthani				190
+rhg	Rohingya	765			640
+rom	Romani				200
+skr	Saraiki				950
+saz	Saurashtra				390
+snd	Sindhi	8,380			6,530
+sin	Sinhala (Sinhalese)	33,050			22,605
+syl	Sylheti				325
+urd	Urdu	414,870			342,165
+und	Indo-Aryan languages, n.i.e.	11,320			
+ira	Iranian languages	370,520			321,965
+bal	Baluchi	985			740
+glk	Gilaki				55
+haz	Hazaragi				260
+kur	Kurdish	24,035			20,350
+lrl	Lari				105
+prd	Parsi	1,000			605
+pus	Pashto	31,700			25,700
+fas	Persian languages	326,280			280,610
+prs	Dari	78,220			65,960
+pes	Iranian Persian	222,160			187,950
+und	Persian (Farsi), n.o.s.	30,345			28,000
+und	Iranian languages, n.i.e.	1,830			
+sgh	Shughni				170
+und	Indo-Iranian languages, n.i.e.	2,135			650
+und	Indo-Iranian languages, n.i.e.				1,505
+itc	Italic (Romance) languages	2,054,885			1,204,580
+cat	Catalan	2,855			1,485
+fur	Friulian				390
+glg	Galician				135
+ita	Italian	547,655			255,920
+lat	Latin				815
+por	Portuguese	336,865			230,395
+ron	Romanian	116,520			90,225
+ron	Romansch				70
+scn	Sicilian				395
+spa	Spanish	1,171,450			654,355
+vec	Venetian				75
+und	Italic (Romance) languages, n.i.e.	4,890			170
+und	Indo-European languages, n.i.e.	1,965			955
+jpn	Japanese	98,070			55,175
+kor	Korean	203,885			179,485
+myn	Mayan languages				125
+mon	Mongolian	2,540			1,945
+nakh1245	Nakh-Daghestanian languages				230
+che	Chechen				195
+und	Nakh-Daghestanian languages, n.i.e.				35
+nic	Niger-Congo languages	267,525			152,610
+aka	Akan (Twi)	26,240			17,440
+any	Anyin				90
+bam	Bamanankan	4,950			2,260
+bax	Bamun				70
+bxg	Bangala				95
+bci	Baoulé				155
+bsq	Bassa				280
+beq	Beembe				325
+bem	Bemba				355
+bmb	Bembe				140
+byf	Bete				40
+und	Bisa				70
+bum	Bulu				40
+nya	Chichewa				580
+cgg	Chiga				55
+como1260	Comorian				165
+bwy	Cwi Bwamu				55
+dag	Dagbani				100
+dnj	Dan				60
+ada	Dangme				90
+dua	Duala				105
+bin	Edo	4,945			2,360
+efi	Efik				185
+guz	Ekegusii				195
+ish	Esan				630
+ets	Etsako				85
+ewe	Éwé	4,650			2,110
+ewo	Ewondo				100
+fan	Fang				60
+fmp	Fe'fe'				415
+fon	Fon				590
+ful	Fulah (Pular, Pulaar, Fulfulde)	7,840			4,745
+flr	Fuliiru				130
+gaa	Ga	3,255			1,410
+lug	Ganda	4,650			2,470
+bbj	Ghomálá'				135
+kik	Gikuyu	1,850			980
+guw	Gun				110
+her	Herero				430
+ibb	Ibibio				375
+idu	Idoma				115
+igl	Igala				170
+ibo	Igbo	18,365			9,580
+und	Ijaw, n.o.s.				55
+ikk	Ika				180
+its	Isekiri				125
+iso	Isoko				195
+jad	Jahanka				80
+dyo	Jola-Fonyi				200
+dyu	Jula				450
+kbp	Kabiyè				55
+kam	Kamba				95
+ogo	Khana				50
+und	Kikongo, n.o.s.				845
+kin	Kinyarwanda (Rwanda)	13,515			8,000
+kpe	Kpelle				50
+lin	Lingala	25,720			11,390
+lub	Luba-Kasai	2,695			1,065
+man	Mandingo				490
+mnk	Mandinka				325
+byv	Medumba				115
+men	Mende				150
+mgo	Meta'				35
+mos	Mòoré	2,085			505
+wmw	Mwani	1,080			1,085
+nnz	Nda'nda'				60
+nde	Ndebele	2,425			1,310
+nnh	Ngiemboon				55
+nwe	Ngwe				55
+nyn	Nyankore				125
+nzi	Nzema				65
+run	Rundi (Kirundi)	14,825			9,835
+senu1239	Sénoufo				40
+srr	Serer, n.o.s.				155
+sna	Shona	7,280			4,595
+xog	Soga				90
+snk	Soninke	1,010			625
+soth1248	Sotho-Tswana languages	1,305			615
+tsn	Setswana				485
+sot	Southern Sotho				90
+und	Sotho, n.o.s.				65
+dga	Southern Dagaare				45
+kss	Southern Kisi				70
+sus	Susu				670
+swa	Swahili	57,295			30,790
+ssw	Swati				155
+kdh	Tem				90
+tll	Tetela				70
+und	Tonga				45
+ttj	Tooro				55
+tum	Tumbuka				55
+ukw	Ukwuani-Aboh-Ndoni				75
+urh	Urhobo				390
+jod	Wojenaka	2,820			1,105
+wol	Wolof	12,940			7,005
+xho	Xhosa				195
+ybb	Yemba				335
+yor	Yoruba	50,935			31,825
+znd	Zande				50
+zul	Zulu				800
+und	Niger-Congo languages, n.i.e.	43,625			3,730
+ssa	Nilo-Saharan languages	11,090			8,265
+ach	Acholi				315
+anu	Anuak				420
+teo	Ateso				25
+bfa	Bari				225
+drb	Dair				75
+dzg	Dazaga				180
+luo	Dholuo				395
+did	Didinga				45
+din	Dinka	2,815			2,150
+ksp	Kabba				310
+keo	Kakwa				75
+ukv	Kuku				100
+kun	Kunama				190
+mfz	Mabaan				75
+mqu	Mandari				100
+mls	Masalit				190
+nus	Nuer	1,490			1,325
+shk	Shilluk				65
+udu	Uduk				45
+zag	Zaghawa				165
+dje	Zarma				280
+und	Nilo-Saharan languages, n.i.e.	6,815			855
+und	African, n.o.s.	2,760			750
+mul	Pidgin languages				1,615
+que	Quechua				100
+sgn	Sign languages	49,535			27,535
+ase	American Sign Language	37,620			20,270
+fcs	Quebec Sign Language	6,195			3,600
+und	Sign languages, n.i.e.	7,450			4,385
+sit	Sino-Tibetan languages	1,550,930			1,361,690
+zho	Chinese languages	1,528,860			1,342,575
+gan	Gan				115
+hak	Hakka	14,830			9,770
+czh	Huizhou				190
+cmn	Mandarin	987,300			798,660
+cdo	Min Dong	1,825			1,255
+nan	Min Nan (Chaochow, Teochow, Fukien, Taiwanese)	51,755			37,770
+cpx	Pu-Xian				175
+wuu	Wu (Shanghainese)	13,660			10,200
+hsn	Xiang				210
+yue	Yue (Cantonese)	724,925			610,815
+und	Chinese, n.o.s.	11,725			10,445
+und	Chinese languages, n.i.e.	1,185			
+und	Tibeto-Burman languages	22,300			19,195
+mya	Burmese	5,935			4,455
+dzo	Dzongkha				250
+eky	Eastern Kayah				270
+kac	Jingpho				150
+kuki1246	Kuki-Chin languages	1,140			1,095
+cfm	Falam				100
+cnh	Hakha				285
+lus	Mizo				105
+und	Chin, n.o.s.				660
+kar	Karenic languages	5,705			5,040
+kjp	Pwo Eastern Karen				105
+ksw	S'gaw Karen	5,030			4,275
+und	Karen, n.o.s.				705
+new	Newar				515
+mul	Tamang				80
+und	Karenic languages, n.i.e.	845			
+bod	Tibetan	9,160			8,085
+tsj	Tshangla				75
+und	Tibeto-Burman languages, n.i.e.	1,940			
+und	Sino-Tibetan languages, n.i.e.	1,215			780
+tai	Tai-Kadai languages	33,705			23,410
+und	Canto				65
+lao	Lao	17,630			12,375
+shn	Shan				505
+tha	Thai	18,570			11,665
+und	Tai-Kadai languages, n.i.e.	800			220
+ngf	Trans-New Guinea languages				45
+trk	Turkic languages	91,375			67,635
+aze	Azerbaijani	9,875			6,360
+kaz	Kazakh	1,415			710
+kir	Kyrgyz				430
+tat	Tatar				280
+tur	Turkish	78,500			57,610
+tuk	Turkmen				580
+uig	Uyghur	1,660			1,565
+uzb	Uzbek	3,290			2,315
+sah	Yakut				75
+und	Turkic languages, n.i.e.	2,150			70
+urj	Uralic languages	85,060			48,835
+est	Estonian	5,315			2,825
+fin	Finnish	15,325			7,175
+hun	Hungarian	64,625			38,890
+mul	Other languages, n.i.e.	5,545			490

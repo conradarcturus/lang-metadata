@@ -10,6 +10,7 @@
 import { CLDRCoverageData } from './CLDRTypes';
 import { LocaleData, ObjectBase, ScriptCode, WritingSystemData } from './DataTypes';
 import { ObjectType } from './PageParamTypes';
+import { PopulationCollectionID } from './PopulationTypes';
 
 export type LanguageDictionary = Record<LanguageCode, LanguageData>;
 export type LanguagesBySchema = Record<LanguageSchema, LanguageDictionary>;
@@ -61,6 +62,7 @@ export interface LanguageData extends ObjectBase {
 
   populationAdjusted?: number;
   populationCited?: number;
+  populationEstimates?: Record<PopulationCollectionID, number>;
   populationOfDescendents?: number;
 
   medium?: string;
