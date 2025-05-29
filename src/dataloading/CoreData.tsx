@@ -114,7 +114,7 @@ export function useCoreData(): {
     connectTerritoriesToParent(territories);
     connectWritingSystems(languagesBySchema.Inclusive, territories, writingSystems);
     connectLocales(languagesBySchema.Inclusive, territories, writingSystems, locales);
-    createRegionalLocales(territories, locales);
+    createRegionalLocales(territories, locales); // create them after connecting them
     addIANAVariantLocales(languagesBySchema, locales, ianaVariants);
     computeOtherPopulationStatistics(languagesBySchema, writingSystems);
 
