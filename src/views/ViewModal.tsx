@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { usePageParams } from '../controls/PageParamsContext';
 import Hoverable from '../generic/Hoverable';
 import { View } from '../types/PageParamTypes';
+import { useClickOutside } from '../generic/useClickOutside';
 
 import './modal.css';
 
@@ -13,6 +14,8 @@ const ViewModal: React.FC = () => {
   const { objectID, view, updatePageParams } = usePageParams();
   const onClose = () => updatePageParams({ objectID: undefined });
   const object = getObjectFromID(objectID);
+
+  const modalRef = useClickOutside(onClose);
 
   useEffect(() => {
     // TODO there is a problem with this changing the page parameters beyond the modal object
@@ -37,7 +40,7 @@ const ViewModal: React.FC = () => {
   return (
     <div className="ModalOverlay">
       {/* onClick={(e) => e.target === e.currentTarget && onClose()} */}
-      <div className="Modal" aria-modal="true" role="dialog">
+      <div className="Modal" aria-modal="true" role="dialog" ref={modalRef}>
         <div className="ModalHeader">
           <div className="ModalTitle">
             <ObjectTitle object={object} />
