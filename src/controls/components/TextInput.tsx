@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import HoverableButton from '../../generic/HoverableButton';
+import { View } from '../../types/PageParamTypes';
+import { usePageParams } from '../PageParamsContext';
+
 export type Suggestion = {
-  id: string;
+  objectID?: string;
+  searchString: string;
   label: React.ReactNode;
 };
 
@@ -9,6 +14,8 @@ type Props = {
   inputStyle?: React.CSSProperties;
   getSuggestions?: (query: string) => Promise<Suggestion[]>;
   onChange: (value: string) => void;
+  showGoToDetailsButton?: boolean;
+  showTextInputButton?: boolean;
   placeholder?: string;
   value: string;
 };
@@ -17,6 +24,8 @@ const TextInput: React.FC<Props> = ({
   inputStyle,
   getSuggestions = () => [],
   onChange,
+  showGoToDetailsButton = false,
+  showTextInputButton = true,
   placeholder,
   value,
 }) => {
@@ -88,16 +97,15 @@ const TextInput: React.FC<Props> = ({
       {showSuggestions && suggestions.length > 0 && (
         <div className="SelectorPopupAnchor">
           <div className="SelectorPopup">
-            {suggestions.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => {
-                  setImmediateValue(s.id);
-                  setShowSuggestions(false);
-                }}
-              >
-                {s.label}
-              </button>
+            {suggestions.map((s, i) => (
+              <SuggestionRow
+                key={i}
+                setImmediateValue={setImmediateValue}
+                setShowSuggestions={setShowSuggestions}
+                showTextInputButton={showTextInputButton}
+                showGoToDetailsButton={showGoToDetailsButton}
+                suggestion={s}
+              />
             ))}
           </div>
         </div>
@@ -113,6 +121,65 @@ const TextInput: React.FC<Props> = ({
         &#x2716;
       </button>
     </>
+  );
+};
+
+type SuggestionRowProps = {
+  setImmediateValue: (value: string) => void;
+  setShowSuggestions: (show: boolean) => void;
+  showGoToDetailsButton?: boolean;
+  showTextInputButton?: boolean;
+  suggestion: Suggestion;
+};
+
+const SuggestionRow: React.FC<SuggestionRowProps> = ({
+  setImmediateValue,
+  showGoToDetailsButton,
+  showTextInputButton,
+  suggestion,
+}) => {
+  const { objectID, searchString, label } = suggestion;
+  const { updatePageParams } = usePageParams();
+
+  const setFilter = () => {
+    setImmediateValue(searchString);
+  };
+  const goToDetails = () => {
+    updatePageParams({ objectID, view: View.Details, searchString });
+  };
+
+  // Some simplier states if we have 1 button
+  if (!showGoToDetailsButton) {
+    if (!showTextInputButton) {
+      return label;
+    }
+    return <button onClick={setFilter}>{label}</button>;
+  }
+  if (!showTextInputButton) {
+    return (
+      <HoverableButton
+        hoverContent={<>Go to the details page for {searchString}</>}
+        onClick={goToDetails}
+      >
+        {label}
+      </HoverableButton>
+    );
+  }
+
+  // The more complex case, where we have 2 buttons
+  return (
+    <div className="SuggestionRowWithMultipleInteractions">
+      <div>{label}</div>
+      <HoverableButton hoverContent={<>Filter by &quot;{searchString}&quot;</>} onClick={setFilter}>
+        &#x1F50E;
+      </HoverableButton>
+      <HoverableButton
+        hoverContent={<>Go to the details page for {searchString}</>}
+        onClick={goToDetails}
+      >
+        &#x2197;
+      </HoverableButton>
+    </div>
   );
 };
 

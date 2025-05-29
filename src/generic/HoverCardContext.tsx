@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useLayoutEffect, useRef, useState } from 'react';
 import './styles.css';
 
 type HoverCardData = {
@@ -32,11 +32,37 @@ export const HoverCardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setHoverCard((prev) => ({ ...prev, visible: false }));
   };
 
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (!cardRef.current || !hoverCard.visible) return;
+
+    const card = cardRef.current;
+
+    const { offsetWidth, offsetHeight } = card;
+
+    let newX = hoverCard.x + 10;
+    let newY = hoverCard.y + 10;
+
+    if (newX + offsetWidth > window.innerWidth) {
+      newX = window.innerWidth - offsetWidth - 10;
+    }
+
+    if (newY + offsetHeight > window.innerHeight) {
+      newY = window.innerHeight - offsetHeight - 10;
+    }
+
+    if (newX !== hoverCard.x || newY !== hoverCard.y) {
+      setHoverCard((prev) => ({ ...prev, x: newX - 10, y: newY - 10 }));
+    }
+  }, [hoverCard.x, hoverCard.y, hoverCard.visible]);
+
   return (
     <HoverCardContext.Provider value={{ hoverCard, showHoverCard, hideHoverCard }}>
       {children}
       {hoverCard.visible && (
         <div
+          ref={cardRef}
           className="HoverCard"
           style={{
             top: hoverCard.y + 10,
