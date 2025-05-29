@@ -55,6 +55,10 @@ export const EMPTY_LANGUAGES_BY_SCHEMA: LanguagesBySchema = {
   CLDR: {},
 };
 
+/**
+ * Get core data needed to show the tables -- things like language codes, relationships with other languages.
+ */
+   
 export function useCoreData(): {
   loadCoreData: () => Promise<void>;
   coreData: CoreData;
@@ -104,7 +108,7 @@ export function useCoreData(): {
     addISOLanguageFamilyData(languagesBySchema, langFamilies || [], isoLangsToFamilies || {});
     addISOMacrolanguageData(languagesBySchema.ISO, macroLangs || []);
     addGlottologLanguages(languagesBySchema, glottologImport || [], manualGlottocodeToISO || {});
-    addCLDRLanguageSchema(languagesBySchema, cldrAliases || {});
+    addCLDRLanguageSchema(languagesBySchema, cldrAliases || []);
 
     connectLanguagesToParent(languagesBySchema);
     connectTerritoriesToParent(territories);
