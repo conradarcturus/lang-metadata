@@ -991,6 +991,3 @@ Description: Standard X-system orthographic fallback for spelling
   Esperanto
 Added: 2017-03-14
 Prefix: eo
-
-
-
