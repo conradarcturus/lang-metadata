@@ -90,13 +90,6 @@ const AboutPage: React.FC = () => {
         </p>
         <dl>
           <dt>
-            <a href="https://www.unesco.org/en/our-work/languages">UNESCO</a>
-          </dt>
-          <dd>
-            For their collaboration and support in building the next version of the{' '}
-            <a href="https://en.wal.unesco.org/">World Atlas of Languages (WAL)</a>.
-          </dd>
-          <dt>
             <a href="https://home.unicode.org/">The Unicode Consortium</a>
           </dt>
           <dd>
@@ -214,10 +207,10 @@ const AboutPage: React.FC = () => {
               United Nations Educational, Scientific and Cultural Organization (UNESCO)
             </a>{' '}
             is a specialized agency of the United Nations that promotes international collaboration
-            in education, science, and culture. We have partnered with them to build the next
-            version of the <a href="https://en.wal.unesco.org/">World Atlas of Languages (WAL)</a>{' '}
-            -- a similar database that is focused specifically on contributions from UN member state
-            delegates. Additionally,{' '}
+            in education, science, and culture. They have built{' '}
+            <a href="https://en.wal.unesco.org/">World Atlas of Languages (WAL)</a> -- a similar
+            database that is focused specifically on contributions from UN member state delegates.
+            Additionally,{' '}
             <a href="https://unstats.un.org/unsd/demographic-social/census/">UNStats</a> and{' '}
             <a href="https://data.un.org/Default.aspx">UNData</a> provide census data like
             population and literacy.
