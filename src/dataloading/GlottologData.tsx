@@ -80,6 +80,10 @@ export function addGlottologLanguages(
 ): void {
   // Add the entries from the manualGlottocodeToISO to languagesBySchema.Glottolog
   Object.entries(manualGlottocodeToISO).forEach(([glottoCode, isoCode]) => {
+    if (glottoCode === '' || glottoCode[0] === '<') {
+      return; // Skip empty or invalid glottocodes
+    }
+
     const glottolang = languagesBySchema.Glottolog[glottoCode];
     const isoLang = languagesBySchema.ISO[isoCode];
     if (glottolang == null && isoLang != null) {
