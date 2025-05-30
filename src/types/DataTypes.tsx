@@ -52,6 +52,7 @@ export interface TerritoryData extends ObjectBase {
   sovereign?: TerritoryData;
   dependentTerritories: TerritoryData[];
   locales: LocaleData[];
+  censuses: CensusData[];
 }
 
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.

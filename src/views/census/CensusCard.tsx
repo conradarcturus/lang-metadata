@@ -9,8 +9,18 @@ interface Props {
   census: CensusData;
 }
 const CensusCard: React.FC<Props> = ({ census }) => {
-  const { ID, isoRegionCode, languageCount, territory } = census;
+  const {
+    acquisitionOrder,
+    domain,
+    ID,
+    isoRegionCode,
+    languageCount,
+    modality,
+    proficiency,
+    territory,
+  } = census;
   const { updatePageParams } = usePageParams();
+  const domainStr = domain != null && domain != 'Any' ? `@${domain}` : null;
 
   return (
     <div>
@@ -19,6 +29,11 @@ const CensusCard: React.FC<Props> = ({ census }) => {
           <ObjectTitle object={census} highlightSearchMatches={true} />
         </a>
       </h3>
+      <div>
+        {[modality, proficiency, acquisitionOrder, domainStr]
+          .filter((c) => c != null && c != 'Any')
+          .join(', ')}
+      </div>
       <div>
         <h4>Languages</h4>
         {languageCount.toLocaleString()}

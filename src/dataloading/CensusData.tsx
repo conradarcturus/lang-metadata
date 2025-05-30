@@ -1,7 +1,6 @@
 import { CensusData } from '../types/CensusTypes';
 import { LanguageCode } from '../types/LanguageTypes';
 import { ObjectType } from '../types/PageParamTypes';
-import { ScopeLevel } from '../types/ScopeLevel';
 
 import { CoreData } from './CoreData';
 
@@ -15,10 +14,7 @@ export async function loadCensusData(): Promise<CensusImport | void> {
 
 type CensusImport = {
   // Metadata about the data collection
-  censusMetadatas: CensusData[];
-
-  // The main data we want -- different population estimates for different languages
-  languagePopulationEstimates: Record<LanguageCode, number[]>;
+  censuses: CensusData[];
 
   // Imported to add additional language names to the language data
   languageNames: Record<LanguageCode, string>;
@@ -34,8 +30,7 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
   if (censusCount <= 0) {
     throw new Error('No census data found in the file.');
   }
-  const metadatas: CensusData[] = Array.from({ length: censusCount }, (_, index) => ({
-    scope: ScopeLevel.Individuals,
+  const censuses: CensusData[] = Array.from({ length: censusCount }, (_, index) => ({
     type: ObjectType.Census,
     ID: filename + '.' + (index + 1),
     codeDisplay: filename + '.' + (index + 1),
@@ -46,7 +41,8 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
     isoRegionCode: '',
     languageCount: 0,
     yearCollected: 0,
-    denominator: 0,
+    eligiblePopulation: 0,
+    languageEstimates: {},
   }));
 
   // Iterate through the rest of the lines to collect metadata until we hit the break line
@@ -60,23 +56,24 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
       const key = parts[0].slice(1) as keyof CensusData;
       const values = parts.slice(2); // Column 2 is reserved empty, so we skip it
       values.forEach((value, index) => {
-        if (key === 'datePublished') {
-          metadatas[index][key] = new Date(value);
-        } else if (key === 'denominator' || key == 'yearCollected') {
-          metadatas[index][key] = Number.parseInt(value.replace(/,/g, ''));
-        } else if (key === 'sampleRate' || key === 'responsesPerIndividual') {
-          metadatas[index][key] = Number.parseFloat(value);
+        if (key === 'datePublished' || key === 'dateAccessed') {
+          censuses[index][key] = new Date(value);
+        } else if (key === 'eligiblePopulation' || key == 'yearCollected') {
+          censuses[index][key] = Number.parseInt(value.replace(/,/g, ''));
+        } else if (key === 'sampleRate') {
+          censuses[index][key] = Number.parseFloat(value);
         } else if (
           key == 'languageCount' ||
-          key == 'scope' ||
+          key == 'languageEstimates' ||
           key == 'type' ||
           key == 'territory' ||
           key == 'names'
         ) {
           // these keys should not be passed in here
-        } else {
-          // Regular strings
-          metadatas[index][key] = value;
+        } else if (value !== '') {
+          // Regular strings, but only save if something is filled in
+          console.log(`Setting ${key} for census ${index + 1} to ${value}`);
+          censuses[index][key] = value;
         }
       });
     } else {
@@ -87,73 +84,78 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
   }
 
   // Set other fields required for objects and report an error if an important one is missing
-  metadatas.forEach((metadata) => {
+  censuses.forEach((census) => {
     // Construct a unique ID for each census
-    metadata.names = [metadata.nameDisplay];
-    if (metadata.isoRegionCode === '') {
-      console.error('Census data is missing isoRegionCode:', metadata);
+    census.names = [census.nameDisplay, census.tableName, census.columnName].filter(
+      (n) => n != null,
+    );
+    if (census.isoRegionCode === '') {
+      console.error('Census data is missing isoRegionCode:', census);
     }
-    if (metadata.yearCollected === 0) {
-      console.error('Census data is missing yearCollected:', metadata);
+    if (census.yearCollected === 0) {
+      console.error('Census data is missing yearCollected:', census);
     }
-    if (metadata.denominator === 0) {
-      console.error('Census data is missing yearCollected:', metadata);
+    if (census.eligiblePopulation === 0) {
+      console.error('Census data is missing eligiblePopulation:', census);
     }
-    if (metadata.nameDisplay === '') {
-      console.error('Census data is missing nameDisplay:', metadata);
+    if (census.nameDisplay === '') {
+      console.error('Census data is missing nameDisplay:', census);
     }
   });
 
-  // Add the languages
-  const languagePopulationEstimates: Record<LanguageCode, number[]> = {};
+  // Process the remaining lines as language data
   const languageNames: Record<LanguageCode, string> = {};
-  const languageLines = lines.splice(lineNumber);
-  for (const line of languageLines) {
+  for (const line of lines.splice(lineNumber)) {
     const parts = line.split('\t');
     if (parts.length < 3) {
       continue; // Skip lines that do not have enough data
     }
 
     const languageCode = parts[0].trim() as LanguageCode;
-    const languageName = parts[1].trim();
+    if (['Language Code', 'mul', 'mis', 'und', 'zxx'].includes(languageCode)) {
+      // Skip header and special language codes
+      // 'Language Code' is the header, 'mul' is for multiple languages, 'mis' is for missing languages,
+      // 'und' is for undefined languages, and 'zxx' is for no linguistic content
+      continue;
+    }
+
+    languageNames[languageCode] = parts[1].trim(); // The language name is in the second column
+
+    // Add population estimates to censuses when its non-empty
     parts.slice(2).forEach((part, i) => {
       if (part.trim() === '') {
         return; // Skip empty parts
       }
       // const populationEstimate = Number.parseInt(part.replace(/,/g, ''));
-      if (i >= metadatas.length) {
+      if (i >= censuses.length) {
         // There are more records for this language than there are census declarations
         console.warn(`Skipping extra population estimate for ${languageCode} in line: ${line}`);
         return;
       }
-      metadatas[i].languageCount += 1; // Increment the language count for the first census
-    }); // Clean up the rest of the parts
-
-    languageNames[languageCode] = languageName;
-
-    // Add the population estimate to the language
-    // languagePopulationEstimates[languageCode].push(populationEstimate);
+      censuses[i].languageEstimates[languageCode] = Number.parseInt(part.replace(/,/g, ''));
+      censuses[i].languageCount += 1; // Increment the language count for the first census
+    });
   }
 
   return {
-    censusMetadatas: metadatas as CensusData[],
-    languagePopulationEstimates,
+    censuses,
     languageNames,
   };
 }
 
 export function addCensusData(coreData: CoreData, censusData: CensusImport): void {
   // Add the census records to the core data
-  for (const census of censusData.censusMetadatas) {
-    // Add the territory reference to it
-    const territory = coreData.territories[census.isoRegionCode];
-    if (territory != null) {
-      census.territory = territory;
-    }
-
-    // Add the census to the core data
+  for (const census of censusData.censuses) {
+    // Add the census to the core data if its not there yet
     if (coreData.censuses[census.ID] == null) {
       coreData.censuses[census.ID] = census;
+
+      // Add the territory reference to it
+      const territory = coreData.territories[census.isoRegionCode];
+      if (territory != null) {
+        census.territory = territory;
+        territory.censuses.push(census);
+      }
     } else {
       // It's reloaded twice on dev mode
       // console.warn(`Census data for ${census.ID} already exists, skipping.`);

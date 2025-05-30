@@ -47,6 +47,7 @@ export function parseTerritoryLine(line: string): TerritoryData {
     sovereign: undefined,
     dependentTerritories: [],
     locales: [],
+    censuses: [],
   };
 }
 

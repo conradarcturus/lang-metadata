@@ -62,15 +62,16 @@ Also, include a header row with metadata about the census data that you collecte
   * If the data is from a subset of the population (eg. only people over 15 years old) then this denominator should be the total population of that subset, not the whole country.
 
 **Recommended Rows**
-More is better, but also if you don't have a value, leave it empty. For instance, if a census does not specifically indicate its about spoken language, don't set the modality.
-* url: The URL of the census table (e.g., "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201")
-* datePublished: The date the data was published (e.g., "2022-02-09")
-* modality: The modality of the language (e.g., "spoken", "written", "spoken or written", "understands")
-* timeLearned: The time the language was learned (e.g., "mothertongue", "first language", "second language")
-* proficiency: The level of proficiency in the language (e.g., "basic", "intermediate", "fluent")
-* geographicScope: The geographic scope of the data (e.g., "whole country", "mainland -- without dependencies")
-* age: The age of the people surveyed (e.g., "0+" for  "all ages", "15+" for 15 years and older)
-* notes: Any additional notes about the data
+More is better, but also if you don't have a value, leave it empty. For instance, if a census does not specifically indicate its about spoken language, don't set the modality. Nonetheless the more data you can provide the more the data can be trusted and used.
+* Source
+  * `url`: The URL of the census table (e.g., "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201")
+  * `datePublished`: The date the data was published (e.g., "2022-02-09")
+* `modality`: The modality of the language (e.g., "spoken", "written", "spoken or written", "understands")
+* `timeLearned`: The time the language was learned (e.g., "mothertongue", "first language", "second language")
+* `proficiency`: The level of proficiency in the language (e.g., "basic", "intermediate", "fluent")
+* `geographicScope`: The geographic scope of the data (e.g., "whole country", "mainland -- without dependencies")
+* `age`: The age of the people surveyed (e.g., "0+" for  "all ages", "15+" for 15 years and older)
+* `notes`: Any additional notes about the data
 * citation: The citation for the census data (e.g., "Statistics Canada. Table 98-10-0294-01 Knowledge of Indigenous languages by single and multiple knowledge of languages responses and Indigenous language acquisition: Canada, provinces and territories")
 * tableName: The name of the original data table (e.g., "Knowledge of languages by age and gender"
 * columnName: The name of the column in the table the data is from (e.g., "Total - Single and multiple responses of knowledge of languages")

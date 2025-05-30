@@ -13,6 +13,7 @@ type Props = {
 const TerritoryDetails: React.FC<Props> = ({ territory }) => {
   const {
     ID,
+    censuses,
     dependentTerritories,
     gdp,
     literacyPercent,
@@ -25,7 +26,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
 
   return (
     <div className="Details">
-      <div>
+      <div className="section">
         <h3>Attributes</h3>
         <div>
           <label>Territory ID:</label>
@@ -51,7 +52,7 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
         )}
       </div>
 
-      <div>
+      <div className="section">
         <h3>Connections</h3>
         {locales.length > 0 && (
           <div>
@@ -93,6 +94,17 @@ const TerritoryDetails: React.FC<Props> = ({ territory }) => {
             <CommaSeparated>
               {dependentTerritories.sort(getSortFunction()).map((territory) => (
                 <HoverableObjectName key={territory.ID} object={territory} />
+              ))}
+            </CommaSeparated>
+          </div>
+        )}
+
+        {censuses.length > 0 && (
+          <div>
+            <label>Census Tables:</label>
+            <CommaSeparated>
+              {censuses.sort(getSortFunction()).map((census) => (
+                <HoverableObjectName key={census.ID} object={census} />
               ))}
             </CommaSeparated>
           </div>
