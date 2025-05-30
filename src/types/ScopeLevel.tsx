@@ -20,6 +20,7 @@ export function getObjectScopeLevel(object: ObjectData): ScopeLevel {
     case ObjectType.Language:
       return getLanguageScopeLevel(object);
     case ObjectType.Locale:
+    case ObjectType.Census:
       return object.scope;
     case ObjectType.Territory:
       return getTerritoryScopeLevel(object);

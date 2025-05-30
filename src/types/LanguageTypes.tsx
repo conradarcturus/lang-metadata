@@ -7,10 +7,10 @@
 // should be formatted like ab or abc. But there are some languoids with different
 // kinds of language codes here as well. This is the main index key for languages and languoids
 
+import { CensusID } from './CensusTypes';
 import { CLDRCoverageData } from './CLDRTypes';
 import { LocaleData, ObjectBase, ScriptCode, WritingSystemData } from './DataTypes';
 import { ObjectType } from './PageParamTypes';
-import { PopulationCollectionID } from './PopulationTypes';
 
 export type LanguageDictionary = Record<LanguageCode, LanguageData>;
 export type LanguagesBySchema = Record<LanguageSchema, LanguageDictionary>;
@@ -62,7 +62,7 @@ export interface LanguageData extends ObjectBase {
 
   populationAdjusted?: number;
   populationCited?: number;
-  populationEstimates?: Record<PopulationCollectionID, number>;
+  populationEstimates?: Record<CensusID, number>;
   populationOfDescendents?: number;
 
   medium?: string;

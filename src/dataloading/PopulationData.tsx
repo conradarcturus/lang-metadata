@@ -1,18 +1,18 @@
+import { CensusData } from '../types/CensusTypes';
 import { LanguageCode } from '../types/LanguageTypes';
-import { PopulationCollectionMetadata } from '../types/PopulationTypes';
 
 import { CoreData } from './CoreData';
 
-export async function loadCensusData(): Promise<CollectionImport | void> {
+export async function loadCensusData(): Promise<CensusImport | void> {
   return await fetch('data/census/canada-2021.tsv')
     .then((res) => res.text())
     .then(parseCollectionImport)
     .catch((err) => console.error('Error loading TSV:', err));
 }
 
-type CollectionImport = {
+type CensusImport = {
   // Metadata about the data collection
-  collectionMetadatas: PopulationCollectionMetadata[];
+  censusMetadatas: CensusData[];
 
   // The main data we want -- different population estimates for different languages
   languagePopulationEstimates: Record<LanguageCode, number[]>;
@@ -21,7 +21,7 @@ type CollectionImport = {
   languageNames: Record<LanguageCode, string>;
 };
 
-function parseCollectionImport(fileInput: string): CollectionImport {
+function parseCollectionImport(fileInput: string): CensusImport {
   const lines = fileInput.split('\n');
 
   // The first line should contain census keys
@@ -31,7 +31,7 @@ function parseCollectionImport(fileInput: string): CollectionImport {
   const collectionKeys = lines.splice(0, 1)[0].split('\t').slice(2); // the first column is the field name, second column is reserved empty, the rest are the keys for censuses
 
   // Iterate through the rest of the lines to collect metadata until we hit the break line
-  const metadatas: Partial<PopulationCollectionMetadata>[] = collectionKeys.map((ID) => ({
+  const metadatas: Partial<CensusData>[] = collectionKeys.map((ID) => ({
     ID,
   }));
 
@@ -41,15 +41,27 @@ function parseCollectionImport(fileInput: string): CollectionImport {
     // If the line starts with a '#', it's metadata about the census
     if (line.startsWith('#')) {
       const parts = line.split('\t').map((part) => part.trim());
-      const key = parts[0].slice(1) as keyof PopulationCollectionMetadata;
+      const key = parts[0].slice(1) as keyof CensusData;
       const values = parts.slice(2); // Column 2 is reserved empty, so we skip it
       values.forEach((value, index) => {
         if (key === 'datePublished' || key === 'dateCollected') {
           metadatas[index][key] = new Date(value);
-        } else if (key === 'denominator' || key === 'languageCount') {
+        } else if (key === 'denominator') {
           metadatas[index][key] = Number.parseInt(value.replace(/,/g, ''));
         } else if (key === 'sampleRate' || key === 'responsesPerIndividual') {
           metadatas[index][key] = Number.parseFloat(value);
+        } else if (
+          key == 'languageCount' ||
+          key == 'scope' ||
+          key == 'type' ||
+          key == 'territory' ||
+          key == 'nameEndonym' ||
+          key == 'codeDisplay' ||
+          key == 'ID' ||
+          key == 'nameDisplay' ||
+          key == 'names'
+        ) {
+          // these keys should not be passed in here
         } else {
           metadatas[index][key] = value;
         }
@@ -66,17 +78,17 @@ function parseCollectionImport(fileInput: string): CollectionImport {
   // TODO
 
   return {
-    collectionMetadatas: metadatas as PopulationCollectionMetadata[],
+    censusMetadatas: metadatas as CensusData[],
     languagePopulationEstimates,
     languageNames,
   };
 }
 
-export function addCensusData(coreData: CoreData, censusData: CollectionImport): void {
+export function addCensusData(coreData: CoreData, censusData: CensusImport): void {
   // Add the census records to the core data
-  for (const collection of censusData.collectionMetadatas) {
-    if (coreData.populationCollections[collection.ID] == null) {
-      coreData.populationCollections[collection.ID] = collection;
+  for (const collection of censusData.censusMetadatas) {
+    if (coreData.censuses[collection.ID] == null) {
+      coreData.censuses[collection.ID] = collection;
     } else {
       console.warn(`Census data for ${collection.ID} already exists, skipping.`);
     }

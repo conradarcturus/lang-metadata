@@ -1,11 +1,13 @@
-import { TerritoryCode } from './DataTypes';
+import { ObjectBase, TerritoryCode, TerritoryData } from './DataTypes';
+import { ObjectType } from './PageParamTypes';
+import { ScopeLevel } from './ScopeLevel';
 
 // Unique identifier for the census or other source of population data
-export type PopulationCollectionID = string; // eg. 'Canada 2021 A', 'US 2013 B'
+export type CensusID = string; // eg. 'Canada 2021 A', 'US 2013 B'
 
-export type PopulationCollectionMetadata = {
-  ID: PopulationCollectionID;
-  //   type: ObjectType.PopulationCollection;
+export interface CensusData extends ObjectBase {
+  ID: CensusID;
+  type: ObjectType.Census;
 
   // Metadata fields
   citation: string;
@@ -26,6 +28,14 @@ export type PopulationCollectionMetadata = {
   responsesPerIndividual: number; // eg. 1, 2, 3
   denominator: number; // The total number of qualified individuals in the sample group
 
-  // Some analytical fields
+  // Some fields derived as the data is imported
+  nameDisplay: string;
+  codeDisplay: CensusID; // The ID is the code for the collection
   languageCount: number; // Number of languages in this collection
-};
+
+  // Connections to other objects loaded after the fact
+  territory?: TerritoryData;
+
+  // Not sure if we can use the scope field
+  scope: ScopeLevel.Groups;
+}

@@ -73,6 +73,15 @@ export function getScopeLevelDescription(
           return length === 'long' ? 'special codes or unlabeled locales' : 'special codes';
       }
     // eslint-disable-next-line no-fallthrough
+    case ObjectType.Census:
+      switch (scope) {
+        case ScopeLevel.Groups:
+        case ScopeLevel.Individuals:
+        case ScopeLevel.Parts:
+        case ScopeLevel.Other:
+          return 'undefined';
+      }
+    // eslint-disable-next-line no-fallthrough
     case ObjectType.Territory:
       switch (scope) {
         case ScopeLevel.Groups:

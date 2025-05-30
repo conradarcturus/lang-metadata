@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { CensusID, CensusData } from '../types/CensusTypes';
 import {
   BCP47LocaleCode,
   LocaleData,
@@ -9,7 +10,6 @@ import {
   WritingSystemData,
 } from '../types/DataTypes';
 import { LanguagesBySchema } from '../types/LanguageTypes';
-import { PopulationCollectionID, PopulationCollectionMetadata } from '../types/PopulationTypes';
 
 import {
   addISODataToLanguages,
@@ -41,11 +41,11 @@ import {
 import { addCLDRLanguageSchema, loadCLDRAliases } from './UnicodeData';
 
 export type CoreData = {
+  censuses: Record<CensusID, CensusData>;
   languagesBySchema: LanguagesBySchema;
-  territories: Record<TerritoryCode, TerritoryData>;
   locales: Record<BCP47LocaleCode, LocaleData>;
+  territories: Record<TerritoryCode, TerritoryData>;
   writingSystems: Record<ScriptCode, WritingSystemData>;
-  populationCollections: Record<PopulationCollectionID, PopulationCollectionMetadata>;
 };
 
 export const EMPTY_LANGUAGES_BY_SCHEMA: LanguagesBySchema = {
@@ -123,10 +123,10 @@ export function useCoreData(): {
   return {
     loadCoreData,
     coreData: {
+      censuses: {}, // This will be populated later
       languagesBySchema,
-      territories,
       locales,
-      populationCollections: {}, // This will be populated later
+      territories,
       writingSystems,
     },
   };

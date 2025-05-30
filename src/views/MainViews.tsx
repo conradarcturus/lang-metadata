@@ -24,6 +24,8 @@ function MainViews() {
   switch (view) {
     case View.CardList:
       switch (objectType) {
+        case ObjectType.Census:
+          return <></>;
         case ObjectType.Language:
           return <LanguageCardList />;
         case ObjectType.Locale:
@@ -38,6 +40,8 @@ function MainViews() {
       return <ObjectDetailsPage />;
     case View.Hierarchy:
       switch (objectType) {
+        case ObjectType.Census:
+          return <></>;
         case ObjectType.Language:
           return <LanguageHierarchy />;
         case ObjectType.Locale:
@@ -50,6 +54,8 @@ function MainViews() {
     // eslint-disable-next-line no-fallthrough
     case View.Table:
       switch (objectType) {
+        case ObjectType.Census:
+          return <></>;
         case ObjectType.Language:
           return <LanguageTable />;
         case ObjectType.Locale:

@@ -34,6 +34,8 @@ export function getObjectTypeLabelPlural(objectType: ObjectType) {
       return 'languages';
     case ObjectType.Locale:
       return 'locales';
+    case ObjectType.Census:
+      return 'censuses';
     case ObjectType.Territory:
       return 'territories';
     case ObjectType.WritingSystem:
