@@ -31,7 +31,7 @@ Common questions people will come to this resource for are:
 
 ### Partners
 
-We've partnered with various organizations to get data and to provide data to. UNESCO's [World Atlas of Languages](https://en.wal.unesco.org/), [https://hlt.bme.hu/en/dld/](https://hlt.bme.hu/en/dld/)
+We've partnered with various organizations to get data and to provide data to. UNESCO's [World Atlas of Languages](https://en.wal.unesco.org/), [Digital Language Vitality](https://hlt.bme.hu/en/dld/), and [Unicode CLDR](https://cldr.unicode.org/)
 
 ## Data
 

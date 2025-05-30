@@ -90,13 +90,6 @@ const AboutPage: React.FC = () => {
         </p>
         <dl>
           <dt>
-            <a href="https://www.unesco.org/en/our-work/languages">UNESCO</a>
-          </dt>
-          <dd>
-            For their collaboration and support in building the next version of the{' '}
-            <a href="https://en.wal.unesco.org/">World Atlas of Languages (WAL)</a>.
-          </dd>
-          <dt>
             <a href="https://home.unicode.org/">The Unicode Consortium</a>
           </dt>
           <dd>
@@ -183,7 +176,7 @@ const AboutPage: React.FC = () => {
             standard for how writing systems are encoded for use on electronic devices and{' '}
             <a href="https://cldr.unicode.org/">the Common Locale Data Repository (CLDR)</a>.We
             initially bootstrapped much of the data from CLDR - which itself catalogs much of the
-            worlds languages in order to provide keyboard and user-interface support. It also
+            world&apos;s languages in order to provide keyboard and user-interface support. It also
             provides much of the data for the ISO standards{' '}
             <a href="https://iso639-3.sil.org/">ISO 639-3</a>.
           </dd>
@@ -214,10 +207,10 @@ const AboutPage: React.FC = () => {
               United Nations Educational, Scientific and Cultural Organization (UNESCO)
             </a>{' '}
             is a specialized agency of the United Nations that promotes international collaboration
-            in education, science, and culture. We have partnered with them to build the next
-            version of the <a href="https://en.wal.unesco.org/">World Atlas of Languages (WAL)</a>{' '}
-            -- a similar database that is focused specifically on contributions from UN member state
-            delegates. Additionally,{' '}
+            in education, science, and culture. They have built{' '}
+            <a href="https://en.wal.unesco.org/">World Atlas of Languages (WAL)</a> -- a similar
+            database that is focused specifically on contributions from UN member state delegates.
+            Additionally,{' '}
             <a href="https://unstats.un.org/unsd/demographic-social/census/">UNStats</a> and{' '}
             <a href="https://data.un.org/Default.aspx">UNData</a> provide census data like
             population and literacy.
@@ -245,18 +238,18 @@ const AboutPage: React.FC = () => {
           <dd>
             The names are sourced from the original databases, with some manual adjustments to
             ensure consistency and clarity. When swapping between different language definitions the
-            language names will update to match the one provide by the source for that definition.
+            language names will update to match the one provided by the source for that definition.
             For example, Chinese as a macrolanguage is called &quot;Classical-Middle-Modern
             Sinitic&quot; in Glottolog.
           </dd>
           <dt>Population</dt>
           <dd>
             The population data comes from many sources. Some estimates are directly imported from
-            government censuses or academic papers -- sometimes we needed to interpret the language
-            the value meant (eg. is &quot;Malay&quot; referring to standard Malay, vernacular Malay,
-            or Malay as a macrolanguage). Some come from secondary sources like Ethnologue or CLDR.
-            A few estimates, especially for regional locales, are approximations based on the
-            related data.
+            government censuses or academic papers -- sometimes we had to interpret the intended
+            language (eg. is &quot;Malay&quot; referring to standard Malay, vernacular Malay, or
+            Malay as a macrolanguage). Some come from secondary sources like Ethnologue or CLDR. A
+            few estimates, especially for regional locales, are approximations based on the related
+            data.
           </dd>
         </dl>
       </div>
