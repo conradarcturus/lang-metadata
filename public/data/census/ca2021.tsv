@@ -1,10 +1,10 @@
-#collectionKey		Canada1 2021	Canada2 2021 @Home	Canada3 2021 L1 Sampled	Canada4 2021 L1
+#nameDisplay		Canada 2021	Canada 2021 @Home	Canada 2021 L1 Sampled	Canada 2021 L1
 #citation		Statistics Canada. Table 98-10-0294-01  Knowledge of Indigenous languages by single and multiple knowledge of languages responses and Indigenous language acquisition: Canada, provinces and territories	Statistics Canada. Table 98-10-0299-01  Indigenous language spoken at home by single and multiple responses of language spoken at home: Canada, provinces and territories	Statistics Canada. Table 98-10-0298-01  Indigenous mother tongue by single and multiple mother tongue responses and Indigenous identity: Canada, provinces and territories, census divisions and census subdivisions	Statistics Canada. Table 98-10-0201-01  Language spoken at home by single and multiple responses of language spoken at home and mother tongue: Canada, provinces and territories, census metropolitan areas and census agglomerations with parts
 #tableName		Knowledge of languages by age and gender: Canada, provinces and territories, census divisions and census subdivisions	Indigenous language spoken at home by single and multiple responses of language spoken at home: Canada, provinces and territories	Indigenous mother tongue by single and multiple mother tongue responses and Indigenous identity: Canada, provinces and territories, census divisions and census subdivisions	Language spoken at home by single and multiple responses of language spoken at home and mother tongue
 #columnName		Total - Single and multiple responses of knowledge of languages	Total - Single and multiple responses of language spoken at home	Total - Single and multiple mother tongue responses	Total - Single and multiple responses of language spoken at home6, 7
 #datePublished		2022-08-17	2025-02-19	2024-10-23	2022-08-17
-#dateCollected		2021	2021	2021	2021
-#URL		https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810021601	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810029901	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810029801	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810020101
+#yearCollected		2021	2021	2021	2021
+#url		https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810021601	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810029901	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810029801	https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810020101
 #isoRegionCode		CA	CA	CA	CA
 #geographicScope		Whole Country	Whole Country	Whole Country	Whole Country
 #age		0+	0+	0+	0+
@@ -16,7 +16,7 @@
 #sampleRate		0.25	0.25	0.25	1
 #responsesPerIndividual		1+	1+	1+	1+
 #denominator	Total - Knowledge of languages	36,328,480	36,328,475	36,328,475	36,620,955
-Language Code	Language Name from Source	Canada1 2021	Canada2 2021 @Home	Canada3 2021 L1 Sampled	Canada4 2021 L1
+Language Code	Language Name from Source	Canada 2021	Canada 2021 @Home	Canada 2021 L1 Sampled	Canada 2021 L1
 zxx	None		0	0	
 mul	Official languages	35,644,660	33,712,255	28,437,185	34,018,455
 eng	English	31,628,570	26,947,850	21,226,110	27,166,170

@@ -76,10 +76,13 @@ export function getScopeLevelDescription(
     case ObjectType.Census:
       switch (scope) {
         case ScopeLevel.Groups:
+          return '1';
         case ScopeLevel.Individuals:
+          return '2';
         case ScopeLevel.Parts:
+          return '3';
         case ScopeLevel.Other:
-          return 'undefined';
+          return '4';
       }
     // eslint-disable-next-line no-fallthrough
     case ObjectType.Territory:

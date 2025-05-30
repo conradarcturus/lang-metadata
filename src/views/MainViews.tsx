@@ -2,6 +2,7 @@ import { usePageParams } from '../controls/PageParamsContext';
 import { ObjectType, View } from '../types/PageParamTypes';
 
 import AboutPage from './AboutPage';
+import CensusCardList from './census/CensusCardList';
 import ObjectDetailsPage from './common/ObjectDetailsPage';
 import LanguageCardList from './language/LanguageCardList';
 import { LanguageHierarchy } from './language/LanguageHierarchy';
@@ -25,7 +26,7 @@ function MainViews() {
     case View.CardList:
       switch (objectType) {
         case ObjectType.Census:
-          return <></>;
+          return <CensusCardList />;
         case ObjectType.Language:
           return <LanguageCardList />;
         case ObjectType.Locale:

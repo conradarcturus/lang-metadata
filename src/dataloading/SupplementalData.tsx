@@ -1,5 +1,5 @@
+import { addCensusData, loadCensusData } from './CensusData';
 import { CoreData } from './CoreData';
-import { addCensusData, loadCensusData } from './PopulationData';
 import { computeContainedTerritoryStats, loadTerritoryGDPLiteracy } from './TerritoryData';
 import { loadCLDRCoverage } from './UnicodeData';
 

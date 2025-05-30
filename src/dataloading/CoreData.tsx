@@ -65,9 +65,13 @@ export function useCoreData(): {
 } {
   const [languagesBySchema, setLanguagesBySchema] =
     useState<LanguagesBySchema>(EMPTY_LANGUAGES_BY_SCHEMA);
-  const [territories, setTerritories] = useState<Record<TerritoryCode, TerritoryData>>({});
   const [locales, setLocales] = useState<Record<BCP47LocaleCode, LocaleData>>({});
+  const [territories, setTerritories] = useState<Record<TerritoryCode, TerritoryData>>({});
   const [writingSystems, setWritingSystems] = useState<Record<ScriptCode, WritingSystemData>>({});
+
+  // Censuses are not population here, but this seems necessary because the state affects the page.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [censuses, _setCensuses] = useState<Record<CensusID, CensusData>>({});
 
   async function loadCoreData(): Promise<void> {
     const [
@@ -123,7 +127,7 @@ export function useCoreData(): {
   return {
     loadCoreData,
     coreData: {
-      censuses: {}, // This will be populated later
+      censuses,
       languagesBySchema,
       locales,
       territories,
