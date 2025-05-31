@@ -6,7 +6,7 @@ import { ObjectFieldHighlightedByPageSearch } from '../ObjectField';
 import { TableColumn } from './ObjectTable';
 
 export const CodeColumn: TableColumn<ObjectData> = {
-  label: 'Code',
+  label: 'ID',
   render: (object) => (
     <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />
   ),

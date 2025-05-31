@@ -17,7 +17,7 @@ function CardList<T extends ObjectData>({ objects, renderCard }: Props<T>) {
   const filterByScope = getScopeFilter();
   const sliceFunction = getSliceFunction<T>();
 
-  // Filter results
+  // Filter results);
   const objectsFiltered = objects.filter(filterByScope).filter(filterBySubstring);
   // Sort results & limit how many are visible
   const objectsVisible = sliceFunction(objectsFiltered.sort(sortBy));

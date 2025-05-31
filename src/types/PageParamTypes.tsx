@@ -4,6 +4,7 @@ import { ScopeLevel } from './ScopeLevel';
 export enum ObjectType {
   Language = 'Language',
   Locale = 'Locale',
+  Census = 'Census',
   Territory = 'Territory',
   WritingSystem = 'Writing System',
   // VariantTag = 'Variant Tag',

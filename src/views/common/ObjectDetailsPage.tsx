@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
 import { ObjectType } from '../../types/PageParamTypes';
+import CensusSuggestions from '../census/CensusSuggestions';
 import LanguageSuggestions from '../language/LanguageSuggestions';
 import LocaleSuggestions from '../locale/LocaleSuggestions';
 import TerritorySuggestions from '../territory/TerritorySuggestions';
@@ -20,6 +21,7 @@ const ObjectDetailsPage: React.FC = () => {
 
   if (object == null) {
     const suggestionsByObjectType = {
+      [ObjectType.Census]: <CensusSuggestions />,
       [ObjectType.Language]: <LanguageSuggestions />,
       [ObjectType.Locale]: <LocaleSuggestions />,
       [ObjectType.Territory]: <TerritorySuggestions />,

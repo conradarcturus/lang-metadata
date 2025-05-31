@@ -12,7 +12,7 @@ const objectAmbiguousViews = [View.About, View.Details];
 
 const ObjectTypeSelector: React.FC = () => {
   const { objectType, updatePageParams, view } = usePageParams();
-  const isCompact = useMediaQuery('(max-width: 1015px)');
+  const isCompact = useMediaQuery('(max-width: 1050px)');
   const goToObjectType = useCallback(
     (objectType: ObjectType) => {
       updatePageParams({
@@ -44,6 +44,13 @@ const ObjectTypeSelector: React.FC = () => {
 
 const OptionDescription: React.FC<{ objectType: ObjectType }> = ({ objectType }) => {
   switch (objectType) {
+    case ObjectType.Census:
+      return (
+        <>
+          <label>Census:</label> A count of people in a given area -- for this site this is
+          typically the count of people that speak or understand a language.
+        </>
+      );
     case ObjectType.Language:
       return (
         <>

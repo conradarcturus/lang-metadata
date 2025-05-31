@@ -7,7 +7,7 @@ import { usePageParams } from '../PageParamsContext';
 
 const LimitInput: React.FC = () => {
   const { limit, objectType, updatePageParams, view } = usePageParams();
-  if ([View.Details, View.Notices, View.About].includes(view)) {
+  if ([View.Notices, View.About].includes(view)) {
     // Not supported for this view
     return <></>;
   }

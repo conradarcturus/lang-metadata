@@ -8,7 +8,7 @@ import { usePageParams } from '../PageParamsContext';
 
 const ViewSelector: React.FC = () => {
   const { view, updatePageParams } = usePageParams();
-  const isCompact = useMediaQuery('(max-width: 1360px)');
+  const isCompact = useMediaQuery('(max-width: 1450px)');
 
   return (
     <Selector selectorLabel="View:" appearance="tabs">

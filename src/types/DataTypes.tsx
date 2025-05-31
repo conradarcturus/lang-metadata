@@ -2,6 +2,7 @@
  * This file provides types for the data used in the application.
  */
 
+import { CensusData } from './CensusTypes';
 import { LanguageCode, LanguageData } from './LanguageTypes';
 import { ObjectType } from './PageParamTypes';
 import { ScopeLevel } from './ScopeLevel';
@@ -15,7 +16,7 @@ export interface ObjectBase {
   names: string[];
 }
 
-export type ObjectData = LanguageData | WritingSystemData | TerritoryData | LocaleData;
+export type ObjectData = CensusData | LanguageData | LocaleData | TerritoryData | WritingSystemData;
 
 // ISO 3166 territory code OR UN M49 code
 export type TerritoryCode = ISO3166Code | UNM49Code;
@@ -51,6 +52,7 @@ export interface TerritoryData extends ObjectBase {
   sovereign?: TerritoryData;
   dependentTerritories: TerritoryData[];
   locales: LocaleData[];
+  censuses: CensusData[];
 }
 
 export type ScriptCode = string; // ISO 15924 script code, eg. Latn, Cyrl, etc.

@@ -54,6 +54,7 @@ function ObjectTable<T extends ObjectData>({ objects, columns }: Props<T>) {
         nShown={nRowsAfterFilter < limit || limit < 1 ? nRowsAfterFilter : limit}
         nFiltered={nRowsAfterFilter}
         nOverall={objects.length}
+        objectType={objects[0]?.type}
       />
       <table className="ObjectTable">
         <thead>

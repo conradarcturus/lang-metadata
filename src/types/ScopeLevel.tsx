@@ -25,10 +25,12 @@ export function getObjectScopeLevel(object: ObjectData): ScopeLevel {
       return getTerritoryScopeLevel(object);
     case ObjectType.WritingSystem:
       return getWritingSystemScopeLevel(object);
+    case ObjectType.Census:
+      return ScopeLevel.Individuals; // Not well-defined for censuses
   }
 }
 
-function getLanguageScopeLevel(lang: LanguageData): ScopeLevel {
+export function getLanguageScopeLevel(lang: LanguageData): ScopeLevel {
   switch (lang.scope) {
     case LanguageScope.Family:
       return ScopeLevel.Groups;
