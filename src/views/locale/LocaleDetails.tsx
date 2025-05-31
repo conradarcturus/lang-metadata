@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { numberToFixedUnlessSmall, numberToSigFigs } from '../../generic/numberUtils';
+import { PercentageDifference } from '../../generic/PercentageDifference';
 import { LocaleData } from '../../types/DataTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
 
@@ -139,6 +140,7 @@ const LocalePopulationSection: React.FC<{ locale: LocaleData }> = ({ locale }) =
                 <th>Population</th>
                 <th>Percent</th>
                 <th>Census</th>
+                <th>Difference</th>
               </tr>
             </thead>
             <tbody>
@@ -154,6 +156,12 @@ const LocalePopulationSection: React.FC<{ locale: LocaleData }> = ({ locale }) =
                     </td>
                     <td>
                       <HoverableObjectName object={censusEstimate.census} />
+                    </td>
+                    <td style={{ textAlign: 'right' }}>
+                      <PercentageDifference
+                        percentNew={censusEstimate.populationPercent}
+                        percentOld={populationSpeakingPercent}
+                      />
                     </td>
                   </tr>
                 ))}

@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../data/DataContext';
 import Hoverable from '../../generic/Hoverable';
 import { numberToFixedUnlessSmall } from '../../generic/numberUtils';
+import { PercentageDifference } from '../../generic/PercentageDifference';
 import { CensusData } from '../../types/CensusTypes';
 import { LocaleData } from '../../types/DataTypes';
 import { ObjectType, SortBy } from '../../types/PageParamTypes';
@@ -60,6 +61,16 @@ const TableOfLanguagesInCensus: React.FC<Props> = ({ census }) => {
     [locales],
   );
 
+  const getPopulationDifference = useCallback(
+    (mockedLocale: LocaleData): React.ReactNode => (
+      <PercentageDifference
+        percentNew={mockedLocale.populationSpeakingPercent || 0}
+        percentOld={locales[mockedLocale.ID]?.populationSpeakingPercent}
+      />
+    ),
+    [locales],
+  );
+
   return (
     <div>
       {langsNotFound.length > 0 && (
@@ -99,6 +110,15 @@ const TableOfLanguagesInCensus: React.FC<Props> = ({ census }) => {
               </Hoverable>
             ),
             render: getActualLocaleInfoButton,
+          },
+          {
+            label: (
+              <Hoverable hoverContent="The difference the population estimate in this census is compared to the canonical locale population estimate. This compares percentages, so 8.3% - 10.4% is -2.1 pp (percentage points). Values are colored if the difference is more than 10%.">
+                Population Difference
+              </Hoverable>
+            ),
+            render: getPopulationDifference,
+            isNumeric: true,
           },
         ]}
       />
