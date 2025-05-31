@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { useDataContext } from '../../dataloading/DataContext';
-import CommaSeparated from '../../generic/CommaSeparated';
-import Hoverable from '../../generic/Hoverable';
+import LimitInput from '../../controls/selectors/LimitInput';
+import ScopeFilterSelector from '../../controls/selectors/ScopeFilterSelector';
 import { CensusData } from '../../types/CensusTypes';
-import { LanguageData } from '../../types/LanguageTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
+
+import TableOfLanguagesInCensus from './TableOfLanguagesInCensus';
 
 type Props = {
   census: CensusData;
@@ -17,7 +17,14 @@ const CensusDetails: React.FC<Props> = ({ census }) => {
       <CensusPrimarySection census={census} />
       <CensusPopulationCharacteristics census={census} />
       <CensusSourceSection census={census} />
-      <CensusLanguagesSection census={census} />
+      <div className="section">
+        <h3>Languages</h3>
+        <div style={{ textAlign: 'center' }}>
+          <LimitInput />
+          <ScopeFilterSelector />
+        </div>
+        <TableOfLanguagesInCensus census={census} />
+      </div>
     </div>
   );
 };
@@ -157,85 +164,6 @@ function CensusSourceSection({ census }: { census: CensusData }) {
       )}
     </div>
   );
-}
-
-function CensusLanguagesSection({ census }: { census: CensusData }) {
-  const {
-    languagesBySchema: { Inclusive: langs },
-  } = useDataContext();
-  const { eligiblePopulation } = census;
-
-  return (
-    <div className="section">
-      <h3>Languages</h3>
-      <div>
-        <label>Language Count:</label> {census.languageCount}
-      </div>
-      {census.languageCount > 0 && (
-        <div>
-          <label>Languages:</label>
-          <CommaSeparated>
-            {Object.entries(census.languageEstimates)
-              .sort(
-                ([, a], [, b]) => b - a, // Sort by population estimate descending
-              )
-              .map(([langID, populationEstimate]) => (
-                <HoverableLanguageEntry
-                  eligiblePopulation={eligiblePopulation}
-                  key={langID}
-                  lang={langs[langID]}
-                  langID={langID}
-                  populationEstimate={populationEstimate}
-                />
-              ))}
-          </CommaSeparated>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function HoverableLanguageEntry({
-  eligiblePopulation,
-  lang,
-  langID,
-  populationEstimate,
-}: {
-  eligiblePopulation: number;
-  lang?: LanguageData;
-  langID: string;
-  populationEstimate: number;
-}) {
-  const hoverContent = (
-    <>
-      <div>
-        <label>Language Code:</label>
-        {langID}
-      </div>
-      {lang != null && (
-        <div>
-          <label>Name:</label>
-          {lang.nameDisplay}
-        </div>
-      )}
-      {lang != null && (
-        <div>
-          <label>Scope:</label>
-          {lang.scope}
-        </div>
-      )}
-      <div>
-        <label>Population:</label>
-        {populationEstimate.toLocaleString()}
-      </div>
-      <div>
-        <label>Percent:</label>
-        {((populationEstimate * 100.0) / eligiblePopulation).toFixed(2)}%
-      </div>
-    </>
-  );
-
-  return <Hoverable hoverContent={hoverContent}>{lang?.nameDisplay ?? langID}</Hoverable>;
 }
 
 export default CensusDetails;

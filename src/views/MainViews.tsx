@@ -3,6 +3,8 @@ import { ObjectType, View } from '../types/PageParamTypes';
 
 import AboutPage from './AboutPage';
 import CensusCardList from './census/CensusCardList';
+import { CensusHierarchy } from './census/CensusHierarchy';
+import TableOfAllCensuses from './census/TableOfAllCensuses';
 import ObjectDetailsPage from './common/ObjectDetailsPage';
 import LanguageCardList from './language/LanguageCardList';
 import { LanguageHierarchy } from './language/LanguageHierarchy';
@@ -42,7 +44,7 @@ function MainViews() {
     case View.Hierarchy:
       switch (objectType) {
         case ObjectType.Census:
-          return <></>;
+          return <CensusHierarchy />;
         case ObjectType.Language:
           return <LanguageHierarchy />;
         case ObjectType.Locale:
@@ -56,7 +58,7 @@ function MainViews() {
     case View.Table:
       switch (objectType) {
         case ObjectType.Census:
-          return <></>;
+          return <TableOfAllCensuses />;
         case ObjectType.Language:
           return <LanguageTable />;
         case ObjectType.Locale:

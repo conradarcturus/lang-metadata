@@ -72,7 +72,6 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
           // these keys should not be passed in here
         } else if (value !== '') {
           // Regular strings, but only save if something is filled in
-          console.log(`Setting ${key} for census ${index + 1} to ${value}`);
           censuses[index][key] = value;
         }
       });

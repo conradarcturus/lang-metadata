@@ -4,6 +4,15 @@ import { ObjectType } from '../../types/PageParamTypes';
 
 export function getObjectSubtitle(object: ObjectData): string | undefined {
   switch (object.type) {
+    case ObjectType.Census:
+      return [
+        object.modality,
+        object.proficiency,
+        object.acquisitionOrder,
+        object.domain && object.domain != 'Any' ? '@' + object.domain : null,
+      ]
+        .filter((c) => c != null && c != 'Any')
+        .join(', ');
     case ObjectType.Language:
       return getLanguageSubtitle(object);
     case ObjectType.Locale:
@@ -30,12 +39,12 @@ function getLanguageSubtitle(lang: LanguageData): string | undefined {
 
 export function getObjectTypeLabelPlural(objectType: ObjectType) {
   switch (objectType) {
+    case ObjectType.Census:
+      return 'censuses';
     case ObjectType.Language:
       return 'languages';
     case ObjectType.Locale:
       return 'locales';
-    case ObjectType.Census:
-      return 'censuses';
     case ObjectType.Territory:
       return 'territories';
     case ObjectType.WritingSystem:

@@ -30,7 +30,7 @@ export function getObjectScopeLevel(object: ObjectData): ScopeLevel {
   }
 }
 
-function getLanguageScopeLevel(lang: LanguageData): ScopeLevel {
+export function getLanguageScopeLevel(lang: LanguageData): ScopeLevel {
   switch (lang.scope) {
     case LanguageScope.Family:
       return ScopeLevel.Groups;

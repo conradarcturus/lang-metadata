@@ -8,7 +8,7 @@ const CensusSuggestions: React.FC = () => {
 
   return (
     <div className="separatedButtonList">
-      {['Canada 2021', 'Canada 2021 L1'].map(
+      {['ca2021.1', 'ca2021.4'].map(
         (code) =>
           censuses[code] != null && (
             <HoverableObjectName key={code} object={censuses[code]} format="button" />
