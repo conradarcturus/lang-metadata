@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import Hoverable from '../../generic/Hoverable';
 import { ObjectData } from '../../types/DataTypes';
 import { ObjectType } from '../../types/PageParamTypes';
+import CensusCard from '../census/CensusCard';
 import LanguageCard from '../language/LanguageCard';
 import LocaleCard from '../locale/LocaleCard';
 import TerritoryCard from '../territory/TerritoryCard';
@@ -19,6 +20,8 @@ const HoverableObject: React.FC<Props> = ({ object, children }) => {
 
   const getHoverContent = () => {
     switch (object.type) {
+      case ObjectType.Census:
+        return <CensusCard census={object} />;
       case ObjectType.Language:
         return <LanguageCard lang={object} />;
       case ObjectType.Locale:

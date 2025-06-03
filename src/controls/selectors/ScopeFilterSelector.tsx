@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { joinOxfordComma, toSentenceCase } from '../../generic/stringUtils';
-import { ObjectType, View } from '../../types/PageParamTypes';
+import { ObjectType } from '../../types/PageParamTypes';
 import { ScopeLevel } from '../../types/ScopeLevel';
 import { getObjectTypeLabelPlural } from '../../views/common/getObjectName';
 import MultiChoiceOptions from '../components/MultiChoiceOptions';
@@ -9,10 +9,8 @@ import Selector from '../components/Selector';
 import { usePageParams } from '../PageParamsContext';
 
 const ScopeFilterSelector: React.FC = () => {
-  const { view, scopes, updatePageParams, objectType } = usePageParams();
-  if ([View.Details].includes(view)) {
-    return <></>;
-  }
+  const { scopes, updatePageParams, objectType } = usePageParams();
+
   function getOptionDescription(scope: ScopeLevel | ScopeLevel[]): string {
     if (Array.isArray(scope)) {
       return toSentenceCase(
@@ -49,6 +47,7 @@ export function getScopeLevelDescription(
   length: 'long' | 'short',
 ): string {
   switch (objectType) {
+    case ObjectType.Census: // Census scope level is just used to filter the languages in the census language table.
     case ObjectType.Language:
       switch (scope) {
         case ScopeLevel.Groups:

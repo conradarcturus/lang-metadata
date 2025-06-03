@@ -50,6 +50,8 @@ function getTerritoriesRelevantToObject(object: ObjectData): TerritoryData[] {
       return [object, object.parentUNRegion, object.sovereign].filter((t) => t != null);
     case ObjectType.Locale:
       return [object.territory].filter((t) => t != null);
+    case ObjectType.Census:
+      return [object.territory].filter((t) => t != null);
     case ObjectType.Language:
       return object.locales.map((l) => l.territory).filter((t) => t != null);
     case ObjectType.WritingSystem:

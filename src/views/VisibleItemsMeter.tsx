@@ -11,9 +11,10 @@ interface Props {
   nShown: number;
   nFiltered: number;
   nOverall: number;
+  objectType?: ObjectType;
 }
 
-const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => {
+const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall, objectType }) => {
   const { page, limit } = usePageParams();
 
   if (nOverall === 0) {
@@ -22,7 +23,7 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
   const totalItemsLoaded = (
     <>
       {nOverall > nFiltered && <> There are {<strong>{nOverall}</strong>} total</>}{' '}
-      <ObjectTypeLabel />.
+      <ObjectTypeLabel manualObjectType={objectType} />.
     </>
   );
 
@@ -39,7 +40,8 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
     return (
       <div style={{ display: 'inline-block' }}>
         Showing <strong>{nShown}</strong>
-        {nOverall > nShown && <> of {<strong>{nOverall}</strong>}</>} <ObjectTypeLabel />.
+        {nOverall > nShown && <> of {<strong>{nOverall}</strong>}</>}{' '}
+        <ObjectTypeLabel manualObjectType={objectType} />.
         <PaginationControls
           currentPage={page}
           totalPages={limit < 1 ? 1 : Math.ceil(nFiltered / limit)}
@@ -51,8 +53,8 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
   return (
     <div style={{ display: 'inline-block' }}>
       Showing <strong>{nShown}</strong>
-      {nFiltered > nShown && <> of {<strong>{nFiltered}</strong>}</>} filtered <ObjectTypeLabel />.
-      {nOverall > nFiltered && totalItemsLoaded}
+      {nFiltered > nShown && <> of {<strong>{nFiltered}</strong>}</>} filtered{' '}
+      <ObjectTypeLabel manualObjectType={objectType} />.{nOverall > nFiltered && totalItemsLoaded}
       <PaginationControls
         currentPage={page}
         totalPages={limit < 1 ? 1 : Math.ceil(nFiltered / limit)}
@@ -61,8 +63,9 @@ const VisibleItemsMeter: React.FC<Props> = ({ nShown, nFiltered, nOverall }) => 
   );
 };
 
-const ObjectTypeLabel: React.FC = () => {
-  const { languageSchema, objectType } = usePageParams();
+const ObjectTypeLabel: React.FC<{ manualObjectType?: ObjectType }> = ({ manualObjectType }) => {
+  const { languageSchema, objectType: pageObjectType } = usePageParams();
+  const objectType = manualObjectType ?? pageObjectType;
 
   if (objectType === ObjectType.Language) {
     switch (languageSchema) {

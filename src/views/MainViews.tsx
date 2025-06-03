@@ -2,6 +2,9 @@ import { usePageParams } from '../controls/PageParamsContext';
 import { ObjectType, View } from '../types/PageParamTypes';
 
 import AboutPage from './AboutPage';
+import CensusCardList from './census/CensusCardList';
+import { CensusHierarchy } from './census/CensusHierarchy';
+import TableOfAllCensuses from './census/TableOfAllCensuses';
 import ObjectDetailsPage from './common/ObjectDetailsPage';
 import LanguageCardList from './language/LanguageCardList';
 import { LanguageHierarchy } from './language/LanguageHierarchy';
@@ -24,6 +27,8 @@ function MainViews() {
   switch (view) {
     case View.CardList:
       switch (objectType) {
+        case ObjectType.Census:
+          return <CensusCardList />;
         case ObjectType.Language:
           return <LanguageCardList />;
         case ObjectType.Locale:
@@ -38,6 +43,8 @@ function MainViews() {
       return <ObjectDetailsPage />;
     case View.Hierarchy:
       switch (objectType) {
+        case ObjectType.Census:
+          return <CensusHierarchy />;
         case ObjectType.Language:
           return <LanguageHierarchy />;
         case ObjectType.Locale:
@@ -50,6 +57,8 @@ function MainViews() {
     // eslint-disable-next-line no-fallthrough
     case View.Table:
       switch (objectType) {
+        case ObjectType.Census:
+          return <TableOfAllCensuses />;
         case ObjectType.Language:
           return <LanguageTable />;
         case ObjectType.Locale:

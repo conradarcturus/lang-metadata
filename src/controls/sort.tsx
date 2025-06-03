@@ -35,6 +35,10 @@ export function getSortFunction(languageSchema?: LanguageSchema): SortByFunction
                       (a.schemaSpecific[effectiveLanguageSchema].populationOfDescendents ?? 0)
                     : 0)
               : -1;
+          case ObjectType.Locale:
+            return b.type === ObjectType.Locale ? b.populationEstimate - a.populationEstimate : -1;
+          case ObjectType.Census:
+            return b.type === ObjectType.Census ? b.languageCount - a.languageCount : -1;
           case ObjectType.WritingSystem:
             return b.type === ObjectType.WritingSystem
               ? b.populationUpperBound -
@@ -45,8 +49,6 @@ export function getSortFunction(languageSchema?: LanguageSchema): SortByFunction
               : -1;
           case ObjectType.Territory:
             return b.type === ObjectType.Territory ? b.population - a.population : -1;
-          case ObjectType.Locale:
-            return b.type === ObjectType.Locale ? b.populationEstimate - a.populationEstimate : -1;
         }
       };
   }

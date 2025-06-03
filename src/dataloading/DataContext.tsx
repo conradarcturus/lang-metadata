@@ -21,10 +21,11 @@ type DataContextType = CoreData & {
 };
 
 const DataContext = createContext<DataContextType | undefined>({
+  censuses: {},
   languagesBySchema: EMPTY_LANGUAGES_BY_SCHEMA,
   languages: {},
-  territories: {},
   locales: {},
+  territories: {},
   writingSystems: {},
 });
 

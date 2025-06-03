@@ -42,7 +42,7 @@
 
 .ModalBody {
     overflow: scroll;
-    padding: 0 2em 2em 2em;
+    padding: 0 2em 0 2em;
     max-height: 800px;
     max-width: 600px;
 }
@@ -50,4 +50,8 @@
 .ModalButtons {
     display: flex;
     gap: 8px;
+}
+
+.ModalBody .Details {
+    margin-top: 1em;
 }
