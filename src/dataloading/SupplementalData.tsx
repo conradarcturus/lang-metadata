@@ -14,7 +14,7 @@ export async function loadSupplementalData(coreData: CoreData): Promise<void> {
   // TODO - this should be done in parallel so we cannot pass in things we are mutating
   await Promise.all([loadCLDRCoverage(coreData), loadTerritoryGDPLiteracy(coreData.territories)]);
 
-  const [censusImport] = await Promise.all([loadCensusData()]);
+  const censusImport = await loadCensusData();
 
   if (censusImport != null) {
     addCensusData(coreData, censusImport);

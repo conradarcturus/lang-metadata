@@ -15,7 +15,7 @@ const CensusCard: React.FC<Props> = ({ census }) => {
   return (
     <div>
       <h3>
-        <a onClick={() => updatePageParams({ objectID: ID })}>
+        <a onClick={() => updatePageParams({ objectID: ID })} role="link">
           <ObjectTitle object={census} highlightSearchMatches={true} />
         </a>
       </h3>

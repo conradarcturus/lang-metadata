@@ -8,11 +8,11 @@ Look for the appropriate census website directly -- avoid copying information fr
 
 Sometimes a government website is no longer available or it is only available to specific country IPs. In that case you can find the information otherwise using the Internet Archive at https://archive.org/ .
 
-Government websites may or may not be translated into English. If the website is not originally, see if there is an option to change the website's language, otherwise you may need to use a translation service like Google Translate.
+Government websites may or may not be translated into English or another language you understand. If the website is not originally, see if there is an option to change the website's language, otherwise you may need to use a translation service like Google Translate.
 
 ## Step 2: Find the proper table
 
-There will be a lot of potential census data. In order to find data specific to languages want to look for "population" statistics or "culture". Once you find a table with information about languages, you may find multiple other ones that are related, such as "mother tongue", "home language", "language spoken at work", etc. You may need to look at multiple tables to get the full picture of the languages used in the country. The first table you find may not be the best. Once you have found good table or tables, write down the following characteristics:
+There will be a lot of potential census data. To find data specific to languages, look for "population" statistics or "culture". Once you find a table with information about languages, you may find multiple other ones that are related, such as "mother tongue", "home language", "language spoken at work", etc. You may need to look at multiple tables to get the full picture of the languages used in the country. The first table you find may not be the best. Once you have found good table or tables, write down the following characteristics:
 - The name of the table (e.g., "Population by mother tongue")
 - The URL for future people to check the data (e.g., https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201)
 - The date the information is dated to (e.g., "2021")

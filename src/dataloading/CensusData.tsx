@@ -132,7 +132,7 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
         return;
       }
       censuses[i].languageEstimates[languageCode] = Number.parseInt(part.replace(/,/g, ''));
-      censuses[i].languageCount += 1; // Increment the language count for the first census
+      censuses[i].languageCount += 1; // Increment the language count for the census
     });
   }
 
