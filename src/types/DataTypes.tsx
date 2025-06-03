@@ -121,6 +121,12 @@ export enum OfficialStatus {
   RecognizedRegionally = 'recognized_regional',
 }
 
+export type LocaleInCensus = {
+  census: CensusData;
+  populationEstimate: number;
+  populationPercent: number;
+};
+
 export interface LocaleData extends ObjectBase {
   type: ObjectType.Locale;
 
@@ -134,8 +140,10 @@ export interface LocaleData extends ObjectBase {
   territoryCode: TerritoryCode;
   explicitScriptCode?: ScriptCode;
   variantTag?: VariantIANATag;
+
+  populationEstimate: number; // The canonical population
   populationSource: PopulationSourceCategory;
-  populationEstimate: number;
+
   officialStatus?: OfficialStatus;
 
   // References to other objects, filled in after loading the TSV
@@ -145,4 +153,5 @@ export interface LocaleData extends ObjectBase {
 
   // Data added up some references
   populationPercentOfTerritory?: number;
+  censusRecords: LocaleInCensus[]; // Maps census ID to population estimate
 }

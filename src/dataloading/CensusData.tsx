@@ -173,9 +173,29 @@ export function addCensusData(coreData: CoreData, censusData: CensusImport): voi
         census.territory = territory;
         territory.censuses.push(census);
       }
+
+      // Create references to census from the locale data
+      addCensusRecordsToLocales(coreData, census);
     } else {
       // It's reloaded twice on dev mode
       // console.warn(`Census data for ${census.ID} already exists, skipping.`);
     }
   }
+}
+
+export function addCensusRecordsToLocales(codeData: CoreData, census: CensusData): void {
+  Object.entries(census.languageEstimates).forEach(([languageCode, populationEstimate]) => {
+    // Assuming languageCode is using the canonical ID (eg. eng not en or stan1293)
+    const locale = codeData.locales[languageCode + '_' + census.isoRegionCode];
+    if (locale != null) {
+      // Add the census to the locale
+      locale.censusRecords.push({
+        census,
+        populationEstimate,
+        populationPercent: (populationEstimate * 100.0) / census.eligiblePopulation,
+      });
+    } else {
+      // TODO: show warning in the "Notices" tool
+    }
+  });
 }

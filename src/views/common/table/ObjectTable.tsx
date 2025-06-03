@@ -11,7 +11,7 @@ import VisibleItemsMeter from '../../VisibleItemsMeter';
 import './tableStyles.css';
 
 export interface TableColumn<T> {
-  label: string;
+  label: React.ReactNode;
   render: (object: T) => React.ReactNode;
   key?: string;
   isNumeric?: boolean;
