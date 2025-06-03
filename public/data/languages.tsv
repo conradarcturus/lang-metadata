@@ -2794,7 +2794,7 @@ kyn	karo1299	Northern Binukidnon	Kadul·an		Latn	Vigorous	2 Stable	Still	0	15,10
 phg	phuo1238	Phuong			Latn	Vigorous	2 Stable	Still	0	15,100		katu1272	Yes	
 tlp	filo1235	Filomena Mata-Coahuitlán Totonac			Latn	Vigorous	2 Stable	Emerging	0	15,100		cent1397	Yes	
 agn	agut1237	Agutaynen			Latn	Developing	2 Stable	Ascending	0	15,000		kala1389	Yes	
-amw	west2763	Aramaic	ܐܪܡܝܬ, آرامي		Syrc	Shifting	3 Endangered	Emerging	0	15,000		west2815	Yes	
+amw	west2763	Western Neo-Aramaic	ܐܪܡܝܬ, آرامي		Syrc	Shifting	3 Endangered	Emerging	0	15,000		west2815	Yes	
 axk	yaka1272	Yaka (Central African Republic)			Latn	Developing	2 Stable	Still	0	15,000		bwam1249	Yes	
 bdb	basa1286	Basap			Latn	Threatened	3 Endangered	Still	0	15,000		basa1291	Yes	
 bhy	bhel1238	Bhele			Latn	Threatened	2 Stable	Ascending	0	15,000		bila1258	Yes	
@@ -3997,7 +3997,7 @@ shv	sheh1240	Shehri			Arab	Threatened	3 Endangered	Still	0	5,000		east2766	Yes
 skx	seko1243	Seko Padang	bahasa Seko Padang		Latn	Vigorous	2 Stable	Emerging	0	5,000		seko1241	Yes	
 sok	soko1263	Sokoro			Latn	Vigorous	2 Stable	Ascending	0	5,000		saba1281	Yes	
 sqa	sham1278	Shama-Sambuga			Latn	Vigorous	2 Stable	Still	0	5,000		saga1266	Yes	
-stq	sate1242	Frisian	Seeltersk	Spoken & Written	Latn	Shifting	3 Endangered	Ascending	0	5,000		fris1239	Yes	
+stq	sate1242	Saterfriesisch	Seeltersk	Spoken & Written	Latn	Shifting	3 Endangered	Ascending	0	5,000		fris1239	Yes	
 swu	suwa1241	Suwawa			Latn	Shifting	3 Endangered	Emerging	0	5,000		goro1273	Yes	
 tdl	surr1238	Sur			Latn	Vigorous	3 Endangered	Still	0	5,000		biji1252	Yes	
 tio	teop1238	Teop			Latn	Developing	2 Stable	Emerging	0	5,000		tinp1238	Yes	
@@ -4591,7 +4591,7 @@ dlk	daha1247	Dahalik				Vigorous	3 Endangered	Still	0	2,500		tigr1277	Yes
 dww	dawa1242	Dawawa			Latn	Developing	2 Stable	Emerging	0	2,500		kaka1266	Yes	
 dza	tunz1235	Tunzu			Latn	Threatened	3 Endangered	Still	0	2,500		nort3215	Yes	
 ega	egaa1242	Ega			Latn	Vigorous	3 Endangered	Still	0	2,500		volt1241	Yes	
-fir	fira1238	Frisian			Latn	Vigorous	2 Stable	Still	0	2,500		izer1242	Yes	
+fir	fira1238	Firan			Latn	Vigorous	2 Stable	Still	0	2,500		izer1242	Yes	
 fqs	fass1245	Fas			Latn	Educational	3 Endangered	Emerging	0	2,500		baib1250	Yes	
 gdk	gada1262	Gadang			Latn	Shifting	3 Endangered	Emerging	0	2,500		east2775	Yes	
 grs	gres1240	Gresi	bahasa Geresi		Latn	Moribund	3 Endangered	Still	0	2,500		gres1241	Yes	
@@ -4788,7 +4788,7 @@ dms	damp1237	Dampelas	bahasa Dampelas		Latn	Shifting	3 Endangered	Still	0	2,000	
 dnu	dana1252	Danau			Mymr	Threatened	3 Endangered	Still	0	2,000		pala1352	Yes	
 dym	yand1257	Yanda Dom Dogon			Latn	Vigorous	2 Stable	Still	0	2,000		yand1256	Yes	
 enr	emum1240	Emumu	bahasa Emumu		Latn	Threatened	3 Endangered	Still	0	2,000		east2530	Yes	
-frs	nort2628	Frisian			Latn	Moribund	3 Endangered	Emerging	0	2,000		ostf1234	Yes	
+frs	nort2628	Eastern Frisian			Latn	Moribund	3 Endangered	Emerging	0	2,000		ostf1234	Yes	
 gmd	magh1238	Mághdì			Latn	Vigorous	3 Endangered	Still	0	2,000		makt1234	Yes	
 gqu	qaua1234	Qau				Vigorous	3 Endangered	Still	0	2,000		gela1265	Yes	
 huh	huil1244	Huilliche			Latn	Moribund	3 Endangered	Emerging	0	2,000		arau1255	Yes	
@@ -5318,7 +5318,7 @@ bdk	budu1248	Budukh			Latn	Shifting	3 Endangered	Emerging	0	1,000		sout2753	Yes
 beg	bela1260	Belait				Shifting	3 Endangered	Still	0	1,000		cent2272	Yes	
 ber		Berber languages							0	1,000			Probably not	Language family encompassing all Berber languages -- may only be used if the data does not break down the languages
 bgm	baga1276	Baga Mboteni				Nearly Extinct			0	1,000	bcg	baga1275	No	ISO considers this a duplicate of bcg
-bhn	boht1238	Aramaic			Syrc	Shifting	3 Endangered	Emerging	0	1,000		boht1239	Yes	
+bhn	boht1238	Bohtan Neo-Aramaic			Syrc	Shifting	3 Endangered	Emerging	0	1,000		boht1239	Yes	
 bkf	beek1238	Beeke			Latn	Moribund	3 Endangered	Emerging	0	1,000		bali1286	Yes	
 bko	kwaa1265	Kwa'			Latn	Vigorous	3 Endangered	Emerging	0	1,000		east2862	Yes	
 bnf	masi1266	Masiwang			Latn	Vigorous	3 Endangered	Still	0	1,000		east2748	Yes	
@@ -6792,7 +6792,7 @@ bao	waim1255	Waimaha			Latn	Developing	2 Stable	Emerging	0	21		bara1401	Yes
 unn	gana1278	Kurnai			Latn	Moribund	3 Endangered	Still	0	21		gana1279	Yes	
 bdy	midd1357	Bandjalang			Latn	Shifting	3 Endangered	Emerging	0	20		inla1268	Yes	
 bia	badi1246	Badimaya			Latn	Nearly Extinct	3 Endangered	Still	0	20		kart1250	Yes	
-bjf	barz1241	Aramaic			Syrc	Nearly Extinct	3 Endangered	Emerging	0	20		nort3242	Yes	
+bjf	barz1241	Barzani Jewish Neo-Aramaic			Syrc	Nearly Extinct	3 Endangered	Emerging	0	20		nort3242	Yes	
 brg	baur1253	Baure			Latn	Moribund	3 Endangered	Emerging	0	20		boli1260	Yes	
 bvh	bure1242	Bure			Latn	Moribund	3 Endangered	Still	0	20		unun9876	Yes	
 bym	bidy1243	Bidyara			Latn	Extinct	4 Extinct	Still	0	20		bidy1245	Yes, with caveat	Some sources report this as extinct, some as active
@@ -7522,7 +7522,7 @@ aoh	arma1244	Arma				Extinct			0			choc1284	No	Declared non-existent by ISO
 aoj-x-filifita	fili1245	Filifita										mufi1238		
 apv	alap1235	Alapmunte			Latn		4 Extinct	Still	0			namb1301	No	Extinct language
 aqp	atak1252	Atakapa					4 Extinct	Still	0				No	Extinct language
-arc	impe1235	Aramaic	ܐܪܡܝܐ	Spoken & Written	Armi				0			impe1236	Probably not	Historical langauge
+arc	impe1235	Imperial Aramaic	ܐܪܡܝܐ	Spoken & Written	Armi				0			impe1236	Probably not	Historical langauge
 aru	arua1263	Aruá (Amazonas State)			Latn		4 Extinct	Still	0			araw1282	No	Extinct language
 asw	aust1253	Australian Aborigines Sign Language			Zxxx	Vigorous	3 Endangered	Still	0			auxi1235	Yes	
 atc	atsa1242	Atsahuaca			Latn		4 Extinct	Still	0			madr1238	No	Extinct language
@@ -7668,7 +7668,7 @@ inz	ines1240	Ineseño				Dormant	3 Endangered	Still	0			cent2139	Yes, with cavea
 isv		Interslavic	Medžuslovjansky		Latn				0				Possibly	Constructed language
 jgb	ngbe1238	Ngbee			Latn	Extinct	4 Extinct	Emerging	0			extr1247	No	Extinct language
 jor	jora1240	Jorá			Latn	Extinct	4 Extinct	Still	0			siri1279	No	Extinct language
-jpa	pale1261	Aramaic			Hebr				0			late1255	Probably not	Historical langauge
+jpa	pale1261	Jewish Palestinian Aramaic			Hebr				0			late1255	Probably not	Historical langauge
 jpn-classical		Classical Japanese							0				No	Not an active language
 jui	ngad1257	Ngadjuri			Latn	Extinct	4 Extinct	Still	0			unun9967	No	Extinct language
 kae	keta1243	Ketangalan				Extinct	4 Extinct	Still	0			nort2900	No	Extinct language
@@ -7770,7 +7770,7 @@ nwo	nauo1235	Nauo			Latn	Extinct	4 Extinct	Still	0			unun9967	No	Extinct languag
 nwx		Middle Newar			Deva				0				Probably not	Historical langauge
 nwy		Nottoway-Meherrin					4 Extinct	Still	0				No	Extinct language
 nxm	numi1241	Numidian							0			uncl1493	Probably not	Historical langauge
-oar	olda1245	Aramaic			Syrc				0			aram1259	Probably not	Historical langauge
+oar	olda1245	Old Aramaic			Syrc				0			aram1259	Probably not	Historical langauge
 oav		Old Avar			Geor				0				Probably not	Historical langauge
 obi	obis1242	Obispeño			Latn	Dormant	3 Endangered	Still	0			chum1262	Yes, with caveat	Some sources report this as extinct, some as active
 obm	moab1234	Moabite			Phnx				0			anci1244	Probably not	Historical langauge
@@ -7869,7 +7869,7 @@ rrm	mori1267	Moriori	Ta Rē Moriori		Latn		4 Extinct	Still	0			maor1247	No	Extin
 rrt	arit1239	Arritinngithigh			Latn		4 Extinct	Still	0			nort2758	No	Extinct language
 rts	yura1256	Yurats					4 Extinct	Still	0			nene1249	No	Extinct language
 rxw	karr1236	Karuwali			Latn	Dormant	3 Endangered	Still	0			mith1235	Yes, with caveat	Some sources report this as extinct, some as active
-sam	sama1314	Aramaic	ܐܪܡܝܐ		Samr	Dormant	3 Endangered	Emerging	0			sama1316	Yes, with caveat	Some sources report this as extinct, some as active
+sam	sama1314	Samaritan Aramaic	ܐܪܡܝܐ		Samr	Dormant	3 Endangered	Emerging	0			sama1316	Yes, with caveat	Some sources report this as extinct, some as active
 sbv	sabi1245	Sabine			Latn				0			sabe1248	Probably not	Historical langauge
 scx	sicu1234	Sicel			Grek				0			uncl1493	Probably not	Historical langauge
 sdt	shua1252	Shuadit	שואדית		Hebr	Extinct	4 Extinct	Still	0			book1242	No	Extinct language
@@ -7912,7 +7912,7 @@ tjm	timu1245	Timucua					4 Extinct	Still	0				No	Extinct language
 tjn	tonj1246	Tonjon			Latn	Extinct	4 Extinct	Still	0			jogo1242	No	Extinct language
 tkm	take1257	Takelma					4 Extinct	Still	0				No	Extinct language
 tlh	klin1234	tlhIngan-Hol	tlhIngan Hol	Spoken & Written	Latn				0			arti1236	Possibly	Constructed language
-tmr	jewi1240	Aramaic			Syrc	Extinct	3 Endangered	Emerging	0			nort3241	Yes, with caveat	Some sources report this as extinct, some as active
+tmr	jewi1240	Jewish Babylonian Aramaic			Syrc	Extinct	3 Endangered	Emerging	0			nort3241	Yes, with caveat	Some sources report this as extinct, some as active
 tmz	tama1338	Tamanaku			Latn	Extinct	4 Extinct	Still	0			mapo1244	No	Extinct language
 tne	tino1235	Tinoc Kallahan				Vigorous			0		kak	ahin1234	No	ISO merged this into kak
 toe	tome1239	Tomedes				Extinct			0			book1242	No	Declared non-existent by ISO

@@ -1,84 +1,129 @@
-Glottocode	ISO Code
-indo1319	ine
-sino1245	sit
-indo1320	iir
-indo1321	inc
-germ1287	gem
-ital1284	itc
-slav1255	sla
-east2280	bat
-celt1248	cel
-arme1241	hyx
-iran1269	ira
-gree1276	grk
-west2793	gmw
-nort3160	gmq
-east2805	gme
-afro1255	afa
-aust1307	map
-atla1278	alv
-drav1251	dra
-aust1305	aav
-chad1250	cdc
-cush1243	cus
-semi1276	sem
-mala1545	poz
-cent2225	csu
-nubi1251	nub
-sign1238	sgn
-japo1237	jpx
-otom1299	omq
-maya1287	myn
-eski1264	esx
-krua1234	kro
-hmon1336	hmx
-ural1272	urj
-nucl1709	ngf
-turk1311	trk
-mong1329	xgn
-tung1282	tuw
-clas1258	cls
-vedi1234	vsn
-emil1243	eml
-kare1337	kar
-algo1257	alg
-algi1248	aql
-araw1281	awd
-midd1364	axm
-utoa1244	azc
-bami1239	bai
-chib1249	cba
-cadd1255	cdd
-cham1330	cmc
-midd1380	cnx
-land1261	day
-egyp1245	egx
-east2872	ekc
-sout2711	ggo
-mars1253	ims
-iroq1247	iro
-kpel1252	kpe
-leng1262	leg
-mano1276	mno
-muya1239	mvm
-oldb1248	obt
-ojib1241	oji
-oldk1249	okz
-oldm1243	omy
-pael1234	pgn
-east2712	pqe
-roma1334	roa
-sali1255	sal
-siou1252	sio
-sard1257	srd
-samo1298	syd
-waka1280	wak
-east1426	zle
-sout3147	zls
-west2792	zlw
-berb1260	ber
-mand1469	dmn
-ijoo1239	ijo
-yupi1267	ypk
-geji1247	gji
-mund1335	mun
+Glottocode	ISO Code	Name
+<contested>	tut	Altaic
+<contested>	aus	Australian
+<contested>	cau	Caucasian
+<contested>	cai	Central American Indian
+<contested>	plf	Central Malayo-Polynesian
+<contested>	sdv	Eastern Sudanic
+<contested>	fiu	Finno-Ugrian
+<contested>	fox	Formosan
+<contested>	hok	Hokan
+<contested>	khi	Khoisan
+<contested>	kdo	Kordofanian
+<contested>	mkh	Mon-Khmer
+<contested>	nic	Niger-Kordofanian
+<contested>	ssa	Nilo-Saharan
+<contested>	nai	North American Indian
+<contested>	omv	Omotic
+<contested>	paa	Papuan
+<contested>	phi	Philippine
+<contested>	sai	South American Indian
+<contested>	tbq	Tibeto-Burman
+<contested>	pqw	Western Malayo-Polynesian
+<redundant>	sqj	Albanian
+<redundant>	euq	Basque
+<redundant>	qwe	Quechuan
+abkh1242	ccn	North Caucasian
+afro1255	afa	Afro-Asiatic
+algi1248	aql	Algic
+algo1257	alg	Algonquian
+apac1239	apa	Apache
+araw1281	awd	Arawakan
+araw1282	auf	Arauan
+arme1241	hyx	Armenian
+arti1236	art	Artificial
+atha1245	xnd	Na-Dene
+atha1247	ath	Athapascan
+atla1278	alv	Atlantic-Congo
+aust1305	aav	Austro-Asiatic
+aust1307	map	Austronesian
+azte1234	nah	Nahuatl
+bami1239	bai	Bamileke
+band1341	bad	Banda
+bant1294	bnt	Bantu
+berb1260	ber	Berber
+cadd1255	cdd	Caddoan
+celt1248	cel	Celtic
+cent2225	csu	Central Sudanic
+chad1250	cdc	Chadic
+cham1330	cmc	Chamic
+chib1249	cba	Chibchan
+clas1258	cls	Classical Sanskrit
+cush1243	cus	Cushitic
+drav1251	dra	Dravidian
+east1426	zle	East Slavic
+east2280	bat	Baltic
+east2712	pqe	Eastern Malayo-Polynesian
+east2805	gme	East Germanic
+east2872	ekc	Eastern Karnic
+egyp1245	egx	Egyptian
+emil1243	eml	Emilian-Romagnol
+engl1287	cpe	Creoles and pidgins, English‑based
+eski1264	esx	Eskimo-Aleut
+fren1279	cpf	Creoles and pidgins, French‑based
+geji1247	gji	Geji
+germ1287	gem	Germanic
+gree1276	grk	Greek
+hmon1336	hmx	Hmong-Mien
+ijoo1239	ijo	Ijo
+indo1319	ine	Indo-European
+indo1320	iir	Indo-Iranian
+indo1321	inc	Indic
+inui1246	iku	Inuktitut
+iran1269	ira	Iranian
+iroq1247	iro	Iroquoian
+ital1284	itc	Italic
+japo1237	jpx	Japanese
+kare1337	kar	Karen
+kart1248	ccs	South Caucasian
+kawe1237	aqa	Alacalufan
+kpel1252	kpe	Kpelle
+krua1234	kro	Kru
+land1261	day	Land Dayak
+leng1262	leg	Lengua
+mala1545	poz	Malayo-Polynesian
+mand1469	dmn	Mande
+mano1276	mno	Manobo
+mars1253	ims	Marsian
+maya1287	myn	Mayan
+midd1350	pra	Prakrit
+midd1364	axm	Middle Armenian
+midd1380	cnx	Middle Cornish
+mong1329	xgn	Mongolian
+mund1335	mun	Munda
+muya1239	mvm	Muya
+nort3160	gmq	North Germanic
+nubi1251	nub	Nubian
+nucl1709	ngf	Trans-New Guinea
+ojib1241	oji	Ojibwa
+oldb1248	obt	Old Breton
+oldk1249	okz	Old Khmer
+oldm1243	omy	Old Malay
+otom1299	omq	Oto-Manguean
+pael1234	pgn	Paelignian
+pidg1258	crp	Creoles and pidgins
+port1294	cpp	Creoles and pidgins, Portuguese-based
+roma1334	roa	Romance
+sali1255	sal	Salishan
+samo1298	syd	Samoyedic
+sard1257	srd	Sardinian
+semi1276	sem	Semitic
+sign1238	sgn	Sign
+sino1245	sit	Sino-Tibetan
+siou1252	sio	Siouan
+slav1255	sla	Slavic
+song1307	son	Songhai
+sout2711	ggo	Southern Gondi
+sout3147	zls	South Slavic
+taik1256	tai	Tai
+tung1282	tuw	Tungus
+tupi1275	tup	Tupi
+turk1311	trk	Turkic
+ural1272	urj	Uralic
+utoa1244	azc	Uto-Aztecan
+vedi1234	vsn	Vedic Sanskrit
+waka1280	wak	Wakashan
+west2792	zlw	West Slavic
+west2793	gmw	West Germanic
+yupi1267	ypk	Yupik
+zand1246	znd	Zande

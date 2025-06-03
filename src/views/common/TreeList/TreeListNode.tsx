@@ -53,12 +53,14 @@ const TreeListNode: React.FC<Props> = ({ nodeData, isExpandedInitially = false }
         <span style={labelStyle}>
           <ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.EngName} />
         </span>
-        {searchString != '' && searchBy === SearchableField.Code && view === View.Hierarchy && (
-          <>
-            {' '}
-            [<ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />]
-          </>
-        )}
+        {searchString != '' &&
+          [SearchableField.Code, SearchableField.NameOrCode].includes(searchBy) &&
+          view === View.Hierarchy && (
+            <>
+              {' '}
+              [<ObjectFieldHighlightedByPageSearch object={object} field={SearchableField.Code} />]
+            </>
+          )}
         <HoverableObject object={object}>
           <button className="InfoButton">&#x24D8;</button>
         </HoverableObject>
