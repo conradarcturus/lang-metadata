@@ -1,3 +1,8 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Guarantee it always spans the viewport */
+}
 
 :root {
   --color-text: #222;                        /* Primary text color */
@@ -47,10 +52,12 @@ body {
 }
 
 .Body {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  text-align: center;
+
+  flex: 1;
 }
 
 h1 {
