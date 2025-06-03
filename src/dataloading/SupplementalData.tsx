@@ -14,11 +14,12 @@ export async function loadSupplementalData(coreData: CoreData): Promise<void> {
   // TODO - this should be done in parallel so we cannot pass in things we are mutating
   await Promise.all([loadCLDRCoverage(coreData), loadTerritoryGDPLiteracy(coreData.territories)]);
 
-  const censusImport = await loadCensusData();
-
-  if (censusImport != null) {
-    addCensusData(coreData, censusImport);
-  }
+  const censusImports = await loadCensusData();
+  censusImports.forEach((censusImport) => {
+    if (censusImport != null) {
+      addCensusData(coreData, censusImport);
+    }
+  });
 
   // 001 is the UN code for the World
   computeContainedTerritoryStats(coreData.territories['001']);

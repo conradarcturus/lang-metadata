@@ -1,0 +1,496 @@
+#nameDisplay		India 2011 Mothertongue
+#isoRegionCode	IN	
+#yearCollected	2011	
+#url	http://www.censusindia.gov.in/2011Census/C-16_25062018_NEW.pdf	
+#tableName	C-16: Population by mother tongue	
+#columnName	Number of persons who returned the language (and the mother tongues grouped under each) as their mother tongue)	
+#dateAccessed	2025-03-21	
+#geographicScope	Whole Country	
+#age	Any	
+#gender	Any	
+#modality	Spoken	
+#acquisitionOrder	L1	
+#domain	Home	
+#responsesPerIndividual	1	
+#sampleRate	1	
+#eligiblePopulation	1,210,854,977	
+#languagesIncluded	All	
+#notes	Presented below is an alphabetical abstract of languages and the mother tongues with speakers' strength of 10,000 and above at the all India level, grouped under each language. There are a total of 121 languages and 270 mother tongues	
+Language Code	Language Name	Population by Mothertongue
+asm	1 ASSAMESE	15,311,351
+und	Assamese	14,816,414
+und	1 Others	494,937
+gaud1238	2 BENGALI	97,237,669
+ben	Bengali	96,177,835
+ccp	Chakma	228,281
+haj	Haijong/Hajong	71,792
+rjs	Rajbangsi	475,861
+und	2 Others	283,900
+bodo1280	3 BODO	1,482,929
+brx	Bodo/Boro	1,454,547
+xac	Kachari	15,984
+mech1238	Mech/Mechhia	11,546
+und	3 Others	852
+doi	4 DOGRI	2,596,767
+und	Dogri	2,596,763
+und	4 Others	4
+guja1256	5 GUJARATI	55,492,554
+guj	Gujarati	55,036,204
+und	Gujrao/Gujrau	15,431
+lae	Pattani	16,510
+und	Ponchi	13,812
+saz	Saurashtra/Saurashtri	247,702
+und	5 Others	162,895
+mul	6 HINDI	528,347,193
+awa	Awadhi	3,850,906
+bfz	Baghati/Baghati Pahari	15,835
+bfy	Bagheli/Baghel Khandi	2,679,129
+bagr1246	Bagri Rajasthani	234,227
+und	Banjari	1,581,271
+bhd	Bhadrawahi	98,806
+und	Bhagoria	20,924
+gbk	Bharmauri/Gaddi	181,069
+bho	Bhojpuri	50,579,447
+und	Bishnoi	12,079
+bra	Brajbhasha	1,556,314
+bns	Bundeli/Bundel khandi	5,626,356
+cdh	Chambeali/Chamrali	125,746
+hne	Chhattisgarhi	16,245,190
+cdj	Churahi	75,552
+dhd	Dhundhari	1,476,446
+gbm	Garhwali	2,482,089
+mis	Gawari	19,062
+gju	Gojri/Gujjari/Gujar	1,227,901
+hii	Handuri	47,803
+hoj	Hara/Harauti	2,944,356
+bgc	Haryanvi	9,806,519
+hin	Hindi	322,230,097
+jns	Jaunpuri/Jaunsari	136,779
+xnr	Kangri	1,117,342
+khad1239	Khari Boli	50,195
+mis	Khortha/Khotta	8,038,735
+kfx	Kulvi	196,295
+kfy	Kumauni	2,081,057
+kyw	Kurmali Thar	311,175
+lmn	Lamani/Lambadi	3,276,548
+mis	Laria	89,876
+lbm	Lodhi	139,180
+mag	Magadhi/Magahi	12,706,825
+mup	Malvi	5,212,617
+mjl	Mandeali	622,590
+mwr	Marwari	7,831,749
+mtr	Mewari	4,212,262
+wtm	Mewati	856,643
+mis	Nagpuria	763,014
+noe	Nimadi	2,309,265
+pada1256	Padari	17,279
+phj	Pahari	3,253,889
+mis	Palmuha	23,579
+tdb	Panch Pargania	244,914
+und	Pando/Pandwani	15,595
+pgg	Pangwali	18,668
+pwr	Pawari/Powari	325,772
+mis	Puran/Puran Bhasha	12,375
+raj	Rajasthani	25,806,344
+sck	Sadan/Sadri	4,345,677
+srx	Sirmauri	107,401
+sond1249	Sondwari	229,788
+mis	Sugali	170,987
+sgj	Surgujia	1,738,256
+sjp	Surjapuri	2,256,228
+und	6 Others	16,711,170
+mul	7 KANNADA	43,706,512
+bfq	Badaga	133,550
+kan	Kannada	43,506,272
+kfi	Kuruba/Kurumba	24,189
+mis	Prakritha/Prakritha Bhasha	12,257
+und	7 Others	30,244
+mul	8 KASHMIRI	6,797,587
+kas	Kashmiri	6,554,369
+kish1245	Kishtwari	39,748
+und	Siraji	124,896
+und	Dardi	25,600
+und	8 Others	52,974
+kok	9 KONKANI	2,256,502
+und	Konkani	2,146,906
+und	Kudubi/Kudumbi	17,209
+und	Malwani	23,617
+und	Nawait	13,123
+und	Gorboli/Goru/Gorwani	50,259
+und	9 Others	5,388
+mul	10 MAITHILI	13,583,464
+mai	Maithili	13,353,347
+purb1238	Purbi Maithili	11,116
+tati1242	Thati	165,420
+tkb	Tharu	53,575
+und	10 Others	6
+mul	11 MALAYALAM	34,838,819
+mal	Malayalam	34,776,533
+pcg	Pania	22,808
+yea	Yerava	26,563
+und	11 Others	12,915
+mni	12 MANIPURI	1,761,079
+und	Manipuri	1,760,913
+und	12 Others	166
+mar	13 MARATHI	83,026,680
+und	Are	53,879
+und	Koli	13,809
+und	Marathi	82,801,140
+und	13 Others	157,852
+nep	14 NEPALI	2,926,168
+und	Nepali	2,925,796
+und	14 Others	372
+ori	15 ODIA	37,521,324
+bgw	Bhatri	334,258
+und	Bhuiya/Bhuyan[Ori]	32,126
+bhum1234-u-sd-inod	Bhumijali	34,651
+dso	Desia	227,313
+ory	Odia	34,059,266
+bdv	Proja (Ori)	156,354
+rei	Relli	12,969
+spv	Sambalpuri	2,630,381
+und	15 Others	34,006
+mul	16 PUNJABI	33,124,726
+bgq	Bagri	1,656,588
+bht	Bhateali	23,970
+kfs	Bilaspuri Kahluri	295,805
+pan	Punjabi	31,144,095
+und	16 Others	4,268
+san	17 SANSKRIT	24,821
+und	Sanskrit	24,709
+und	17 Others	112
+sat	18 SANTALI	7,368,192
+karm1240	Karmali	358,579
+maha1292	Mahili	26,399
+und	Santali	6,973,345
+und	18 Others	9,869
+sind1282	19 SINDHI	2,772,264
+bhat1267	Bhatia	22,409
+kfr	Kachchhi	1,030,602
+snd	Sindhi	1,679,246
+und	19 Others	40,007
+tami1299	20 TAMIL	69,026,881
+iru	Irula/Irular Mozhi	11,870
+kep	Kaikadi	25,870
+ptq	Korava	10,421
+tam	Tamil	68,888,839
+yeu	Yerukala/Yerukula	58,065
+und	20 Others	31,816
+tel	21 TELUGU	81,127,740
+und	Telugu	80,912,459
+vada1239	Vadari	198,020
+und	21 Others	17,261
+urd	22 URDU	50,772,631
+und	Urdu	50,725,762
+und	Bhansari	22,806
+und	22 Others	24,063
+adi	23 ADI	248,834
+und	Adi	110,307
+und	Adi Gallong/Gallong	29,246
+und	Adi Miniyong/Miniyong	13,344
+und	Talgalo	69,256
+und	23 Others	26,681
+pus	24 AFGHANI/KABULI/PASHTO	21,677
+und	Afghani/Kabuli/Pashto	21,433
+und	24 Others	244
+anm	25 ANAL	27,217
+und	Anal	24,301
+und	25 Others	2,916
+njm	26 ANGAMI	152,796
+und	Angami	40,721
+und	26 Others	112,075
+mul	27 AO	260,008
+njo	Ao	119,549
+chon1286	Chungli	70,782
+mong1332	Mongsen	69,094
+und	27 Others	583
+ara	28 ARABIC/ARBI	54,947
+und	Arabic/Arbi	54,871
+und	28 Others	76
+bft	29 BALTI	13,774
+und	Balti	13,654
+und	29 Others	120
+mul	30 BHILI/BHILODI	10,413,637
+bge	Baori	63,028
+und	Barel	991,257
+bhi	Bhilali	753,466
+bhb	Bhili/Bhilodi	3,206,533
+cdi	Chodhari	110,570
+dho	Dhodia	49,097
+gbl	Gamti/Gavit	139,118
+gara1268	Garasia	76,749
+kex	Kokna/Kokni/Kukna	416,787
+mke	Mawchi	98,486
+pcl	Paradhi	69,085
+bfb	Pawri	311,677
+bgd	Rathi	47,801
+und	Tadavi	52,347
+vav	Varli	387,481
+vas	Vasava	187,036
+wbr	Wagdi	3,393,991
+und	30 Others	59,128
+sip	31 BHOTIA	229,954
+und	Bhotia	120,583
+und	Bauti	100,000
+und	31 Others	9,371
+bhum1234	32 BHUMIJ	27,506
+und	Bhumij	10,190
+und	32 Others	17,316
+bpy	33 BISHNUPURIYA	79,646
+und	Bishnupriya Manipuri/Manipuri Bishnupriya	74,069
+und	33 Others	5,577
+und	34 CHAKHESANG	19,846
+und	Chakhesang	19,846
+nri	35 CHAKRU/CHOKRI	91,216
+und	Chakru/Chokri	91,216
+nbc	36 CHANG	66,852
+und	Chang	66,852
+kfa	37 COORGI/KODAGU	113,857
+und	Coorgi/Kodagu	16,939
+und	Kodava	96,918
+der	38 DEORI	32,376
+und	Deori	32,376
+dis	39 DIMASA	137,184
+und	Dimasa	133,327
+und	39 Others	3,857
+eng	40 ENGLISH	259,678
+und	English	259,678
+gdb	41 GADABA	40,976
+und	Gadaba	40,965
+und	41 Others	11
+gnb	42 GANGTE	16,542
+und	Gangte	16,542
+grt	43 GARO	1,145,323
+und	Garo	1,125,359
+und	43 Others	19,964
+gond1265	44 GONDI	2,984,453
+dorl1237	Dorli	47,701
+gon	Gondi	2,856,581
+und	Kalari	26,769
+mrr	Maria/Muria	15,864
+und	44 Others	37,538
+hlb	45 HALABI	766,297
+und	Halabi	765,464
+und	45 Others	833
+cfm	46 HALAM	38,915
+und	Halam	26,534
+und	46 Others	12,381
+hmr	47 HMAR	98,988
+und	Hmar	98,988
+hoc	48 HO	1,421,418
+und	Ho	1,410,996
+loha1251	Lohara	10,422
+kxv	49 JATAPU	20,028
+und	Jatapu	19,990
+und	49 Others	38
+jun	50 JUANG	30,378
+und	Juang	30,378
+mul	51 KABUI	122,931
+nkf	Kabui	54,220
+nbu	Rongmei	68,706
+und	51 Others	5
+mjw	52 KARBI/MIKIR	528,503
+und	Karbi/Mikir	528,503
+khn	53 KHANDESHI	1,860,236
+ahr	Ahirani	1,636,465
+dhn	Dangi	150,674
+mis	Gujari	57,171
+und	Khandeshi	10,670
+und	53 Others	5,256
+khr	54 KHARIA	297,614
+und	Kharia	293,665
+und	54 Others	3,949
+mul	55 KHASI	1,431,344
+kha	Khasi	1,037,964
+lyg	Lyngngam	11,586
+pbv	Pnar/Synteng	319,324
+aml	War	51,558
+und	55 Others	10,912
+nkh	56 KHEZHA	41,625
+und	Khezha	36,383
+und	56 Others	5,242
+kix	57 KHIEMNUNGAN	61,983
+und	Khiemnungan	61,968
+und	57 Others	15
+khon1247	58 KHOND/KONDH	155,548
+und	Khond/Kondh	111,693
+und	Kuvi	43,855
+kfk	59 KINNAURI	83,561
+und	Kinnauri	83,427
+und	59 Others	134
+xis	60 KISAN	206,100
+und	Kisan	206,100
+kdq	61 KOCH	36,434
+und	Koch	33,962
+und	61 Others	2,472
+cdz	62 KODA/KORA	47,268
+und	Koda/Kora	47,181
+und	62 Others	87
+mul	63 KOLAMI	128,451
+kfb	Kolami	128,451
+mul	64 KOM	15,108
+kmm	Kom	15,108
+kfc	65 KONDA	60,699
+und	Kodu	32,166
+und	Konda	24,987
+und	65 Others	3,546
+mul	66 KONYAK	244,477
+nbe	Konyak	244,477
+kfq	67 KORKU	727,133
+und	Korku	688,053
+mawa1263	Muwasi	35,827
+und	67 Others	3,253
+mul	68 KORWA	28,453
+ksz	Koraku	16,154
+kfp	68 Others	12,299
+kff	69 KOYA	407,423
+und	Koya	407,423
+uki	70 KUI	941,488
+und	Kui	941,377
+und	70 Others	111
+und	71 KUKI	83,968
+und	Kuki	82,049
+und	71 Others	1,919
+kru	72 KURUKH/ORAON	1,988,350
+und	Kurukh/Oraon	1,976,920
+und	72 Others	11,430
+lbj	73 LADAKHI	14,952
+und	Ladakhi	14,952
+laha1255	74 LAHAULI	11,574
+und	Lahauli	11,162
+und	74 Others	412
+skr	75 LAHNDA	108,791
+baha1254	Bahawal Puri	29,253
+mult1243	Hindi Multani	61,722
+und	75 Others	17,816
+mul	76 LAKHER	42,429
+mrh	Mara	38,671
+und	76 Others	3,758
+mul	77 LALUNG	33,921
+lax	Lalung	33,921
+mul	78 LEPCHA	47,331
+lep	Lepcha	47,331
+njn	79 LIANGMEI	49,811
+und	Liangmei	48,388
+und	79 Others	1,423
+lif	80 LIMBU	40,835
+und	Limbu	38,067
+und	80 Others	2,768
+njh	81 LOTHA	179,467
+und	Lotha	179,467
+lus	82 LUSHAI/MIZO	830,846
+und	Lushai/Mizo	825,900
+und	82 Others	4,946
+malt1248	83 MALTO	234,991
+mis	Pahariya	152,814
+mis	Kulehiya	75,776
+und	83 Others	6,401
+nbi	84 MAO	240,205
+und	Mao	97,195
+und	Paola	143,001
+und	84 Others	9
+nma	85 MARAM	32,460
+und	Maram	32,460
+nng	86 MARING	25,814
+und	Maring	25,814
+mrg	87 MIRI/MISHING	629,954
+und	Miri/Mishing	629,954
+mxj	88 MISHMI	44,100
+und	Mishmi	15,871
+und	88 Others	28,229
+rki	89 MOGH	36,665
+und	Mogh	36,652
+und	89 Others	13
+kkf	90 MONPA	13,703
+und	Monpa	13,703
+unx	91 MUNDA	505,922
+und	Kol	19,868
+und	Munda	464,817
+und	91 Others	21,237
+unr	92 MUNDARI	1,128,228
+und	Mundari	1,128,050
+und	92 Others	178
+caq	93 NICOBARESE	29,099
+und	Nicobarese	29,099
+mul	94 NISSI/DAFLA	406,532
+apt	Apatani	44,815
+njz	Nissi/Dafla	289,166
+tgj	Tagin	62,897
+und	94 Others	9,654
+njb	95 NOCTE	30,839
+und	Nocte	29,810
+und	95 Others	1,029
+pck	96 PAITE	79,507
+und	Paite	79,443
+und	96 Others	64
+pci	97 PARJI	52,349
+und	Dhurwa	45,938
+und	97 Others	6,411
+cnh	98 PAWI	28,639
+und	Pawi	28,639
+nph	100 PHOM	54,416
+und	Phom	54,416
+npo	101 POCHURY	21,654
+und	Pochury	21,568
+und	101 Others	86
+rah	102 RABHA	139,986
+und	Rabha	139,985
+und	102 Others	1
+mis	103 RAI	15,644
+mis	Rai	10,427
+mis	103 Others	5,217
+nre	104 RENGMA	65,328
+und	Rengma	65,328
+nsa	105 SANGTAM	76,000
+und	Sangtam	75,684
+und	105 Others	316
+srb	106 SAVARA	409,549
+und	Savara	409,481
+und	106 Others	68
+nsm	107 SEMA	10,802
+und	Sema	10,802
+xsr	108 SHERPA	16,012
+und	Sherpa	16,012
+scl	109 SHINA	32,247
+und	Shina	32,069
+und	109 Others	178
+taj	111 TAMANG	20,154
+und	Tamang	20,154
+nmf	112 TANGKHUL	187,276
+und	Tangkhul	187,263
+und	112 Others	13
+nst	113 TANGSA	38,624
+und	Tutcha Tangsa	10,234
+und	113 Others	28,390
+tcz	114 THADO	229,340
+und	Thado	227,114
+und	114 Others	2,226
+bod	115 TIBETAN	182,685
+und	Tibetan	83,779
+mis	Purkhi	93,500
+und	115 Others	5,406
+tipp1238	116 TRIPURI	1,011,294
+trp	Kokbarak	917,900
+ria	Reang	58,539
+tpe	Tripuri	33,138
+und	116 Others	1,717
+tcy	117 TULU	1,846,427
+und	Tulu	1,841,963
+und	117 Others	4,464
+vap	118 VAIPHEI	42,748
+und	Vaiphei	42,748
+nnp	119 WANCHO	59,154
+und	Wancho	59,154
+yim	120 YIMCHUNGRE	83,259
+chir1282	Chirr	12,300
+tikh1241	Tikhir	11,071
+und	Yimchungre	56,538
+und	120 Others	3,350
+nzm	121 ZELIANG	63,529
+und	Zeliang	63,529
+mis	122 ZEMI	50,925
+mis	Zemi	50,923
+mis	122 Others	2
+zom	123 ZOU	26,545
+und	Zou	26,545
+und	124 OTHERS	1,875,542
