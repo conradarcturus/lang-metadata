@@ -1,6 +1,11 @@
 import React from 'react';
 import './styles.css';
 
+// Escape regex special characters in the search pattern
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 interface Props {
   text: string;
   searchPattern: string;
@@ -11,9 +16,10 @@ const Highlightable: React.FC<Props> = ({ text, searchPattern }) => {
     return text;
   }
 
+  const safePattern = escapeRegExp(searchPattern);
   // \P{L} = non-letter character. Preferred over \s because it works better for unicode characters
   const searchResult = text.match(
-    new RegExp(`(^|.*\\P{L})(${searchPattern})(?:(.*\\P{L})(${searchPattern}))*(.*)`, 'iu'),
+    new RegExp(`(^|.*\\P{L})(${safePattern})(?:(.*\\P{L})(${safePattern}))*?(.*)`, 'iu'),
   );
 
   return searchResult ? (
