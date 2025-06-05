@@ -61,7 +61,9 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             <>
               {Glottolog.code}
               <a href={`https://glottolog.org/resource/languoid/id/${Glottolog.code}`}>
-                <button className="LinkButton">Open in Glottolog</button>
+                <button className="LinkButton" role="link">
+                  Glottolog
+                </button>
               </a>
             </>
           ) : (
@@ -75,7 +77,9 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
               {ISO.code}
               {codeISO6391 ? ` | ${codeISO6391}` : ''}
               <a href={`https://iso639-3.sil.org/code/${ISO.code}`}>
-                <button className="LinkButton">Open in ISO</button>
+                <button className="LinkButton" role="link">
+                  ISO Table
+                </button>
               </a>
             </>
           ) : (
@@ -90,13 +94,30 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
               <a
                 href={`https://github.com/unicode-org/cldr/blob/main/common/main/${CLDR.code}.xml`}
               >
-                <button className="LinkButton">Open CLDR XML</button>
+                <button className="LinkButton" role="link">
+                  CLDR XML
+                </button>
               </a>
             </>
           ) : (
             <span className="unsupported">Not in CLDR</span>
           )}
         </div>
+        {ISO.code && (
+          <div>
+            <label>Other external links:</label>
+            <a href={`https://www.ethnologue.com/language/${ISO.code}`}>
+              <button className="LinkButton" role="link">
+                Ethnologue
+              </button>
+            </a>
+            <a href={`https://en.wikipedia.org/wiki/ISO_639:${ISO.code}`}>
+              <button className="LinkButton" role="link">
+                Wikipedia
+              </button>
+            </a>
+          </div>
+        )}
       </div>
       <div className="section">
         <h3>Attributes</h3>
