@@ -4,12 +4,23 @@ import { ObjectType } from '../types/PageParamTypes';
 
 import { CoreData } from './CoreData';
 
-export async function loadCensusData(): Promise<CensusImport | void> {
-  const filename = 'ca2021';
-  return await fetch(`data/census/${filename}.tsv`)
-    .then((res) => res.text())
-    .then((fileInput) => parseCensusImport(fileInput, filename))
-    .catch((err) => console.error('Error loading TSV:', err));
+const CENSUS_FILENAMES = [
+  'ca2021', // Canada 2021 Census
+  'in2011c16', // India 2011 Census C-16 Mother Tongue
+  'in2011c17', // India 2011 Census C-17 Language Multilingualism
+  // Add more census files here as needed
+];
+
+export async function loadCensusData(): Promise<(CensusImport | void)[]> {
+  return await Promise.all(
+    CENSUS_FILENAMES.map(
+      async (filename) =>
+        await fetch(`data/census/${filename}.tsv`)
+          .then((res) => res.text())
+          .then((fileInput) => parseCensusImport(fileInput, filename))
+          .catch((err) => console.error('Error loading TSV:', err)),
+    ),
+  );
 }
 
 type CensusImport = {
@@ -48,14 +59,21 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
   // Iterate through the rest of the lines to collect metadata until we hit the break line
   let lineNumber = 0;
   for (lineNumber = 0; lineNumber < lines.length; lineNumber++) {
-    const line = lines[lineNumber].trim();
+    const line = lines[lineNumber];
 
     // If the line starts with a '#', it's metadata about the census
     if (line.startsWith('#')) {
       const parts = line.split('\t').map((part) => part.trim());
       const key = parts[0].slice(1) as keyof CensusData;
-      const values = parts.slice(2); // Column 2 is reserved empty, so we skip it
-      values.forEach((value, index) => {
+      const defaultValue = parts[1] || ''; // Default value is the second column, or empty if not provided
+      const values = parts.slice(2); // Columns 3+ are values for each census
+      if (values.length !== censuses.length) {
+        console.error(
+          `Census field ${key} has ${values.length + 1} columns but expected ${censuses.length + 1}. Check the file format.`,
+        );
+      }
+      values.forEach((maybeValue, index) => {
+        const value = maybeValue != '' ? maybeValue : defaultValue; // Use the default value if the cell is empty
         if (key === 'datePublished' || key === 'dateAccessed') {
           censuses[index][key] = new Date(value);
         } else if (key === 'eligiblePopulation' || key == 'yearCollected') {

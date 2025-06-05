@@ -29,7 +29,7 @@ We also want to understand the precise demographic characteristcs of the people.
 
 While it would be great to just copy-paste the data into a tab-separated-value (tsv) file, it is often not that easy.
 
-**Language Codes**: In particular, most data will list names of languages -- it will be up to you to map those names to the language codes used in this project. You can find the language codes in the [public/data/languages.tsv](public/data/languages.tsv) file. Aim to find the best ISO 639-3 code but sometimes there is not a perfect match -- maybe there is a glottocode.
+**Language Codes**: In particular, most data will list names of languages -- it will be up to you to map those names to the language codes used in this project. You can find the language codes in the [/public/data/languages.tsv](/public/data/languages.tsv) file. Aim to find the best ISO 639-3 code but sometimes there is not a perfect match -- maybe there is a glottocode.
 
 Sometimes a row of data from a census does not have an easy to use language code. For completeness it is good to keep that row but to use a special language code. These rows will be dropped during the import process but will be kept in the file for reference. The following codes are used for these special cases:
 * `und` is used for "undetermined" languages - the common case when you don't know. For instance, multiple languages are named "Tonga" -- without additional context clues you may not know which one is meant.
@@ -44,15 +44,30 @@ If you are not sure which one to use, use `und`.
 **Language Families**: Some censuses may include language family data in addition to individual languages. For data completeness, it may be useful to include that data as well. You will have to use ISO 639-5 language family codes or glottocodes for these entries. If you need help finding the right code, it can be useful to use the Hierarchy view and use the language family in the search term. The canadian census in this regard is very helpful here since the data comes in a hierarchical form, so you can look up language codes using the tool directly, eg. http://translation-commons.github.io/lang-nav/?view=Hierarchy&searchString=atha&searchBy=English+Name+or+ID
 
 ## Step 4: Add the data to the project
-Once you have the data, you can add it to the project. The data should be added to the [public/data/census](public/data/census) directory. The file should be named in the format `<countryISO><year>.tsv` (e.g., `ca2021.tsv`).
+Once you have the data, you can add it to the project. The data should be added to the [/public/data/census](/public/data/census) directory. The file should be named in the format `<countryISO><year>.tsv` (e.g., `ca2021.tsv`).
 
 The file should be a tab-separated-value (tsv) file with a header section and then the language data. 
 
 ### Header
 
-Before the language data, include a header row with metadata about the census data that you collected in Step 2. Prepend a `#` to each row in the header so it is not interpreted as language data. The header should include the following rows:
+Before the language data, include a header row with metadata about the census data that you collected in Step 2. Prepend a `#` to each row in the header so it is not interpreted as language data. 
 
-Column 1 is the field name, Column 2 is empty (it will be used below). Columns 3 and onward describe a different table from the census. If the data is to heterogenous then you can use a different file -- but this helps rows from the same general census stay together in 1 file.
+Column 1 is the field name (eg. #acquisitionOrder), Column 2 is shows the value for that field (eg. L1). Columns 3 and onward describe the different census tables/columns that are you are importing. If metadata is the same for every census, then you can just indicate it in column 2. If the metadata is different for different census tables, then you can use columns 3+ to indicate the differences. 
+
+```tsv
+#nameDisplay		Canada 2021	Canada 2021 @Home	Canada 2021 L1 Sampled	Canada 2021 L1
+#isoRegionCode	CA				
+#yearCollected	2021				
+#datePublished		2022-08-17	2025-02-19	2024-10-23	2022-08-17
+#dateAccessed	2025-05-30				
+#acquisitionOrder		Any	Any	L1	L1
+```
+
+In order to make table formatting work well on git, make sure each row has the same number of columns (thereby, same number of tabs).
+
+If you are adding data from very different census tables -- like the language groupings are different of the methodology is different -- then you should use a different file for that census data, like we have with `in2011c16.tsv` and `in2011c17.tsv`.
+
+The header should include the following rows:
 
 **Required Rows**
 * `nameDisplay`: A short name describing the census / census table (e.g., "Canada 2021 L1")
@@ -117,6 +132,12 @@ tzm	Tamazight	4,735			2,950
 
 ## Step 5: Plug it in
 
-Now we have to add the new filename to the file that imports the census data, [src/dataloading/CensusData.tsx](). 
+Add the new filename to the file that imports the census data. Find the variable `CENSUS_FILENAMES` in [CensusData.tsx](/src/dataloading/CensusData.tsx) and add the new filename. Test out that the new data is loaded by running the project locally (instructions in the [README](/README.md)).
 
+Check the census table view at your local domain eg. `https://localhost:####/lang-nav/?objectType=Census&view=Table` to make sure your new censuses appear and there are roughly as many languages as you expected. Noting that `mis`/`und`/`mul` languages have already been filtered out.
+
+
+where `<censusID>` is the name of the file you added without the `.tsv` extension (e.g., `ca2021` for `ca2021.tsv`).
+
+It's recommended to check the details view `<https://localhost:####>`/lang-nav/?view=Details&objectID=`<censusID>` for each census table you added.
 Once the file is read in with the others, test it out on your local host and if it looks good, then you submit a pull request to the main project.
