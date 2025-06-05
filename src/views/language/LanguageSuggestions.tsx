@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import HoverableObjectName from '../common/HoverableObjectName';
 
 const LanguageSuggestions: React.FC = () => {

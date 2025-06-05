@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import { ObjectData } from '../../types/DataTypes';
 import { ObjectType } from '../../types/PageParamTypes';
 import CensusDetails from '../census/CensusDetails';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import Hoverable from '../../generic/Hoverable';
 import { TerritoryData } from '../../types/DataTypes';
 import { SortBy } from '../../types/PageParamTypes';

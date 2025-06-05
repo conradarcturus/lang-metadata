@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { usePageParams } from '../controls/PageParamsContext';
 import { getSortFunction } from '../controls/sort';
-import { useDataContext } from '../dataloading/DataContext';
+import { useDataContext } from '../data/DataContext';
 import { anyWordStartsWith } from '../generic/stringUtils';
 import { LanguageData, LanguageSchema } from '../types/LanguageTypes';
 import { SearchableField } from '../types/PageParamTypes';

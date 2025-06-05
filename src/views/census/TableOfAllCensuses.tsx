@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import { CensusData } from '../../types/CensusTypes';
 import { SortBy } from '../../types/PageParamTypes';
 import { CodeColumn, InfoButtonColumn, NameColumn } from '../common/table/CommonColumns';

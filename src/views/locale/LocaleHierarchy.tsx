@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getScopeFilter } from '../../controls/filter';
 import { getSortFunction } from '../../controls/sort';
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import { LocaleData, ObjectData, WritingSystemData } from '../../types/DataTypes';
 import { LanguageCode, LanguageData } from '../../types/LanguageTypes';
 import { ObjectType } from '../../types/PageParamTypes';
