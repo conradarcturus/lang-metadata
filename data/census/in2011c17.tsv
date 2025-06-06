@@ -4,6 +4,8 @@
 #url	http://www.censusindia.gov.in/2011census/C-17.html				
 #tableName	C-17: Population by bilingualism and trilingualism				
 #columnName			1st subsidiary languages	2nd subsidiary languages	
+#collectorName	Office of the Registrar General & Census Commissioner, India
+#collectorType	Government
 #dateAccessed	2025-03-21				
 #geographicScope	Whole Country				
 #age	Any				

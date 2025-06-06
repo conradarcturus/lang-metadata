@@ -1,0 +1,143 @@
+#nameDisplay		Nepal 2021 Mothertongue	Nepal 2021 L2	Nepal 2021 Ancestry	Nepal 2021 L1+L2
+#isoRegionCode	NP				
+#yearCollected	2021				
+#url	https://censusnepal.cbs.gov.np/results/downloads/caste-ethnicity?type=data				
+#tableName		Table -2: Population by mother tongue and sex	Table -3: Population by second language and sex	Table -4: Population by ancestor's language and sex	
+#columnName		Mother Tongue -- Total	Second Language -- Total		
+#dateAccessed	2025-06-06				
+#gender		Any			
+#modality		Spoken	Spoken	Ethnicity	Spoken
+#acquisitionOrder		L1	L2		Any
+#responsesPerIndividual		1	1	1	2
+#eligiblePopulation	Total	29164578	29164578	29164578	29164578
+#notes					Derived by adding Nepal 2021 Mothertongue + L2 data
+#collectorName	Government of Nepal: National Statistics Office				
+#collectorType	Government				
+Language Code	Language Name	Mothertongue	Second Language	Ancestor's Language	L1+L2
+zxx	No Second language		14,023,086		14,023,086
+npi	Nepali	13,084,457	13,482,904	10,137,006	26,567,361
+mai	Maithili	3,222,389	267,621	2,959,876	3,490,010
+bho	Bhojpuri	1,820,795	138,572	1,768,618	1,959,367
+thar1284	Tharu	1,714,091	89,606	1,764,709	1,803,697
+tama1367	Tamang	1,423,075	71,569	1,602,875	1,494,644
+vjk	Bajjika	1,133,764	86,062	1,145,924	1,219,826
+awa	Avadhi	864,276	75,651	911,800	939,927
+new	Nepalbhasha(Newari)	863,380	32,604	1,179,946	895,984
+maga1261	Magar Dhut	810,315	54,143	1,248,003	864,458
+dty	Doteli	494,864	14,344	526,910	509,208
+urd	Urdu	413,785	72,128	569,626	485,913
+grea1285	Yakthung/Limbu	350,436	19,705	408,577	370,141
+gvr	Gurung	328,074	23,698	467,697	351,772
+mag	Magahi	230,117	29,191	423,568	259,308
+mis	Baitadeli	152,666	9,521	410,602	162,187
+mis	Rai	144,512	14,398	228,502	158,910
+acch1238	Achhami	141,444	6,522	396,503	147,966
+bap	Bantawa	138,003	43,536	151,346	181,539
+rjs	Rajbanshi	130,163	4,103	134,198	134,266
+xsr	Sherpa	117,896	9,435	128,494	127,331
+mis	Khash	117,511	2,607	326,512	120,118
+bajh1238	Bajhangi	99,631	2,641	212,108	102,272
+hin	Hindi	98,399	223,106	92,295	321,505
+kham1286	Magar Kham	91,753	16,814	129,021	108,567
+rab	Chamling	89,037	29,253	100,754	118,290
+thr	Ranatharu	77,766	871	78,049	78,637
+cdm	Chepang	58,392	833	77,958	59,225
+baju1244	Bajureli	56,486	1,076	120,224	57,562
+sat	Santhali	53,677	703	56,620	54,380
+dhw	Danuwar	49,992	845	61,224	50,837
+mis	Darchuleli	45,649	4,272	154,156	49,921
+kru	Uranw/Urau	38,873	245	40,637	39,118
+kle	Kulung	37,912	6,039	40,479	43,951
+anp	Angika	35,952	6,127	29,285	42,079
+mjz	Majhi	32,917	971	63,069	33,888
+suz	Sunuwar	32,708	1,597	44,276	34,305
+thf	Thami	26,805	859	31,446	27,664
+mis	Ganagai	26,281	644	25,680	26,925
+tdh	Thulung	24,405	17,187	27,246	41,592
+ben	Bangla	23,774	5,447	26,535	29,221
+ghe	Ghale	23,049	963	28,942	24,012
+rav	Sampang	21,597	14,261	26,108	35,858
+mwr	Marwadi	21,333	3,449	25,131	24,782
+mis	Dadeldhuri	21,300	5,535	75,044	26,835
+dhi	Dhimal	20,583	999	24,722	21,582
+mis	Tajpuriya	20,349	209	20,787	20,558
+kra	Kumal	18,435	615	50,403	19,050
+klr	Khaling	16,514	10,370	18,173	26,884
+mis	Musalman	16,252	6,084	41,587	22,336
+wme	Wambule	15,285	5,227	15,932	20,512
+bhj	Bahing/Bayung	14,449	15,104	15,290	29,553
+ybh	Yakkha	14,241	704	18,125	14,945
+sa	Sanskrit	13,906	6,615	135,462	20,521
+byh	Bhujel	13,086	740	38,257	13,826
+mis	Bhote	12,895	45,292	11,904	58,187
+dry	Darai	12,156	591	15,938	12,747
+ybi	Yamphu/Yamphe	10,744	494	12,024	11,238
+ncd	Nachhiring	9,906	3,176	10,957	13,082
+scp	Hyolmo/Yholmo	9,658	508	10,440	10,166
+dus	Dumi	8,638	5,870	10,009	14,508
+jml	Jumli	8,338	1,125	48,400	9,463
+bmj	Bote	7,687	3,891	9,784	11,578
+mewa1252	Mewahang	7,428	3,669	8,214	11,097
+pum	Puma	6,763	4,271	7,408	11,034
+phj	Pahari	5,946	142	10,619	6,088
+aph	Athpahariya	5,580	320	6,236	5,900
+raa	Dungmali	5,403	1,271	6,067	6,674
+jul	Jirel	5,167	332	5,849	5,499
+bod	Tibetan	5,053	3,134	5,077	8,187
+mis	Dailekhi	4,989	434	30,377	5,423
+kte	Chum/Nubri	4,284		4,348	4,284
+chx	Chhantyal	4,282	394	7,528	4,676
+rji	Raji	4,247	76	4,696	4,323
+ths	Thakali	4,220	733	8,758	4,953
+brx	Meche	4,203	75	4,747	4,278
+mis	Koyee	4,152	928	4,455	5,080
+lbr	Lohorung	3,884	28	4,925	3,912
+mis	Kewarat	3,469	38	3,508	3,507
+mis	Dolpali	3,244	127	4,875	3,371
+done1239	Done	3,100		3,519	3,100
+muk	Mugali	2,834	23	2,914	2,857
+jee	Jero/Jerung	2,817	1,245	3,007	4,062
+mis	Karmarong	2,619	34	2,675	2,653
+ctn	Chhintang	2,564	2,135	2,811	4,699
+mis	Lhopa	2,348	622	2,384	2,970
+lep	Lapcha	2,240	242	3,410	2,482
+unr	Munda/Mudiyari	2,107		2,334	2,107
+nmm	Manange	2,022	304	2,130	2,326
+cur	Chhiling	2,011	685	2,679	2,696
+drq	Dura	1,991	278	4,146	2,269
+tij	Tilung	1,969	1,762	2,123	3,731
+nsp	Sign Language	1,784	828	647	2,612
+bee	Byansi	1,706	32	2,190	1,738
+brd	Balkura/Baram	1,539	307	5,230	1,846
+mis	Baragunwa	1,536	89	1,522	1,625
+sck	Sadri	1,347	106	1,114	1,453
+eng	English	1,323	102,561	1,208	103,884
+kzq	Magar Kaike	1,225	515	2,030	1,740
+soi	Sonaha	1,182	35	1,223	1,217
+vay	Hayu/Vayu	1,133	349	2,492	1,482
+xis	Kisan	1,004	33	1,161	1,037
+pan	Punjabi	871	1,274	1,152	2,145
+dhul1234	Dhuleli	786	187	745	973
+rau	Khamchi(Raute)	741	526	827	1,267
+lii	Lungkhim	702		738	702
+loy	Lowa	624		648	624
+syw	Kagate	611	615	543	1,226
+wly	Waling/Walung	545	304	753	849
+npa	Nar-Phu	428		463	428
+lhm	Lhomi	413	129	435	542
+tcn	Tichhurong Poike	410	72	411	482
+kyw	Kurmali	397	60	526	457
+kdq	Koche	332	335	1,180	667
+snd	Sindhi	291	217	398	508
+phw	Phangduwali	247	85	241	332
+byw	Belhare	177	1,491	173	1,668
+sure1238	Surel	174	64	201	238
+und	Malpande	161	78	207	239
+khr	Khariya	132		220	132
+mis	Sadhani	122	125	130	247
+bgc	Hariyanwi	114	84	171	198
+raq	Sam	106	79	164	185
+mis	Bankariya	86	42	82	128
+kgg	Kusunda	23	32	87	55
+und	Others	4,201	159	5,200	4,360
+mis	Not stated	346	8,105	2,474	8,451
