@@ -92,6 +92,8 @@ export function parseLocaleLine(line: string): LocaleData {
     populationSource: parts[7] as PopulationSourceCategory,
     populationEstimate: Number.parseInt(parts[8]?.replace(/,/g, '')),
     officialStatus: parts[9] != '' ? (parts[9] as OfficialStatus) : undefined,
+
+    censusRecords: [], // Populated later
   };
 }
 
