@@ -145,7 +145,6 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
       if (part.trim() === '') {
         return; // Skip empty parts
       }
-      // const populationEstimate = Number.parseInt(part.replace(/,/g, ''));
       if (i >= censuses.length) {
         // There are more records for this language than there are census declarations
         console.warn(`Skipping extra population estimate for ${languageCode} in line: ${line}`);

@@ -1,5 +1,6 @@
 import { addCensusData, loadCensusData } from './CensusData';
 import { CoreData } from './CoreData';
+import { computeWritingPopulationForLocales } from './PopulationData';
 import { computeContainedTerritoryStats, loadTerritoryGDPLiteracy } from './TerritoryData';
 import { loadCLDRCoverage } from './UnicodeData';
 
@@ -23,4 +24,5 @@ export async function loadSupplementalData(coreData: CoreData): Promise<void> {
 
   // 001 is the UN code for the World
   computeContainedTerritoryStats(coreData.territories['001']);
+  computeWritingPopulationForLocales(coreData.locales);
 }

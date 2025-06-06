@@ -17,7 +17,7 @@ const LocaleTable: React.FC = () => {
         NameColumn,
         {
           label: 'Population',
-          render: (object) => object.populationEstimate,
+          render: (object) => object.populationSpeaking,
           isNumeric: true,
           sortParam: SortBy.Population,
         },

@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { usePageParams } from '../../controls/PageParamsContext';
 import { useDataContext } from '../../data/DataContext';
 import Hoverable from '../../generic/Hoverable';
-import { numberToFixedUnlessSmall } from '../../generic/numUtils';
+import { numberToFixedUnlessSmall } from '../../generic/numberUtils';
 import { CensusData } from '../../types/CensusTypes';
 import { LocaleData } from '../../types/DataTypes';
 import { ObjectType, SortBy } from '../../types/PageParamTypes';
@@ -27,7 +27,7 @@ const TableOfLanguagesInCensus: React.FC<Props> = ({ census }) => {
 
   // Create new locale data objects based on the census results
   const languagesInCensus: LocaleData[] = Object.entries(census.languageEstimates)
-    .map(([langID, populationEstimate]) => {
+    .map(([langID, populationSpeaking]) => {
       const lang = langObjects[langID];
       if (lang == null) {
         langsNotFound.push(langID);
@@ -47,8 +47,8 @@ const TableOfLanguagesInCensus: React.FC<Props> = ({ census }) => {
         territoryCode: census.isoRegionCode,
 
         populationSource: census.nameDisplay,
-        populationEstimate,
-        populationPercentOfTerritory: (populationEstimate * 100) / census.eligiblePopulation,
+        populationSpeaking,
+        populationSpeakingPercent: (populationSpeaking * 100) / census.eligiblePopulation,
       } as LocaleData;
     })
     .filter((loc) => loc != null);
@@ -75,15 +75,15 @@ const TableOfLanguagesInCensus: React.FC<Props> = ({ census }) => {
           NameColumn,
           {
             label: 'Population',
-            render: (loc) => loc.populationEstimate,
+            render: (loc) => loc.populationSpeaking,
             isNumeric: true,
             sortParam: SortBy.Population,
           },
           {
             label: 'Percent within Territory',
             render: (loc) =>
-              loc.populationPercentOfTerritory != null
-                ? numberToFixedUnlessSmall(loc.populationPercentOfTerritory) + '%'
+              loc.populationSpeakingPercent != null
+                ? numberToFixedUnlessSmall(loc.populationSpeakingPercent) + '%'
                 : 'N/A',
             isNumeric: true,
           },
