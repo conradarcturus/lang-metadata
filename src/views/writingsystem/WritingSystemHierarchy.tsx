@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getScopeFilter } from '../../controls/filter';
 import { getSortFunction } from '../../controls/sort';
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import { ObjectData, WritingSystemData } from '../../types/DataTypes';
 import { ObjectType } from '../../types/PageParamTypes';
 import { TreeNodeData } from '../common/TreeList/TreeListNode';

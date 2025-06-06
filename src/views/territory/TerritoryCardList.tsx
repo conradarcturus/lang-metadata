@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import CardList from '../common/CardList';
 
 import TerritoryCard from './TerritoryCard';

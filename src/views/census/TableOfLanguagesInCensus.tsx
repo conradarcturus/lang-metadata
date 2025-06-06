@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import Hoverable from '../../generic/Hoverable';
 import { numberToFixedUnlessSmall } from '../../generic/numUtils';
 import { CensusData } from '../../types/CensusTypes';

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useDataContext } from '../../dataloading/DataContext';
+import { useDataContext } from '../../data/DataContext';
 import { uniqueBy } from '../../generic/setUtils';
 import { ObjectType, SearchableField } from '../../types/PageParamTypes';
 import { getSearchableField, HighlightedObjectField } from '../../views/common/ObjectField';
