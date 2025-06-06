@@ -4,6 +4,7 @@ import { usePageParams } from '../../controls/PageParamsContext';
 import { getSortFunction } from '../../controls/sort';
 import CommaSeparated from '../../generic/CommaSeparated';
 import Hoverable from '../../generic/Hoverable';
+import LinkButton from '../../generic/LinkButton';
 import { CLDRCoverageLevel } from '../../types/CLDRTypes';
 import { LanguageData, LanguageScope } from '../../types/LanguageTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
@@ -60,9 +61,9 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           {Glottolog.code ? (
             <>
               {Glottolog.code}
-              <a href={`https://glottolog.org/resource/languoid/id/${Glottolog.code}`}>
-                <button className="LinkButton">Open in Glottolog</button>
-              </a>
+              <LinkButton href={`https://glottolog.org/resource/languoid/id/${Glottolog.code}`}>
+                Glottolog
+              </LinkButton>
             </>
           ) : (
             <span className="unsupported">Not in Glottolog</span>
@@ -74,9 +75,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             <>
               {ISO.code}
               {codeISO6391 ? ` | ${codeISO6391}` : ''}
-              <a href={`https://iso639-3.sil.org/code/${ISO.code}`}>
-                <button className="LinkButton">Open in ISO</button>
-              </a>
+              <LinkButton href={`https://iso639-3.sil.org/code/${ISO.code}`}>ISO Table</LinkButton>
             </>
           ) : (
             <span className="unsupported">Not in ISO catalog</span>
@@ -87,16 +86,27 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
           {CLDR.code ? (
             <>
               {CLDR.code}
-              <a
+              <LinkButton
                 href={`https://github.com/unicode-org/cldr/blob/main/common/main/${CLDR.code}.xml`}
               >
-                <button className="LinkButton">Open CLDR XML</button>
-              </a>
+                CLDR XML
+              </LinkButton>
             </>
           ) : (
             <span className="unsupported">Not in CLDR</span>
           )}
         </div>
+        {ISO.code && (
+          <div>
+            <label>Other external links:</label>
+            <LinkButton href={`https://www.ethnologue.com/language/${ISO.code}`}>
+              Ethnologue
+            </LinkButton>
+            <LinkButton href={`https://en.wikipedia.org/wiki/ISO_639:${ISO.code}`}>
+              Wikipedia
+            </LinkButton>
+          </div>
+        )}
       </div>
       <div className="section">
         <h3>Attributes</h3>
