@@ -121,11 +121,24 @@ function CensusPopulationCharacteristics({ census }: { census: CensusData }) {
 }
 
 function CensusSourceSection({ census }: { census: CensusData }) {
-  const { url, citation, dateAccessed, datePublished, tableName, columnName } = census;
+  const {
+    citation,
+    collectorName,
+    collectorType,
+    columnName,
+    dateAccessed,
+    datePublished,
+    tableName,
+    url,
+  } = census;
 
   return (
     <div className="section">
       <h3>Source</h3>
+      <div>
+        <label>Collected by:</label>
+        {collectorName == null ? collectorType : `${collectorName} (${collectorType})`}
+      </div>
       {tableName && (
         <div>
           <label>Table Name:</label> {tableName}

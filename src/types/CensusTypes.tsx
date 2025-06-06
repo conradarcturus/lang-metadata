@@ -15,6 +15,7 @@ export interface CensusData extends ObjectBase {
   nameDisplay: string;
   isoRegionCode: TerritoryCode;
   yearCollected: number; // eg. 2021, 2013
+  collectorType: string; // Type of organization (e.g., Government, NGO, Academic)
 
   // Kind of language data collected
   modality?: string; // eg. Spoken, Written, Sign
@@ -38,6 +39,7 @@ export interface CensusData extends ObjectBase {
   datePublished?: Date;
   dateAccessed?: Date;
   url?: string;
+  collectorName?: string; // Name of the organization or person who collected the data
 
   // Some fields derived as the data is imported
   languageCount: number; // Number of languages in this collection

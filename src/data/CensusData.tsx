@@ -8,6 +8,7 @@ const CENSUS_FILENAMES = [
   'ca2021', // Canada 2021 Census
   'in2011c16', // India 2011 Census C-16 Mother Tongue
   'in2011c17', // India 2011 Census C-17 Language Multilingualism
+  'np2021', // Nepal 2021 Census
   // Add more census files here as needed
 ];
 
@@ -54,6 +55,7 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
     yearCollected: 0,
     eligiblePopulation: 0,
     languageEstimates: {},
+    collectorType: '',
   }));
 
   // Iterate through the rest of the lines to collect metadata until we hit the break line

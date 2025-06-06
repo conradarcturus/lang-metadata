@@ -75,22 +75,24 @@ The header should include the following rows:
 * `yearCollected`: The year the data was collected (e.g., "2021")
 * `eligiblePopulation`: The total population of the country or region the data is from (e.g., "36,328,480" for Canada in 2021)
   * If the data is from a subset of the population (eg. only people over 15 years old) then this denominator should be the total population of that subset, not the whole country.
+* `collectorType`: The type of individual or group that collected the data (e.g., "Government", "NGO", "Academic")
 
 **Recommended Rows**
 More is better, but also if you don't have a value, leave it empty. For instance, if a census does not specifically indicate its about spoken language, don't set the modality. Nonetheless the more data you can provide the more the data can be trusted and used.
-* What kind of data is, why would a person be counted for a language
+* **Language criteria**, why would a person be counted for a language
   * `modality`: The modality of the language (e.g., "spoken", "written", "spoken or written", "understands")
   * `proficiency`: The level of proficiency in the language (e.g., "basic", "intermediate", "fluent")
   * `acquisitionOrder`: The order in which the language was acquired (e.g., "L1" for first language, "L2" for second language, "Any" for any order)
   * `domain`: The domain in which the language is used (e.g., "Home", "Work", "Education", "Any" for any domain)
-* Population eligible
+* **Population surveyed**
   * `geographicScope`: The geographic scope of the data (e.g., "whole country", "mainland -- without dependencies")
   * `age`: The age of the people surveyed (e.g., "0+" for  "all ages", "15+" for 15 years and older)
   * `notes`: Any additional notes about the data
   * `responsesPerIndividual`: The number of responses per individual (e.g., "1+" for one or more responses, "1" if every individual has exactly one response)
     * If the number of responses is 1 then we can add up the data without worrying about double counting.
   * `sampleRate`: The sample rate of the data (e.g., "0.25" the data is interpolated from 25% of the population, "1" for the the data is not interpolated) 
-* Source / Citation
+* **Source / Citation**
+  * `collectorName`: The name of the individual or group that collected the data (e.g., "Statistics Canada")
   * `url`: The URL of the census table (e.g., "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201")
   * `tableName`: The name of the original data table (e.g., "Knowledge of languages by age and gender"
   * `columnName`: The name of the column in the table the data is from (e.g., "Total - Single and multiple responses of knowledge of languages")
