@@ -141,9 +141,8 @@ export interface LocaleData extends ObjectBase {
   explicitScriptCode?: ScriptCode;
   variantTag?: VariantIANATag;
 
-  populationEstimate: number; // The canonical population
   populationSource: PopulationSourceCategory;
-
+  populationSpeaking: number;
   officialStatus?: OfficialStatus;
 
   // References to other objects, filled in after loading the TSV
@@ -152,6 +151,8 @@ export interface LocaleData extends ObjectBase {
   writingSystem?: WritingSystemData;
 
   // Data added up some references
-  populationPercentOfTerritory?: number;
+  populationSpeakingPercent?: number;
+  populationWriting?: number;
+  populationWritingPercent?: number;
   censusRecords: LocaleInCensus[]; // Maps census ID to population estimate
 }

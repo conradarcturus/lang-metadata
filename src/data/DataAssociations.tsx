@@ -109,8 +109,7 @@ export function connectLocales(
     if (territory != null) {
       territory.locales.push(locale);
       locale.territory = territory;
-      locale.populationPercentOfTerritory =
-        (locale.populationEstimate * 100) / territory.population;
+      locale.populationSpeakingPercent = (locale.populationSpeaking * 100) / territory.population;
     }
     if (language != null) {
       language.locales.push(locale);
@@ -123,7 +122,7 @@ export function connectLocales(
       if (language != null) {
         writingSystem.languages[language.ID] = language;
         if (language.primaryScriptCode != locale.explicitScriptCode) {
-          writingSystem.populationUpperBound += locale.populationEstimate || 0;
+          writingSystem.populationUpperBound += locale.populationSpeaking || 0;
         }
       }
     }

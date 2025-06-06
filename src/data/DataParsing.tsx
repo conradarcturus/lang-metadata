@@ -90,7 +90,7 @@ export function parseLocaleLine(line: string): LocaleData {
     explicitScriptCode: parts[5] != '' ? parts[5] : undefined,
     variantTag,
     populationSource: parts[7] as PopulationSourceCategory,
-    populationEstimate: Number.parseInt(parts[8]?.replace(/,/g, '')),
+    populationSpeaking: Number.parseInt(parts[8]?.replace(/,/g, '')),
     officialStatus: parts[9] != '' ? (parts[9] as OfficialStatus) : undefined,
 
     censusRecords: [], // Populated later

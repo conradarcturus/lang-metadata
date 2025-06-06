@@ -36,7 +36,7 @@ export function getSortFunction(languageSchema?: LanguageSchema): SortByFunction
                     : 0)
               : -1;
           case ObjectType.Locale:
-            return b.type === ObjectType.Locale ? b.populationEstimate - a.populationEstimate : -1;
+            return b.type === ObjectType.Locale ? b.populationSpeaking - a.populationSpeaking : -1;
           case ObjectType.Census:
             return b.type === ObjectType.Census ? b.languageCount - a.languageCount : -1;
           case ObjectType.WritingSystem:
