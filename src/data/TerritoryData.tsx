@@ -123,8 +123,8 @@ function createRegionalLocalesForTerritory(
             scope: ScopeLevel.Groups,
 
             // Update the population
-            populationEstimate: loc.populationEstimate || 0,
-            populationPercentOfTerritory: (loc.populationEstimate * 100) / territory.population,
+            populationSpeaking: loc.populationSpeaking || 0,
+            populationSpeakingPercent: (loc.populationSpeaking * 100) / territory.population,
             populationSource: PopulationSourceCategory.Aggregated,
 
             // Clear attributes that cannot be easily aggregated
@@ -132,9 +132,9 @@ function createRegionalLocalesForTerritory(
             officialStatus: undefined,
           };
         } else {
-          newLocale.populationEstimate += loc.populationEstimate || 0;
-          newLocale.populationPercentOfTerritory =
-            (newLocale.populationEstimate * 100) / territory.population;
+          newLocale.populationSpeaking += loc.populationSpeaking || 0;
+          newLocale.populationSpeakingPercent =
+            (newLocale.populationSpeaking * 100) / territory.population;
         }
       });
       return locs;
@@ -144,8 +144,8 @@ function createRegionalLocalesForTerritory(
 
   // Save it to the territory
   territory.locales = Object.values(territoryLocales)
-    .filter((loc) => loc.populationEstimate > 10) // Avoid creating too many locale objects
-    .sort((a, b) => b.populationEstimate - a.populationEstimate);
+    .filter((loc) => loc.populationSpeaking > 10) // Avoid creating too many locale objects
+    .sort((a, b) => b.populationSpeaking - a.populationSpeaking);
   territory.locales.forEach((loc) => (allLocales[loc.ID] = loc));
   // At the moment its not being saved to the master locale list
   // Also this should be done after locales are matched to languages
