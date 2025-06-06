@@ -71,7 +71,7 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
       const values = parts.slice(2); // Columns 3+ are values for each census
       if (values.length !== censuses.length) {
         console.error(
-          `Census field ${key} has ${values.length + 1} columns but expected ${censuses.length + 1}. Check the file format.`,
+          `Census field ${key} has ${values.length + 1} columns but expected ${censuses.length + 1}. Check the file format for ${filename}.`,
         );
       }
       values.forEach((maybeValue, index) => {
