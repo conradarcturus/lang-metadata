@@ -63,3 +63,13 @@ ul.TreeListBranch::before {
 .TreeListExpandBranch:hover {
     background-color: var(--color-button-hover);
 }
+
+.TreeListPopulation {
+    display: inline-block;
+    /* margin: 0;
+    padding: 0 10px; */
+    /* background-color: var(--color-button-secondary); */
+    /* color: var(--color-background); */
+    position: absolute;
+    right: 0;
+}
