@@ -36,11 +36,11 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           {populationCited.toLocaleString()}
         </div>
       )}
-      {modality != null && (
+      {modality != null && (  //medium to modality 2
         <div>
           <h4>Modality</h4>
           {modality}
-        </div>
+        </div> // end medium to modality 2
       )}
       {vitalityEth2013 != null && (
         <div>
