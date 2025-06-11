@@ -1,3 +1,4 @@
+import { LanguageModality } from '../types/LanguageTypes';
 import { separateTitleAndSubtitle } from '../generic/stringUtils';
 import {
   LocaleData,
@@ -58,7 +59,7 @@ export function parseLanguageLine(line: string): LanguageData {
     populationAdjusted,
     populationCited,
 
-    medium: parts[4] != '' ? parts[4] : undefined,
+    modality: parts[4] !== '' ? (parts[4] as LanguageModality) : undefined,
     primaryScriptCode: parts[5] != '' ? parts[5] : undefined,
 
     // References to other objects, filled in with DataAssociations methods

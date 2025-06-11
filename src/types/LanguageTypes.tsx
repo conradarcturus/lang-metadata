@@ -9,7 +9,7 @@
 
 import { CensusID } from './CensusTypes';
 import { CLDRCoverageData } from './CLDRTypes';
-import { LocaleData, ObjectBase, ScriptCode, WritingSystemData } from './DataTypes';
+import { LocaleData, ObjectBase, ScriptCode, WritingSystemData, VariantTagData } from './DataTypes'; // issue 6
 import { ObjectType } from './PageParamTypes';
 
 export type LanguageDictionary = Record<LanguageCode, LanguageData>;
@@ -30,6 +30,16 @@ export type ISO6395LanguageCode = string; // eg. ine (Indo-European)
 export type ISO6392LanguageCode = ISO6393LanguageCode | ISO6395LanguageCode; // eg. eng, spa, ine
 export type Glottocode = string; // eg. abcd1234
 export type LanguageCode = ISO6391LanguageCode | ISO6392LanguageCode | Glottocode | string;
+
+export enum LanguageModality {
+  Written = 'Written',
+  MostlyWritten = 'Mostly Written (also Spoken)',
+  SpokenAndWritten = 'Spoken & Written',
+  MostlySpoken = 'Mostly Spoken (but also written)',
+  Spoken = 'Spoken',
+  Sign = 'Sign',
+}
+
 
 export enum LanguageScope {
   Family = 'Family',
@@ -65,7 +75,7 @@ export interface LanguageData extends ObjectBase {
   populationEstimates?: Record<CensusID, number>;
   populationOfDescendents?: number;
 
-  medium?: string;
+  modality?: LanguageModality;
   primaryScriptCode?: ScriptCode;
 
   schemaSpecific: Record<LanguageSchema, LanguageDataInSchema>;
@@ -77,6 +87,8 @@ export interface LanguageData extends ObjectBase {
   writingSystems: Record<ScriptCode, WritingSystemData>;
   parentLanguage?: LanguageData;
   childLanguages: LanguageData[];
+  variantTags: VariantTagData[]; // issue 6
+
 }
 
 // Since languages can be categorized by ISO, Glottolog, or other schema, these values will vary based on the language schema
