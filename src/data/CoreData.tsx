@@ -49,6 +49,7 @@ export type CoreData = {
   locales: Record<BCP47LocaleCode, LocaleData>;
   territories: Record<TerritoryCode, TerritoryData>;
   writingSystems: Record<ScriptCode, WritingSystemData>;
+  variantTags: VariantTagData[]; // issue 6
 };
 
 export const EMPTY_LANGUAGES_BY_SCHEMA: LanguagesBySchema = {
@@ -121,6 +122,13 @@ export function useCoreData(): {
     createRegionalLocales(territories, locales); // create them after connecting them
     computeOtherPopulationStatistics(languagesBySchema, writingSystems);
 
+    // ISSUE 6
+    // Load and parse IANA variant tags
+const variantTagRaw = await fetch('./data/language-subtag-registry.txt').then(r => r.text());
+const variantTags = loadVariantTagData(variantTagRaw);
+
+// TODO: Call connectVariantTags(...) here after writing it
+
     setLanguagesBySchema(languagesBySchema);
     setTerritories(territories);
     setLocales(locales);
@@ -135,6 +143,7 @@ export function useCoreData(): {
       locales,
       territories,
       writingSystems,
+      variantTags, // issue 6
     },
   };
 }
