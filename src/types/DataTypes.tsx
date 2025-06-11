@@ -139,7 +139,7 @@ export interface LocaleData extends ObjectBase {
   languageCode: LanguageCode;
   territoryCode: TerritoryCode;
   explicitScriptCode?: ScriptCode;
-  variantTag?: VariantIANATag;
+  variantTag?: VariantTagData; // variantIANAtag to variantTagData
 
   populationEstimate: number; // The canonical population
   populationSource: PopulationSourceCategory;
@@ -154,4 +154,15 @@ export interface LocaleData extends ObjectBase {
   // Data added up some references
   populationPercentOfTerritory?: number;
   censusRecords: LocaleInCensus[]; // Maps census ID to population estimate
+}
+
+export interface VariantTagData extends ObjectBase {
+  type: ObjectType.VariantTag;
+  ID: VariantIANATag;
+  codeDisplay: VariantIANATag;
+  nameDisplay: string;
+  description: string;
+  associatedLanguageCodes: LanguageCode[];
+  languages: LanguageData[];
+  locales: LocaleData[];
 }
