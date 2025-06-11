@@ -9,7 +9,7 @@
 
 import { CensusID } from './CensusTypes';
 import { CLDRCoverageData } from './CLDRTypes';
-import { LocaleData, ObjectBase, ScriptCode, WritingSystemData } from './DataTypes';
+import { LocaleData, ObjectBase, ScriptCode, WritingSystemData, VariantTagData } from './DataTypes'; // issue 6
 import { ObjectType } from './PageParamTypes';
 
 export type LanguageDictionary = Record<LanguageCode, LanguageData>;
@@ -87,6 +87,8 @@ export interface LanguageData extends ObjectBase {
   writingSystems: Record<ScriptCode, WritingSystemData>;
   parentLanguage?: LanguageData;
   childLanguages: LanguageData[];
+  variantTags: VariantTagData[]; // issue 6
+
 }
 
 // Since languages can be categorized by ISO, Glottolog, or other schema, these values will vary based on the language schema
