@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { loadVariantTagData } from '../data/IANAData'; // issue 6
-import { VariantTagData } from '../types/DataTypes'; // issue 6
 
 import { CensusID, CensusData } from '../types/CensusTypes';
 import {
@@ -11,6 +10,7 @@ import {
   TerritoryCode,
   TerritoryData,
   WritingSystemData,
+  VariantTagData // issue 6
 } from '../types/DataTypes';
 import { LanguagesBySchema } from '../types/LanguageTypes';
 
