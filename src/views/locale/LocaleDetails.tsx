@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { numberToFixedUnlessSmall } from '../../generic/numUtils';
+import { numberToFixedUnlessSmall, numberToSigFigs } from '../../generic/numberUtils';
 import { LocaleData } from '../../types/DataTypes';
 import HoverableObjectName from '../common/HoverableObjectName';
 
@@ -86,23 +86,47 @@ const LocaleDefinitionSection: React.FC<{ locale: LocaleData }> = ({ locale }) =
 };
 
 const LocalePopulationSection: React.FC<{ locale: LocaleData }> = ({ locale }) => {
-  const { populationEstimate, populationPercentOfTerritory, territory, censusRecords } = locale;
+  const {
+    censusRecords,
+    populationSpeaking,
+    populationSpeakingPercent,
+    populationWriting,
+    populationWritingPercent,
+    territory,
+  } = locale;
 
   return (
     <div className="section">
       <h3>Population</h3>
       <div>
         <label>Speakers:</label>
-        {populationEstimate.toLocaleString()}
+        {populationSpeaking.toLocaleString()}
         {' ['}
         {getPopulationCitation(locale)}
         {']'}
       </div>
-
-      {populationPercentOfTerritory != null && (
+      {populationSpeakingPercent != null && (
         <div>
-          <label>Percent of {territory?.territoryType ?? 'territory'}:</label>
-          {numberToFixedUnlessSmall(populationPercentOfTerritory)}%
+          <label style={{ marginLeft: '2em' }}>
+            % in {territory?.territoryType.toLowerCase() ?? 'territory'}:
+          </label>
+          {numberToFixedUnlessSmall(populationSpeakingPercent)}%
+        </div>
+      )}
+      {populationWriting && territory && (
+        <div>
+          <label>Writers:</label>~{numberToSigFigs(populationWriting, 3).toLocaleString()}
+          {' [previous estimate * literacy'}
+          {territory.literacyPercent != null && ` (${territory.literacyPercent}%)`}
+          {']'}
+        </div>
+      )}
+      {populationWritingPercent != null && (
+        <div>
+          <label style={{ marginLeft: '2em' }}>
+            % in {territory?.territoryType.toLowerCase() ?? 'territory'}:
+          </label>
+          {numberToFixedUnlessSmall(populationWritingPercent)}%
         </div>
       )}
 
