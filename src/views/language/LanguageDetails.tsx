@@ -23,7 +23,7 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
   const {
     codeISO6391,
     childLanguages,
-    medium,
+    modality, // medium to modality
     nameDisplay,
     populationCited,
     primaryWritingSystem,
