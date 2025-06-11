@@ -116,11 +116,11 @@ const LanguageDetails: React.FC<Props> = ({ lang }) => {
             {populationCited.toLocaleString()}
           </div>
         )}
-        {medium && (
+        {modality && ( // medium to modality
           <div>
             <label>Modality:</label>
-            {medium}
-          </div>
+            {modality} 
+          </div> // end medium to modality
         )}
         {primaryWritingSystem && (
           <div>
