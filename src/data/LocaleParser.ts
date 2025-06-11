@@ -42,9 +42,9 @@ export class LocaleParser {
       if (typeMatch && subtagMatch) {
         const type = typeMatch[1].toLowerCase();
         const subtag = subtagMatch[1].toLowerCase();
-        if (type in this.subtags) {
-          this.subtags[type as keyof SubtagRegistry].add(subtag);
-        }
+        if (type in this.subtags && typeof this.subtags[type as keyof SubtagRegistry] !== 'object') {
+  ((this.subtags[type as keyof SubtagRegistry]) as Set<string>).add(subtag);
+}
         if (preferredMatch) {
           this.subtags.preferred[subtag] = preferredMatch[1].toLowerCase();
         }
