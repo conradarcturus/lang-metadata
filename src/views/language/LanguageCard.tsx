@@ -17,7 +17,7 @@ interface Props {
 const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
   const { updatePageParams } = usePageParams();
   const sortFunction = getSortFunction();
-  const { ID, locales, modality, populationCited, vitalityEth2013 } = lang; // medium to modality
+  const { ID, locales, modality, populationCited, vitalityEth2013 } = lang; 
   const countryLocales = uniqueBy(
     locales.filter((l) => l.territory?.territoryType == TerritoryType.Country).sort(sortFunction),
     (l) => l.territoryCode,
@@ -36,11 +36,11 @@ const LanguageCard: React.FC<Props> = ({ lang, includeRelations }) => {
           {populationCited.toLocaleString()}
         </div>
       )}
-      {modality != null && (  //medium to modality 2
+      {modality != null && (  
         <div>
           <h4>Modality</h4>
           {modality}
-        </div> // end medium to modality 2
+        </div> 
       )}
       {vitalityEth2013 != null && (
         <div>
