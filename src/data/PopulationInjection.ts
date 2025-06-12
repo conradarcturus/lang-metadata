@@ -1,6 +1,5 @@
 // src/data/PopulationInjection.ts
 
-import fs from 'fs';
 import { LocaleData } from '../types/DataTypes';
 
 interface PopulationMap {
@@ -10,10 +9,9 @@ interface PopulationMap {
   };
 }
 
-export function parseTerritoryPopulationTSV(filePath: string): PopulationMap {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const lines = content.trim().split('\n');
-  const header = lines.shift();
+export function parseTerritoryPopulationTSV(tsvContent: string): PopulationMap {
+  const lines = tsvContent.trim().split('\n');
+  lines.shift(); // remove header
   const map: PopulationMap = {};
 
   for (const line of lines) {
