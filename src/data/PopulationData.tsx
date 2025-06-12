@@ -34,6 +34,29 @@ export function computeWritingPopulationForLocales(
     .forEach((locale) => {
       const literacyPercent = locale.territory?.literacyPercent ?? 100;
 
+      // 🌍 Estimate 2025 projected population from historical %
+      if (
+        locale.populationSpeaking != null &&
+        locale.territory?.historicPopulation != null &&
+        locale.territory?.latestPopulation != null
+      ) {
+        const projected = estimatePopulationFromHistoric(
+          locale.populationSpeaking,
+          locale.territory.historicPopulation,
+          locale.territory.latestPopulation,
+        );
+
+        locale.projectedPopulation2025 = projected.estimated;
+
+        if (projected.capped) {
+          if (!locale.warnings) locale.warnings = [];
+          locale.warnings.push({
+            type: 'POPULATION_EXCEEDS_TOTAL',
+            message: projected.warning,
+          });
+        }
+      }
+
       locale.populationWriting = Math.round((locale.populationSpeaking * literacyPercent) / 100);
       if (locale.populationSpeakingPercent != null) {
         locale.populationWritingPercent =
