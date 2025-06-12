@@ -9,6 +9,7 @@ const CENSUS_FILENAMES = [
   'in2011c16', // India 2011 Census C-16 Mother Tongue
   'in2011c17', // India 2011 Census C-17 Language Multilingualism
   'np2021', // Nepal 2021 Census
+  'data.un.org/au', // Australia Censuses downloaded from UN data portal
   // Add more census files here as needed
 ];
 
@@ -104,7 +105,7 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
 
   // Set other fields required for objects and report an error if an important one is missing
   censuses.forEach((census) => {
-    // Construct a unique ID for each census
+    // Collect names for the census
     census.names = [census.nameDisplay, census.tableName, census.columnName].filter(
       (n) => n != null,
     );
@@ -131,14 +132,20 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
     }
 
     const languageCode = parts[0].trim() as LanguageCode;
-    if (['Language Code', 'mul', 'mis', 'und', 'zxx'].includes(languageCode)) {
+    if (['Language Code', 'mul', 'mis', 'und', 'zxx', ''].includes(languageCode)) {
       // Skip header and special language codes
       // 'Language Code' is the header, 'mul' is for multiple languages, 'mis' is for missing languages,
       // 'und' is for undefined languages, and 'zxx' is for no linguistic content
       continue;
     }
 
-    languageNames[languageCode] = parts[1].trim(); // The language name is in the second column
+    // Accumulate language names
+    const languageName = parts[1].trim();
+    if (languageNames[languageCode] != null) {
+      languageNames[languageCode] = languageNames[languageCode] + ' / ' + languageName; // If the language code already exists, append the name
+    } else {
+      languageNames[languageCode] = languageName; // Otherwise, just set the name
+    }
 
     // Add population estimates to censuses when its non-empty
     parts.slice(2).forEach((part, i) => {
@@ -150,8 +157,13 @@ function parseCensusImport(fileInput: string, filename: string): CensusImport {
         console.warn(`Skipping extra population estimate for ${languageCode} in line: ${line}`);
         return;
       }
-      censuses[i].languageEstimates[languageCode] = Number.parseInt(part.replace(/,/g, ''));
-      censuses[i].languageCount += 1; // Increment the language count for the census
+      if (censuses[i].languageEstimates[languageCode] != null) {
+        // If the language estimate already exists, add the estimate
+        censuses[i].languageEstimates[languageCode] += Number.parseInt(part.replace(/,/g, ''));
+      } else {
+        censuses[i].languageEstimates[languageCode] = Number.parseInt(part.replace(/,/g, ''));
+        censuses[i].languageCount += 1; // Increment the language count for the census
+      }
     });
   }
 
