@@ -31,6 +31,16 @@ export type ISO6392LanguageCode = ISO6393LanguageCode | ISO6395LanguageCode; // 
 export type Glottocode = string; // eg. abcd1234
 export type LanguageCode = ISO6391LanguageCode | ISO6392LanguageCode | Glottocode | string;
 
+export enum LanguageModality {
+  Written = 'Written',
+  MostlyWritten = 'Mostly Written (also Spoken)',
+  SpokenAndWritten = 'Spoken & Written',
+  MostlySpoken = 'Mostly Spoken (but also written)',
+  Spoken = 'Spoken',
+  Sign = 'Sign',
+}
+
+
 export enum LanguageScope {
   Family = 'Family',
   Macrolanguage = 'Macrolanguage',
@@ -65,7 +75,7 @@ export interface LanguageData extends ObjectBase {
   populationEstimates?: Record<CensusID, number>;
   populationOfDescendents?: number;
 
-  medium?: string;
+  modality?: LanguageModality;
   primaryScriptCode?: ScriptCode;
 
   schemaSpecific: Record<LanguageSchema, LanguageDataInSchema>;
