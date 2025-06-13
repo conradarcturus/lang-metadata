@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePageParams } from '../../controls/PageParamsContext';
+import { numberToFixedUnlessSmall } from '../../generic/numberUtils';
 import { LocaleData } from '../../types/DataTypes';
 import ObjectTitle from '../common/ObjectTitle';
 
@@ -28,7 +29,8 @@ const LocaleCard: React.FC<Props> = ({ locale }) => {
         {']'}
         {populationSpeakingPercent != null && (
           <div>
-            {populationSpeakingPercent.toFixed(1)}% of {territory?.territoryType ?? 'territory'}
+            {numberToFixedUnlessSmall(populationSpeakingPercent)}% of{' '}
+            {territory?.territoryType ?? 'territory'}
           </div>
         )}
       </div>
